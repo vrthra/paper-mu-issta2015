@@ -1,0 +1,65 @@
+\newcommand*\per{\scalebox{.5}{\%}}
+\newcommand\Mua{Mutation analysis~}
+\newcommand\mua{mutation analysis~}
+\begin{comment}
+<<setup, include=FALSE, cache=FALSE, message=FALSE, echo=FALSE>>=
+#options(warn=-1)
+options(digits=3)
+opts_chunk$set(fig.path='figure/twocolumn-', fig.align='center', fig.show='hold', echo=FALSE)
+render_listings()
+logit<-function(x) log(x/(1-x))
+@
+<<chunk-hook, echo=2>>=
+<<setup>>
+@
+\end{comment}
+
+
+<<a,message=F, echo=F>>=
+require(xtable)
+require(data.table)
+@
+
+% 10 pages for the main text + 1 for references.
+\section{Introduction}
+% 1. Describe the problem
+% 2. State your contributions
+
+Research in software testing often involves comparison between different testing techniques.
+\Mua originally proposed by Lipton \cite{lipton1971fault} involves systematic transformation of program through introduction of first order syntactical changes.
+The ability of test suites to distinguish the variants -- mutation score -- thus produced is taken as the effectiveness of the test suite\cite{ammann2008introduction}, and is used as an indicator for the effectiveness of the test suite against real faults\cite{andrews2005mutation}.
+
+\Mua relies on two main assumptions: competant programmer hypothesis, and coupling effect\cite{budd1979mutation}.
+Competant programmer hypothesis suggests that the version of program produced by a competant programmar is close to the final version,
+while coupling effect claims that a test suite capable of catching first order bugs will also detect higher order bugs that contain these first order bugs.
+
+For \mua to be used as a successful tool for comparison of testing techniques, the mutants produced by \mua should be similar in charecteristics to the real faults found in software.
+This was investigated by Andrews et al.\cite{andrews2005mutation}, where it was found in one of the programs under consideration `space.c' for which real faults were available, the ease of detecting mutants was very close to the ease of detecting real faults.
+However, for the other programs under consideration from siemens suite, the faults seeded by hand were much more harder to detect than mutants.
+From this, Andrews et al. concluded that mutants produced were similar in characteristic to the real faults in terms of ease of detection.
+However, this has come under attack for various reasons.
+For example, the analysis depended on a single program which may not be a good representative of the other programs.
+Further, Namin et al.\cite{namin2011theuse} found that different factors such as different programming languages, test suite size, and mutation operators chosen has an impact on whether the mutants produced are similar to real faults in terms of ease of detection.
+
+This has led us to investigate real faults in software in a larger scale, especially paying attention to programming langauges of four different kinds: C, Java, Python and Haskell.
+We have used the revision control histories of open source projects as obtained from Github\cite{github}. From these, we have identified changes that correspond to bugfixes using machine learning techniques. We have also identified the changes that are simple.
+
+This research makes the following contributions.
+
+\begin{enumerate}
+\item contrib
+\end{enumerate}
+
+\section{Related Work}
+Related work.
+\section{Methodology}
+Our methodology
+
+\section{Analysis}
+
+Analysis
+
+\section{Results}
+
+Results
+
