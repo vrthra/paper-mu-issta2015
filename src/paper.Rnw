@@ -18,6 +18,7 @@ logit<-function(x) log(x/(1-x))
 <<a,message=F, echo=F>>=
 require(xtable)
 require(data.table)
+load('data/mu.rda')
 @
 
 % 10 pages for the main text + 1 for references.
@@ -57,9 +58,49 @@ Our methodology
 
 \section{Analysis}
 
-Analysis
+<<prepare,echo=F>>=
+attach(m)
+sdl_f <- mut.avg~mut.avg.sdl + 0
+rnd_f <- mut.avg~mut.avg.rnd + 0
+
+sdl_all <- lm(sdl_f)
+rnd_all <- lm(rnd_f)
+
+sdl_s <- summary(sdl_all)
+rnd_s <- summary(rnd_all)
+
+avg.est <- sdl_s$coefficients['mut.avg.sdl','Estimate']
+rnd.est <- rnd_s$coefficients['mut.avg.rnd','Estimate']
+@
+
+\begin{figure*}[t]
+<<plots, fig.width=5, fig.height=5, out.width='.45\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+plot(sdl_f, main='SDL ~ ALL',pch='*')
+abline(sdl_all, col='red')
+plot(rnd_f, main='RND ~ ALL',pch='*')
+abline(rnd_all, col='blue')
+abline(sdl_all, col='red', lty=2)
+@
+\caption{Plots}
+\label{fig:caddrm}
+\end{figure*}
+
+\subsection{Correlation Analysis}
+
+$ \mu_{all} = 0 + \beta_0 \times \mu_{sample}  $
+
+The interesting part is (1) the $\beta_0$ coeff which tells how much we must multiply the  sampled/selected score to get original score, and $R^2$ which tells us how close the score   is.
+
+\subsubsection{mut.avg.sdl and mut.avg}
+
+$ \mu_{all} = 0 + \Sexpr{avg.est} \times \mu_{sdl}  $
+
+\subsubsection{mut.avg.rnd and mut.avg}
+
+$ \mu_{all} = 0 + \Sexpr{rnd.est} \times \mu_{rnd}  $
 
 \section{Results}
 
-Results
-
+We see from the data that random sampling has a higher $R^2$, and also approximates the all  mutations score better.
+However, caveat emptor. There is a difference between the number of mutators for SDL and RAND. If our approximation was right, we should have gotten nearly same number of mutators. However
+The number of mutators in RND is \Sexpr{sum(m$pit.mutation.total.rnd) / sum(m$pit.mutation.total.sdl)} times SDL.
