@@ -1,4 +1,15 @@
-Explain why Random
+% 1.Statetheproblem
+Mutation analysis is often used to analyze the quality of test suites. However, it has exorbitant computational requirements which makes it hard to use in practice. Operator selection, especially using only statement deletion operator has been shown to provide a close approximation to the full mutation score.
+%2.Saywhyit’saninterestingproblem
+However, our previous research suggests that any technique that forces accounting for the effect of each line, should achieve similar results.
+
+%3.Saywhatyoursolutionachieves
+Our research compares the mutation scores achieved using the full operator set, to that produced by a a set of operators that approximates statement deletion, and also to that produced by line based random sampling sampling.
+The analysis of the resulting model shows that the line based random sampling was slightly better at approximating the original mutation score. However, this difference was not statistically significant.
+
+%4.Saywhatfollowsfromyoursolution
+
+This result shows that operator selection based on reduced neighborhood strategy does not have an impact on the closeness of approximation.
 
 % Technical papers must be prepared in ACM conference format and must not exceed 10 pages
 % (including figures and appendices but NOT including references). That is, any pages after
