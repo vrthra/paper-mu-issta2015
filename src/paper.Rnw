@@ -55,6 +55,16 @@ Offutt\cite{offutt1996anexperimental} following the previous paper\cite{offutt19
 % Replacement of Operand , Statement modification, Expression Modification: modify operators, ES-selective : not using operand, RS-Selective: not using expression, RE-Selective: not uinsg statement, E-selective : only expression..
 
 Unch\cite{untch2009onreduced} suggested using a single mutagen statement deletion. He compares the statement deletion with other selective mutagen sets, and finds statement deletion operator to provide the best prediction of original mutation score ($R^2 = 0.97$)
+This was carried forward by Deng et al\cite{deng2013empirical}, (according to whom, random sampling was weak when it was made low enough for appreciable mutant savings). They realize a mean mutation score of 92\% for adequate test suites with SDL alone, and generating a saving of 81\% in the number of mutants, and 41\% fewer equivalent mutants.
+
+Zhang et al.\cite{zhang2010operator}, compares operator based mutant selection to random mutant selection. They compare three diffrent operator based selection techniques from Offutt et al., Barbosa et al., and Namin et al. against random mutant selection, with equal mutant probability, and equal mutagen probaiblity. They find that none of these selection techniques are superior to random selection, with same number of mutants. They also find that equal mutation sampling is more effective for larger subjects compared to equal mutagen sampling and the reverse is true for smaller subjects.
+A second paper by Zhang et al.\cite{zhang2013ase} investigates 8 sampling strategies on top of operator based mutant selection. They find that sampling strategies based on programming elements (method based) performed best.
+% Baseline : x\% from selected set
+% MOP : x\% from each mutagen
+% for these, it is sampled from operator based selected set.
+% PLEm : x\% from inside the same program element.
+% PLE + MOP: sample x\% from same mutagen from same element.
+
 
 \section{Methodology}
 We collected a random sample of Java programs from Github\cite{github} that utilized the Maven\cite{maven} system for building. Next, we selected those programs from this set that passed all the unit test cases within them. We ran mutation analysis on this set of projects using PIT\cite{pitest}, with the mutators selected set to {\it all}. Because of the limitations of using a bytecode mutation engine, we could not implement statement deletion directly. Instead, we made use of the following mutation operators, that closely approximated statement deletion operator -- remove void method calls, remove non void method calls, remove conditionals, remove member variable assignments, remove increments and decrements. Finally, we modified the mutation engine to only choose one random mutation per line out of the set of applicable mutants for that line. For the second phase, we looked at the ratio between the number of mutants produced by the set of operators corresponding to statement deletion, and that of the random line mutants, and used this as a probability to add the mutants for the random line set. This was done to ensure that the results from the random sampling and statement deletion could be compared.
@@ -113,15 +123,20 @@ hist(log(10,m$pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
 
 $ \mu\{ M_{all}| M_{sample} \} = 0 + \beta_1 \times M{sample}  $
 
-The interesting part is (1) the $\beta_1$ coefficient which tells how much we must multiply the  sampled/selected score to get original score, and $R^2$ which tells us how close the score   is.
+The interesting part is (1) the $\beta_1$ coefficient which tells how much we must multiply the  sampled/selected score to get original score, and $R^2$ which tells us how close the score is.
 
 \subsubsection{mut.avg.sdl and mut.avg}
 
-$ \mu_\{M_{all} | M_{sdl}\} = 0 + \Sexpr{sdl.est} \times M_{sdl} \text{ with } R^2 = \Sexpr{sdl.r} $
+<<>>=
+c <- cor(subset(m, select=c(mut.avg.sdl, mut.avg)) , method="kendall", use="pairwise")['mut.avg.sdl', 'mut.avg']
+d <- cor(subset(m, select=c(mut.avg.rnd, mut.avg)) , method="kendall", use="pairwise")['mut.avg.rnd', 'mut.avg']
+@
+
+$ \mu_\{M_{all} | M_{sdl}\} = \Sexpr{sdl.est} \times M_{sdl} \text{ : } R^2 = \Sexpr{sdl.r} \text{,} \tau_{\beta} = \Sexpr{c}$
 
 \subsubsection{mut.avg.rnd and mut.avg}
 
-$ \mu_\{M_{all} | M_{rnd}\} = 0 + \Sexpr{rnd.est} \times M_{rnd}  \text{ with } R^2 = \Sexpr{rnd.r} $
+$ \mu_\{M_{all} | M_{rnd}\} = \Sexpr{rnd.est} \times M_{rnd} \text{ : } R^2 = \Sexpr{rnd.r} \text{,} \tau_{\beta} = \Sexpr{d}$
 
 \subsection{Regression Analysis}
 The next question we will tackle is if there exist a difference at all between SDL mutagen and the random sampling. We can perform two statistical tests to answer this question. For the first, we run a simple paired t-test.
@@ -162,7 +177,12 @@ The number of mutators in RND is
 
 The total mutants for all is \Sexpr{sum(m$pit.mutation.total)}, for rnd is \Sexpr{sum(m$pit.mutation.total.rnd)} and for sdl is \Sexpr{sum(m$pit.mutation.total.sdl)}
 
-TODO: We should check if the distribution significantly different too.
-TODO: Use sampling
-TODO: Check on randoop samples too
-TODO: Implement bomb (athrow) and see its mutation score, and see how close it comes.
+\begin{enumerate}
+\item [TODO] We should check if the distribution significantly different too.
+\item [TODO] Use sampling
+\item [TODO] Check on randoop samples too
+\item [TODO] Implement bomb (athrow) and see its mutation score, and see how close it comes.
+\item [TODO] Compare random selection with class, method, and mutagen sampling.
+\item [TODO] Report time for each, as cost.
+\item [TODO] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
+\end{enumerate}
