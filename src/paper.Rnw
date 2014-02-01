@@ -73,8 +73,8 @@ We collected a random sample of Java programs from Github\cite{github} that util
 
 <<prepare,echo=F>>=
 attach(m)
-sdl_f <- mut.avg~mut.avg.sdl + 0
-rnd_f <- mut.avg~mut.avg.rnd + 0
+sdl_f <- mut.avg~sdl.mut.avg + 0
+rnd_f <- mut.avg~lrnd.mut.avg + 0
 
 sdl_all <- lm(sdl_f)
 rnd_all <- lm(rnd_f)
@@ -82,8 +82,8 @@ rnd_all <- lm(rnd_f)
 sdl_s <- summary(sdl_all)
 rnd_s <- summary(rnd_all)
 
-sdl.est <- sdl_s$coefficients['mut.avg.sdl','Estimate']
-rnd.est <- rnd_s$coefficients['mut.avg.rnd','Estimate']
+sdl.est <- sdl_s$coefficients['sdl.mut.avg','Estimate']
+rnd.est <- rnd_s$coefficients['lrnd.mut.avg','Estimate']
 
 sdl.r <- sdl_s$r.squared
 rnd.r <- rnd_s$r.squared
@@ -105,11 +105,11 @@ abline(sdl_all, col='red', lty=2)
 
 \begin{figure*}[t]
 <<mutnum, fig.width=5, fig.height=5, out.width='.45\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-hist(log(10,m$pit.mutation.total.sdl), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(sdl) mutation score')
-hist(log(10,m$pit.mutation.num.sdl), breaks=50, add=T, col=rgb(1,0,0,1/4))
+hist(log(10,m$sdl.pit.mutation.total), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(sdl) mutation score')
+hist(log(10,m$sdl.pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
 
-hist(log(10,m$pit.mutation.total.rnd), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(rnd) mutation score')
-hist(log(10,m$pit.mutation.num.rnd), breaks=50, add=T, col=rgb(1,0,0,1/4))
+hist(log(10,m$lrnd.pit.mutation.total), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(rnd) mutation score')
+hist(log(10,m$lrnd.pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
 
 hist(log(10,m$pit.mutation.total), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(total) mutation score')
 hist(log(10,m$pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
@@ -125,16 +125,16 @@ $ \mu\{ M_{all}| M_{sample} \} = 0 + \beta_1 \times M{sample}  $
 
 The interesting part is (1) the $\beta_1$ coefficient which tells how much we must multiply the  sampled/selected score to get original score, and $R^2$ which tells us how close the score is.
 
-\subsubsection{mut.avg.sdl and mut.avg}
+\subsubsection{sdl.mut.avg and mut.avg}
 
 <<>>=
-c <- cor(subset(m, select=c(mut.avg.sdl, mut.avg)) , method="kendall", use="pairwise")['mut.avg.sdl', 'mut.avg']
-d <- cor(subset(m, select=c(mut.avg.rnd, mut.avg)) , method="kendall", use="pairwise")['mut.avg.rnd', 'mut.avg']
+c <- cor(subset(m, select=c(sdl.mut.avg, mut.avg)) , method="kendall", use="pairwise")['sdl.mut.avg', 'mut.avg']
+d <- cor(subset(m, select=c(lrnd.mut.avg, mut.avg)) , method="kendall", use="pairwise")['lrnd.mut.avg', 'mut.avg']
 @
 
 $ \mu_\{M_{all} | M_{sdl}\} = \Sexpr{sdl.est} \times M_{sdl} \text{ : } R^2 = \Sexpr{sdl.r} \text{,} \tau_{\beta} = \Sexpr{c}$
 
-\subsubsection{mut.avg.rnd and mut.avg}
+\subsubsection{lrnd.mut.avg and mut.avg}
 
 $ \mu_\{M_{all} | M_{rnd}\} = \Sexpr{rnd.est} \times M_{rnd} \text{ : } R^2 = \Sexpr{rnd.r} \text{,} \tau_{\beta} = \Sexpr{d}$
 
@@ -142,7 +142,7 @@ $ \mu_\{M_{all} | M_{rnd}\} = \Sexpr{rnd.est} \times M_{rnd} \text{ : } R^2 = \S
 The next question we will tackle is if there exist a difference at all between SDL mutagen and the random sampling. We can perform two statistical tests to answer this question. For the first, we run a simple paired t-test.
 
 <<>>=
-s <- t.test(mut.avg.rnd, mut.avg.sdl, paired=T)
+s <- t.test(lrnd.mut.avg, sdl.mut.avg, paired=T)
 @
 
 The paired t-test failed to sufficient difference between the two distributions with a two-sided p-value of \Sexpr{s$p.value}. That is, we do not have sufficient evidence to conclude that the two distributions are different.
@@ -151,19 +151,21 @@ The second approch is convoluted (I am a little unclear here.). We try to predic
 Our full model is
 
 $ \mu_\{M_{all} | M_{sdl}, M_{rnd}\} = 0 + \beta_1 {sdl} + \beta_2 M_{rnd} + \beta_3 M_{sdl} M_{rnd}  $
+\begin{small}
 <<results='asis'>>=
-s <- subset(m, select=c(mut.avg,mut.avg.sdl))
+s <- subset(m, select=c(mut.avg,sdl.mut.avg))
 s$type <- 'sdl'
 colnames(s) <- c('mut', 'sample', 'type')
-r <- subset(m, select=c(mut.avg,mut.avg.rnd))
+r <- subset(m, select=c(mut.avg,lrnd.mut.avg))
 r$type <- 'rnd'
 colnames(r) <- c('mut', 'sample', 'type')
 all <- rbind(s, r)
 detach(m)
 fm <- with(all, lm(mut ~ sample + type + sample:type))
 sm <- anova(fm)
-xtable(sm)
+print(xtable(sm,caption="My caption"), size="\\small")
 @
+\end{small}
 
 We see that both type and sample:type are non-significant for predicting the final model, and sequentially removing them does not change the effectiveness. Hence, the techniques random sampling and statement deletion operator do not have any difference.
 
@@ -173,9 +175,9 @@ We see that both type and sample:type are non-significant for predicting the fin
 We see from the data that random sampling has a higher $R^2$, and also approximates the all  mutations score better.
 However, caveat emptor. There is a difference between the number of mutators for SDL and RAND. If our approximation was right, we should have gotten nearly same number of mutators. However
 The number of mutators in RND is
- \Sexpr{sum(m$pit.mutation.total.rnd) / sum(m$pit.mutation.total.sdl)} times SDL.
+ \Sexpr{sum(m$lrnd.pit.mutation.total) / sum(m$sdl.pit.mutation.total)} times SDL.
 
-The total mutants for all is \Sexpr{sum(m$pit.mutation.total)}, for rnd is \Sexpr{sum(m$pit.mutation.total.rnd)} and for sdl is \Sexpr{sum(m$pit.mutation.total.sdl)}
+The total mutants for all is \Sexpr{sum(m$pit.mutation.total)}, for rnd is \Sexpr{sum(m$lrnd.pit.mutation.total)} and for sdl is \Sexpr{sum(m$sdl.pit.mutation.total)}
 
 \begin{enumerate}
 \item [TODO] We should check if the distribution significantly different too.
