@@ -114,7 +114,7 @@ hist(log(10,m$lrnd.pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
 hist(log(10,m$pit.mutation.total), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(total) mutation score')
 hist(log(10,m$pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
 @
-\caption{Plots}
+\caption{Plots of total mutation number, and those killed.}
 \label{fig:caddrm}
 \end{figure*}
 
@@ -160,7 +160,6 @@ r <- subset(m, select=c(mut.avg,lrnd.mut.avg))
 r$type <- 'rnd'
 colnames(r) <- c('mut', 'sample', 'type')
 all <- rbind(s, r)
-detach(m)
 fm <- with(all, lm(mut ~ sample + type + sample:type))
 sm <- anova(fm)
 print(xtable(sm,caption="My caption"), size="\\small")
@@ -168,6 +167,18 @@ print(xtable(sm,caption="My caption"), size="\\small")
 \end{small}
 
 We see that both type and sample:type are non-significant for predicting the final model, and sequentially removing them does not change the effectiveness. Hence, the techniques random sampling and statement deletion operator do not have any difference.
+
+\begin{figure*}[t]
+<<tplots, fig.width=5, fig.height=5, out.width='.45\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+t_f <- sdl.time~lrnd.time
+plot(t_f, main='SDL ~ RND',pch='*')
+abline(lm(t_f), col='red')
+detach(m)
+@
+\caption{Time}
+\label{fig:caddrm}
+\end{figure*}
+
 
 
 \section{Results}
