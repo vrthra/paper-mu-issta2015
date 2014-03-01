@@ -215,5 +215,5 @@ The total mutants for all is Sexpr{sum(m.pit.mutation.total)}, for rnd is Sexpr{
 \item [NO] Implement bomb (athrow) and see its mutation score, and see how close it comes.
 \item [DONE] Compare random selection with class, method, and mutagen sampling.
 \item [TODO] Report time for each, as cost.
-\item [DONTKNOWHOWTO] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
+\item [TODOX] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
 \end{enumerate}
