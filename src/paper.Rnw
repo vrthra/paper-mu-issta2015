@@ -125,7 +125,7 @@ par(mfrow=c(2,2))
 with(o.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Original SDL'))
 with(o.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Original 1 per line'))
 with(r.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Randoop SDl'))
-with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Original 1 per line'))
+with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Randoop 1 per line'))
 @
 \label{fig:sdl1}
 \caption{Statement Deletion vs One per line.}
