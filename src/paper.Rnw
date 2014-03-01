@@ -104,7 +104,7 @@ r.det <- cbind(projects = rownames(r.pit.det), stack(r.pit.det))
 r.det$ind <- clean(r.det$ind)
 with(r.det,boxplot(values~ind,horizontal=T,border=c('darkgray'), add=T,pch='+'))
 @
-\caption{Relative fertility of mutation operators}
+\caption{Relative fertility of mutation operators. The gray boxes represent detected mutants, while black represents total mutants.}
 \label{fig:mfert}
 
 \end{figure*}
@@ -127,35 +127,6 @@ with(r.det,boxplot(values~ind,horizontal=T,border=c('darkgray'), add=T,pch='+'))
 % rnd.r <- rnd_s$r.squared
 % 
 % @
-
-\begin{figure*}[t]
-% <<plots, fig.width=5, fig.height=5, out.width='.45\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% plot(sdl_f, main='SDL ~ ALL',pch='*')
-% abline(sdl_all, col='red')
-% plot(rnd_f, main='RND ~ ALL',pch='*')
-% abline(rnd_all, col='blue')
-% abline(sdl_all, col='red', lty=2)
-% @
-\caption{Plots}
-\label{fig:caddrm}
-\end{figure*}
-
-
-\begin{figure*}[t]
-% <<mutnum, fig.width=5, fig.height=5, out.width='.45\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% hist(log(10,m$sdl.pit.mutation.total), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(sdl) mutation score')
-% hist(log(10,m$sdl.pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
-% 
-% hist(log(10,m$lrnd.pit.mutation.total), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(rnd) mutation score')
-% hist(log(10,m$lrnd.pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
-% 
-% hist(log(10,m$pit.mutation.total), breaks=50, col=rgb(0,0,1,1/4), main='histogram of log(total) mutation score')
-% hist(log(10,m$pit.mutation.num), breaks=50, add=T, col=rgb(1,0,0,1/4))
-% @
-\caption{Plots of total mutation number, and those killed.}
-\label{fig:caddrm}
-\end{figure*}
-
 
 \subsection{Correlation Analysis}
 
