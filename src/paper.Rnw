@@ -100,17 +100,17 @@ bcol <- '#2171B5'
 #bcol <- 'darkgray'
 icol <- '#9ECAE0'
 #icol <- 'lightgray'
-with(o.all,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.',main='Original', cex.axis=0.8, ylim=c(0,0.5)))
+with(o.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Original', cex.axis=0.8, ylim=c(0,0.5)))
 o.det <- cbind(projects = rownames(o.pit.det), stack(o.pit.det))
 o.det$ind <- clean(o.det$ind)
-with(o.det,boxplot(values~ind,horizontal=T,border=c('black'), add=T,pch='.', axes=F, ylim=c(0,0.5)))
+with(o.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, add=T,pch='.', axes=F, ylim=c(0,0.5)))
 
 r.all <- cbind(projects = rownames(r.pit.all), stack(r.pit.all))
 r.all$ind <- clean(r.all$ind)
-with(r.all,boxplot(values~ind,horizontal=T,border=c(bcol),col=icol, pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.5)))
+with(r.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.5)))
 r.det <- cbind(projects = rownames(r.pit.det), stack(r.pit.det))
 r.det$ind <- clean(r.det$ind)
-with(r.det,boxplot(values~ind,horizontal=T,border=c('black'), add=T,pch='.', axes=F,ylim=c(0,0.5)))
+with(r.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, add=T,pch='.', axes=F,ylim=c(0,0.5)))
 @
 \caption{Relative fertility of mutation operators. The gray boxes represent detected mutants, while black represents total mutants.}
 \label{fig:mfert}
