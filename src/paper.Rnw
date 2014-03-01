@@ -3,11 +3,14 @@
 \newcommand\mua{mutation analysis~}
 \begin{comment}
 <<setup, include=FALSE, cache=FALSE, message=FALSE, echo=FALSE>>=
+clean <- function(x)sub('CONSTRUCTOR','CONSTR',sub('RETURN','R',sub('INCREMENTS','INC',sub('VOID','V',sub('CONDITIONAL','COND',sub('NON','N',sub('VARIABLE','VAR',sub('MEMBER','MEM',sub('DELETE_','D_',sub('REMOVE_','R_',sub('NEGATE_','N_',sub('_CALLS','',sub('EXPERIMENTAL_','E_',x)))))))))))))
 #options(warn=-1)
 options(digits=3)
 opts_chunk$set(fig.path='figure/twocolumn-', fig.align='center', fig.show='hold', echo=FALSE)
 render_listings()
 logit<-function(x) log(x/(1-x))
+require(reshape2)
+require(xtable)
 @
 <<chunk-hook, echo=2>>=
 <<setup>>
@@ -23,6 +26,9 @@ logit<-function(x) log(x/(1-x))
 
 % 10 pages for the main text + 1 for references.
 \section{Introduction}
+<<>>=
+load('data/opdist.rda')
+@
 % 1. Describe the problem
 % 2. State your contributions
 
@@ -77,6 +83,31 @@ Deng et al~\cite{deng2013empirical} considers the effect of using a single mutat
 We collected a random sample of Java programs from Github\cite{github} that utilized the Maven\cite{maven} system for building. Next, we selected those programs from this set that passed all the unit test cases within them. We ran mutation analysis on this set of projects using PIT\cite{pitest}, with the mutators selected set to {\it all}. Because of the limitations of using a bytecode mutation engine, we could not implement statement deletion directly. Instead, we made use of the following mutation operators, that closely approximated statement deletion operator -- remove void method calls, remove non void method calls, remove conditionals, remove member variable assignments, remove increments and decrements. Finally, we modified the mutation engine to only choose one random mutation per line out of the set of applicable mutants for that line. For the second phase, we looked at the ratio between the number of mutants produced by the set of operators corresponding to statement deletion, and that of the random line mutants, and used this as a probability to add the mutants for the random line set. This was done to ensure that the results from the random sampling and statement deletion could be compared.
 
 \section{Analysis}
+
+\subsection{Operators}
+
+\subsection{Occurrence of Operators}
+\begin{figure*}[t]
+<<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+par(las=1,mfrow = c(1, 2),mar=c(2,8,1,1))
+o.all <- cbind(projects = rownames(o.pit.all), stack(o.pit.all))
+o.all$ind <- clean(o.all$ind)
+with(o.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='*',main='Original'))
+o.det <- cbind(projects = rownames(o.pit.det), stack(o.pit.det))
+o.det$ind <- clean(o.det$ind)
+with(o.det,boxplot(values~ind,horizontal=T,border=c('darkgray'), add=T,pch='+'))
+
+r.all <- cbind(projects = rownames(r.pit.all), stack(r.pit.all))
+r.all$ind <- clean(r.all$ind)
+with(r.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='*',main='Randoop'))
+r.det <- cbind(projects = rownames(r.pit.det), stack(r.pit.det))
+r.det$ind <- clean(r.det$ind)
+with(r.det,boxplot(values~ind,horizontal=T,border=c('darkgray'), add=T,pch='+'))
+@
+\caption{Relative fertility of mutation operators}
+\label{fig:mfert}
+
+\end{figure*}
 
 % <<prepare,echo=F>>=
 % attach(m)
@@ -148,9 +179,9 @@ $ \mu_\{M_{all} | M_{rnd}\} = Sexpr{rnd.est} \times M_{rnd} \text{ : } R^2 = Sex
 \subsection{Regression Analysis}
 The next question we will tackle is if there exist a difference at all between SDL mutagen and the random sampling. We can perform two statistical tests to answer this question. For the first, we run a simple paired t-test.
 
-<<>>=
-s <- t.test(lrnd.mut.avg, sdl.mut.avg, paired=T)
-@
+%<<>>=
+%s <- t.test(lrnd.mut.avg, sdl.mut.avg, paired=T)
+%@
 
 The paired t-test failed to sufficient difference between the two distributions with a two-sided p-value of Sexpr{s.p.value}. That is, we do not have sufficient evidence to conclude that the two distributions are different.
 
@@ -193,9 +224,9 @@ We see that both type and sample:type are non-significant for predicting the fin
 We see from the data that random sampling has a higher $R^2$, and also approximates the all  mutations score better.
 However, caveat emptor. There is a difference between the number of mutators for SDL and RAND. If our approximation was right, we should have gotten nearly same number of mutators. However
 The number of mutators in RND is
- \Sexpr{sum(m$lrnd.pit.mutation.total) / sum(m$sdl.pit.mutation.total)} times SDL.
+ Sexpr{sum(m.lrnd.pit.mutation.total) / sum(m.sdl.pit.mutation.total)} times SDL.
 
-The total mutants for all is \Sexpr{sum(m$pit.mutation.total)}, for rnd is \Sexpr{sum(m$lrnd.pit.mutation.total)} and for sdl is \Sexpr{sum(m$sdl.pit.mutation.total)}
+The total mutants for all is Sexpr{sum(m.pit.mutation.total)}, for rnd is Sexpr{sum(m.lrnd.pit.mutation.total)} and for sdl is Sexpr{sum(m.sdl.pit.mutation.total)}
 
 \begin{enumerate}
 \item [x] For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
