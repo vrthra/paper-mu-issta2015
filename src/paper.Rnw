@@ -11,6 +11,7 @@ render_listings()
 logit<-function(x) log(x/(1-x))
 require(reshape2)
 require(xtable)
+require(Mutsel)
 @
 <<chunk-hook, echo=2>>=
 <<setup>>
@@ -27,7 +28,10 @@ require(xtable)
 % 10 pages for the main text + 1 for references.
 \section{Introduction}
 <<>>=
-load('data/opdist.rda')
+data(o.pit.all)
+data(o.pit.det)
+data(r.pit.all)
+data(r.pit.det)
 @
 % 1. Describe the problem
 % 2. State your contributions
