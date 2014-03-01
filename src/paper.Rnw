@@ -15,6 +15,8 @@ require(Mutsel)
 @
 <<chunk-hook, echo=2>>=
 <<setup>>
+v=data(package='Mutsel')
+data(list = v$results[,3])
 @
 \end{comment}
 
@@ -28,10 +30,10 @@ require(Mutsel)
 % 10 pages for the main text + 1 for references.
 \section{Introduction}
 <<>>=
-data(o.pit.all)
-data(o.pit.det)
-data(r.pit.all)
-data(r.pit.det)
+data(o.dist.all)
+data(o.dist.det)
+data(r.dist.all)
+data(r.dist.det)
 @
 % 1. Describe the problem
 % 2. State your contributions
@@ -94,47 +96,40 @@ We collected a random sample of Java programs from Github\cite{github} that util
 \begin{figure*}[t]
 <<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 par(las=1,mfrow = c(1, 2),mar=c(2,8,1,1))
-o.all <- cbind(projects = rownames(o.pit.all), stack(o.pit.all))
+o.all <- cbind(projects = rownames(o.dist.all), stack(o.dist.all))
 o.all$ind <- clean(o.all$ind)
 bcol <- '#2171B5'
 #bcol <- 'darkgray'
 icol <- '#9ECAE0'
 #icol <- 'lightgray'
-o.det <- cbind(projects = rownames(o.pit.det), stack(o.pit.det))
+o.det <- cbind(projects = rownames(o.dist.det), stack(o.dist.det))
 o.det$ind <- clean(o.det$ind)
 with(o.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F, ylim=c(0,0.6)))
 with(o.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Original', cex.axis=0.8, ylim=c(0,0.6),add=T))
 
-r.all <- cbind(projects = rownames(r.pit.all), stack(r.pit.all))
+r.all <- cbind(projects = rownames(r.dist.all), stack(r.dist.all))
 r.all$ind <- clean(r.all$ind)
-r.det <- cbind(projects = rownames(r.pit.det), stack(r.pit.det))
+r.det <- cbind(projects = rownames(r.dist.det), stack(r.dist.det))
 r.det$ind <- clean(r.det$ind)
 with(r.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F,ylim=c(0,0.6)))
 with(r.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
 @
-\caption{Relative fertility of mutation operators. The gray boxes represent detected mutants, while black represents total mutants.}
-\label{fig:mfert}
-
+\caption{Relative fertility of mutation operators. The blue shade represent detected mutants, while black represents total mutants.}
+\label{fig:op}
 \end{figure*}
 
-% <<prepare,echo=F>>=
-% attach(m)
-% sdl_f <- mut.avg~sdl.mut.avg + 0
-% rnd_f <- mut.avg~lrnd.mut.avg + 0
-% 
-% sdl_all <- lm(sdl_f)
-% rnd_all <- lm(rnd_f)
-% 
-% sdl_s <- summary(sdl_all)
-% rnd_s <- summary(rnd_all)
-% 
-% sdl.est <- sdl_s$coefficients['sdl.mut.avg','Estimate']
-% rnd.est <- rnd_s$coefficients['lrnd.mut.avg','Estimate']
-% 
-% sdl.r <- sdl_s$r.squared
-% rnd.r <- rnd_s$r.squared
-% 
-% @
+\subsection{SDL vs Random selection}
+\begin{figure*}[t]
+<<sdl.1,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+par(mfrow=c(2,2))
+with(o.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Original SDL'))
+with(o.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Original 1 per line'))
+with(r.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Randoop SDl'))
+with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Original 1 per line'))
+@
+\label{fig:sdl1}
+\caption{Statement Deletion vs One per line.}
+\end{figure*}
 
 \subsection{Correlation Analysis}
 
