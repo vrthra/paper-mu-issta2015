@@ -132,14 +132,14 @@ with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Randoop 1 per line'
 \end{figure*}
 
 <<results='asis'>>=
-o <- subset(stats.df[with(stats.df, order(-mutant.reduction, -r.square)),], mutant.reduction != Inf & kind == 'original')
+o <- subset(stats.df[with(stats.df, order(-r.square, -mutant.reduction)),], mutant.reduction != Inf & kind == 'original')
 o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'score.multiplier'))
 colnames(o.x) <- c('operator', 'r^2', 'm.reduction', 'mcov.mult')
 print(xtable(o.x, caption='Original', label='table:try1'), include.rownames=FALSE)
 # , sanitize.text.function = function(x){x}, include.rownames=FALSE)
 @
 <<results='asis'>>=
-r <- subset(stats.df[with(stats.df, order(-mutant.reduction, -r.square)),], mutant.reduction != Inf & kind == 'randoop')
+r <- subset(stats.df[with(stats.df, order(-r.square, -mutant.reduction)),], mutant.reduction != Inf & kind == 'randoop')
 r.x <- subset(o, select=c('operator','r.square', 'mutant.reduction', 'score.multiplier'))
 colnames(r.x) <- c('operator', 'r^2', 'm.reduction', 'mcov.mult')
 print(xtable(r.x, caption='Randoop', label='table:try1'), include.rownames=FALSE)
