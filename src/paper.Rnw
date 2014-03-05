@@ -87,15 +87,15 @@ with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Randoop 1 per line'
 
 <<results='asis'>>=
 o <- subset(stats.df, kind == 'original')
-o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sample', 'score.multiplier'))
-colnames(o.x) <- c('operator', 'r^2', 'm.red', 'sample', 'mcov.mult')
+o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
+colnames(o.x) <- c('operator', 'r^2', 'm.red', 'm.sd', 'num', 'B*')
 print(xtable(o.x, caption='Original', label='table:try1'), include.rownames=FALSE)
 # , sanitize.text.function = function(x){x}, include.rownames=FALSE)
 @
 <<results='asis'>>=
 r <- subset(stats.df, kind == 'randoop')
-r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sample', 'score.multiplier'))
-colnames(r.x) <- c('operator', 'r^2', 'm.red', 'sample', 'mcov.mult')
+r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
+colnames(r.x) <- c('operator', 'r^2', 'm.red','m.sd', 'num', 'B*')
 print(xtable(r.x, caption='Randoop', label='table:try1'), include.rownames=FALSE)
 @
 
