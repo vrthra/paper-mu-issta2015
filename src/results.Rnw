@@ -7,13 +7,3 @@ The number of mutators in RND is
 
 The total mutants for all is Sexpr{sum(m.pit.mutation.total)}, for rnd is Sexpr{sum(m.lrnd.pit.mutation.total)} and for sdl is Sexpr{sum(m.sdl.pit.mutation.total)}
 
-\begin{enumerate}
-\item [x] For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
-\item [TODO] We should check if the distribution significantly different too.
-\item [DONE] Use sampling
-\item [DONE] Check on randoop samples too
-\item [NO] Implement bomb (athrow) and see its mutation score, and see how close it comes.
-\item [DONE] Compare random selection with class, method, and mutagen sampling.
-\item [TODO] Report time for each, as cost.
-\item [TODOX] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
-\end{enumerate}

@@ -34,13 +34,13 @@ data(o.dist.det)
 data(r.dist.all)
 data(r.dist.det)
 @
-<<test, child='intro.Rnw'>>=
+<<intro, child='intro.Rnw'>>=
 @
-<<test, child='related.Rnw'>>=
+<<related, child='related.Rnw'>>=
 @
-<<test, child='methodology.Rnw'>>=
+<<methodology, child='methodology.Rnw'>>=
 @
-<<test, child='analysis.Rnw'>>=
+<<analysis, child='analysis.Rnw'>>=
 @
 
 
@@ -169,7 +169,19 @@ We see that both type and sample:type are non-significant for predicting the fin
 \label{fig:subsumptionr}
 \end{figure*}[t]
 
+<<results, child='results.Rnw'>>=
+@
 
+\begin{enumerate}
+\item [x] For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
+\item [TODO] We should check if the distribution significantly different too.
+\item [DONE] Use sampling
+\item [DONE] Check on randoop samples too
+\item [NO] Implement bomb (athrow) and see its mutation score, and see how close it comes.
+\item [DONE] Compare random selection with class, method, and mutagen sampling.
+\item [TODO] Report time for each, as cost.
+\item [TODOX] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
+\end{enumerate}
 \section{Results}
 
 We see from the data that random sampling has a higher $R^2$, and also approximates the all  mutations score better.
