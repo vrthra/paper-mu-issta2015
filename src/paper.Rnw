@@ -34,14 +34,14 @@ data(o.dist.det)
 data(r.dist.all)
 data(r.dist.det)
 @
-\input{intro}
-
-\input{related}
-\input{methodology}
-\input{analysis}
-
-
-
+<<test, child='intro.Rnw'>>=
+@
+<<test, child='related.Rnw'>>=
+@
+<<test, child='methodology.Rnw'>>=
+@
+<<test, child='analysis.Rnw'>>=
+@
 
 
 \subsection{Operators}
