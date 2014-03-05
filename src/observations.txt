@@ -1,0 +1,2 @@
+- Obseravtions:
+ R^2 of randoop generated is less than their original test cases ones.
