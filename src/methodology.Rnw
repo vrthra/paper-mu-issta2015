@@ -60,7 +60,7 @@ expl=c(
 'Make conditionas true',
 'Make conditionas false*')
 op.df <- data.frame(Operator=op, Explanation=expl)
-print(xtable(op.df,caption='PIT Mutation Opeators (* indicates new opeators)', label='table:pitop'), sanitize.text.function  = function(x){x}, include.colnames=FALSE, include.rownames=F)
+print(xtable(op.df,caption='PIT Mutation Opeators (* indicates new opeators)', label='tbl:pitop'), sanitize.text.function  = function(x){x}, include.colnames=FALSE, include.rownames=F)
 @
 
 One of our research questions was to compare the utility of operator

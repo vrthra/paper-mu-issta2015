@@ -82,7 +82,6 @@ with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Randoop 1 per line'
 \label{fig:sdl1}
 \caption{Statement Deletion vs One per line.}
 \end{figure*}
-
 <<results='asis'>>=
 o <- subset(stats.df, kind == 'original')
 o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
