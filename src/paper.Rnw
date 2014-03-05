@@ -44,8 +44,6 @@ data(r.dist.det)
 @
 
 
-\subsection{Operators}
-
 \subsection{Occurrence of Operators}
 \begin{figure*}[t]
 <<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=

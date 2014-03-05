@@ -18,7 +18,11 @@ and remaining projects having both flavors of test suites.
 
 We ran mutation analysis on this set of projects using PIT\cite{pitest}. However,
 since the operators provided by PIT are limited, we extended PIT to provide newer
-operators that are similar to operators provided by other mutation systems.
+operators that are similar to operators provided by other mutation systems. The set
+of operators provided by PIT are provided in Table~\ref{tbl:pitop}.
+
+Further, we also modified PIT to provide random selection of mutants according to
+various criterias.
 
 <<opstable,results='asis'>>=
 op=c(
@@ -29,14 +33,14 @@ op=c(
 'NEGATE-COND',
 'COND-BOUNDARY',
 'INCREMENTS',
-'NV-M-CALLS',
+'NVOID-M-CALLS',
 'CONSTR-CALLS',
 'INLINE-CONSTS',
-'REMOVE-INCR',
+'RM-INCR',
 'E-MEMBER-VAR',
 'E-SWITCH',
 'RM-SWITCH',
-'REMOVE-COND',
+'RM-COND',
 'DELETE-COND')
 expl=c(
 'Invert negatives',
@@ -58,6 +62,14 @@ expl=c(
 op.df <- data.frame(Operator=op, Explanation=expl)
 print(xtable(op.df,caption='PIT Mutation Opeators (* indicates new opeators)', label='table:pitop'), sanitize.text.function  = function(x){x}, include.colnames=FALSE, include.rownames=F)
 @
+
+One of our research questions was to compare the utility of operator
+selection --- especially statement deletion --- with random sampling of mutants,
+Since we use PIT, which is a bytecode oriented mutation engine, implementing statement deletion
+directly is very hard. However, we can approximate statement deletion by combining different
+bytecode operators, as given below.
+
+The basic statement deletion was mdeled on the work by Deng et al.~\cite{deng2013empirical}. The operations
+on single statements was modeled using \textit{VOID-M-CALLS,NONV-M-CALLS,CONSTR-CALLS,E-MEMBER-VAR,RM-INCR} for simple statements, and using \textit{RM-COND} for control structures, which replaced the boolean condition with false, resulting in removal of the block of statements. The operator for return values was modeled using \textit{RETURN-VALS}, which is similar.
+The operators for \textit{while,for}, and \textit{if} statements were modeled using \textit{DELETE-COND}, which replaced the boolean condition with true, which removed the effect of conditional. The \textit{switch} statement deletion was modeled using \textit{RM-SWITCH} which replaced the first 100 labels with default label, resulting in the switch element getting deleted. (Due to the constraints of the architecture of PIT only the first 100 labels were replaced).
 \subsection{Probes}
-% half_per_line half_per_method :  + halfrand-project
-%   For each (line|method|class), get the number of mutants produced. Then sample exactly half the mutants produced per unit
