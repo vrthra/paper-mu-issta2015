@@ -4,6 +4,7 @@ build/paper.pdf: src/paper.Rnw build/data/Mutsel_1.0.tar.gz
 	cp etc/* build
 	cp src/*.Rnw build
 	cp src/*.bib build
+	cp src/*.tex build
 	cd build; Rscript -e "require(knitr); knit('paper.Rnw', encoding='UTF-8');"
 	cd build; ../bin/latexmk -pdf acm_sigproc.tex
 
