@@ -1,0 +1,59 @@
+\section{Introduction}
+
+% 1. Describe the problem
+% 2. State your contributions
+
+TODO: Mutation analysis is a transformation of programs that generates several mutants 
+Mutation analysis originally proposed by Lipton\cite{lipton1971fault} involves systematic transformation of program through introduction of first order syntactical changes\cite{ammann2008introduction}. Researchers have shown that the mutations thus introduced behave similarly to the real faults\cite{andrews2005mutation}, and hence can be used as a stand-in for real faults when determining the efficacy of a test suite against faults. 
+
+Programs can be modified in many different ways to generate mutants, thus, the set of 
+possible mutants of programs can be very large introducing a high computational cost.
+The computational cost has hindered wider use of mutation analysis.
+
+Several studies has tried to devise techniques to reduce the cost of mutational analysis.
+\begin{comment}
+  Offut \cite{offutt2001mutation} classifies these techniques into the following three categories:
+  \begin{enumerata}
+  \item \emph{Do fewer}: techniques that try to reduce the number of mutants.
+  \item \emph{Do faser}: techniques that 
+  \item \emph{Do smarter}: techniques that 
+  \end{enumerate}
+\end{comment}
+One of the main approaches is selective mutation which reduces the set of mutagens\footnote{We use the terms mutagens 
+and mutation operators interchangably hereafter.}.
+Mathur \cite{} reduced the number of mutagens in Mothra \cite{Mothra} by omitting two operators. 
+Offutt et al.\cite{offutt1993anexperimental} further omitted upto six oprators from the 
+mutagens and observed negligible loss of effectiveness in mutation analysis. 
+Unch\cite{untch2009onreduced} and more recently Deng et al.\cite{deng2013empirical} suggest
+that using only statement deletion operator gives a close approximation of original mutation score.
+
+While some studies try to 
+find the \emph{sufficient} subset of mutagens, like\cite{siami2008sufficient}, others 
+have suggested that \emph{random} selection of mutants works as fine, e.g. \cite{zhang2010operator}.
+Some approaches combine the selective mutation selection and random selection, e.g. \cite{zhang2013ase}.
+
+\begin{comment}
+  These approach relies on the fact that some of the mutagens generate a large number of variants, and hence produce highly redundant test cases. Previous research suggested that elimination of mutagens with high fertility results in the reduction of total number of mutations produced, and hence reduces the computational requirements.
+
+  % TODO check the survey again on selective mutation.
+
+  It was recently questioned whether this approach indeed resulted in a tangible improvement over random selection of mutants\cite{zhang2010operator}, which did not find operator based selection to be better than random selection. 
+
+
+  Another research, initially by Unch\cite{untch2009onreduced} and recently by Deng et al.\cite{deng2013empirical} suggests using software deletion operator since it produces the least number of mutants (smallest neighborhood). The researchers were able to obtain a close approximation of original mutant score with significant savings with this approach.
+
+  However, our previous research suggests that mutation coverage is closely predicted by statement coverage, this suggests that any criteria that forces accounting of the impact of each statement should provide a close approximation to the full mutation score. Hence, our research suggests that SDL works because it forces accounting of each line, and a random sampling criteria that provides the same criteria should result in similar results.
+
+  In our analysis, we find that a random sampling approach that randomly chose a single mutant per line was found to have a better correlation with the full mutation score than that obtained by SDL. Further it was also found that the mutation score produced by random sampling was closer to the full mutation score than that produced by SDL.
+\end{comment}
+
+
+In this paper, we study the effects of different mutation selection and sampling on the effictiveness of 
+mutation analysis and the computational costs. We have used more than 107 real world projects for our
+experiments. 
+
+This paper follows in this order: Section \ref{sec:methodology} describes the methodology.
+Section \ref{sec:implementation} explain our experiment setting and implemetation.
+Results of experiments are summarized in Section{sec:results}. Section \ref{sec:anaysis}
+provides analysis of the results. Section \ref{sec:related} provides the related work. 
+Finally, Section \ref{sec:conclusion} concludes the paper.

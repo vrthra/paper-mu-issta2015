@@ -1,3 +1,8 @@
 \section{Methodology}
-\ref{sec:methodology}
+\label{sec:methodology}
 We collected a random sample of Java programs from Github\cite{github} that utilized the Maven\cite{maven} system for building. Next, we selected those programs from this set that passed all the unit test cases within them. We ran mutation analysis on this set of projects using PIT\cite{pitest}, with the mutators selected set to {\it all}. Because of the limitations of using a bytecode mutation engine, we could not implement statement deletion directly. Instead, we made use of the following mutation operators, that closely approximated statement deletion operator -- remove void method calls, remove non void method calls, remove conditionals, remove member variable assignments, remove increments and decrements. Finally, we modified the mutation engine to only choose one random mutation per line out of the set of applicable mutants for that line. For the second phase, we looked at the ratio between the number of mutants produced by the set of operators corresponding to statement deletion, and that of the random line mutants, and used this as a probability to add the mutants for the random line set. This was done to ensure that the results from the random sampling and statement deletion could be compared.
+
+
+\subsection{Probes}
+% half_per_line half_per_method :  + halfrand-project
+%   For each (line|method|class), get the number of mutants produced. Then sample exactly half the mutants produced per unit
