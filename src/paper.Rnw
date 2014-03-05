@@ -160,6 +160,17 @@ We see that both type and sample:type are non-significant for predicting the fin
 \label{fig:caddrm}
 \end{figure*}
 
+\begin{figure*}[t]
+\includegraphics[totalheight=6cm]{fig/original.pdf}
+\caption{Subsumption Original}
+\label{fig:subsumptiono}
+\end{figure*}[t]
+
+\begin{figure*}[t]
+\includegraphics[totalheight=6cm]{fig/randoop.pdf}
+\caption{Subsumption Randoop}
+\label{fig:subsumptionr}
+\end{figure*}[t]
 
 
 \section{Results}

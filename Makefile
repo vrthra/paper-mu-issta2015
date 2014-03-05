@@ -1,6 +1,8 @@
 all: build/paper.pdf
 
 build/paper.pdf: src/paper.Rnw build/data/Mutsel_1.0.tar.gz
+	rm -rf build/fig
+	cp -r fig build
 	cp etc/* build
 	cp src/*.Rnw build
 	cp src/*.bib build
