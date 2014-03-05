@@ -1,8 +1,63 @@
 \section{Methodology}
 \label{sec:methodology}
-We collected a random sample of Java programs from Github\cite{github} that utilized the Maven\cite{maven} system for building. Next, we selected those programs from this set that passed all the unit test cases within them. We ran mutation analysis on this set of projects using PIT\cite{pitest}, with the mutators selected set to {\it all}. Because of the limitations of using a bytecode mutation engine, we could not implement statement deletion directly. Instead, we made use of the following mutation operators, that closely approximated statement deletion operator -- remove void method calls, remove non void method calls, remove conditionals, remove member variable assignments, remove increments and decrements. Finally, we modified the mutation engine to only choose one random mutation per line out of the set of applicable mutants for that line. For the second phase, we looked at the ratio between the number of mutants produced by the set of operators corresponding to statement deletion, and that of the random line mutants, and used this as a probability to add the mutants for the random line set. This was done to ensure that the results from the random sampling and statement deletion could be compared.
+%We collected a random sample of Java programs from Github\cite{github} that utilized the Maven\cite{maven} system for building. Next, we selected those programs from this set that passed all the unit test cases within them. We ran mutation analysis on this set of projects using PIT\cite{pitest}, with the mutators selected set to {\it all}. Because of the limitations of using a bytecode mutation engine, we could not implement statement deletion directly. Instead, we made use of the following mutation operators, that closely approximated statement deletion operator -- remove void method calls, remove non void method calls, remove conditionals, remove member variable assignments, remove increments and decrements. Finally, we modified the mutation engine to only choose one random mutation per line out of the set of applicable mutants for that line. For the second phase, we looked at the ratio between the number of mutants produced by the set of operators corresponding to statement deletion, and that of the random line mutants, and used this as a probability to add the mutants for the random line set. This was done to ensure that the results from the random sampling and statement deletion could be compared.
 
+Our selection of programs was driven by a few overriding concerns --- primarily
+our results had to be as widely applicable as possible for real-world programs.
+Secondly, we strived for a statistically significant result, reducing the amount
+of variables present in the experiments. For this reason we chose a random sample
+of Java projects from Github\cite{github} that uses the popular maven\cite{maven}
+build system, that has been used elsewhere\cite{gopinath2014code}. This set of
+projects comes in two flavors of test-suites. The original test-suites present in
+a limited number of projects, and automatically generatd test-suites using randoop.
+Due to the constraints in resources, we had to further reduce the programs and
+test-suites to those that could finish the mutation run in 10 minutes. From this
+set of test-suites, we sampled 110 suites each for both original and randoop
+generated test-suiets. This gave us 81 unique projects for both original and randoop,
+and remaining projects having both flavors of test suites.
 
+We ran mutation analysis on this set of projects using PIT\cite{pitest}. However,
+since the operators provided by PIT are limited, we extended PIT to provide newer
+operators that are similar to operators provided by other mutation systems.
+
+<<opstable,results='asis'>>=
+op=c(
+'INVERT-NEGS',
+'RETURN-VALS',
+'MATH',
+'VOID-M-CALLS',
+'NEGATE-COND',
+'COND-BOUNDARY',
+'INCREMENTS',
+'NV-M-CALLS',
+'CONSTR-CALLS',
+'INLINE-CONSTS',
+'REMOVE-INCR',
+'E-MEMBER-VAR',
+'E-SWITCH',
+'RM-SWITCH',
+'REMOVE-COND',
+'DELETE-COND')
+expl=c(
+'Invert negatives',
+'Change return values',
+'Modify arithmetic operators',
+'Remove void method calls',
+'Negate conditional statements',
+'Modify boundary conditions',
+'Modify increment/decrement',
+'Replace non-void method calls',
+'Replace constructor calls',
+'Replace inline constants',
+'Remove increment/decrement',
+'Replace member variable assignments',
+'Modify switch statements',
+'Remove switch elements*',
+'Make conditionas true',
+'Make conditionas false*')
+op.df <- data.frame(Operator=op, Explanation=expl)
+print(xtable(op.df,caption='PIT Mutation Opeators (* indicates new opeators)', label='table:pitop'), sanitize.text.function  = function(x){x}, include.colnames=FALSE, include.rownames=F)
+@
 \subsection{Probes}
 % half_per_line half_per_method :  + halfrand-project
 %   For each (line|method|class), get the number of mutants produced. Then sample exactly half the mutants produced per unit
