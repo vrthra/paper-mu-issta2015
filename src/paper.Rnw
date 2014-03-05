@@ -88,6 +88,11 @@ Deng et al~\cite{deng2013empirical} considers the effect of using a single mutat
 \section{Methodology}
 We collected a random sample of Java programs from Github\cite{github} that utilized the Maven\cite{maven} system for building. Next, we selected those programs from this set that passed all the unit test cases within them. We ran mutation analysis on this set of projects using PIT\cite{pitest}, with the mutators selected set to {\it all}. Because of the limitations of using a bytecode mutation engine, we could not implement statement deletion directly. Instead, we made use of the following mutation operators, that closely approximated statement deletion operator -- remove void method calls, remove non void method calls, remove conditionals, remove member variable assignments, remove increments and decrements. Finally, we modified the mutation engine to only choose one random mutation per line out of the set of applicable mutants for that line. For the second phase, we looked at the ratio between the number of mutants produced by the set of operators corresponding to statement deletion, and that of the random line mutants, and used this as a probability to add the mutants for the random line set. This was done to ensure that the results from the random sampling and statement deletion could be compared.
 
+\subsection{Probes}
+% half_per_line half_per_method :  + halfrand-project
+%   For each (line|method|class), get the number of mutants produced. Then sample exactly half the mutants produced per unit
+
+
 \section{Analysis}
 
 \subsection{Operators}
@@ -133,15 +138,15 @@ with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Randoop 1 per line'
 
 <<results='asis'>>=
 o <- subset(stats.df, kind == 'original')
-o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'score.multiplier'))
-colnames(o.x) <- c('operator', 'r^2', 'm.reduction', 'mcov.mult')
+o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sample', 'score.multiplier'))
+colnames(o.x) <- c('operator', 'r^2', 'm.red', 'sample', 'mcov.mult')
 print(xtable(o.x, caption='Original', label='table:try1'), include.rownames=FALSE)
 # , sanitize.text.function = function(x){x}, include.rownames=FALSE)
 @
 <<results='asis'>>=
 r <- subset(stats.df, kind == 'randoop')
-r.x <- subset(o, select=c('operator','r.square', 'mutant.reduction', 'score.multiplier'))
-colnames(r.x) <- c('operator', 'r^2', 'm.reduction', 'mcov.mult')
+r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sample', 'score.multiplier'))
+colnames(r.x) <- c('operator', 'r^2', 'm.red', 'sample', 'mcov.mult')
 print(xtable(r.x, caption='Randoop', label='table:try1'), include.rownames=FALSE)
 @
 
