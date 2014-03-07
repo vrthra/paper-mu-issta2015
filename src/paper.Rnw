@@ -1,6 +1,22 @@
 \newcommand*\per{\scalebox{.5}{\%}}
 \newcommand\Mua{Mutation analysis~}
 \newcommand\mua{mutation analysis~}
+\newcommand{\pitnvmc}{~NON\_VOID\_METHOD\_CALLS~}
+\newcommand{\pitnc}{~NEGATE\_CONDITIONALS~}
+\newcommand{\pitrc}{~REMOVE\_CONDITIONALS~}
+\newcommand{\pitdc}{~DELETE\_CONDITIONALS~}
+\newcommand{\pitrv}{~RETURN\_VALUES~}
+\newcommand{\pitic}{~INLINE\_CONSTANTS~}
+\newcommand{\pitcc}{~CONSTRUCTOR\_CALLS~}
+\newcommand{\pitemv}{~E\_MEMBER\_VARIABLE~}
+\newcommand{\pitvmc}{~VOID\_METHOD\_CALLS~}
+\newcommand{\pitm}{~MATH~}
+\newcommand{\pitcb}{~CONDITIONALS\_BOUNDARY~}
+\newcommand{\piti}{~INCREMENTS~}
+\newcommand{\pitri}{~REMOVE\_INCREMENTS~}
+\newcommand{\pitrs}{~RM\_SWITCH~}
+\newcommand{\pites}{~E\_SWITCH~}
+\newcommand{\pitin}{~INVERT\_NEGATIVES~}
 
 \begin{comment}
 <<setup, include=FALSE, cache=FALSE, message=FALSE, echo=FALSE>>=
