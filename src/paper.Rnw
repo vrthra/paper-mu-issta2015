@@ -1,6 +1,7 @@
 \newcommand*\per{\scalebox{.5}{\%}}
 \newcommand\Mua{Mutation analysis~}
 \newcommand\mua{mutation analysis~}
+
 \begin{comment}
 <<setup, include=FALSE, cache=FALSE, message=FALSE, echo=FALSE>>=
 clean <- function(x)sub('CONSTRUCTOR','CONSTR',sub('RETURN','R',sub('INCREMENTS','INC',sub('VOID','V',sub('CONDITIONAL','COND',sub('NON','N',sub('VARIABLE','VAR',sub('MEMBER','MEM',sub('DELETE_','D_',sub('REMOVE_','R_',sub('NEGATE_','N_',sub('_CALLS','',sub('EXPERIMENTAL_','E_',x)))))))))))))
@@ -19,21 +20,7 @@ v=data(package='Mutsel')
 data(list = v$results[,3])
 @
 \end{comment}
-
-
-% <<a,message=F, echo=F>>=
-% require(xtable)
-% require(data.table)
-% load('data/mu.rda')
-% @
-
 % 10 pages for the main text + 1 for references.
-<<>>=
-data(o.dist.all)
-data(o.dist.det)
-data(r.dist.all)
-data(r.dist.det)
-@
 <<intro, child='intro.Rnw'>>=
 @
 <<related, child='related.Rnw'>>=
