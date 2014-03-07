@@ -3,24 +3,28 @@
 % 1. Describe the problem
 % 2. State your contributions
 Mutation analysis is a method of evaluation of quality of test-suites. It involves generation
-of first (and higher) order mutants, and evaluating the effectiveness of test-suites against
-the generated mutants~\cite{lipton1971fault, ammann2008introduction}.
-Previous research~\cite{andrews2005mutation} has shown that mutations thus introduced behave
-similar to the real-faults.
+of  mutants by making syntactic changes to the program. First (higher) order mutants
+have one (more) syntactic distance to the origianl program.
+Mutants are used to evaluate the effectiveness of test-suites 
+~\cite{lipton1971fault, ammann2008introduction}.
+Studies like ~\cite{andrews2005mutation} have shown that mutation score 
+are predictors of the real fault detection of a test suits.
 
-A major impediment on the path to wide adoption of mutation analysis is its high cost of
-execution. A full mutation analysis requires running the test-suite against all the first
-order syntactical variants, and is prohibitive for even moderately large programs.
+A major impediment to wider adoption of mutation analysis is its high computational cost.
+Set of first oder mutants of a moderate size program can be very large, 
+which renders mutation analysis of a test-suite against all the first
+order mutants prohibitively time-consuming.
 
 A major strain of research into cost-reduction of mutation analysis is to choose a smaller
-representative set of mutants~\cite{offutt2001mutation,jia2011analysis}, often called the
-``do fewer'' approach. A major variant of this approach is the selective mutation strategy
-which advocates selecting a representative subset of operators based on heuristics and
-statistical analysis, and using them instead of the whole gamut of mutation
-operators~\cite{offutt1993anexperimental,untch2009onreduced}.
+representative set of mutants~\cite{offutt2001mutation,jia2011analysis}-- often called the
+``do fewer'' approach. This approach can be generally divided into 
+selective strategies and sampling strategies. 
 
-Another fertile area of research has been sampling strategies, where, a smaller representative
-sample is used in lieu.
+Selective mutation strategies attempt to select a representative subset of operators based 
+on heuristics and statistical analysis. They suggest applying these subsets instead of the 
+applying the whole gamut of mutation operators~\cite{offutt1993anexperimental,untch2009onreduced}.
+
+Sampling strategies seek to randomly select smaller representative mutants.
 This was investigated first by Acreed~\cite{acree1980mutation} and Budd~\cite{budd1980mutation},
 who proposed using only $x$\% of the mutants produced. The studies by Wong and
 Mathur, found that random sampling with ratio as low as 10\% could provide
@@ -37,24 +41,34 @@ accurate results~\cite{jia2011analysis}.
 %have suggested that \emph{random} selection of mutants works as fine, e.g. \cite{zhang2010operator}.
 %Some approaches combine the selective mutation selection and random selection, e.g. \cite{zhang2013ase}.
 
-Finally, clustering of mutants~\cite{hussain08mutation} based on similar test cases has also
-been used successfully for mutant reduction. These are explained more in depth in Section~\ref{sec:related}
+% {Amin: I am not a fan of this ~\cite{hussain08mutation} }
+%Finally, clustering of mutants~\cite{hussain08mutation} based on similar test cases has also
+%been used successfully for mutant reduction. These are explained more in depth in Section~\ref{sec:related}
 
 While all these areas of research has been relatively successful in reducing the number of mutants
 produced, there has been comparitively few studies that compares the approaches taken. The studies
 that has been attempted so far, has been limited by the comparitively small number of sampled projects.
 
-Our contributions in this paper are the following. First, as described in Section~\ref{sec:methodology},
-we seek to improve the statistical confidence in our results by utilizing a much larger sample of projects
-(188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
-generated test-suites using Randoop~\cite{randoop}. Second, as detailed in Section~\ref{sec:analysis}, we
-compare the reduction effectiveness of a large number of random sampling criterias (some of which are novel,
-and some that has been proposed by other researchers), and a some of the common operator selection
-criterias proposed in literature using statistical analysis. This provides us with insight for choosing
-mutation reduction techniqus according to the trade-offs in accuracy, and reduction ratios that a tester
-is willing to make for their specific requirements. This is detailed in Section~\ref{sec:results}.
+\noindent\textbf{Contribution.} Contributions of this paper are he following.
+\begin{itemize}
+\item It compares a large number of various mutation sampling and selection strategies (Section~\ref{sec:analysis}).
+\item It seek sto improve the statistical confidence in our results by utilizing a much larger sample of projects
+      (188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
+      generated test-suites using Randoop~\cite{randoop} (Section~\ref{sec:methodology}). 
+\item It analyses the results and suggest strategies (Section~\ref{sec:results}).
+\end{itemize}
 
-Our conclusion and recommendation for practicing testers are provided in Section~\ref{sec:conclusion}.
+%Our contributions in this paper are the following. First, as described in Section~\ref{sec:methodo%logy},
+%we seek to improve the statistical confidence in our results by utilizing a much larger sample of projects
+%(188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
+%generated test-suites using Randoop~\cite{randoop}. Second, as detailed in Section~\ref{sec:analysis}, we
+%compare the reduction effectiveness of a large number of random sampling criterias (some of which are novel,
+%and some that has been proposed by other researchers), and a some of the common operator selection
+%criterias proposed in literature using statistical analysis. This provides us with insight for choosing
+%mutation reduction techniqus according to the trade-offs in accuracy, and reduction ratios that a tester
+%is willing to make for their specific requirements. This is detailed in Section~\ref{sec:results}.
+
+%Our conclusion and recommendation for practicing testers are provided in Section~\ref{sec:conclusion}.
 
 
 % \begin{comment}
