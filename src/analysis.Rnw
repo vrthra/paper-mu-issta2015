@@ -217,15 +217,15 @@ rdata <- subset(stats.df, s.element=='project' & strategy=='xprobperunit' & kind
 \begin{figure*}[t]
 <<x.per.sel.line.4,fig.width=5, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 names=odata$s.power
-x = c(2,3,5,6)
+x = c(2:6)
 o.CI.up = as.numeric(odata$mutant.reduction)+as.numeric(odata$sd.reduction)
 o.CI.dn = as.numeric(odata$mutant.reduction)-as.numeric(odata$sd.reduction)
 r.CI.up = as.numeric(rdata$mutant.reduction)+as.numeric(rdata$sd.reduction)
 r.CI.dn = as.numeric(rdata$mutant.reduction)-as.numeric(rdata$sd.reduction)
-plot(odata$mutant.reduction~odata$s.power,xaxt='n', cex=1.5,ylim=c(0,10), xlab='Power',ylab='Reduction', main='Prob:Project: Mutant Reduction vs Power',col='blue',pch=16)
+plot(odata$mutant.reduction~odata$s.power,xaxt='n', cex=1.5,ylim=c(0,100), xlab='Power',ylab='Reduction', main='Prob:Project: Mutant Reduction vs Power',col='blue',pch=16)
 axis(1, at=x, labels=names)
 arrows(x,o.CI.dn,x,o.CI.up,code=3,length=0.2,angle=90,col='blue')
-points(rdata$mutant.reduction~rdata$s.power,xaxt='n', cex=1.5,ylim=c(0,10), xlab='Power',ylab='Reduction', main='Prob:Project: Mutant Reduction vs Power',col='red',pch=16)
+points(rdata$mutant.reduction~rdata$s.power,xaxt='n', cex=1.5,ylim=c(0,100), xlab='Power',ylab='Reduction', main='Prob:Project: Mutant Reduction vs Power',col='red',pch=16)
 arrows(x,r.CI.dn,x,r.CI.up,code=3,length=0.2,angle=90,col='red')
 #legend("bottomleft",paste(names,": S.E=",data$se),ncol=6,text.width=5)
 @
