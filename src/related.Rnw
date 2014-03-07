@@ -21,10 +21,5 @@ A second paper by Zhang et al.\cite{zhang2013ase} investigates 8 sampling strate
 % PLEm : x\% from inside the same program element.
 % PLE + MOP: sample x\% from same mutagen from same element.
 
-% On Mutation and Dataflow : W.E Eong
-Wong et al~\cite{wong1994on} suggests random sampling of mutants from the complete population.
-
-Wong and Mathur suggests constrained mutation~\cite{} which chooses specific mutation operators only.
-
 % Empirical Evaluation of the Statement Deletion Mutation Operator : Offutt
 Deng et al~\cite{deng2013empirical} considers the effect of using a single mutation operator -- the statement deletion operator. They define deletion for different language elements,
