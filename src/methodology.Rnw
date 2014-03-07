@@ -67,13 +67,7 @@ One of our research questions was to compare the utility of operator
 selection --- especially statement deletion --- with random sampling of mutants,
 Since we use PIT, which is a bytecode oriented mutation engine, implementing statement deletion
 directly is very hard. However, we can approximate statement deletion by combining different
-bytecode operators, as given below.
-
-The basic statement deletion was mdeled on the work by Deng et al.~\cite{deng2013empirical}. The operations
-on single statements was modeled using \textit{VOID-M-CALLS,NONV-M-CALLS,CONSTR-CALLS,E-MEMBER-VAR,RM-INCR} for simple statements, and using \textit{RM-COND} for control structures, which replaced the boolean condition with false, resulting in removal of the block of statements. The operator for return values was modeled using \textit{RETURN-VALS}, which is similar.
-The operators for \textit{while,for}, and \textit{if} statements were modeled using \textit{DELETE-COND}, which replaced the boolean condition with true, which removed the effect of conditional. The \textit{switch} statement deletion was modeled using \textit{RM-SWITCH} which replaced the first 100 labels with default label, resulting in the switch element getting deleted. (Due to the constraints of the architecture of PIT only the first 100 labels were replaced). The \textit{try catch} was not necessary at bytecode level.
-Finally, to get an accurate estimation of the effect of true statement deletion, we grouped the mutants by line, and considered a single virtual mutant (That is, the total number of mutants is equal to the total number of lines). Further, killing any mutant from a line resulted in marking the virtual mutant for that line as killed. This gave us the mutation score for the virtual statement deletion operator.
-We note that the approximation of simple statement deletion, especially when arithmetic operators are involved is not complete. However, as seen in Figure~\ref{fig:op}, the number of mutants produced by \textit{MATH} operator is very small. We also note that our approximation does not account for the increase in ease of detection when multiple mutations are combined together due to coupling effect. This also means that not all the lines may be mutated since there may be no applicable operators. However, given the constraints of a bytecode based mutation system, we believe that our procedure is reasonable.
+bytecode operators, as explained later.
 
 \subsection{Sampling Criterias}
 
@@ -106,6 +100,38 @@ For operator reduction, we utilized the constrained mutation operators suggested
 For this criteria, we used the two operators \textit{COND\_BOUNDARY, and NEGATE\_COND} which are similar to those given by Wong.
 \subsubsection{Operator Selection}
 We used the operators given by Offutt et al. \textit{INVERT\_NEGS, MATH, COND\_BOUNDARY,} \textit{NEGATE\_COND}, those given by Javalanche \textit{NEGATE\_COND, VOID\_METHOD\_CALLS, NON\_VOID\_METHOD\_CALLS, MATH, INLINE\_CONSTS, E\_MEMBER\_VARIABLE},  and by Namin et al.\textit{INVERT\_NEGS, MATH, INCREMENTS, NEGATE\_COND}. We also  compare N-Selective mutation as suggested by Offutt et al.
+
+
+\textit{Statement Deletion:}
+The basic statement deletion was modeled on the work by Deng et
+al.~\cite{deng2013empirical}. The operations on single statements was modeled
+using \textit{VOID-M-CALLS,NONV-M-CALLS,CONSTR-CALLS,E-MEMBER-VAR,RM-INCR}
+for simple statements, and using \textit{RM-COND} for control structures,
+which replaced the boolean condition with false, resulting in removal of
+the block of statements. The operator for return values was modeled using
+\textit{RETURN-VALS}, which is similar.  The operators for \textit{while,for},
+and \textit{if} statements were modeled using \textit{DELETE-COND},
+which replaced the boolean condition with true, which removed the effect
+of conditional. The \textit{switch} statement deletion was modeled using
+\textit{RM-SWITCH} which replaced the first 100 labels with default label,
+resulting in the switch element getting deleted. (Due to the constraints
+of the architecture of PIT only the first 100 labels were replaced). The
+\textit{try catch} was not necessary at bytecode level.  Finally, to get an
+accurate estimation of the effect of true statement deletion, we grouped
+the mutants by line, and considered a single virtual mutant (That is, the
+total number of mutants is equal to the total number of lines). Further,
+killing any mutant from a line resulted in marking the virtual mutant
+for that line as killed. This gave us the mutation score for the virtual
+statement deletion operator.  We note that the approximation of simple
+statement deletion, especially when arithmetic operators are involved is not
+complete. However, as seen in Figure~\ref{fig:op}, the number of mutants
+produced by \textit{MATH} operator is very small. We also note that our
+approximation does not account for the increase in ease of detection when
+multiple mutations are combined together due to coupling effect. This also
+means that not all the lines may be mutated since there may be no applicable
+operators. However, given the constraints of a bytecode based mutation system,
+we believe that our procedure is reasonable.
+
 
 \subsection{Mutant Clustering}
 For mutant clustering, we were unable to directly apply clustering based on distinct mutants as suggested by Hussain~\cite{hussain2008mutation}. However, we were able to apply clustering techniques on mutation operators, thus turning it to a set of selected operators.
