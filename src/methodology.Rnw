@@ -87,6 +87,8 @@ While the sampling criteria is simple, it is not immediately clear when we are f
 \subsubsection{Lines per element}
 Our previous research~\cite{gopinath2014code} found that statement coverage was highly correlated with mutation coverage for a project. This immediately suggests that perhaps choosing one mutant per line may be sufficient to achieve a close approximation of the final mutation score. Further, statement deletion has been researched previously~\cite{untch2009onreduced,deng2013empirical} and has been found to reduce the number of mutants well, without an appreciable decrease in accuracy. This also provides a nice comparison with similar number of mutants between operator selection and random sampling of mutants.
 
-\subsubsection{others}
-Next, we looked at choosing x\% per program elements such as blocks, lines, method, and classes. Then in the interests of comparison to statement deletion operator, we chose the number of lines per program elements as the sampling criteria. We next extended this criteria by sampling the mutants thus produced again by half, quarter etc. Next, we looked at the impact of simply selecting a single mutant per program element, and extended it by reducing that even further by half quarter etc. Finally, as with statement deletion, we approximated other statement selection operators discussed in the literature (Wong, Offutt96, Javalanche, Namin08) as the operator selection criteria.
+A simple extension of this approach is to extend this strategy as previously, by choosing as many number of mutants as there are number of lines in a program element, and we can extend it as before to sample \textit{1/2,1/4,1/8,1/16,1/32,1/64} of the mutants thus chosen. We chose the rounding strategy for fractional samples for simplicity.
+
+\subsubsection{One per element}
+An extremely simple strategy of sampling is to just choose one mutant per program element, which as before, we extended to include all the fractions \textit{1/2,1/4,1/8,1/16,1/32,1/64}.
 
