@@ -1,5 +1,6 @@
 \section{Analysis}
 \label{sec:analysis}
+
 \subsection{Occurrence of Operators}
 \begin{figure*}[t]
 <<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
@@ -45,36 +46,50 @@ oprand.x <- subset(oprand,grepl('^.1x[0-9]+_per_', operator))
 oprand.l <- subset(oprand,!grepl('^.1x[0-9]+_per_', operator))
 @
 
-
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
 o <- subset(oprand.x, kind == 'original')
 o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(o.x) <- c('operator', 'r^2', 'm.red', 'm.sd', 'num', 'B*')
-print(xtable(o.x, caption='Original', label='table:rando'), include.rownames=FALSE)
-# , sanitize.text.function = function(x){x}, include.rownames=FALSE)
+print(xtable(o.x, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
 r <- subset(oprand.x, kind == 'randoop')
 r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(r.x) <- c('operator', 'r^2', 'm.red','m.sd', 'num', 'B*')
-print(xtable(r.x, caption='Randoop', label='table:randr'), include.rownames=FALSE)
+print(xtable(r.x, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
+\end{minipage}
+\end{table*}
 
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
 o <- subset(oprand.l, kind == 'original')
 o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(o.x) <- c('operator', 'r^2', 'm.red', 'm.sd', 'num', 'B*')
-print(xtable(o.x, caption='Original', label='table:rando'), include.rownames=FALSE)
+print(xtable(o.x, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE,size='\\small')
 # , sanitize.text.function = function(x){x}, include.rownames=FALSE)
 @
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
 r <- subset(oprand.l, kind == 'randoop')
 r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(r.x) <- c('operator', 'r^2', 'm.red','m.sd', 'num', 'B*')
-print(xtable(r.x, caption='Randoop', label='table:randr'), include.rownames=FALSE)
+print(xtable(r.x, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
+\end{minipage}
+\end{table*}
 
 
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
 
 <<results='asis'>>=
 opsel <- subset(stats.df,grepl('^..op', rownames(stats.df)))
@@ -82,15 +97,22 @@ opsel <- subset(stats.df,grepl('^..op', rownames(stats.df)))
 o <- subset(opsel, kind == 'original')
 o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(o.x) <- c('operator', 'r^2', 'm.red', 'm.sd', 'num', 'B*')
-print(xtable(o.x, caption='Original', label='table:selo'), include.rownames=FALSE)
+print(xtable(o.x, caption='Original', label='table:selo'), include.rownames=FALSE, floating=FALSE,size='\\small')
 # , sanitize.text.function = function(x){x}, include.rownames=FALSE)
 @
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+
 <<results='asis'>>=
 r <- subset(opsel, kind == 'randoop')
 r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(r.x) <- c('operator', 'r^2', 'm.red','m.sd', 'num', 'B*')
-print(xtable(r.x, caption='Randoop', label='table:selr'), include.rownames=FALSE)
+print(xtable(r.x, caption='Randoop', label='table:selr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
+\end{minipage}
+\end{table*}
+
 
 
 
@@ -106,7 +128,6 @@ The interesting part is (1) the $\beta_1$ coefficient which tells how much we mu
 % c <- cor(subset(m, select=c(sdl.mut.avg, mut.avg)) , method="kendall", use="pairwise")['sdl.mut.avg', 'mut.avg']
 % d <- cor(subset(m, select=c(lrnd.mut.avg, mut.avg)) , method="kendall", use="pairwise")['lrnd.mut.avg', 'mut.avg']
 % @
-
 $ \mu_\{M_{all} | M_{sdl}\} = Sexpr{sdl.est} \times M_{sdl} \text{ : } R^2 = Sexpr{sdl.r} \text{,} \tau_{\beta} = Sexpr{c}$
 
 \subsubsection{lrnd.mut.avg and mut.avg}
