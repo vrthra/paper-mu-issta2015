@@ -1,22 +1,22 @@
 \newcommand*\per{\scalebox{.5}{\%}}
 \newcommand\Mua{Mutation analysis~}
 \newcommand\mua{mutation analysis~}
-\newcommand{\pitnvmc}{~NON\_VOID\_METHOD\_CALLS~}
-\newcommand{\pitnc}{~NEGATE\_CONDITIONALS~}
-\newcommand{\pitrc}{~REMOVE\_CONDITIONALS~}
-\newcommand{\pitdc}{~DELETE\_CONDITIONALS~}
-\newcommand{\pitrv}{~RETURN\_VALUES~}
-\newcommand{\pitic}{~INLINE\_CONSTANTS~}
-\newcommand{\pitcc}{~CONSTRUCTOR\_CALLS~}
-\newcommand{\pitemv}{~E\_MEMBER\_VARIABLE~}
-\newcommand{\pitvmc}{~VOID\_METHOD\_CALLS~}
+\newcommand{\pitnvmc}{~NON\_\allowbreak{}VOID\_\allowbreak{}METHOD\_\allowbreak{}CALLS~}
+\newcommand{\pitnc}{~NEGATE\_\allowbreak{}CONDITIONALS~}
+\newcommand{\pitrc}{~REMOVE\_\allowbreak{}CONDITIONALS~}
+\newcommand{\pitdc}{~DELETE\_\allowbreak{}CONDITIONALS~}
+\newcommand{\pitrv}{~RETURN\_\allowbreak{}VALUES~}
+\newcommand{\pitic}{~INLINE\_\allowbreak{}CONSTANTS~}
+\newcommand{\pitcc}{~CONSTRUCTOR\_\allowbreak{}CALLS~}
+\newcommand{\pitemv}{~E\_\allowbreak{}MEMBER\_\allowbreak{}VARIABLE~}
+\newcommand{\pitvmc}{~VOID\_\allowbreak{}METHOD\_\allowbreak{}CALLS~}
 \newcommand{\pitm}{~MATH~}
-\newcommand{\pitcb}{~CONDITIONALS\_BOUNDARY~}
+\newcommand{\pitcb}{~CONDITIONALS\_\allowbreak{}BOUNDARY~}
 \newcommand{\piti}{~INCREMENTS~}
-\newcommand{\pitri}{~REMOVE\_INCREMENTS~}
-\newcommand{\pitrs}{~RM\_SWITCH~}
-\newcommand{\pites}{~E\_SWITCH~}
-\newcommand{\pitin}{~INVERT\_NEGATIVES~}
+\newcommand{\pitri}{~REMOVE\_\allowbreak{}INCREMENTS~}
+\newcommand{\pitrs}{~RM\_\allowbreak{}SWITCH~}
+\newcommand{\pites}{~E\_\allowbreak{}SWITCH~}
+\newcommand{\pitin}{~INVERT\_\allowbreak{}NEGATIVES~}
 
 \begin{comment}
 <<setup, include=FALSE, cache=FALSE, message=FALSE, echo=FALSE>>=
