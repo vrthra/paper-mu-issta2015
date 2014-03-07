@@ -1,28 +1,28 @@
 \section{Methodology}
 \label{sec:methodology}
-%We collected a random sample of Java programs from Github\cite{github} that utilized the Maven\cite{maven} system for building. Next, we selected those programs from this set that passed all the unit test cases within them. We ran mutation analysis on this set of projects using PIT\cite{pitest}, with the mutators selected set to {\it all}. Because of the limitations of using a bytecode mutation engine, we could not implement statement deletion directly. Instead, we made use of the following mutation operators, that closely approximated statement deletion operator -- remove void method calls, remove non void method calls, remove conditionals, remove member variable assignments, remove increments and decrements. Finally, we modified the mutation engine to only choose one random mutation per line out of the set of applicable mutants for that line. For the second phase, we looked at the ratio between the number of mutants produced by the set of operators corresponding to statement deletion, and that of the random line mutants, and used this as a probability to add the mutants for the random line set. This was done to ensure that the results from the random sampling and statement deletion could be compared.
+Our selection of programs was driven by a few overriding concerns. Our primary
+requirement was that, our results had to be as widely applicable as possible
+for real-world programs. Secondly, we strived for a statistically significant
+result, reducing the amount of variables present in the experiments. For this
+reason we chose a random sample of Java projects from Github\cite{github}
+that uses the popular maven\cite{maven} build system, that has been used
+elsewhere\cite{gopinath2014code}. This set of projects comes in two flavors
+of test-suites. The original test-suites present in a limited number of
+projects, and automatically generatd test-suites using randoop.  Due to the
+constraints in resources, we had to further reduce the programs and test-suites
+to those that could finish the mutation run in 10 minutes. From this set
+of test-suites, we sampled 110 suites each for both original and randoop
+generated test-suiets. This gave us 81 unique projects for both original
+and randoop, and remaining projects having both flavors of test suites.
 
-Our selection of programs was driven by a few overriding concerns --- primarily
-our results had to be as widely applicable as possible for real-world programs.
-Secondly, we strived for a statistically significant result, reducing the amount
-of variables present in the experiments. For this reason we chose a random sample
-of Java projects from Github\cite{github} that uses the popular maven\cite{maven}
-build system, that has been used elsewhere\cite{gopinath2014code}. This set of
-projects comes in two flavors of test-suites. The original test-suites present in
-a limited number of projects, and automatically generatd test-suites using randoop.
-Due to the constraints in resources, we had to further reduce the programs and
-test-suites to those that could finish the mutation run in 10 minutes. From this
-set of test-suites, we sampled 110 suites each for both original and randoop
-generated test-suiets. This gave us 81 unique projects for both original and randoop,
-and remaining projects having both flavors of test suites.
+We ran mutation analysis on this set of projects using
+PIT\cite{pitest}. However, since the operators provided by PIT are limited,
+we extended PIT to provide newer operators that are similar to operators
+provided by other mutation systems. The set of operators provided by PIT
+are provided in Table~\ref{tbl:pitop}.
 
-We ran mutation analysis on this set of projects using PIT\cite{pitest}. However,
-since the operators provided by PIT are limited, we extended PIT to provide newer
-operators that are similar to operators provided by other mutation systems. The set
-of operators provided by PIT are provided in Table~\ref{tbl:pitop}.
-
-Further, we also modified PIT to provide random selection of mutants according to
-various criterias.
+Further, we also modified PIT to provide random selection of mutants according
+to various criterias.
 
 <<opstable,results='asis'>>=
 op=c(
@@ -73,9 +73,18 @@ The basic statement deletion was mdeled on the work by Deng et al.~\cite{deng201
 on single statements was modeled using \textit{VOID-M-CALLS,NONV-M-CALLS,CONSTR-CALLS,E-MEMBER-VAR,RM-INCR} for simple statements, and using \textit{RM-COND} for control structures, which replaced the boolean condition with false, resulting in removal of the block of statements. The operator for return values was modeled using \textit{RETURN-VALS}, which is similar.
 The operators for \textit{while,for}, and \textit{if} statements were modeled using \textit{DELETE-COND}, which replaced the boolean condition with true, which removed the effect of conditional. The \textit{switch} statement deletion was modeled using \textit{RM-SWITCH} which replaced the first 100 labels with default label, resulting in the switch element getting deleted. (Due to the constraints of the architecture of PIT only the first 100 labels were replaced). The \textit{try catch} was not necessary at bytecode level.
 Finally, to get an accurate estimation of the effect of true statement deletion, we grouped the mutants by line, and considered a single virtual mutant (That is, the total number of mutants is equal to the total number of lines). Further, killing any mutant from a line resulted in marking the virtual mutant for that line as killed. This gave us the mutation score for the virtual statement deletion operator.
-We note that the approximation of simple statement deletion, especially when arithmetic operators are involved is not complete. However, as seen in Figure~\ref{fig:op}, the number of mutants produced by \textit{MATH} operator is very small. We also note that our approximation does not account for the increase in ease of detection when multiple mutations are combined together (ref: coupling effect). This also means that not all the lines may be mutated since there may be no applicable operators. However, given the constraints of a bytecode based mutation system, we believe that our procedure is reasonable.
+We note that the approximation of simple statement deletion, especially when arithmetic operators are involved is not complete. However, as seen in Figure~\ref{fig:op}, the number of mutants produced by \textit{MATH} operator is very small. We also note that our approximation does not account for the increase in ease of detection when multiple mutations are combined together due to coupling effect. This also means that not all the lines may be mutated since there may be no applicable operators. However, given the constraints of a bytecode based mutation system, we believe that our procedure is reasonable.
 
 \subsection{Sampling Criterias}
 
-We used several different sampling criterias. The simplest one consisted of using x\% selection as suggested by Wong et al.~\cite{wong1995reducing}. Next, we looked at choosing x\% per program elements such as blocks, lines, method, and classes. Then in the interests of comparison to statement deletion operator, we chose the number of lines per program elements as the sampling criteria. We next extended this criteria by sampling the mutants thus produced again by half, quarter etc. Next, we looked at the impact of simply selecting a single mutant per program element, and extended it by reducing that even further by half quarter etc. Finally, as with statement deletion, we approximated other statement selection operators discussed in the literature (Wong, Offutt96, Javalanche, Namin08) as the operator selection criteria.
+We used several different sampling criterias.
+
+\subsubsection{x\% selection}
+The simplest one consisted of using x\% selection as suggested by Wong et al.~\cite{wong1995reducing}. In this criteria, we choose a specific fraction of the complete mutants. Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we extend this criteria to sample mutants from within different program elements. We sampled x\% selection in the increasing order of scope, --- \textit{line}, \textit{method}, \textit{class}, and \textit{project} --- and decreasing fraction of total mutants -- \textit{1, 1/2, 1/4, 1/8, 1/16, 1/64}.
+
+While the sampling criteria is simple, it is not immediately clear when we are faced with program elements that produced too few mutants for a particular fraction to yield at-least one mutant. For example, for a line that produced 15 mutants, the number of mutants that can be chosen in \textit{(line, 1/64)} is less than 1. Our choices at this point are 1) to round the resulting number to the nearest integer, and choose that value as sampling (in effect, ignoring elements that are less complex), 2) to apply \textit{ceil} function to the resulting value, ensuring that there is atleast one mutant per program element, and 3) to perform the sampling in such a way that it chooses a mutant with with the fractional probability (this is the method followed by Zhang et al.~\cite{zhang2013ase}).
+
+
+\subsubsection{others}
+Next, we looked at choosing x\% per program elements such as blocks, lines, method, and classes. Then in the interests of comparison to statement deletion operator, we chose the number of lines per program elements as the sampling criteria. We next extended this criteria by sampling the mutants thus produced again by half, quarter etc. Next, we looked at the impact of simply selecting a single mutant per program element, and extended it by reducing that even further by half quarter etc. Finally, as with statement deletion, we approximated other statement selection operators discussed in the literature (Wong, Offutt96, Javalanche, Namin08) as the operator selection criteria.
 
