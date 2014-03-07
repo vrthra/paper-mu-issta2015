@@ -15,4 +15,4 @@
   }
 }
 options(width=150)
-
+options(max.print=2000)
