@@ -113,15 +113,15 @@ We also  compare N-Selective mutation as suggested by Offutt et al.
 \subsubsection{Statement Deletion:}
 The basic statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements was modeled
-using \textit{VOID-M-CALLS,NONV-M-CALLS,CONSTR-CALLS,E-MEMBER-VAR,RM-INCR}
-for simple statements, and using \textit{RM-COND} for control structures,
+using \pitvmc, \pitnvmc, \pitcc, \pitemv, \pitri
+for simple statements, and using \pitrc for control structures,
 which replaced the boolean condition with false, resulting in removal of
 the block of statements. The operator for return values was modeled using
-\textit{RETURN-VALS}, which is similar.  The operators for \textit{while,for},
-and \textit{if} statements were modeled using \textit{DELETE-COND},
+\pitrv, which is similar.  The operators for \textit{while,for},
+and \textit{if} statements were modeled using \pitdc,
 which replaced the boolean condition with true, which removed the effect
 of conditional. The \textit{switch} statement deletion was modeled using
-\textit{RM-SWITCH} which replaced the first 100 labels with default label,
+\pitrs which replaced the first 100 labels with default label,
 resulting in the switch element getting deleted. (Due to the constraints
 of the architecture of PIT only the first 100 labels were replaced). The
 \textit{try catch} was not necessary at bytecode level.  Finally, to get an
@@ -133,7 +133,7 @@ for that line as killed. This gave us the mutation score for the virtual
 statement deletion operator.  We note that the approximation of simple
 statement deletion, especially when arithmetic operators are involved is not
 complete. However, as seen in Figure~\ref{fig:op}, the number of mutants
-produced by \textit{MATH} operator is very small. We also note that our
+produced by \pitm operator is very small. We also note that our
 approximation does not account for the increase in ease of detection when
 multiple mutations are combined together due to coupling effect. This also
 means that not all the lines may be mutated since there may be no applicable
