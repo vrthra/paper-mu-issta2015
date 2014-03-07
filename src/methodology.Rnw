@@ -63,6 +63,8 @@ op.df <- data.frame(Operator=op, Explanation=expl)
 print(xtable(op.df,caption='PIT Mutation Opeators (* indicates new opeators)', label='tbl:pitop'), sanitize.text.function  = function(x){x}, include.colnames=FALSE, include.rownames=F)
 @
 
+Finally, to ensure accuracy of our observations, each criteria described has been run four times, and the results are averaged to produce the final result.
+
 One of our research questions was to compare the utility of operator
 selection --- especially statement deletion --- with random sampling of mutants,
 Since we use PIT, which is a bytecode oriented mutation engine, implementing statement deletion
