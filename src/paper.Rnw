@@ -85,18 +85,40 @@ with(r.pit.all, plot(all.cov~x1_per_line.cov, pch='+', main='Randoop 1 per line'
 <<results='asis'>>=
 oprand <- subset(stats.df,!grepl('^..op', rownames(stats.df)))
 
-o <- subset(oprand, kind == 'original')
+oprand.x <- subset(oprand,grepl('^.1x[0-9]+_per_', operator))
+oprand.l <- subset(oprand,!grepl('^.1x[0-9]+_per_', operator))
+@
+
+
+<<results='asis'>>=
+o <- subset(oprand.x, kind == 'original')
 o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(o.x) <- c('operator', 'r^2', 'm.red', 'm.sd', 'num', 'B*')
 print(xtable(o.x, caption='Original', label='table:rando'), include.rownames=FALSE)
 # , sanitize.text.function = function(x){x}, include.rownames=FALSE)
 @
 <<results='asis'>>=
-r <- subset(oprand, kind == 'randoop')
+r <- subset(oprand.x, kind == 'randoop')
 r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
 colnames(r.x) <- c('operator', 'r^2', 'm.red','m.sd', 'num', 'B*')
 print(xtable(r.x, caption='Randoop', label='table:randr'), include.rownames=FALSE)
 @
+
+<<results='asis'>>=
+o <- subset(oprand.l, kind == 'original')
+o.x <- subset(o, select=c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
+colnames(o.x) <- c('operator', 'r^2', 'm.red', 'm.sd', 'num', 'B*')
+print(xtable(o.x, caption='Original', label='table:rando'), include.rownames=FALSE)
+# , sanitize.text.function = function(x){x}, include.rownames=FALSE)
+@
+<<results='asis'>>=
+r <- subset(oprand.l, kind == 'randoop')
+r.x <- subset(r, select=c('operator','r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier'))
+colnames(r.x) <- c('operator', 'r^2', 'm.red','m.sd', 'num', 'B*')
+print(xtable(r.x, caption='Randoop', label='table:randr'), include.rownames=FALSE)
+@
+
+
 
 <<results='asis'>>=
 opsel <- subset(stats.df,grepl('^..op', rownames(stats.df)))
