@@ -190,33 +190,5 @@ We see that both type and sample:type are non-significant for predicting the fin
 
 <<results, child='results.Rnw'>>=
 @
-
-\begin{enumerate}
-\item [x] For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
-\item [TODO] We should check if the distribution significantly different too.
-\item [DONE] Use sampling
-\item [DONE] Check on randoop samples too
-\item [NO] Implement bomb (athrow) and see its mutation score, and see how close it comes.
-\item [DONE] Compare random selection with class, method, and mutagen sampling.
-\item [TODO] Report time for each, as cost.
-\item [TODOX] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
-\end{enumerate}
-\section{Results}
-
-We see from the data that random sampling has a higher $R^2$, and also approximates the all  mutations score better.
-However, caveat emptor. There is a difference between the number of mutators for SDL and RAND. If our approximation was right, we should have gotten nearly same number of mutators. However
-The number of mutators in RND is
- Sexpr{sum(m.lrnd.pit.mutation.total) / sum(m.sdl.pit.mutation.total)} times SDL.
-
-The total mutants for all is Sexpr{sum(m.pit.mutation.total)}, for rnd is Sexpr{sum(m.lrnd.pit.mutation.total)} and for sdl is Sexpr{sum(m.sdl.pit.mutation.total)}
-
-\begin{enumerate}
-\item [x] For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
-\item [TODO] We should check if the distribution significantly different too.
-\item [DONE] Use sampling
-\item [DONE] Check on randoop samples too
-\item [NO] Implement bomb (athrow) and see its mutation score, and see how close it comes.
-\item [DONE] Compare random selection with class, method, and mutagen sampling.
-\item [TODO] Report time for each, as cost.
-\item [TODOX] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
-\end{enumerate}
+<<results, child='conclusion.Rnw'>>=
+@

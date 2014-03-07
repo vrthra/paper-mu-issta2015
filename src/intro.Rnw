@@ -2,58 +2,93 @@
 
 % 1. Describe the problem
 % 2. State your contributions
+Mutation analysis is a method of evaluation of quality of test-suites. It involves generation
+of first (and higher) order mutants, and evaluating the effectiveness of test-suites against
+the generated mutants~\cite{lipton1971fault, ammann2008introduction}.
+Previous research~\cite{andrews2005mutation} has shown that mutations thus introduced behave
+similar to the real-faults.
 
-TODO: Mutation analysis is a transformation of programs that generates several mutants 
-Mutation analysis originally proposed by Lipton\cite{lipton1971fault} involves systematic transformation of program through introduction of first order syntactical changes\cite{ammann2008introduction}. Researchers have shown that the mutations thus introduced behave similarly to the real faults\cite{andrews2005mutation}, and hence can be used as a stand-in for real faults when determining the efficacy of a test suite against faults. 
+A major impediment on the path to wide adoption of mutation analysis is its high cost of
+execution. A full mutation analysis requires running the test-suite against all the first
+order syntactical variants, and is prohibitive for even moderately large programs.
 
-Programs can be modified in many different ways to generate mutants, thus, the set of 
-possible mutants of programs can be very large introducing a high computational cost.
-The computational cost has hindered wider use of mutation analysis.
+A major strain of research into cost-reduction of mutation analysis is to choose a smaller
+representative set of mutants~\cite{offutt2001mutation,jia2011analysis}, often called the
+``do fewer'' approach. A major variant of this approach is the selective mutation strategy
+which advocates selecting a representative subset of operators based on heuristics and
+statistical analysis, and using them instead of the whole gamut of mutation
+operators~\cite{offutt1993anexperimental,untch2009onreduced}.
 
-Several studies has tried to devise techniques to reduce the cost of mutational analysis.
-\begin{comment}
-  Offut \cite{offutt2001mutation} classifies these techniques into the following three categories:
-  \begin{enumerata}
-  \item \emph{Do fewer}: techniques that try to reduce the number of mutants.
-  \item \emph{Do faser}: techniques that 
-  \item \emph{Do smarter}: techniques that 
-  \end{enumerate}
-\end{comment}
-One of the main approaches is selective mutation which reduces the set of mutagens\footnote{We use the terms mutagens 
-and mutation operators interchangably hereafter.}.
-Mathur \cite{} reduced the number of mutagens in Mothra \cite{Mothra} by omitting two operators. 
-Offutt et al.\cite{offutt1993anexperimental} further omitted upto six oprators from the 
-mutagens and observed negligible loss of effectiveness in mutation analysis. 
-Unch\cite{untch2009onreduced} and more recently Deng et al.\cite{deng2013empirical} suggest
-that using only statement deletion operator gives a close approximation of original mutation score.
+Another fertile area of research has been sampling strategies, where, a smaller representative
+sample is used in lieu.
+This was investigated first by Acreed~\cite{acree1980mutation} and Budd~\cite{budd1980mutation},
+who proposed using only $x$\% of the mutants produced. The studies by Wong and
+Mathur, found that random sampling with ratio as low as 10\% could provide
+accurate results~\cite{jia2011analysis}.
 
-While some studies try to 
-find the \emph{sufficient} subset of mutagens, like\cite{siami2008sufficient}, others 
-have suggested that \emph{random} selection of mutants works as fine, e.g. \cite{zhang2010operator}.
-Some approaches combine the selective mutation selection and random selection, e.g. \cite{zhang2013ase}.
+%Mathur \cite{} reduced the number of mutagens in Mothra \cite{Mothra} by omitting two operators.
+%Offutt et al.\cite{offutt1993anexperimental} further omitted upto six oprators from the
+%mutagens and observed negligible loss of effectiveness in mutation analysis.
+%Unch\cite{untch2009onreduced} and more recently Deng et al.\cite{deng2013empirical} suggest
+%that using only statement deletion operator gives a close approximation of original mutation score.
 
-\begin{comment}
-  These approach relies on the fact that some of the mutagens generate a large number of variants, and hence produce highly redundant test cases. Previous research suggested that elimination of mutagens with high fertility results in the reduction of total number of mutations produced, and hence reduces the computational requirements.
+%While some studies try to
+%find the \emph{sufficient} subset of mutagens, like\cite{siami2008sufficient}, others
+%have suggested that \emph{random} selection of mutants works as fine, e.g. \cite{zhang2010operator}.
+%Some approaches combine the selective mutation selection and random selection, e.g. \cite{zhang2013ase}.
 
-  % TODO check the survey again on selective mutation.
+Finally, clustering of mutants~\cite{hussain08mutation} based on similar test cases has also
+been used successfully for mutant reduction. These are explained more in depth in Section~\ref{sec:related}
 
-  It was recently questioned whether this approach indeed resulted in a tangible improvement over random selection of mutants\cite{zhang2010operator}, which did not find operator based selection to be better than random selection. 
+While all these areas of research has been relatively successful in reducing the number of mutants
+produced, there has been comparitively few studies that compares the approaches taken. The studies
+that has been attempted so far, has been limited by the comparitively small number of sampled projects.
+
+Our contributions in this paper are the following. First, as described in Section~\ref{sec:methodology},
+we seek to improve the statistical confidence in our results by utilizing a much larger sample of projects
+(188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
+generated test-suites using Randoop~\cite{randoop}. Second, as detailed in Section~\ref{sec:analysis}, we
+compare the reduction effectiveness of a large number of random sampling criterias (some of which are novel,
+and some that has been proposed by other researchers), and a some of the common operator selection
+criterias proposed in literature using statistical analysis. This provides us with insight for choosing
+mutation reduction techniqus according to the trade-offs in accuracy, and reduction ratios that a tester
+is willing to make for their specific requirements. This is detailed in Section~\ref{sec:results}.
+
+Our conclusion and recommendation for practicing testers are provided in Section~\ref{sec:conclusion}.
 
 
-  Another research, initially by Unch\cite{untch2009onreduced} and recently by Deng et al.\cite{deng2013empirical} suggests using software deletion operator since it produces the least number of mutants (smallest neighborhood). The researchers were able to obtain a close approximation of original mutant score with significant savings with this approach.
-
-  However, our previous research suggests that mutation coverage is closely predicted by statement coverage, this suggests that any criteria that forces accounting of the impact of each statement should provide a close approximation to the full mutation score. Hence, our research suggests that SDL works because it forces accounting of each line, and a random sampling criteria that provides the same criteria should result in similar results.
-
-  In our analysis, we find that a random sampling approach that randomly chose a single mutant per line was found to have a better correlation with the full mutation score than that obtained by SDL. Further it was also found that the mutation score produced by random sampling was closer to the full mutation score than that produced by SDL.
-\end{comment}
-
-
-In this paper, we study the effects of different mutation selection and sampling on the effictiveness of 
-mutation analysis and the computational costs. We have used more than 107 real world projects for our
-experiments. 
-
-This paper follows in this order: Section \ref{sec:methodology} describes the methodology.
-Section \ref{sec:implementation} explain our experiment setting and implemetation.
-Results of experiments are summarized in Section{sec:results}. Section \ref{sec:anaysis}
-provides analysis of the results. Section \ref{sec:related} provides the related work. 
-Finally, Section \ref{sec:conclusion} concludes the paper.
+% \begin{comment}
+%   These approach relies on the fact that some of the mutagens generate a large number of variants, and hence produce highly redundant test cases. Previous research suggested that elimination of mutagens with high fertility results in the reduction of total number of mutations produced, and hence reduces the computational requirements.
+%
+%   % TODO check the survey again on selective mutation.
+%
+%   It was recently questioned whether this approach indeed resulted in a tangible improvement over random selection of mutants\cite{zhang2010operator}, which did not find operator based selection to be better than random selection.
+%
+%
+%   Another research, initially by Unch\cite{untch2009onreduced} and recently by Deng et al.\cite{deng2013empirical} suggests using software deletion operator since it produces the least number of mutants (smallest neighborhood). The researchers were able to obtain a close approximation of original mutant score with significant savings with this approach.
+%
+%   However, our previous research suggests that mutation coverage is closely predicted by statement coverage, this suggests that any criteria that forces accounting of the impact of each statement should provide a close approximation to the full mutation score. Hence, our research suggests that SDL works because it forces accounting of each line, and a random sampling criteria that provides the same criteria should result in similar results.
+%
+%   In our analysis, we find that a random sampling approach that randomly chose a single mutant per line was found to have a better correlation with the full mutation score than that obtained by SDL. Further it was also found that the mutation score produced by random sampling was closer to the full mutation score than that produced by SDL.
+%
+% Order of most fertile operators for N-selective operator selection.
+% NON_VOID_METHOD_CALLS
+% NEGATE_CONDITIONALS
+% REMOVE_CONDITIONALS
+% DELETE_CONDITIONALS
+% RETURN_VALS
+% INLINE_CONSTS
+% CONSTRUCTOR_CALLS
+% EXPERIMENTAL_MEMBER_VARIABLE
+% VOID_METHOD_CALLS
+% MATH
+% CONDITIONALS_BOUNDARY
+% INCREMENTS
+% REMOVE_INCREMENTS
+% RMSWITCH
+% EXPERIMENTAL_SWITCH
+% INVERT_NEGS
+%
+% \end{comment}
+%
+%
