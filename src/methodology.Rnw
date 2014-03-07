@@ -109,17 +109,14 @@ the PIT framework to support the  statement deletion operator (SDL).
 {\bf Amin: The rest of this section is for Alex and Carlos info and would be omitted later.}
 
 \subsubsection{Criteria I}
-For this criteria, we used the two operators \pitcb, and \pitnc which are similar to those given by Wong.
+For this criteria, we used the two operators \pitcb, and \pitnc which are similar to those given by Wong. We did not have ABS operator available in PIT.
 \subsubsection{Criteria II}
-We used the operators given by Offutt et al. \pitin, \pitm, \pitcb, \pitnc.
+We used the operators given by Offutt et al. \pitin, \pitm, \pitcb, \pitnc. We did not have LCR available in PIT.
 \subsubsection{Criteria III}
-Those given by Javalanche \pitnc, \pitvmc, \pitnvmc, \pitm, \pitic, \pitemv
+Those given by Javalanche \pitnc, \pitvmc, \pitnvmc, \pitm, \pitic, \pitemv. 
 \subsubsection{Criteria IV}
-those given by Javalanche \pitnc, \pitvmc, \pitnvmc, \pitm, \pitic, \pitemv
-\subsubsection{Criteria V}
-By Namin et al. \pitin, \pitm, \piti, \pitnc.
-\subsubsection{Criteria VI}
-We also  compare N-Selective mutation as suggested by Offutt et al.
+By Namin et al. \pitin, \pitm, \piti, \pitnc. Many of operators were not applicable in Java and some were not available in PIT like IndVarBitNeg.
+
 \subsubsection{Statement Deletion:}
 The basic statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements was modeled
