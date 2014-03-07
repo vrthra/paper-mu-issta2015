@@ -90,19 +90,26 @@ Here too, we have a few choices when sampling mutants. We could either choose th
 \subsubsection{One per element}
 An extremely simple strategy of sampling is to just choose one mutant per program element, which as before, we extended to include all the fractions \textit{1/2,1/4,1/8,1/16,1/32,1/64}.
 
-\subsection{Operator Reduction}
+\subsection{Operator Selection}
 % TODO expand as required
 
 For operator reduction, we utilized the constrained mutation operators suggested by Wong et al.~\cite{wong1995reducing}, Offutt et al.~\cite{offutt1996anexperimental,deng2013empirical}, % TODO Barbosa
  and, Namin et al~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized operator selection mechanisms, we also compared the Javalanche operators for operator selection.
 
-\subsubsection{Constrained Mutation}
+\subsubsection{Criteria I}
 For this criteria, we used the two operators \textit{COND\_BOUNDARY, and NEGATE\_COND} which are similar to those given by Wong.
-\subsubsection{Operator Selection}
-We used the operators given by Offutt et al. \textit{INVERT\_NEGS, MATH, COND\_BOUNDARY,} \textit{NEGATE\_COND}, those given by Javalanche \textit{NEGATE\_COND, VOID\_METHOD\_CALLS, NON\_VOID\_METHOD\_CALLS, MATH, INLINE\_CONSTS, E\_MEMBER\_VARIABLE},  and by Namin et al.\textit{INVERT\_NEGS, MATH, INCREMENTS, NEGATE\_COND}. We also  compare N-Selective mutation as suggested by Offutt et al.
-
-
-\textit{Statement Deletion:}
+\subsubsection{Criteria II}
+We used the operators given by Offutt et al. \textit{INVERT\_NEGS, MATH, COND\_BOUNDARY,} \textit{NEGATE\_COND},
+\subsubsection{Criteria III}
+Those given by Javalanche \textit{NEGATE\_COND, VOID\_METHOD\_CALLS, NON\_VOID\_METHOD\_CALLS, MATH, INLINE\_CONSTS, E\_MEMBER\_VARIABLE}
+\subsubsection{Criteria IV}
+those given by Javalanche \textit{NEGATE\_COND, VOID\_METHOD\_CALLS, NON\_VOID\_METHOD\_CALLS, MATH, INLINE\_CONSTS, E\_MEMBER\_VARIABLE}
+\subsubsection{Criteria V}
+By Namin et al.\textit{INVERT\_NEGS, MATH, INCREMENTS, NEGATE\_COND}.
+We also  compare N-Selective mutation as suggested by Offutt et al.
+\subsubsection{Criteria VI}
+By Namin et al.\textit{INVERT\_NEGS, MATH, INCREMENTS, NEGATE\_COND}.
+\subsubsection{Statement Deletion:}
 The basic statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements was modeled
 using \textit{VOID-M-CALLS,NONV-M-CALLS,CONSTR-CALLS,E-MEMBER-VAR,RM-INCR}
