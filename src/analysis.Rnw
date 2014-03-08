@@ -69,10 +69,32 @@ print(xtable(r.stats.sel.xp, caption='Randoop', label='table:randr'), include.ro
 
 \begin{figure*}[t]
 <<x.per.sel.round,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+#myopts <- theme(panel.background = element_blank())
+#myopts <-   theme_bw() +
+#  opts(axis.line = theme_segment(colour = "black"),
+#    panel.grid.major = theme_blank(),
+#    panel.grid.minor = theme_blank(),
+#    panel.border = theme_blank(),
+#    panel.background = theme_blank()) 
+  #theme with white background
+myopts <- theme_bw() +
+  #eliminates background, gridlines, and chart border
+  theme(
+    plot.background = element_blank()
+   ,panel.grid.major = element_blank()
+   ,panel.grid.minor = element_blank()
+   ,panel.border = element_blank()
+  ) + 
+  #draws x and y axis line
+  theme(axis.line = element_line(color = 'black'))
+myopts <-  theme_classic() 
+#+ opts(strip.background = theme_rect(colour = 'NA', fill = 'NA')) + opts(strip.text.y = theme_text(colour = 'white')) + theme(axis.line = element_line(color = 'black'))
+
+
 o.xp <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
 ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
-  geom_boxplot() + facet_wrap(~type)
+  geom_boxplot() + facet_wrap(~type)+ myopts
 @
 \caption{The effect of round(x) reduction, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
 \label{fig:xroundsel}
@@ -83,7 +105,7 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
 o.xp <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
 ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
-  geom_boxplot() + facet_wrap(~type)
+  geom_boxplot() + facet_wrap(~type) + myopts
 @
 \caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
 \label{fig:xsamplesel}
@@ -127,7 +149,7 @@ print(xtable(r.stats.sel.loc, caption='Randoop', label='table:randr'), include.r
 o.loc <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
 ggplot(subset(o.loc, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
-  geom_boxplot() + facet_wrap(~type)
+  geom_boxplot() + facet_wrap(~type) + myopts
 @
 \caption{The effect of loc (external) reduction. All are above 0.98 $R^2$.}
 \label{fig:locsel}
@@ -138,7 +160,7 @@ ggplot(subset(o.loc, values < 100), aes(power, values, fill=interaction(type,pow
 o.loc <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
 ggplot(subset(o.loc, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
-  geom_boxplot() + facet_wrap(~type)
+  geom_boxplot() + facet_wrap(~type) + myopts
 @
 \caption{The effect of loc (internal) reduction. All are above 0.90 $R^2$.}
 \label{fig:wlocsel}
@@ -182,7 +204,7 @@ print(xtable(r.stats.sel.one, caption='Randoop', label='table:randr'), include.r
 o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
 ggplot(subset(o.one, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
-  geom_boxplot() + facet_wrap(~type)
+  geom_boxplot() + facet_wrap(~type) + myopts
 @
 \caption{The effect of one element selection, All are above 0.98 $R^2$.}
 \label{fig:onesel}
