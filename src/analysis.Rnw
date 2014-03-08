@@ -70,7 +70,7 @@ print(xtable(r.stats.sel.xp, caption='Randoop', label='table:randr'), include.ro
 \end{table*}
 
 \begin{figure*}[t]
-<<x.per.sel,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+<<x.per.sel.round,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.xp <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
 ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
@@ -78,6 +78,17 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
 @
 \label{fig:sel}
 \caption{The effect of round(x) reduction, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
+\end{figure*}[t]
+
+\begin{figure*}[t]
+<<x.per.sel.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+o.xp <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
+ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot() + facet_wrap(~type)
+@
+\label{fig:sel}
+\caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
 \end{figure*}[t]
 
 

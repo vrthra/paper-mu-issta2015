@@ -91,7 +91,7 @@ as possible operators using PIT's bytecode level mutation. We also extended
 the PIT framework to support the  statement deletion operator (SDL).
 
 
-{\bf Amin: The rest of this section is for Alex and Carlos info and would be omitted later.}
+{\bf Amin: The rest of this section is for Alex and Carlos info and should be verified if we should include this or wave our hands about approximation instead.}
 
 \subsubsection{Criteria I}
 For this criteria, we used the two operators \pitcb, and \pitnc which are similar to those given by Wong. We did not have ABS operator available in PIT.
