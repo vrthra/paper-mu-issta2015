@@ -88,5 +88,5 @@ r.stats.df <- r.f(stats.df)
 @
 <<results, child='results.Rnw'>>=
 @
-<<results, child='conclusion.Rnw'>>=
+<<conclusion, child='conclusion.Rnw'>>=
 @

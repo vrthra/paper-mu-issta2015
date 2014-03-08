@@ -69,6 +69,7 @@ print(xtable(r.stats.sel.xp, caption='Randoop', label='table:randr'), include.ro
 
 \begin{figure*}[t]
 <<x.per.sel.round,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+theme_set(theme_bw(24))
 #myopts <- theme(panel.background = element_blank())
 #myopts <-   theme_bw() +
 #  opts(axis.line = theme_segment(colour = "black"),
@@ -87,7 +88,7 @@ myopts <- theme_bw() +
   ) + 
   #draws x and y axis line
   theme(axis.line = element_line(color = 'black'))
-myopts <-  theme_classic() 
+myopts <-  opts() #theme_classic() 
 #+ opts(strip.background = theme_rect(colour = 'NA', fill = 'NA')) + opts(strip.text.y = theme_text(colour = 'white')) + theme(axis.line = element_line(color = 'black'))
 
 
