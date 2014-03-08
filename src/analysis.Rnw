@@ -35,7 +35,7 @@ are distributed in the following order: \pitnvmc, \pitnc, \pitrc, \pitdc, \pitrv
 For comparing between different techniques, we ran correlation analysis between the full mutation score,
 and that produced by the reduction criteria. Further, we also collected the mean reduction, and the standard
 deviation of the reduction across all the projects for both randoop and original. These statistics are provided below.
-\subsection{Analysis of Sampling Criteria}
+\subsection{Sampling Criteria}
 % We have power, element, kind(O/R), and MuRed, MuRedSD, R^2
 \subsubsection{x\% selection}
 <<xpercentunit>>=
@@ -48,9 +48,6 @@ r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
 stats.rest <- subset(stats.df, !grepl('^(r|rr|rc)[.]', operator))
 colnames(o.stats.sel.xp) <- new.colnames
 colnames(r.stats.sel.xp) <- new.colnames
-
-#odata <- subset(o.f(stats.xp), s.element=='project')
-#rdata <- subset(r.f(stats.xp), s.element=='project')
 @
 
 \begin{table*}
@@ -67,6 +64,7 @@ print(xtable(r.stats.sel.xp, caption='Randoop', label='table:randr'), include.ro
 \end{minipage}
 \bigskip
 \caption {The x\% random selection criteria results.}
+\label{tbl:xsel}
 \end{table*}
 
 \begin{figure*}[t]
@@ -76,9 +74,9 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type)
 @
-\label{fig:sel}
 \caption{The effect of round(x) reduction, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
-\end{figure*}[t]
+\label{fig:xroundsel}
+\end{figure*}
 
 \begin{figure*}[t]
 <<x.per.sel.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
@@ -87,12 +85,13 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type)
 @
-\label{fig:sel}
+\label{fig:xsamplesel}
 \caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
-\end{figure*}[t]
+\end{figure*}
+%TODO : See if the following paragraph is needed, or shall we just sink the ceil(x) discussion completely?
+Our experiments found that while $round(x)$ and $sample(x)$ produced relatively reasonable reduction of mutants, the $ceil(x)$ criteria failed to produce a reasonable reduction of mutants except for higher power where the reduction was some what close to that produced by $round(x)$ and $sample(x)$ (which was expected). The $R^2$ values of $ceil(x)$ were almost always lower than that produced by $round(x)$ and $sample(x)$ for similar reduction of mutants. For this reason, we do not consider this function again.
 
-
-
+The reduction in mutants for x\% selection using $round(x)$ is graphed in Figure~\ref{fig:xroundsel}. The values for the same are given in Table~\ref{tbl:xsel}
 
 % ----------------------------------------------------------------------
 <<count>>=
