@@ -1,13 +1,9 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-\begin{enumerate}
-\item [x] For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
-\item [TODO] We should check if the distribution significantly different too.
-\item [DONE] Use sampling
-\item [DONE] Check on randoop samples too
-\item [NO] Implement bomb (athrow) and see its mutation score, and see how close it comes.
-\item [DONE] Compare random selection with class, method, and mutagen sampling.
-\item [TODO] Report time for each, as cost.
-\item [TODOX] Find the mutant count to LOC multiplier, and use it to get the probability of choosing for each project.
-\end{enumerate}
+% For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
+% For mutant clustering
+%TODO Report time for each, as cost.
+
+Our analysis suggests that random sampling of mutants can help reduce the computational requirements to an extremely large extant while still staying within acceptable accuracy limits.
+An interesting finding is that statement deletion did produce as good accuracy in predicting final mutation score as random sampling techniques that offered comparable mutation reduction.
