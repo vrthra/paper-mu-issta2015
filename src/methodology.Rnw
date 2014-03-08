@@ -24,44 +24,28 @@ are provided in Table~\ref{tbl:pitop}.
 Further, we also modified PIT to provide random selection of mutants according
 to various criterias.
 
-<<opstable,results='asis'>>=
-op=c(
-'INVERT-NEGS',
-'RETURN-VALS',
-'MATH',
-'VOID-M-CALLS',
-'NEGATE-COND',
-'COND-BOUNDARY',
-'INCREMENTS',
-'NVOID-M-CALLS',
-'CONSTR-CALLS',
-'INLINE-CONSTS',
-'RM-INCR',
-'E-MEMBER-VAR',
-'E-SWITCH',
-'RM-SWITCH',
-'RM-COND',
-'DELETE-COND')
-expl=c(
-'Invert negatives',
-'Change return values',
-'Modify arithmetic operators',
-'Remove void method calls',
-'Negate conditional statements',
-'Modify boundary conditions',
-'Modify increment/decrement',
-'Replace non-void method calls',
-'Replace constructor calls',
-'Replace inline constants',
-'Remove increment/decrement',
-'Replace member variable assignments',
-'Modify switch statements',
-'Remove switch elements*',
-'Make conditionas true',
-'Make conditionas false*')
-op.df <- data.frame(Operator=op, Explanation=expl)
-print(xtable(op.df,caption='PIT Mutation Opeators (* indicates new opeators)', label='tbl:pitop'), sanitize.text.function  = function(x){x}, include.colnames=FALSE, include.rownames=F)
-@
+\begin{table}[h]\footnotesize
+\begin{tabular}{ll}
+\pitic & Invert negatives \\
+\pitrv & Change return values \\
+\pitm & Modify arithmetic operators\\
+\pitvmc & Remove void method calls \\
+\pitnc & Negate conditional statements \\
+\pitcb & Modify boundary conditions \\
+\piti & Modify increment/decrement \\
+\pitnvmc & Replace non-void method calls \\
+\pitcc & Replace constructor calls \\
+\pitic & Replace inline constants \\
+\piti & Remove increment/decrement \\
+\pitemv & Replace member variable assignments \\
+\pites & Modify switch statements \\
+\pitrs & Remove switch elements* \\
+\pitrc & Make conditionals true \\
+\pitnc & Make conditionas false*
+\end{tabular}
+\caption{PIT Mutation Opeators}
+\label{tbl:pitop}
+\end{table}
 
 Finally, to ensure accuracy of our observations, each criteria described has been run four times, and the results are averaged to produce the final result.
 

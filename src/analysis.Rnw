@@ -241,9 +241,9 @@ arrows(x,r.CI.dn,x,r.CI.up,code=3,length=0.2,angle=90,col='red')
 <<sdl.1,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 par(mfrow=c(2,2))
 with(o.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Original SDL'))
-with(o.pit.all, plot(all.cov~x1x1nl_per_line.cov, pch='+', main='Original 1 per line'))
+with(o.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Original 1 per line'))
 with(r.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Randoop SDl'))
-with(r.pit.all, plot(all.cov~x1x1nl_per_line.cov, pch='+', main='Randoop 1 per line'))
+with(r.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Randoop 1 per line'))
 @
 \label{fig:sdl1}
 \caption{Statement Deletion vs One per line.}
