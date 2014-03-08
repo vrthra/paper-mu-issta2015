@@ -41,11 +41,11 @@ deviation of the reduction across all the projects for both randoop and original
 <<xpercentunit>>=
 sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
 new.colnames <- c('operator', 'r^2',      'm.red',            'm.sd',         'num',    'B*')
-stats.xp <- subset(stats.df, grepl('^(r|rr|rc)[.]', operator))
+stats.xp <- subset(stats.df, grepl('^(r|rr)[.]', operator)) # We are ignoring ceil here. add rc if needed.
 
 o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
 r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
-stats.rest <- subset(stats.df, !grepl('^(r|rr)[.]', operator)) # We are ignoring ceil here. add rc if needed.
+stats.rest <- subset(stats.df, !grepl('^(r|rr|rc)[.]', operator))
 colnames(o.stats.sel.xp) <- new.colnames
 colnames(r.stats.sel.xp) <- new.colnames
 
