@@ -77,6 +77,7 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
   geom_boxplot() + facet_wrap(~type)
 @
 \label{fig:sel}
+\caption{The effect of round(x) reduction, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
 \end{figure*}[t]
 
 
