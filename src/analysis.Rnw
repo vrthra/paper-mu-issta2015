@@ -184,11 +184,39 @@ ggplot(subset(o.one, values < 100), aes(power, values, fill=interaction(type,pow
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type)
 @
-\caption{The effect of loc (external) reduction. All are above 0.98 $R^2$.}
+\caption{The effect of one element selection, All are above 0.98 $R^2$.}
 \label{fig:onesel}
 \end{figure*}
 
 The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figure~\ref{fig:onesel}.
+% ----------------------------------------------------------------------
+<<oth>>=
+stats.o <- stats.rest
+o.stats.sel.o <- subset(o.f(stats.o), select=sel.colnames)
+r.stats.sel.o <- subset(r.f(stats.o), select=sel.colnames)
+stats.rest <- subset(stats.rest, !grepl('^o[.]', operator))
+colnames(o.stats.sel.o) <- new.colnames
+colnames(r.stats.sel.o) <- new.colnames
+
+@
+
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(o.stats.sel.o, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(r.stats.sel.o, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {Others}
+\label{tbl:osel}
+\end{table*}
+
 % ----------------------------------------------------------------------
 
 
