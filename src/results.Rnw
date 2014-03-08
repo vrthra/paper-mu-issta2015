@@ -1,9 +1,3 @@
 \section{Results}
 \label{sec:results}
-We see from the data that random sampling has a higher $R^2$, and also approximates the all  mutations score better.
-However, caveat emptor. There is a difference between the number of mutators for SDL and RAND. If our approximation was right, we should have gotten nearly same number of mutators. However
-The number of mutators in RND is
- Sexpr{sum(m.lrnd.pit.mutation.total) / sum(m.sdl.pit.mutation.total)} times SDL.
-
-The total mutants for all is Sexpr{sum(m.pit.mutation.total)}, for rnd is Sexpr{sum(m.lrnd.pit.mutation.total)} and for sdl is Sexpr{sum(m.sdl.pit.mutation.total)}
-
+Our analysis of results suggests that different kinds of operator selection criterias can actually provide better reduction in mutants while not reducing the approximatin accuracy below acceptable limits.
