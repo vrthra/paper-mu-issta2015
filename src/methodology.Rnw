@@ -41,7 +41,8 @@ to various criterias.
 \pites & Modify switch statements \\
 \pitrs & Remove switch elements* \\
 \pitrc & Make conditionals true \\
-\pitnc & Make conditionas false*
+\pitnc & Make conditionas false* \\
+\hline
 \end{tabular}
 \caption{PIT Mutation Opeators}
 \label{tbl:pitop}

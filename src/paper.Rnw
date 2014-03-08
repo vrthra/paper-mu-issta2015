@@ -63,12 +63,18 @@ render_listings()
 logit<-function(x) log(x/(1-x))
 require(reshape2)
 require(xtable)
+require(ggplot2)
 require(Mutsel)
 @
 <<chunk-hook, echo=2>>=
 <<setup>>
 v=data(package='Mutsel')
 data(list = v$results[,3])
+original.stats.df <- stats.df # save it
+o.f <- function(x) subset(x, kind == 'original')
+r.f <- function(x) subset(x, kind == 'randoop')
+o.stats.df <- o.f(stats.df)
+r.stats.df <- r.f(stats.df)
 @
 \end{comment}
 % 10 pages for the main text + 1 for references.

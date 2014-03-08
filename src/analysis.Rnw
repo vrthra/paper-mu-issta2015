@@ -21,7 +21,8 @@ r.det$ind <- clean(r.det$ind)
 with(r.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F,ylim=c(0,0.6)))
 with(r.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
 @
-\caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected. The blue shade represent detected mutants, while black represents total mutants.}
+\caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected. \\
+The blue shade represent detected mutants, while black represents total mutants.}
 \label{fig:op}
 \end{figure*}
 
@@ -36,13 +37,113 @@ and that produced by the reduction criteria. Further, we also collected the mean
 deviation of the reduction across all the projects for both randoop and original. These statistics are provided below.
 \subsection{Analysis of Sampling Criteria}
 % We have power, element, kind(O/R), and MuRed, MuRedSD, R^2
-<<>>=
-odata <- subset(stats.df, s.element=='project' & strategy=='xpercentperunit' & kind=='original')
-rdata <- subset(stats.df, s.element=='project' & strategy=='xpercentperunit' & kind=='randoop')
-@
 \subsubsection{x\% selection}
+<<xpercentunit>>=
+sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
+new.colnames <- c('operator', 'r^2',      'm.red',            'm.sd',         'num',    'B*')
+stats.xp <- subset(stats.df, grepl('^(r|rr|rc)[.]', operator))
+
+o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
+r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
+stats.rest <- subset(stats.df, !grepl('^(r|rr)[.]', operator)) # We are ignoring ceil here. add rc if needed.
+colnames(o.stats.sel.xp) <- new.colnames
+colnames(r.stats.sel.xp) <- new.colnames
+
+#odata <- subset(o.f(stats.xp), s.element=='project')
+#rdata <- subset(r.f(stats.xp), s.element=='project')
+@
+
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(o.stats.sel.xp, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(r.stats.sel.xp, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The x\% random selection criteria results.}
+\end{table*}
+
 \begin{figure*}[t]
-<<x.per.sel,fig.width=5, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+<<x.per.sel,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+o.xp <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
+ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot() + facet_wrap(~type)
+@
+\label{fig:sel}
+\end{figure*}[t]
+
+
+
+
+% ----------------------------------------------------------------------
+<<count>>=
+stats.loc <- subset(stats.rest, grepl('^(l|wl)[.]', operator))
+
+o.stats.sel.loc <- subset(o.f(stats.loc), select=sel.colnames)
+r.stats.sel.loc <- subset(r.f(stats.loc), select=sel.colnames)
+stats.rest <- subset(stats.rest, !grepl('^(l|wl)[.]', operator))
+colnames(o.stats.sel.loc) <- new.colnames
+colnames(r.stats.sel.loc) <- new.colnames
+@
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(o.stats.sel.loc, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(r.stats.sel.loc, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The loc count selection criteria results.}
+\end{table*}
+
+% ----------------------------------------------------------------------
+<<one>>=
+stats.one <- subset(stats.rest, grepl('^o[.]', operator))
+
+o.stats.sel.one <- subset(o.f(stats.one), select=sel.colnames)
+r.stats.sel.one <- subset(r.f(stats.one), select=sel.colnames)
+stats.rest <- subset(stats.rest, !grepl('^o[.]', operator))
+colnames(o.stats.sel.one) <- new.colnames
+colnames(r.stats.sel.one) <- new.colnames
+@
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(o.stats.sel.one, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(r.stats.sel.one, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The one per element selection criteria results.}
+\end{table*}
+
+% ----------------------------------------------------------------------
+
+
+
+
+
+\if 0
+% START HERE
+\begin{figure*}[t]
+<<xx.per.sel,fig.width=5, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 names=odata$s.power
 x = (1:nrow(odata))
 o.CI.up = as.numeric(odata$mutant.reduction)+as.numeric(odata$sd.reduction)
@@ -395,4 +496,5 @@ We see that both type and sample:type are non-significant for predicting the fin
 \caption{Subsumption Randoop}
 \label{fig:subsumptionr}
 \end{figure*}[t]
-
+%% END HERE
+\fi
