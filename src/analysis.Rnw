@@ -89,10 +89,10 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
 \caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
 \end{figure*}
 %TODO : See if the following paragraph is needed, or shall we just sink the ceil(x) discussion completely?
-Our experiments found that while $round(x)$ and $sample(x)$ produced relatively reasonable reduction of mutants, the $ceil(x)$ criteria failed to produce a reasonable reduction of mutants except for higher power where the reduction was some what close to that produced by $round(x)$ and $sample(x)$ (which was expected). The $R^2$ values of $ceil(x)$ were almost always lower than that produced by $round(x)$ and $sample(x)$ for similar reduction of mutants. For this reason, we do not consider this function again.
+Our experiments found that while $round(x)$ and $sample(x)$ produced relatively reasonable reduction of mutants, the $ceil(x)$ criteria failed to produce a reasonable reduction of mutants except for higher power where the reduction was some what close to that produced by $round(x)$ and $sample(x)$ (which was expected). The $R^2$ values of $ceil(x)$ were almost always lower than that produced by $round(x)$ and $sample(x)$ for similar reduction of mutants. For this reason, we do not consider this function again. However, interested parties can refer to our published data.
 
-The reduction in mutants for x\% selection using $round(x)$ is graphed in Figure~\ref{fig:xroundsel}. The values for the same are given in Table~\ref{tbl:xsel}
-
+The reduction in mutants for x\% selection using $round(x)$ is graphed in Figure~\ref{fig:xroundsel}. The values for the same are given in Table~\ref{tbl:xsel}.
+Similarly reduction in mutants for x\% selection using $sample(x)$ is graphed in Figure~\ref{fig:xsamplesel}. The values for the same are given in Table~\ref{tbl:xsel}.
 % ----------------------------------------------------------------------
 <<count>>=
 stats.loc <- subset(stats.rest, grepl('^(l|wl)[.]', operator))
