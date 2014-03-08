@@ -94,9 +94,12 @@ Our experiments found that while $round(x)$ and $sample(x)$ produced relatively 
 The reduction in mutants for x\% selection using $round(x)$ is graphed in Figure~\ref{fig:xroundsel}. The values for the same are given in Table~\ref{tbl:xsel}.
 Similarly reduction in mutants for x\% selection using $sample(x)$ is graphed in Figure~\ref{fig:xsamplesel}. The values for the same are given in Table~\ref{tbl:xsel}.
 % ----------------------------------------------------------------------
+
+\subsubsection{Lines per element}
+The aim of this criteria is similar in some sense to selective mutation. While n-selective mutation ignores the most numerous mutant species, this criteria seeks to deprioritize the most complex program elements.
+
 <<count>>=
 stats.loc <- subset(stats.rest, grepl('^(l|wl)[.]', operator))
-
 o.stats.sel.loc <- subset(o.f(stats.loc), select=sel.colnames)
 r.stats.sel.loc <- subset(r.f(stats.loc), select=sel.colnames)
 stats.rest <- subset(stats.rest, !grepl('^(l|wl)[.]', operator))
@@ -115,9 +118,34 @@ print(xtable(o.stats.sel.loc, caption='Original', label='table:rando'), include.
 print(xtable(r.stats.sel.loc, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
 \end{minipage}
-\bigskip
-\caption {The loc count selection criteria results.}
+\caption {The line count selection criteria results.}
+\label{tbl:locsel}
 \end{table*}
+
+\begin{figure*}[t]
+<<loc.per.sel.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+o.loc <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
+ggplot(subset(o.loc, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot() + facet_wrap(~type)
+@
+\caption{The effect of loc (external) reduction. All are above 0.98 $R^2$.}
+\label{fig:locsel}
+\end{figure*}
+
+\begin{figure*}[t]
+<<wloc.per.sel.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+o.loc <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
+ggplot(subset(o.loc, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot() + facet_wrap(~type)
+@
+\caption{The effect of loc (internal) reduction. All are above 0.90 $R^2$.}
+\label{fig:wlocsel}
+\end{figure*}
+
+
+The results of this selection criteria are provided in Table~\ref{tbl:locsel}. The effect of random selection within the program elements are visualized in Figure~\ref{fig:wlocsel}, and when it is made external to the program elements is visualized in Figure~\ref{fig:wlocsel}.
 
 % ----------------------------------------------------------------------
 <<one>>=
