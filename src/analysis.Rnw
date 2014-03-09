@@ -49,50 +49,66 @@ stats.rest <- subset(stats.df, !grepl('^(r|rr|rc)[.]', operator))
 colnames(o.stats.sel.xp) <- new.colnames
 colnames(r.stats.sel.xp) <- new.colnames
 @
-
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(o.stats.sel.xp, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+print(xtable(subset(o.stats.sel.xp, grepl('^r[.]', operator)), caption='Original', label='table:rando', main='Original'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(r.stats.sel.xp, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+print(xtable(subset(r.stats.sel.xp, grepl('^r[.]', operator)), caption='Randoop', label='table:randr', main='Randoop'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
 \end{minipage}
 \bigskip
-\caption {The x\% random selection criteria results.}
+\caption {The round(x)\% random selection criteria results.}
 \label{tbl:xsel}
+\end{table*}
+
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(subset(o.stats.sel.xp, grepl('^rr[.]', operator)), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(subset(r.stats.sel.xp, grepl('^rr[.]', operator)), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The sample(x)\% random selection criteria results.}
+\label{tbl:xsel2}
 \end{table*}
 
 \begin{figure*}[t]
 <<x.per.sel.round,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-theme_set(theme_bw(24))
-#myopts <- theme(panel.background = element_blank())
+theme_set(theme_bw(12))
+myopts <- theme(panel.background = element_blank())
 #myopts <-   theme_bw() +
 #  opts(axis.line = theme_segment(colour = "black"),
 #    panel.grid.major = theme_blank(),
 #    panel.grid.minor = theme_blank(),
 #    panel.border = theme_blank(),
-#    panel.background = theme_blank()) 
+#    panel.background = theme_blank())
   #theme with white background
-myopts <- theme_bw() +
+#myopts <- theme_bw() +
   #eliminates background, gridlines, and chart border
-  theme(
-    plot.background = element_blank()
-   ,panel.grid.major = element_blank()
-   ,panel.grid.minor = element_blank()
-   ,panel.border = element_blank()
-  ) + 
+#  theme(
+#    plot.background = element_blank()
+#   ,panel.grid.major = element_blank()
+#   ,panel.grid.minor = element_blank()
+#   ,panel.border = element_blank()
+#  ) +
   #draws x and y axis line
-  theme(axis.line = element_line(color = 'black'))
-myopts <-  opts() #theme_classic() 
+#  theme(axis.line = element_line(color = 'black'))
+#myopts <-  opts() #theme_classic()
 #+ opts(strip.background = theme_rect(colour = 'NA', fill = 'NA')) + opts(strip.text.y = theme_text(colour = 'white')) + theme(axis.line = element_line(color = 'black'))
 
-
-o.xp <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
+# TODO - replace by o.processed.
+o.xp <- subset(r.processed, grepl('^r[.].*.m[.]red',ind))
 ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type)+ myopts
@@ -103,12 +119,12 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
 
 \begin{figure*}[t]
 <<x.per.sel.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-o.xp <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
+o.xp <- subset(r.processed, grepl('^rr[.].*.m[.]red',ind))
 ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type) + myopts
 @
-\caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
+\caption{The effect of sample(x) reduction(randoop). All are above 0.90 $R^2$.}
 \label{fig:xsamplesel}
 \end{figure*}
 %TODO : See if the following paragraph is needed, or shall we just sink the ceil(x) discussion completely?
@@ -242,6 +258,41 @@ The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figu
 % ----------------------------------------------------------------------
 
 \subsection{Operator Selection}
+\begin{figure*}[t]
+<<op.all,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
+# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
+#  "sample" "r.square" "score.multiplier" "p.value"
+
+df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction)
+df$sqr <- 1 - df$r.square
+df$type <- with(df, as.factor(
+      ifelse(grepl('line',operator), 'line',
+        ifelse(grepl('block',operator), 'block',
+        ifelse(grepl('method',operator), 'method',
+          ifelse(grepl('class',operator), 'class',
+            ifelse(grepl('project',operator), 'project',
+              NA)))))))
+df$strat <- with(df,
+    ifelse(grepl('perunit', strategy), 'xpercent',
+      ifelse(grepl('op',strategy), 'opsel',
+        ifelse(grepl('one',strategy), 'oneperelm',
+          ifelse(grepl('elem',strategy), 'loc', 'other'
+            )))))
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
+@
+\end{figure*}
+\begin{figure*}[t]
+<<op.all.2,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=strat, color=type))
+@
+\end{figure*}
+\begin{figure*}[t]
+<<op.all.3,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+dfd <- subset(df, !(strategy %in% c('op','opsel')) )
+ggplot(dfd, aes(sd.reduction, mutant.reduction)) + geom_point(aes(shape=type, color=sqr)) + facet_wrap(~strategy) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+@
+\end{figure*}
 <<opsel>>=
 stats.op <- subset(stats.rest, grepl('^(op|TSDL)', operator))
 o.stats.sel.op <- subset(o.f(stats.op), select=sel.colnames)
