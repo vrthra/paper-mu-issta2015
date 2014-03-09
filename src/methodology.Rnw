@@ -26,6 +26,7 @@ to various criterias.
 
 \begin{table}[h]\footnotesize
 \begin{tabular}{ll}
+\hline \hline \\
 \pitic & Invert negatives \\
 \pitrv & Change return values \\
 \pitm & Modify arithmetic operators\\
@@ -44,7 +45,7 @@ to various criterias.
 \pitnc & Make conditionas false* \\
 \hline
 \end{tabular}
-\caption{PIT Mutation Opeators}
+\caption{PIT Mutation Opeators (We have used abbreviations instead of operator names.)}
 \label{tbl:pitop}
 \end{table}
 
