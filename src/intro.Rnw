@@ -58,7 +58,7 @@ may not carry over to the newer and popular languages such as Java. Finally, wit
 research into the ``do-smarter'' approach which allows byte code based mutation -- thus eliminating
 the compilation step -- operators based on source code modification is no longer be applicable, and
 their equivalents in the bytecode needs to be found and compared with other approaches. A detailed
-discussion of these issues can be found in Section~\ref{sec:relatedwork}.
+discussion of these issues can be found in Section~\ref{sec:related}.
 
 % RAHUL>AMIN: I find the non-bulleted contributions better flowing as I can work the references
 % to other sections into it. Let me know if you have a better idea (As it stands neither my
