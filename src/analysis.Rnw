@@ -266,6 +266,7 @@ The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figu
 
 df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction)
 df$sqr <- 1 - df$r.square
+df$mult <- 1 - df$score.multiplier
 df$type <- with(df, as.factor(
       ifelse(grepl('line',operator), 'line',
         ifelse(grepl('block',operator), 'block',
@@ -281,17 +282,30 @@ df$strat <- with(df,
             )))))
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
 @
+\caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only those observations with $R^2 > 0.9$ and $2\times $ standard deviation > mean reduction is shown here. }
+\label{fig:fullimgsize}
 \end{figure*}
 \begin{figure*}[t]
 <<op.all.2,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=strat, color=type))
 @
+\caption{The mean reduction of mutants vs its standard deviation. Only those observations with $R^2 > 0.9$ and $2\times $ standard deviation > mean reduction is shown here. }
 \end{figure*}
+
+\begin{figure*}[t]
+<<op.all.4,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=strat, color=mult))
+@
+\caption{The mean reduction of mutants vs its standard deviation. Only those observations with $R^2 > 0.9$ and $2\times $ standard deviation > mean reduction is shown here. The color represents the (1-multiplier) to the sampled mutation score to get final score }
+\end{figure*}
+
+
 \begin{figure*}[t]
 <<op.all.3,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 dfd <- subset(df, !(strategy %in% c('op','opsel')) )
 ggplot(dfd, aes(sd.reduction, mutant.reduction)) + geom_point(aes(shape=type, color=sqr)) + facet_wrap(~strategy) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 @
+\label{fig:fullimgshape}
 \end{figure*}
 <<opsel>>=
 stats.op <- subset(stats.rest, grepl('^(op|TSDL)', operator))
@@ -336,96 +350,3 @@ For operator selection, we approximated the operators as far as possible from th
 % ----------------------------------------------------------------------
 \subsection{Mutant Clustering}
 To be added later.
-% IGNORED FROM HERE.
-\if 0
-\subsection{SDL vs Random selection}
-\begin{figure*}[t]
-<<sdl.1,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-par(mfrow=c(2,2))
-with(o.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Original SDL'))
-with(o.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Original 1 per line'))
-with(r.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Randoop SDl'))
-with(r.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Randoop 1 per line'))
-@
-\label{fig:sdl1}
-\caption{Statement Deletion vs One per line.}
-\end{figure*}
-<<results='asis'>>=
-oprand <- subset(stats.df,!grepl('^..op', rownames(stats.df)))
-
-oprand.x <- subset(oprand,grepl('^.1x[0-9]+_per_', operator))
-oprand.l <- subset(oprand,!grepl('^.1x[0-9]+_per_', operator))
-@
-
-\subsection{Correlation Analysis}
-
-$ \mu\{ M_{all}| M_{sample} \} = 0 + \beta_1 \times M{sample}  $
-
-The interesting part is (1) the $\beta_1$ coefficient which tells how much we must multiply the  sampled/selected score to get original score, and $R^2$ which tells us how close the score is.
-
-\subsubsection{sdl.mut.avg and mut.avg}
-
-% <<>>=
-% c <- cor(subset(m, select=c(sdl.mut.avg, mut.avg)) , method="kendall", use="pairwise")['sdl.mut.avg', 'mut.avg']
-% d <- cor(subset(m, select=c(lrnd.mut.avg, mut.avg)) , method="kendall", use="pairwise")['lrnd.mut.avg', 'mut.avg']
-% @
-$ \mu_\{M_{all} | M_{sdl}\} = Sexpr{sdl.est} \times M_{sdl} \text{ : } R^2 = Sexpr{sdl.r} \text{,} \tau_{\beta} = Sexpr{c}$
-
-\subsubsection{lrnd.mut.avg and mut.avg}
-
-$ \mu_\{M_{all} | M_{rnd}\} = Sexpr{rnd.est} \times M_{rnd} \text{ : } R^2 = Sexpr{rnd.r} \text{,} \tau_{\beta} = Sexpr{d}$
-
-\subsection{Regression Analysis}
-The next question we will tackle is if there exist a difference at all between SDL mutagen and the random sampling. We can perform two statistical tests to answer this question. For the first, we run a simple paired t-test.
-
-%<<>>=
-%s <- t.test(lrnd.mut.avg, sdl.mut.avg, paired=T)
-%@
-
-The paired t-test failed to sufficient difference between the two distributions with a two-sided p-value of Sexpr{s.p.value}. That is, we do not have sufficient evidence to conclude that the two distributions are different.
-
-The second approch is convoluted (I am a little unclear here.). We try to predict the original mutation score using the mutation score from both sdl and random sampling.
-Our full model is
-
-$ \mu_\{M_{all} | M_{sdl}, M_{rnd}\} = 0 + \beta_1 {sdl} + \beta_2 M_{rnd} + \beta_3 M_{sdl} M_{rnd}  $
-\begin{small}
-% <<results='asis'>>=
-% s <- subset(m, select=c(mut.avg,sdl.mut.avg))
-% s$type <- 'sdl'
-% colnames(s) <- c('mut', 'sample', 'type')
-% r <- subset(m, select=c(mut.avg,lrnd.mut.avg))
-% r$type <- 'rnd'
-% colnames(r) <- c('mut', 'sample', 'type')
-% all <- rbind(s, r)
-% fm <- with(all, lm(mut ~ sample + type + sample:type))
-% sm <- anova(fm)
-% print(xtable(sm,caption="My caption"), size="\\small")
-% @
-\end{small}
-
-We see that both type and sample:type are non-significant for predicting the final model, and sequentially removing them does not change the effectiveness. Hence, the techniques random sampling and statement deletion operator do not have any difference.
-
-\begin{figure*}[t]
-% <<tplots, fig.width=5, fig.height=5, out.width='.45\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% t_f <- sdl.time~lrnd.time
-% plot(t_f, main='SDL ~ RND',pch='*')
-% abline(lm(t_f), col='red')
-% detach(m)
-% @
-\caption{Time}
-\label{fig:caddrm}
-\end{figure*}
-
-\begin{figure*}[t]
-\includegraphics[totalheight=6cm]{fig/original.pdf}
-\caption{Subsumption Original}
-\label{fig:subsumptiono}
-\end{figure*}[t]
-
-\begin{figure*}[t]
-\includegraphics[totalheight=6cm]{fig/randoop.pdf}
-\caption{Subsumption Randoop}
-\label{fig:subsumptionr}
-\end{figure*}[t]
-%% END HERE
-\fi
