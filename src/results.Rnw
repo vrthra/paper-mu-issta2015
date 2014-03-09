@@ -1,3 +1,22 @@
 \section{Results}
 \label{sec:results}
 Our analysis of results suggests that different kinds of operator selection criterias can actually provide better reduction in mutants while not reducing the approximatin accuracy below acceptable limits.
+
+\subsection{SDL vs Random selection}
+\begin{figure*}[t]
+<<sdl.x,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+par(mfrow=c(2,2))
+with(o.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Original SDL'))
+with(o.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Original 1 per line'))
+with(r.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Randoop SDl'))
+with(r.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Randoop 1 per line'))
+@
+\label{fig:sdl1}
+\caption{Statement Deletion vs One per line.}
+\end{figure*}
+<<results='asis'>>=
+oprand <- subset(stats.df,!grepl('^..op', rownames(stats.df)))
+
+oprand.x <- subset(oprand,grepl('^.1x[0-9]+_per_', operator))
+oprand.l <- subset(oprand,!grepl('^.1x[0-9]+_per_', operator))
+@
