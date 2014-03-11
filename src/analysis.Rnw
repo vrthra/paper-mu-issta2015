@@ -365,5 +365,3 @@ For operator selection, we approximated the operators as far as possible from th
 %\end{figure*}[t]
 
 % ----------------------------------------------------------------------
-\subsection{Mutant Clustering}
-To be added later.

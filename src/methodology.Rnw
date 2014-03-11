@@ -133,6 +133,3 @@ means that not all the lines may be mutated since there may be no applicable
 operators. However, given the constraints of a bytecode based mutation system,
 we believe that our procedure is reasonable.
 
-
-\subsection{Mutant Clustering}
-For mutant clustering, we were unable to directly apply clustering based on distinct mutants as suggested by Hussain~\cite{hussain2008mutation}. However, we were able to apply clustering techniques on mutation operators, thus turning it to a set of selected operators.

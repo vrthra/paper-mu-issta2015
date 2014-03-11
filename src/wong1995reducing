@@ -1,0 +1,9 @@
+A number of studies in the past have looked at the relative merits of operator
+selection and random sampling criteria, starting with Wong and Mathur in
+1995~\cite{wong1995reducing}.  They observed that x\% selection up to 10\%
+and constrained mutation had similar accuracy, and that constrained mutation
+provided similar reduction (80\%) compared to sampling. It is to be noted
+that the x\% selection was applied on top of each operator, and not directly
+on the whole set of mutants.
+
+
