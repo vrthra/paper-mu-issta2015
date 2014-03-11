@@ -37,16 +37,21 @@ selection schemes.
 There may infact be a simple reason for this observation. Consider the Figure~\ref{fig:egmutants}.
 It is a representation of the distribution of mutants along two orthogonal axes --- the
 mutation operators, and program elements such as classes. For the purposes of this
-explanation, assume that each classes contain about five lines, and each mutant
+explanation, assume that each classes contain equal number of lines, and each mutant
 produced per line by each of the mutation operators are marked by a small solid circle.
 The two solid vertical lines in blue and red represents two classes, one with a relatively
-small number of mutants and other with large number of mutants. Further, let use use
-$N_{red}$ as the number of mutants in red class, and $N_{blue}$ as the number of mutants
-in blue classs, and $N_{blue} > N_{red}$ as shown in figure, and let $N$ be the total
-number of mutants, and $C$ the number of classes.
-
-To consider a concrete example, consider two classes with 4 and 2 mutants respectively.
-Then -- \textbf{solve} --
+small number of mutants and other with large number of mutants. Consider that we are sampling
+by class, and we are choosing all mutants for simplicity. Let $c$ be the number of classes.
+Here, a mutant in red class contributes to $1/n_{red}$ to the mean of the score of the
+red class, and the red class contributes $1/c$ to the total mean.  So the contribution of a
+mutant in red class to the complete is $1/(c * n_{red})$. Similarly for blue class.
+However, if the sampling is done on a complete project basis, then the contribution of any
+mutant is $\frac{1}{\sum_{i=1}^{c} n_{i}}$, which depending on the size of the class might
+be different from what it would contribute if sampling is used. To put it another way,
+for any kind of sampling used based on sub elements, the units in the sample gets equal
+weightage in contribution irrespective of the size of elements themselves, while if the sampling
+is done on a project basis, the contribution of sub elements depends on the number of mutants
+each elements produced.
 
 What this is saying in effect is that irrespective of the sophestication of sampling used,
 the simplest sampling technique --- that of project based sampling --- is the best form of
@@ -55,5 +60,4 @@ sampling, for a representative set.
 This also applies immediately to operator selection as it is another kind of sampling on
 a smaller set. Hence it is no surprise that for larger samples, random sampling is able
 to trump operator selection on predicting the final result.
-
 
