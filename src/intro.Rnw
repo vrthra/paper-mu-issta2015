@@ -86,6 +86,17 @@ Our specific contributions in this paper are listed as follows:
 \item Our recommendations are valid for both testing researchers who might be comparing programmatically
   generated test-suites, and software testing professionals working on real test-suites.
 \end{itemize}
+
+
+\begin{itemize}
+\item Extensive study using 188 unique projects. % comparing to Zhang's 12 projects
+\item Various sampling techniques.  % currently we have 24*4 sampling comparing to 6*4 in Zhang's  
+\item simpler schemes work better. %Don't try sophisticated schemes. against Zhang's impression future work.
+\item Sampling at coarsest level (i.e. project level) gives the best result. % against Zhang's findings
+\item Single line sampling gives better results than statement deletion. % comparing random selection and operator selection.
+ % SDL has been recommended by Offutt.
+
+\end{itemize}
 %We make the following contributions:
 %\begin{itemize}
 %\item We compare a large number of mutation sampling and selection strategies (Section~\ref{sec:analysis}).
