@@ -1,14 +1,16 @@
 % 1.Statetheproblem
-Mutation analysis is a metric for measuring the quality of test suites. However, it is computationally intensive compared to other measures which it hard to use in practice. Choosing a smaller subset of mutations to run is a simple approach that can alleviate this problem. There exist multiple ways to reduce the set of mutations to run. Operator selection has recently been in the focus. However recently researchers have found that sampling can achive accuracy and mutant reduction similar to operator selection.
+Mutation analysis is a metric for measuring the quality of test suites. However, it is computationally intensive compared to other measures which it hard to use in practice. Choosing a smaller subset of mutations to run is a simple approach that can alleviate this problem. There exist multiple ways to reduce the set of mutations to run. Operator selection is an area that has been heavily researched. Recently, researchers have found that sampling can achive accuracy and mutant reduction similar to operator selection.
 
 %2.Saywhyit’saninterestingproblem
-However, which sampling technique is best, is an open problem, especially for real-world programs and test-suites.
+However, the statistical inference that can be drawn from these research has been limited due to the small number of subject programs. Further, which sampling technique is best is still an open problem that needs to be tackled on a much larger range of test subjects.
 
 %3.Saywhatyoursolutionachieves
-Our research compares a number of sampling criteria, and operator selection criteria based on their ability to approximate the full mutation score, and also the consistency of results.
-
+Our research compares a number of sampling criteria, and operator selection criteria based on their ability to approximate the full mutation score, and also the consistency of mutation reduction ratios achieved. Our results provide a ranking that can be used to choose an appropriate mutation reduction technique according to the mutation reduction ratio desired, and how much reduction in accuracy is acceptable.
 %4.Saywhatfollowsfromyoursolution
-Our experiments rank sampling criterias that can be used by testers according how much mutant reduction is achieved, their ability to predict the final mutation score, the relative effect of unit increase in sampled mutation score on the final score, and also the time required for the run. We also find that sampling techniques work better than operator selection methods including statement deletion in both mutation reduction and accuracy of approximation to the full mutation score.
+
+We find that all sampling criterias perform better than operator selection methods when considering their ability to predict the full mutation score, and also the consistency of mutation reduction ratios achieved.
+We find that simplest sampling criteria --- sampling based on projects works best on all the factors examined, We provide an explanation for this result, and why this is important for future research.
+
 
 % Technical papers must be prepared in ACM conference format and must not exceed 10 pages
 % (including figures and appendices but NOT including references). That is, any pages after
