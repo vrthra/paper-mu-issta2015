@@ -1,3 +1,9 @@
 \section{Discussion}
 \label{sec:discussion}
 
+\begin{figure}[t]
+\includegraphics[totalheight=4cm]{fig/opstrat.eps}
+\caption{Example Mutants}
+\label{fig:egmutants}
+\end{figure}
+
