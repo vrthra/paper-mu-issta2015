@@ -13,7 +13,6 @@ build/acm_sigproc.pdf: $(things) build/data/Mutsel_1.0.tar.gz
 	cd build; ../bin/latexmk -pdf acm_sigproc.tex
 
 build/data/Mutsel_1.0.tar.gz: | build build/data
-	cd build/data && curl  http://web.engr.oregonstate.edu/~gopinath/fse/Mutsel_1.0.tar.gz -o build/data/Mutsel_1.0.tar.gz
 	make instr
 
 instr: | build build/data
