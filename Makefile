@@ -13,10 +13,10 @@ build/acm_sigproc.pdf: $(things) build/data/Mutsel_1.0.tar.gz
 	cd build; ../bin/latexmk -pdf acm_sigproc.tex
 
 build/data/Mutsel_1.0.tar.gz: | build build/data
+	rm -rf build/cache
 	make instr
 
 instr: | build build/data
-	rm -rf build/cache
 	curl  http://web.engr.oregonstate.edu/~gopinath/fse/Mutsel_1.0.tar.gz -o build/data/Mutsel_1.0.tar.gz
 	cd build/data; cat *.tar.gz| gzip -dc | tar -xvpf - ; R CMD INSTALL Mutsel
 
@@ -24,7 +24,5 @@ build build/data:
 	mkdir -p build/data
 
 clean:
-	mkdir -p .tmp
-	- mv -f build .tmp/$(date)
-	- rm -rf .tmp
+	rm -rf build/*
 
