@@ -2,8 +2,35 @@
 \label{sec:discussion}
 
 \begin{figure}[t]
-\includegraphics[totalheight=5cm]{fig/opstrat.eps}
+\includegraphics[totalheight=5cm]{fig/opstrat1.eps}
 \caption{Example Mutants}
 \label{fig:egmutants}
 \end{figure}
+
+%Our data from Figure~\ref{fig:op} suggests that while there are small differences, the average rate of detection of mutants of each type is similar to the average number of mutants produced for each type. This suggests that mutants produced by each operator is similar in terms of difficulty of detection.
+
+We see three clear patterns in our results. The first is that sampling strategy
+can predict the final score with very minimal loss in accuracy up to a fraction
+of $\frac{1}{64}$ of the total number of mutants (Our experiments suggest up
+to $70$ times reduction, with a low standard deviation of $6.72$). We did nto
+cut off with the 99\% rule as mentioned by Zhang et al.~\cite{zhang2013ase}
+(Originally proposed by Offutt et al.~\cite{offutt1996experimental} for a
+different measurement), and instead chose to observe that we obtained
+$R^2 > 0.96$ which provides a high confidence in the accuracy of prediction.
+
+The second pattern is that fractional sampling based on projects appears to be
+better than that based on classes, which inturn is better than methods and
+lines, with regard to the stability of the result (i.e low sd), and correlation.
+This seems not very visible at lower levels (where the reduction fraction is less
+than 32), but becomes more pronounced as the mutant reduction fraction increases.
+There seem to exist a hierarchy of sampling, where by as you go more fine grained,
+the stability and correlation decreases. This is infact opposite to what Zhang
+et al.~\cite{zhang2013ase} observed, where they found that $S_{meth}$ ourperforms
+$S_{base}$.
+
+The third pattern is that the simplest sampling scheme --- simple random sampling ---
+performs best compared to sampling schems that tried to provide higher weightage
+to specific elements based on specific criterias. More importantly, operator selection
+seems to be generally worse off in predicting the final score than any of the random
+selection schemes.
 
