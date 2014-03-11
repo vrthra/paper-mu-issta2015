@@ -2,7 +2,7 @@
 \label{sec:discussion}
 
 \begin{figure}[t]
-\includegraphics[totalheight=4cm]{fig/opstrat.eps}
+\includegraphics[totalheight=5cm]{fig/opstrat.eps}
 \caption{Example Mutants}
 \label{fig:egmutants}
 \end{figure}
