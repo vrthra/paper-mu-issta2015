@@ -1,9 +1,6 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-% For op-selection to work, the distributions of mutations across different projects has to be similar enough. This can be checked by t-test.
-% For mutant clustering
-%TODO Report time for each, as cost.
+Our analysis suggests that simple random sampling, that is, at the project level works best when compared to more sophesticated schemes of sampling. Further, we also note that random sampling performs better in predicting final mutation score when compared against operator selection.
 
-Our analysis suggests that random sampling of mutants can help reduce the computational requirements to an extremely large extant while still staying within acceptable accuracy limits.
-An interesting finding is that statement deletion did produce as good accuracy in predicting final mutation score as random sampling techniques that offered comparable mutation reduction.
+This suggests that the best way to reduce the computational requirements while trying to build a representative set is to randomly sample on the whole set of mutants directly.

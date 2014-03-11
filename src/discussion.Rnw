@@ -2,8 +2,8 @@
 \label{sec:discussion}
 
 \begin{figure}[t]
-\includegraphics[totalheight=5cm]{fig/opstrat1.eps}
-\caption{Example Mutants}
+\includegraphics[totalheight=4.5cm]{fig/opstrat1.eps}
+\caption{Mutant distribution in a sample project along operators and program elements}
 \label{fig:egmutants}
 \end{figure}
 
@@ -33,4 +33,27 @@ performs best compared to sampling schems that tried to provide higher weightage
 to specific elements based on specific criterias. More importantly, operator selection
 seems to be generally worse off in predicting the final score than any of the random
 selection schemes.
+
+There may infact be a simple reason for this observation. Consider the Figure~\ref{fig:egmutants}.
+It is a representation of the distribution of mutants along two orthogonal axes --- the
+mutation operators, and program elements such as classes. For the purposes of this
+explanation, assume that each classes contain about five lines, and each mutant
+produced per line by each of the mutation operators are marked by a small solid circle.
+The two solid vertical lines in blue and red represents two classes, one with a relatively
+small number of mutants and other with large number of mutants. Further, let use use
+$N_{red}$ as the number of mutants in red class, and $N_{blue}$ as the number of mutants
+in blue classs, and $N_{blue} > N_{red}$ as shown in figure, and let $N$ be the total
+number of mutants, and $C$ the number of classes.
+
+To consider a concrete example, consider two classes with 4 and 2 mutants respectively.
+Then -- \textbf{solve} --
+
+What this is saying in effect is that irrespective of the sophestication of sampling used,
+the simplest sampling technique --- that of project based sampling --- is the best form of
+sampling, for a representative set.
+
+This also applies immediately to operator selection as it is another kind of sampling on
+a smaller set. Hence it is no surprise that for larger samples, random sampling is able
+to trump operator selection on predicting the final result.
+
 

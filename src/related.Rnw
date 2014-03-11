@@ -19,6 +19,28 @@ little effect on the mutation score.
 Wong and Mathur \cite{wong1995reducing} suggested two operators in Mothra system
 that could approximate mutation score. 
 
+% RAHUL ( I want to emphasise two points here, First is, Budd in 1980 showed
+% that 10\% selection lead to less than 1\% accuracy loss, which is confirmed
+% by Wong. Further, Wong says that operator selection with 2 operators are
+% virtually indistinguishable from x\% selection with 5\%.
+% Also, I want to note that their sampling was on top of the operator and not
+% directly on project. Finally we should also note that MUA was done on 5 small
+% programs.
+
+% Operator Selection also assumes that fault detection ability of some operators
+% are higher than others, and hence some operators should have higher weight
+% than others. ~\cite{wong1997comparison}
+
+A number of studies in the past have looked at the relative merits of operator
+selection and random sampling criteria, starting with Wong and Mathur in
+1995~\cite{wong1995reducing}.  They observed that x\% selection up to 10\%
+and constrained mutation had similar accuracy, and that constrained mutation
+provided similar reduction (80\%) compared to sampling. It is to be noted
+that the x\% selection was applied on top of each operator, and not directly
+on the whole set of mutants. They used 5 small programs in C and Fortran.
+
+% RAHUL )
+
 Some studies have tried to find set of \emph{sufficient mutation operators} --minimal set
 of operators that while reducing the cost of mutations, its mutation score maintains
 a good correlation with mutaion score of the original set of operators.
