@@ -54,11 +54,12 @@
 
 
 \begin{comment}
-<<setup, include=FALSE, cache=FALSE, message=FALSE, echo=FALSE>>=
+<<setup, include=FALSE, message=FALSE, echo=FALSE>>=
 clean <- function(x)sub('CONSTRUCTOR','CONSTR',sub('RETURN','R',sub('INCREMENTS','INC',sub('VOID','V',sub('CONDITIONAL','COND',sub('NON','N',sub('VARIABLE','VAR',sub('MEMBER','MEM',sub('DELETE_','D_',sub('REMOVE_','R_',sub('NEGATE_','N_',sub('_CALLS','',sub('EXPERIMENTAL_','E_',x)))))))))))))
 #options(warn=-1)
 options(digits=3)
 opts_chunk$set(fig.path='figure/twocolumn-', fig.align='center', fig.show='hold', echo=FALSE)
+opts_chunk$set(cache=TRUE)
 render_listings()
 logit<-function(x) log(x/(1-x))
 require(reshape2)
@@ -78,7 +79,7 @@ r.stats.df <- r.f(stats.df)
 @
 \end{comment}
 % 10 pages for the main text + 1 for references.
-<<intro, child='intro.Rnw'>>=
+<<introduction, child='introduction.Rnw'>>=
 @
 <<related, child='related.Rnw'>>=
 @
