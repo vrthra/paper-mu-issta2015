@@ -125,34 +125,13 @@ has a mean reduction ratio atleast twice the standard deviation.)
 For some of the smaller projects, some of the sampling criteria did not
 return any results. This is also collected in our tables.
 
-\subsection{Sampling Criteria}
+%\subsection{Sampling Criteria}
 
 
 \begin{figure*}[t]
 <<x.per.sel.round,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 theme_set(theme_bw(12))
 myopts <- theme(panel.background = element_blank())
-#myopts <-   theme_bw() +
-#  opts(axis.line = theme_segment(colour = "black"),
-#    panel.grid.major = theme_blank(),
-#    panel.grid.minor = theme_blank(),
-#    panel.border = theme_blank(),
-#    panel.background = theme_blank())
-  #theme with white background
-#myopts <- theme_bw() +
-  #eliminates background, gridlines, and chart border
-#  theme(
-#    plot.background = element_blank()
-#   ,panel.grid.major = element_blank()
-#   ,panel.grid.minor = element_blank()
-#   ,panel.border = element_blank()
-#  ) +
-  #draws x and y axis line
-#  theme(axis.line = element_line(color = 'black'))
-#myopts <-  opts() #theme_classic()
-#+ opts(strip.background = theme_rect(colour = 'NA', fill = 'NA')) + opts(strip.text.y = theme_text(colour = 'white')) + theme(axis.line = element_line(color = 'black'))
-
-# TODO - replace by o.processed.
 o.xp <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
 ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
@@ -172,12 +151,11 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
 \caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
 \label{fig:xsamplesel}
 \end{figure*}
-%TODO : See if the following paragraph is needed, or shall we just sink the ceil(x) discussion completely?
-Our experiments found that while $round(x)$ and $sample(x)$ produced relatively reasonable reduction of mutants, the $ceil(x)$ criteria failed to produce a reasonable reduction of mutants except for higher power where the reduction was some what close to that produced by $round(x)$ and $sample(x)$ (which was expected). The $R^2$ values of $ceil(x)$ were almost always lower than that produced by $round(x)$ and $sample(x)$ for similar reduction of mutants. For this reason, we do not consider this function again. However, interested parties can refer to our published data.
+%Our experiments found that while $round(x)$ and $sample(x)$ produced relatively reasonable reduction of mutants, the $ceil(x)$ criteria failed to produce a reasonable reduction of mutants except for higher power where the reduction was some what close to that produced by $round(x)$ and $sample(x)$ (which was expected). The $R^2$ values of $ceil(x)$ were almost always lower than that produced by $round(x)$ and $sample(x)$ for similar reduction of mutants. For this reason, we do not consider this function again. However, interested parties can refer to our published data.
 % ----------------------------------------------------------------------
 
-\subsubsection{Lines per element}
-The aim of this criteria is similar in some sense to selective mutation. While n-selective mutation ignores the most numerous mutant species, this criteria seeks to deprioritize the most complex program elements.
+%\subsubsection{Lines per element}
+%The aim of this criteria is similar in some sense to selective mutation. While n-selective mutation ignores the most numerous mutant species, this criteria seeks to deprioritize the most complex program elements.
 
 <<count>>=
 stats.loc <- subset(stats.rest, grepl('^(l|wl)[.]', operator))
@@ -226,11 +204,11 @@ ggplot(subset(o.loc, values < 100), aes(power, values, fill=interaction(type,pow
 \end{figure*}
 
 
-The results of this selection criteria are provided in Table~\ref{tbl:locsel}. The effect of random selection within the program elements are visualized in Figure~\ref{fig:wlocsel}, and when it is made external to the program elements is visualized in Figure~\ref{fig:wlocsel}.
+%The results of this selection criteria are provided in Table~\ref{tbl:locsel}. The effect of random selection within the program elements are visualized in Figure~\ref{fig:wlocsel}, and when it is made external to the program elements is visualized in Figure~\ref{fig:wlocsel}.
 
 % ----------------------------------------------------------------------
-\subsubsection{One per element}
-The aim of this criteria is is to take the previous idea to the extreme. We choose only a single mutant per program element.
+%\subsubsection{One per element}
+%The aim of this criteria is is to take the previous idea to the extreme. We choose only a single mutant per program element.
 
 <<one>>=
 stats.one <- subset(stats.rest, grepl('^o[.]', operator))
@@ -269,7 +247,7 @@ ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power,
 \label{fig:onesel}
 \end{figure*}
 
-The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figure~\ref{fig:onesel}.
+%The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figure~\ref{fig:onesel}.
 % ----------------------------------------------------------------------
 % <<oth>>=
 % stats.o <- subset(stats.rest, !grepl('^op', operator))
@@ -299,7 +277,7 @@ The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figu
 % 
 % ----------------------------------------------------------------------
 
-\subsection{Operator Selection}
+%\subsection{Operator Selection}
 \begin{figure*}[t]
 <<op.all,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 #with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
@@ -375,7 +353,7 @@ print(xtable(r.stats.sel.op, caption='Randoop', label='table:randr'), include.ro
 \label{tbl:opsel}
 \end{table*}
 
-For operator selection, we approximated the operators as far as possible from the research works into the operators exposed by PIT. The results of this are provided in Table~\ref{tbl:opsel}.
+%For operator selection, we approximated the operators as far as possible from the research works into the operators exposed by PIT. The results of this are provided in Table~\ref{tbl:opsel}.
 % The subsumption graphs are provided in Figure~\ref{fig:subsumptiono}
 % TODO : Check if this makes sense.
 %\begin{figure*}[t]
