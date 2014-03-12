@@ -54,15 +54,14 @@ to various criterias.
 
 Finally, to remove random noice, each criteria described has been run four times, and the results are averaged to produce the final result.
 
-One of our research questions was to compare the utility of operator
-selection --- especially statement deletion --- with random sampling of mutants,
-Since we use PIT, which is a bytecode oriented mutation engine, implementing statement deletion
-directly is very hard. However, we can approximate statement deletion by combining different
-bytecode operators, as explained later.
+One of the criterias we sampled was \textit{statement deletion}.
+Since we use PIT, which is a bytecode based mutation engine, implementing direct equivalent of
+source code statement deletion is very hard. We were able to approximate statement deletion
+by combining different bytecode operators, which is explained in Subsection~\ref{subsec:stmtdel}.
 
 \subsection{Sampling Criterias}
 
-We used several different sampling criterias.
+We used several different sampling criterias, based on different strategies of sampling, and what happens when the number of mutants selected falls below a threshold.
 
 \subsubsection{x\% selection}
 The simplest one consisted of using x\% selection as suggested by Wong et al.~\cite{wong1995reducing}. In this criteria, we choose a specific fraction of the complete mutants. Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we extend this criteria to sample mutants from within different program elements. We sampled x\% selection in the increasing order of scope, --- \textit{line}, \textit{method}, \textit{class}, and \textit{project} --- and decreasing fraction of total mutants -- \textit{1, 1/2, 1/4, 1/8, 1/16, 1/64}.
@@ -107,6 +106,7 @@ Those given by Javalanche \pitnc, \pitvmc, \pitnvmc, \pitm, \pitic, \pitemv.
 By Namin et al. \pitin, \pitm, \piti, \pitnc. Many of operators were not applicable in Java and some were not available in PIT like IndVarBitNeg.
 
 \subsubsection{Statement Deletion:}
+\label{subsec:stmtdel}
 The basic statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements was modeled
 using \pitvmc, \pitnvmc, \pitcc, \pitemv, \pitri
