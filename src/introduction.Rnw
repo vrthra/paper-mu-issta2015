@@ -60,7 +60,7 @@ true for selective mutation studies, studies in sampling, and also
 for comparatively newer studies that attempt to combine them. This is
 particularly worrisome if mutation analysis is to gain wider acceptance
 among testing professionals. Further, quite a few of the influential
-studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing}
+studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
 has been conducted on older programming languages such as Fortran with
 operators specific to it, and are not directly applicable to newer languages
 such as Java, with significant differences. Finally, with the modern research

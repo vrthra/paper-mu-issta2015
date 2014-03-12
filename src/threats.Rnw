@@ -1,2 +1,15 @@
 \section{Threats to Validity}
-Software bugs
+While we have taken every care to ensure that our results are valid, and to eliminate the
+effects pf random noice in experiments, our results are subject to the following threats
+to validity.
+
+Our results were observed on open source Java programs from Github repository, using the
+maven build system. Further, only those projects that successfully completed mutation
+testing within a designated amount of time were chosen. This implies that if there is a
+confounding factor in play that affects the relation between the full mutation score and
+sampling mutation score, and any of the noted factors, it might cause our results to be
+either wrong or less applicable.
+
+Secondly, we had to rely on the PIT mutation testing tool, and had to extend its capabilities
+to some extent for our purposes. Software bugs are a fact of life. While every care has been
+taken to avoid them, there is still some probability of some bugs having escaped us.
