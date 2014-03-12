@@ -260,7 +260,7 @@ print(xtable(r.stats.sel.one, caption='Randoop', label='table:randr'), include.r
 \begin{figure*}[t]
 <<one.per.sel.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
-ggplot(subset(o.one, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power, values, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type) + myopts
 @
