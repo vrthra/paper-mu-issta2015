@@ -325,13 +325,14 @@ print(xtable(r.stats.sel.op, caption='Randoop', label='table:randr'), include.ro
 \label{tbl:opsel}
 \end{table*}
 
-For operator selection, we approximated the operators as far as possible from the research works into the operators exposed by PIT. The results of this are provided in Table~\ref{tbl:opsel}. The subsumption graphs are provided in Figure~\ref{fig:subsumptiono}
+For operator selection, we approximated the operators as far as possible from the research works into the operators exposed by PIT. The results of this are provided in Table~\ref{tbl:opsel}.
+% The subsumption graphs are provided in Figure~\ref{fig:subsumptiono}
 % TODO : Check if this makes sense.
-\begin{figure*}[t]
-\includegraphics[totalheight=6cm]{fig/original.pdf}
-\caption{Subsumption Original}
-\label{fig:subsumptiono}
-\end{figure*}
+%\begin{figure*}[t]
+%\includegraphics[totalheight=6cm]{fig/original.pdf}
+%\caption{Subsumption Original}
+%\label{fig:subsumptiono}
+%\end{figure*}
 
 %\begin{figure*}[t]
 %\includegraphics[totalheight=6cm]{fig/randoop.pdf}
