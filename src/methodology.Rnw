@@ -150,6 +150,13 @@ of lines in the method as the number of mutants to be sampled. This provided
 a test of hypothesis of how important the coverage was. This was extended
 to class and project scope also.
 
+For the first variant, we applied the x\% sampling to the result of the first
+sampling based on line counts. That is, in the case of methods, we first
+selected $#linecount$ mutants each from each method, and applied the x\%
+selection to the result of this selection. For the second variant, we did
+the sampling in one go, where we chose $#linecount/x$ number of mutants from
+each program element.
+
 \subsubsection{One per element}
 Another simple strategy of sampling we experimented with is to just choose
 one mutant per program element, in the order \textit{line},\textit{method},
