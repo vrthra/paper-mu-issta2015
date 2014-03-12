@@ -8,34 +8,58 @@ r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
 stats.rest <- subset(stats.df, !grepl('^(r|rr|rc)[.]', operator))
 colnames(o.stats.sel.xp) <- new.colnames
 colnames(r.stats.sel.xp) <- new.colnames
+o.stats.sel.xp$scope <- NA
+r.stats.sel.xp$scope <- NA
+o.stats.sel.xp$sampling <- NA
+r.stats.sel.xp$sampling <- NA
+
+f <- function(x) {
+  x <- x[,c(7,8,2,3,4,5,6)]
+  return(x)
+}
 
 o.stats.sel.xp.sample <- subset(o.stats.sel.xp, grepl('^rr[.]', operator))
 r.stats.sel.xp.sample <- subset(r.stats.sel.xp, grepl('^rr[.]', operator))
-o.stats.sel.xp.sample$operator <- gsub('rr[.]1x','1/', subset(o.stats.sel.xp, grepl('^rr[.]', operator))$operator)
-r.stats.sel.xp.sample$operator  <- gsub('rr[.]1x','1/', subset(r.stats.sel.xp, grepl('^rr[.]', operator))$operator)
+
+o.stats.sel.xp.sample$operator <- gsub('rr[.]1x','1/', o.stats.sel.xp.sample$operator)
+o.stats.sel.xp.sample$scope <- gsub('.*_','', o.stats.sel.xp.sample$operator)
+o.stats.sel.xp.sample$sampling <- gsub('_.*','', o.stats.sel.xp.sample$operator)
+r.stats.sel.xp.sample$operator  <- gsub('rr[.]1x','1/', r.stats.sel.xp.sample$operator)
+r.stats.sel.xp.sample$scope <- gsub('.*_','', r.stats.sel.xp.sample$operator)
+r.stats.sel.xp.sample$sampling <- gsub('_.*','', r.stats.sel.xp.sample$operator)
 
 o.stats.sel.xp.round <- subset(o.stats.sel.xp, grepl('^r[.]', operator))
 r.stats.sel.xp.round <- subset(r.stats.sel.xp, grepl('^r[.]', operator))
-o.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', subset(o.stats.sel.xp, grepl('^r[.]', operator))$operator)
-r.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', subset(r.stats.sel.xp, grepl('^r[.]', operator))$operator)
+
+o.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', o.stats.sel.xp.round$operator)
+o.stats.sel.xp.round$scope  <- gsub('.*_','', o.stats.sel.xp.round$operator)
+o.stats.sel.xp.round$sampling  <- gsub('_.*','', o.stats.sel.xp.round$operator)
+r.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', r.stats.sel.xp.round$operator)
+r.stats.sel.xp.round$scope  <- gsub('.*_','', r.stats.sel.xp.round$operator)
+r.stats.sel.xp.round$sampling  <- gsub('_.*','', r.stats.sel.xp.round$operator)
 
 o.stats.sel.xp.ceil <- subset(o.stats.sel.xp, grepl('^rc[.]', operator))
 r.stats.sel.xp.ceil <- subset(r.stats.sel.xp, grepl('^rc[.]', operator))
-o.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', subset(o.stats.sel.xp, grepl('^rc[.]', operator))$operator)
-r.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', subset(r.stats.sel.xp, grepl('^rc[.]', operator))$operator)
+
+o.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', o.stats.sel.xp.ceil$operator)
+o.stats.sel.xp.ceil$scope  <- gsub('.*_','', o.stats.sel.xp.ceil$operator)
+o.stats.sel.xp.ceil$sampling  <- gsub('_.*','', o.stats.sel.xp.ceil$operator)
+r.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', r.stats.sel.xp.ceil$operator)
+r.stats.sel.xp.ceil$scope  <- gsub('.*_','', r.stats.sel.xp.ceil$operator)
+r.stats.sel.xp.ceil$sampling  <- gsub('_.*','', r.stats.sel.xp.ceil$operator)
 
 @
 \subsubsection{x\% selection}
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(o.stats.sel.xp.sample, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+print(xtable(f(o.stats.sel.xp.sample), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(r.stats.sel.xp.sample, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+print(xtable(f(r.stats.sel.xp.sample), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
 \end{minipage}
 \bigskip
@@ -46,13 +70,13 @@ print(xtable(r.stats.sel.xp.sample, caption='Randoop', label='table:randr'), inc
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(o.stats.sel.xp.round, caption='Original', label='table:rando', main='Original'), include.rownames=FALSE, floating=FALSE, size='\\small')
+print(xtable(f(o.stats.sel.xp.round), caption='Original', label='table:rando', main='Original'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(r.stats.sel.xp.round, caption='Randoop', label='table:randr', main='Randoop'), include.rownames=FALSE, floating=FALSE,size='\\small')
+print(xtable(f(r.stats.sel.xp.round), caption='Randoop', label='table:randr', main='Randoop'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
 \end{minipage}
 \bigskip
@@ -63,13 +87,13 @@ print(xtable(r.stats.sel.xp.round, caption='Randoop', label='table:randr', main=
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(o.stats.sel.xp.ceil, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+print(xtable(f(o.stats.sel.xp.ceil), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(r.stats.sel.xp.ceil, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+print(xtable(f(r.stats.sel.xp.ceil), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
 \end{minipage}
 \bigskip
@@ -80,21 +104,23 @@ print(xtable(r.stats.sel.xp.ceil, caption='Randoop', label='table:randr'), inclu
 
 \section{Analysis}
 \label{sec:analysis}
+Our results for x\% sampling over program elements are given
+in Table~\ref{tbl:xselsample}. The result of its variation, using
+\textit{round(sample)} is given in Table~\ref{tbl:xselround}. The result
+of using \textit{ceil(sample)} is given in Table~\ref{tbl:xselceil}.
+The first column in each table provides the scope of sampling i.e if it was
+done per class, per method, per line etc. The second column provides the
+fraction involved.  Third column contains the $R^2$ value obtained between
+the mutation score of the sampling criteria used and the full mutation score.
+The fourth column contains the mutant reduction factor. This is the average of
+total mutants produced divided by the number of mutants sampled by the criteria.
+Fifth column contains the standard deviation of the same. A few of the projects
+did not return any value for certain sampling criterias for particular mutation
+reduction fractions. The sixth column contains the number of projects that
+actually had valid values for the criteria being considered. The seventh column
+is the average multiplier between the sampled mutation score and the full mutation
+score.
 
-Our results for x\% sampling over program elements are given in Table~\ref{tbl:xselsample}. The result of
-its variation, using \textit{round(sample)} is given in Table~\ref{tbl:xselround}. The result of using \textit{ceil(sample)}
-is given in Table~\ref{tbl:xselceil}.
-
-
-First, we ran the the mutation analysis to identify the general distribution of mutants within our set of projects.
-This provided us with the relative number of each mutation operators, that are produced, and also the general number of
-mutants generated by each operator that was detected. This is given in Figure~\ref{fig:op}. This suggests that the operators
-are distributed in the following order: \pitnvmc, \pitnc, \pitrc, \pitdc, \pitrv, \pitic, \pitcc, \pitemv, \pitvmc, \pitm,
-\pitcb, \piti, \pitri, \pitrs, \pites, \pitin. We use this information later for n-selective mutation.
-
-For comparing between different techniques, we ran correlation analysis between the full mutation score,
-and that produced by the reduction criteria. Further, we also collected the mean reduction, and the standard
-deviation of the reduction across all the projects for both randoop and original. These statistics are provided below.
 \subsection{Sampling Criteria}
 
 
