@@ -111,7 +111,7 @@ Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
 fraction of the complete set of mutants. This criteria also serves as a
 control for the verifying the effectiveness of other criteria.
 
-\subsubsection{x\% selection over program elements (and variations)}
+\subsubsection{Sampling over program elements (and variations)}
 Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
 extended x\% selection criteria to sample from within different program
 elements.  We sampled in the increasing order of scope,
