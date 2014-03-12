@@ -215,5 +215,8 @@ approximation does not account for the increase in ease of detection when
 multiple mutations are combined together due to coupling effect. This also
 means that not all the lines may be mutated since there may be no applicable
 operators. However, given the constraints of a bytecode based mutation system,
-we believe that our procedure is reasonable.
+we believe that our procedure is reasonable. We also note that by this
+procedure statement deletion is nolonger a simple mutation and qualifies
+as a higher order mutation operator.
+
 
