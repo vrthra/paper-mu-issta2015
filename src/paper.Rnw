@@ -84,28 +84,27 @@ r.stats.df <- r.f(stats.df)
 <<related, child='related.Rnw'>>=
 @
 \begin{figure*}[ht]
-% <<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% par(las=1,mfrow = c(1, 2),mar=c(2,8,1,1))
-% o.all <- cbind(projects = rownames(o.dist.all), stack(o.dist.all))
-% o.all$ind <- clean(o.all$ind)
-% bcol <- '#2171B5'
-% #bcol <- 'darkgray'
-% icol <- '#9ECAE0'
-% #icol <- 'lightgray'
-% o.det <- cbind(projects = rownames(o.dist.det), stack(o.dist.det))
-% o.det$ind <- clean(o.det$ind)
-% with(o.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F, ylim=c(0,0.6)))
-% with(o.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Original', cex.axis=0.8, ylim=c(0,0.6),add=T))
-% 
-% r.all <- cbind(projects = rownames(r.dist.all), stack(r.dist.all))
-% r.all$ind <- clean(r.all$ind)
-% r.det <- cbind(projects = rownames(r.dist.det), stack(r.dist.det))
-% r.det$ind <- clean(r.det$ind)
-% with(r.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F,ylim=c(0,0.6)))
-% with(r.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
-% @
-\includegraphics[width=1\textwidth]{fig/twocolumn-op.pdf}
-\caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected. \\
+<<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+par(las=1,mfrow = c(1, 2),mar=c(2,8,1,1))
+o.all <- cbind(projects = rownames(o.dist.all), stack(o.dist.all))
+o.all$ind <- clean(o.all$ind)
+bcol <- '#2171B5'
+#bcol <- 'darkgray'
+icol <- '#9ECAE0'
+#icol <- 'lightgray'
+o.det <- cbind(projects = rownames(o.dist.det), stack(o.dist.det))
+o.det$ind <- clean(o.det$ind)
+with(o.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F, ylim=c(0,0.6)))
+with(o.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Original', cex.axis=0.8, ylim=c(0,0.6),add=T))
+
+r.all <- cbind(projects = rownames(r.dist.all), stack(r.dist.all))
+r.all$ind <- clean(r.all$ind)
+r.det <- cbind(projects = rownames(r.dist.det), stack(r.dist.det))
+r.det$ind <- clean(r.det$ind)
+with(r.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F,ylim=c(0,0.6)))
+with(r.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
+@
+\caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected.
 The blue shade represent detected mutants, while black represents total mutants.}
 \label{fig:op}
 \end{figure*}
