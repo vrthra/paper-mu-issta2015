@@ -158,28 +158,67 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
 %The aim of this criteria is similar in some sense to selective mutation. While n-selective mutation ignores the most numerous mutant species, this criteria seeks to deprioritize the most complex program elements.
 
 <<count>>=
-stats.loc <- subset(stats.rest, grepl('^(l|wl)[.]', operator))
+stats.loc <- subset(stats.rest, grepl('^l[.]', operator))
 o.stats.sel.loc <- subset(o.f(stats.loc), select=sel.colnames)
 r.stats.sel.loc <- subset(r.f(stats.loc), select=sel.colnames)
-stats.rest <- subset(stats.rest, !grepl('^(l|wl)[.]', operator))
+stats.rest <- subset(stats.rest, !grepl('^l[.]', operator))
 colnames(o.stats.sel.loc) <- new.colnames
 colnames(r.stats.sel.loc) <- new.colnames
+
+o.stats.sel.loc$operator  <- gsub('l[.]1x','1/', o.stats.sel.loc$operator)
+o.stats.sel.loc$scope  <- gsub('.*_','', o.stats.sel.loc$operator)
+o.stats.sel.loc$sampling  <- gsub('_.*','', o.stats.sel.loc$operator)
+r.stats.sel.loc$operator  <- gsub('l[.]1x','1/', r.stats.sel.loc$operator)
+r.stats.sel.loc$scope  <- gsub('.*_','', r.stats.sel.loc$operator)
+r.stats.sel.loc$sampling  <- gsub('_.*','', r.stats.sel.loc$operator)
+
+stats.loc.w <- subset(stats.rest, grepl('^wl[.]', operator))
+o.stats.sel.loc.w <- subset(o.f(stats.loc.w), select=sel.colnames)
+r.stats.sel.loc.w <- subset(r.f(stats.loc.w), select=sel.colnames)
+stats.rest <- subset(stats.rest, !grepl('^wl[.]', operator))
+colnames(o.stats.sel.loc.w) <- new.colnames
+colnames(r.stats.sel.loc.w) <- new.colnames
+
+o.stats.sel.loc.w$operator  <- gsub('wl[.]1x','1/', o.stats.sel.loc.w$operator)
+o.stats.sel.loc.w$scope  <- gsub('.*_','', o.stats.sel.loc.w$operator)
+o.stats.sel.loc.w$sampling  <- gsub('_.*','', o.stats.sel.loc.w$operator)
+r.stats.sel.loc.w$operator  <- gsub('wl[.]1x','1/', r.stats.sel.loc.w$operator)
+r.stats.sel.loc.w$scope  <- gsub('.*_','', r.stats.sel.loc.w$operator)
+r.stats.sel.loc.w$sampling  <- gsub('_.*','', r.stats.sel.loc.w$operator)
+
 @
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(o.stats.sel.loc, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+print(xtable(f(o.stats.sel.loc), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(r.stats.sel.loc, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+print(xtable(f(r.stats.sel.loc), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
 \end{minipage}
 \caption {The line count selection criteria results.}
 \label{tbl:locsel}
 \end{table*}
+
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(f(o.stats.sel.loc.w), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(f(r.stats.sel.loc.w), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\caption {The line count selection criteria results (within).}
+\label{tbl:locsel}
+\end{table*}
+
 
 \begin{figure*}[t]
 <<loc.per.sel.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=

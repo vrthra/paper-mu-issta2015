@@ -18,15 +18,8 @@ actually had valid values for the criteria being considered. The seventh column
 is the average multiplier between the sampled mutation score and the full mutation
 score.
 
+The Table~\ref{tbl:lcountl} provides the results for line count criteria.
 
-\subsection{Standard deviation of mutant reduction}
-We observe multiple patterns in our results. First, for all sampling criterias used, standard deviation of reduction of mutants is roughly proportional to their mean value. This can be seen in Figure~\ref{fig:roundsel}. Secondly, we also observe that standard deviation based on project sampling is lower than standard deviation of class based sampling for corresponding mean mutant reduction, and the standard deviation of class based sampling is lower than that based on methods, and similarly for lines.
-
-The first observation from our different kinds of random sampling is that the standard deviation tends to increase with the increase in mutation reduction. While this in itself is not unexpected, what is unexpected is the difference in the increase in standard deviation between different kinds of sampling techniques. Our observations suggests that random sampling based on the entire project has a much lower growth of standard deviation (and hence higher stability of results) than sampling in lower scopes. Further, we also observe that the rate of increase in standard deviation actually increases as we go into more finer scopes such as class, method and line, with line having the largest increase in standard deviation.
-
-Further, looking at the reduction of mutants in Figure~\ref{fig:fullimgshape} and Figure~\ref{fig:fullimgsize}, we see that the x\% selection strategy is generally the best strategy, and it is generally best to stick with random selection from the entire project. This too is perhaps not unexpected, since sampling from the entire population rather than its elements should provide a better correlation with the final score.
-
-Our analysis of results suggests that different kinds of operator selection criterias can actually provide better reduction in mutants while not reducing the approximatin accuracy below acceptable limits.
 
 \subsection{SDL vs Random selection}
 \begin{figure*}[t]
