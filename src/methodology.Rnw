@@ -9,15 +9,15 @@ icol <- '#9ECAE0'
 #icol <- 'lightgray'
 o.det <- cbind(projects = rownames(o.dist.det), stack(o.dist.det))
 o.det$ind <- clean(o.det$ind)
-with(o.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F, ylim=c(0,0.6)))
-with(o.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Original', cex.axis=0.8, ylim=c(0,0.6),add=T))
+with(o.all,boxplot(values~ind,horizontal=T,border=c(bcol), pch='.', axes=F, ylim=c(0,0.6), col=icol ))
+with(o.det,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Original', cex.axis=0.8, ylim=c(0,0.6),add=T))
 
 r.all <- cbind(projects = rownames(r.dist.all), stack(r.dist.all))
 r.all$ind <- clean(r.all$ind)
 r.det <- cbind(projects = rownames(r.dist.det), stack(r.dist.det))
 r.det$ind <- clean(r.det$ind)
-with(r.det,boxplot(values~ind,horizontal=T,border=c(bcol), col=icol, pch='.', axes=F,ylim=c(0,0.6)))
-with(r.all,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
+with(r.all,boxplot(values~ind,horizontal=T,border=c(bcol), pch='.', axes=F,ylim=c(0,0.6),  col=icol))
+with(r.det,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
 @
 \caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected.
 The blue shade represent detected mutants, while black represents total mutants.}
@@ -52,11 +52,11 @@ mutation operators. In the figure, there are two box-plots corresponding
 to each mutation operator on the Y-axis. The black box represents the
 relative frequency of the particular mutation operator in the total mutants
 \textit{generated}. For example for projects in the randoop set, the
-operator \pitnvmc contributed about 23\% of the total number of mutants
-produced while \pitrv contributed about 15\%. Similarly, the blue shaded
+operator \pitnvmc contributed about 34\% of the total number of mutants
+produced while \pitrv contributed about 7\%. Similarly, the blue shaded
 box-plot represents the relative frequency of particular mutation operator
 in the total mutants \textit{detected}. For example, \pitnvmc contribution
-in the detected mutants was 34\% while that of \pitrv was 7\%.
+in the detected mutants was 23\% while that of \pitrv was 15\%.
 
 For a detailed description of each mutants, please see~\cite{pitmut}.
 PIT was also modifed to provide random selection of mutants according
@@ -99,8 +99,8 @@ by combining different bytecode operators, which is explained in Subsection~\ref
 
 \subsection{Sampling Criterias}
 
-We used several different sampling criteria. We varied the criterias based on the granularity and
-scope of sampling, and strategy chosen when the number of mutants to be sampled falls below one.
+We used several different sampling criteria, some of which has been suggested in the literature before,
+and some which are variants of previously suggested criterias, and some that have not been used before.
 
 \subsubsection{x\% selection}
 The simplest one consisted of using x\% selection as suggested by Wong et al.~\cite{wong1995reducing}. In this criteria, we choose a specific fraction of the complete mutants. Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we extend this criteria to sample mutants from within different program elements. We sampled x\% selection in the increasing order of scope, --- \textit{line}, \textit{method}, \textit{class}, and \textit{project} --- and decreasing fraction of total mutants -- \textit{1, 1/2, 1/4, 1/8, 1/16, 1/64}.
