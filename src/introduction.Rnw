@@ -111,14 +111,6 @@ score by looking at only a subset of mutants, irrespective of the kind of
 reduction used (operator selection, sampling or clustering, or any other).
 \end{itemize}
 
-
-\begin{itemize}
-\item simpler schemes work better. %Don't try sophisticated schemes. against Zhang's impression future work.
-\item Sampling at coarsest level (i.e. project level) gives the best result. % against Zhang's findings
-\item Single line sampling gives better results than statement deletion. % comparing random selection and operator selection.
- % SDL has been recommended by Offutt.
-
-\end{itemize}
 %We make the following contributions:
 %\begin{itemize}
 %\item We compare a large number of mutation sampling and selection strategies (Section~\ref{sec:analysis}).

@@ -256,7 +256,7 @@ The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figu
 # "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
 #  "sample" "r.square" "score.multiplier" "p.value"
 
-df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction)
+df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction) # & mutant.reduction < 20)
 df$sqr <- 1 - df$r.square
 df$mult <- 1 - df$score.multiplier
 df$type <- with(df, as.factor(
@@ -265,7 +265,7 @@ df$type <- with(df, as.factor(
         ifelse(grepl('method',operator), 'method',
           ifelse(grepl('class',operator), 'class',
             ifelse(grepl('project',operator), 'project',
-              NA)))))))
+              'selection')))))))
 df$strat <- with(df,
     ifelse(grepl('perunit', strategy), 'xpercent',
       ifelse(grepl('op',strategy), 'opsel',
