@@ -1,5 +1,90 @@
+<<xpercentunit>>=
+sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
+new.colnames <- c('operator', 'r^2',      'm.red',            'm.sd',         'num',    'B*')
+stats.xp <- subset(stats.df, grepl('^(r|rr|rc)[.]', operator)) # We are ignoring ceil here. add rc if needed.
+
+o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
+r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
+stats.rest <- subset(stats.df, !grepl('^(r|rr|rc)[.]', operator))
+colnames(o.stats.sel.xp) <- new.colnames
+colnames(r.stats.sel.xp) <- new.colnames
+
+o.stats.sel.xp.sample <- subset(o.stats.sel.xp, grepl('^rr[.]', operator))
+r.stats.sel.xp.sample <- subset(r.stats.sel.xp, grepl('^rr[.]', operator))
+o.stats.sel.xp.sample$operator <- gsub('rr[.]1x','1/', subset(o.stats.sel.xp, grepl('^rr[.]', operator))$operator)
+r.stats.sel.xp.sample$operator  <- gsub('rr[.]1x','1/', subset(r.stats.sel.xp, grepl('^rr[.]', operator))$operator)
+
+o.stats.sel.xp.round <- subset(o.stats.sel.xp, grepl('^r[.]', operator))
+r.stats.sel.xp.round <- subset(r.stats.sel.xp, grepl('^r[.]', operator))
+o.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', subset(o.stats.sel.xp, grepl('^r[.]', operator))$operator)
+r.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', subset(r.stats.sel.xp, grepl('^r[.]', operator))$operator)
+
+o.stats.sel.xp.ceil <- subset(o.stats.sel.xp, grepl('^rc[.]', operator))
+r.stats.sel.xp.ceil <- subset(r.stats.sel.xp, grepl('^rc[.]', operator))
+o.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', subset(o.stats.sel.xp, grepl('^rc[.]', operator))$operator)
+r.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', subset(r.stats.sel.xp, grepl('^rc[.]', operator))$operator)
+
+@
+\subsubsection{x\% selection}
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(o.stats.sel.xp.sample, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(r.stats.sel.xp.sample, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The sample(x)\% random selection criteria results.}
+\label{tbl:xselsample}
+\end{table*}
+
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(o.stats.sel.xp.round, caption='Original', label='table:rando', main='Original'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(r.stats.sel.xp.round, caption='Randoop', label='table:randr', main='Randoop'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The round(x)\% random selection criteria results.}
+\label{tbl:xselround}
+\end{table*}
+
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(o.stats.sel.xp.ceil, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(r.stats.sel.xp.ceil, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The ceil(x)\% random selection criteria results.}
+\label{tbl:xselceil}
+\end{table*}
+
+
 \section{Analysis}
 \label{sec:analysis}
+
+Our results for x\% sampling over program elements are given in Table~\ref{tbl:xselsample}. The result of
+its variation, using \textit{round(sample)} is given in Table~\ref{tbl:xselround}. The result of using \textit{ceil(sample)}
+is given in Table~\ref{tbl:xselceil}.
+
 
 First, we ran the the mutation analysis to identify the general distribution of mutants within our set of projects.
 This provided us with the relative number of each mutation operators, that are produced, and also the general number of
@@ -11,69 +96,7 @@ For comparing between different techniques, we ran correlation analysis between 
 and that produced by the reduction criteria. Further, we also collected the mean reduction, and the standard
 deviation of the reduction across all the projects for both randoop and original. These statistics are provided below.
 \subsection{Sampling Criteria}
-% We have power, element, kind(O/R), and MuRed, MuRedSD, R^2
-\subsubsection{x\% selection}
-<<xpercentunit>>=
-sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
-new.colnames <- c('operator', 'r^2',      'm.red',            'm.sd',         'num',    'B*')
-stats.xp <- subset(stats.df, grepl('^(r|rr|rc)[.]', operator)) # We are ignoring ceil here. add rc if needed.
 
-o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
-r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
-stats.rest <- subset(stats.df, !grepl('^(r|rr|rc)[.]', operator))
-colnames(o.stats.sel.xp) <- new.colnames
-colnames(r.stats.sel.xp) <- new.colnames
-@
-\begin{table*}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(subset(o.stats.sel.xp, grepl('^r[.]', operator)), caption='Original', label='table:rando', main='Original'), include.rownames=FALSE, floating=FALSE, size='\\small')
-@
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(subset(r.stats.sel.xp, grepl('^r[.]', operator)), caption='Randoop', label='table:randr', main='Randoop'), include.rownames=FALSE, floating=FALSE,size='\\small')
-@
-\end{minipage}
-\bigskip
-\caption {The round(x)\% random selection criteria results.}
-\label{tbl:xsel}
-\end{table*}
-
-\begin{table*}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(subset(o.stats.sel.xp, grepl('^rr[.]', operator)), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
-@
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(subset(r.stats.sel.xp, grepl('^rr[.]', operator)), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
-@
-\end{minipage}
-\bigskip
-\caption {The sample(x)\% random selection criteria results.}
-\label{tbl:xsel2}
-\end{table*}
-
-\begin{table*}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(subset(o.stats.sel.xp, grepl('^rc[.]', operator)), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
-@
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(subset(r.stats.sel.xp, grepl('^rc[.]', operator)), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
-@
-\end{minipage}
-\bigskip
-\caption {The ceil(x)\% random selection criteria results.}
-\label{tbl:xsel2}
-\end{table*}
 
 \begin{figure*}[t]
 <<x.per.sel.round,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
