@@ -111,40 +111,51 @@ Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
 fraction of the complete set of mutants. This criteria also serves as a
 control for the verifying the effectiveness of other criteria.
 
-\subsubsection{x\% selection over program elements}
+\subsubsection{x\% selection over program elements (and variations)}
 Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
-extended x\% selection to sample from within different program elements.
-We sampled in the increasing order of scope, --- \textit{line},
-\textit{method} and \textit{class} (\textit{project} scope was
-analyzed as part of x\% selection).
+extended x\% selection criteria to sample from within different program
+elements.  We sampled in the increasing order of scope,
+--- \textit{line}, \textit{method} and \textit{class} (\textit{project}
+scope was analyzed as part of x\% selection).
 
-While the criteria is simple, it is not immediately clear when we
-are faced with program elements that produced too few mutants for a particular
-fraction to yield at-least one mutant. For example, for a line that produced
-15 mutants, the number of mutants that can be chosen in \textit{(x\%, line,
-1/64)} is less than 1. We analyzed the results of the following criterias:
-1) to apply \textit{round} function to the resulting number and covert to
-the nearest integer, and choose that value as the number of mutants (in
-effect, ignoring elements that are less complex), 2) to apply \textit{ceil}
-function to the resulting value, ensuring that there is atleast one mutant
-per program element, and 3) to apply \textit{sample} criteria suggested by
-Zhang et al.~\cite{zhang2013ase}, which chooses a mutant with given fracton
-as probability.
-% TODO: If the criterias ceil and round does not make sense, we might remove them to gain space.
+When the number of mutants to be chosen was not a whole number, we used
+the formula suggested by Zhang et a.~\cite{zhang2013ase}, and used the
+decimal part to select a mutant with that probability.
 
-\subsubsection{Lines per element}
-Our previous research~\cite{gopinath2014code} found that statement coverage was highly correlated with mutation coverage for a project. This immediately suggests that perhaps choosing one mutant per line may be sufficient to achieve a close approximation of the final mutation score. Further, statement deletion has been researched previously~\cite{untch2009onreduced,deng2013empirical} and has been found to reduce the number of mutants well, without an appreciable decrease in accuracy. This also provides a nice comparison with similar number of mutants between operator selection and random sampling of mutants.
+Next, we modified this criteria slightly, and instead of choosing a mutant
+with probability of decimal part, applied \texit{round(sample)} to round
+it to the nearest whole number. We used this as the number of samples to
+be chosen from the population. Our aim was to remove elements that was
+too simple. That is, if the number of mutants dropped below a threshold
+determined by the mutant reduction ratio, that program element did not
+contribute any thing to the final result.
 
-A simple extension of this approach is to extend this strategy as previously, by choosing as many number of mutants as there are number of lines in a program element, and we can extend it as before to sample \textit{1/2,1/4,1/8,1/16,1/32,1/64} of the mutants thus chosen. We chose the rounding strategy for fractional samples for simplicity.
-% TODO: Actually do the other rounding choices.
+Next, we explored in the other direction, by forcing the program elements
+to return atleast one element by using the \textit{ceil(sample)}. That is,
+irrespective of the fraction being sampled, the simplest elements always
+contributed atleast one mutant to the total sample.
 
-Here too, we have a few choices when sampling mutants. We could either choose the fraction of mutants within the program element, or we could apply the sampling externally. For example, using $\lambda_E$ as number of lines in an element, for \textit{(lpe, $1/2$, method)}, we first get $1/2 \times \lambda_{Method}$ number of mutants from each method. The second alternative is to get $\lambda_{Method}$ number of mutants for all methods, then from this larger set, choose only half of the mutants.
+\subsubsection{Lines per element and variants}
+Our previous research~\cite{gopinath2014code} found that statement coverage
+was highly correlated with mutation coverage for a project. This immediately
+suggests that perhaps choosing one mutant per line may be sufficient to achieve
+a close approximation of the final mutation score. Further, statement deletion
+has been researched previously~\cite{untch2009onreduced,deng2013empirical} and
+has been found to reduce the number of mutants well, without an appreciable
+decrease in accuracy. This also provides a nice comparison with similar
+number of mutants between operator selection and random sampling of mutants.
+
+We next extended it to sample from each method instead, but using the number
+of lines in the method as the number of mutants to be sampled. This provided
+a test of hypothesis of how important the coverage was. This was extended
+to class and project scope also.
 
 \subsubsection{One per element}
-An extremely simple strategy of sampling is to just choose one mutant per program element, which as before, we extended to include all the fractions \textit{1/2,1/4,1/8,1/16,1/32,1/64}.
+Another simple strategy of sampling we experimented with is to just choose
+one mutant per program element, in the order \textit{line},\textit{method},
+\textit{class}.
 
 \subsection{Operator Selection}
-% TODO expand as required
 
 For selective methods, we tried mutation operators suggested by Wong et al.~\cite{wong1995reducing}, Offutt et al.~\cite{offutt1996anexperimental,deng2013empirical}, % TODO Barbosa
  and, Namin et al~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized operator selection mechanisms, we also compared the Javalanche operators for operator selection. Note that all of these techniques except 
