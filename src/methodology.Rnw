@@ -123,7 +123,7 @@ the formula suggested by Zhang et a.~\cite{zhang2013ase}, and used the
 decimal part to select a mutant with that probability.
 
 Next, we modified this criteria slightly, and instead of choosing a mutant
-with probability of decimal part, applied \texit{round(sample)} to round
+with probability of decimal part, applied \textit{round(sample)} to round
 it to the nearest whole number. We used this as the number of samples to
 be chosen from the population. Our aim was to remove elements that was
 too simple. That is, if the number of mutants dropped below a threshold
