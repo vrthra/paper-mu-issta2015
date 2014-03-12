@@ -52,7 +52,7 @@ to various criterias.
 \label{tbl:pitop}
 \end{table}
 
-Finally, to ensure accuracy of our observations, each criteria described has been run four times, and the results are averaged to produce the final result.
+Finally, to remove random noice, each criteria described has been run four times, and the results are averaged to produce the final result.
 
 One of our research questions was to compare the utility of operator
 selection --- especially statement deletion --- with random sampling of mutants,
