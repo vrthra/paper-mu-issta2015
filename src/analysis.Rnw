@@ -49,7 +49,6 @@ r.stats.sel.xp.ceil$scope  <- gsub('.*_','', r.stats.sel.xp.ceil$operator)
 r.stats.sel.xp.ceil$sampling  <- gsub('_.*','', r.stats.sel.xp.ceil$operator)
 
 @
-\subsubsection{x\% selection}
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
@@ -200,7 +199,7 @@ print(xtable(f(r.stats.sel.loc), caption='Randoop', label='table:randr'), includ
 @
 \end{minipage}
 \caption {The line count selection criteria results.}
-\label{tbl:locsel}
+\label{tbl:lcountl}
 \end{table*}
 
 \begin{table*}
@@ -216,7 +215,7 @@ print(xtable(f(r.stats.sel.loc.w), caption='Randoop', label='table:randr'), incl
 @
 \end{minipage}
 \caption {The line count selection criteria results (within).}
-\label{tbl:locsel}
+\label{tbl:lcountw}
 \end{table*}
 
 
