@@ -2,7 +2,7 @@
 \label{sec:discussion}
 
 \begin{figure}[t]
-\includegraphics[totalheight=4.5cm]{fig/opstrat1.eps}
+\includegraphics[totalheight=4.5cm]{fig/opstrat1.pdf}
 \caption{Mutant distribution in a sample project along operators and program elements}
 \label{fig:egmutants}
 \end{figure}
