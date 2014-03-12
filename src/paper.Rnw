@@ -18,7 +18,7 @@
 %\newcommand{\pites}{~E\_\allowbreak{}SWITCH~}
 %\newcommand{\pitin}{~INVERT\_\allowbreak{}NEGATIVES~}
 %
-\newcommand{\pitnvmc}{NVMC~}
+\newcommand{\pitnvmc}{NMC~}
 \newcommand{\pitnc}{NC~}
 \newcommand{\pitrc}{RC~}
 \newcommand{\pitdc}{DC~}
@@ -35,7 +35,7 @@
 \newcommand{\pites}{ES~}
 \newcommand{\pitin}{IN~}
 % No space variants.
-\newcommand{\Pitnvmc}{NVMC}
+\newcommand{\Pitnvmc}{NMC}
 \newcommand{\Pitnc}{NC}
 \newcommand{\Pitrc}{RC}
 \newcommand{\Pitdc}{DC}

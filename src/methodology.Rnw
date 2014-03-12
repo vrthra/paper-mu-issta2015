@@ -6,10 +6,10 @@ for real-world programs. Secondly, we strived for a statistically significant
 result, reducing the amount of variables present in the experiments. For this
 reason we chose a random sample of Java projects from Github\cite{github}
 that uses the popular maven\cite{maven} build system, that has been used
-elsewhere\cite{gopinath2014code}. This set of projects comes in two flavors
+elsewhere\cite{gopinath2014code}. We utilize two flavors of
 of test-suites. The original test-suites present in a limited number of
-projects, and automatically generatd test-suites using randoop.  Due to the
-constraints in resources, we had to further reduce the programs and test-suites
+projects, and automatically generatd test-suites using randoop.  Due
+limited resources, we had to further reduce the programs and test-suites
 to those that could finish the mutation run in 10 minutes. From this set
 of test-suites, we sampled 110 suites each for both original and randoop
 generated test-suiets. This gave us 81 unique projects for both original
@@ -18,33 +18,36 @@ and randoop, and remaining projects having both flavors of test suites.
 We ran mutation analysis on this set of projects using
 PIT\cite{pitest}. However, since the operators provided by PIT are limited,
 we extended PIT to provide newer operators that are similar to operators
-provided by other mutation systems. The set of operators provided by PIT
-are provided in Table~\ref{tbl:pitop}.
+provided by other mutation systems. The set of operators that we used
+are provided in Table~\ref{tbl:pitop}. For a detailed description of each,
+please see~\cite{pitmut}
 
 Further, we also modified PIT to provide random selection of mutants according
 to various criterias.
 
-\begin{table}[h]\footnotesize
+\begin{table}[h]
+\small{
 \begin{tabular}{ll}
 \hline \hline \\
-\pitic & Invert negatives \\
-\pitrv & Change return values \\
-\pitm & Modify arithmetic operators\\
-\pitvmc & Remove void method calls \\
-\pitnc & Negate conditional statements \\
-\pitcb & Modify boundary conditions \\
-\piti & Modify increment/decrement \\
-\pitnvmc & Replace non-void method calls \\
-\pitcc & Replace constructor calls \\
-\pitic & Replace inline constants \\
-\piti & Remove increment/decrement \\
-\pitemv & Replace member variable assignments \\
+\pitin & Remove negative sign from numbers\\
+\pitrv & Mutate return values\\
+\pitm & Mutate arithmetic operators\\
+\pitvmc & Remove void method calls\\
+\pitnc & Negate conditional statements\\
+\pitcb & Modify boundaries in logical conditions\\
+\piti & Modify increment and decrement statements\\
+\pitnvmc & Remove non-void method calls, returning default value \\
+\pitcc & Replace constructor calls, returning null \\
+\pitic & Replace inline constants with default value \\
+\pitri & Remove increment and decrement statements \\
+\pitemv & Replace member variable assignments with default value \\
 \pites & Modify switch statements \\
-\pitrs & Remove switch elements* \\
-\pitrc & Make conditionals true \\
-\pitnc & Make conditionas false* \\
+\pitrs & Replace switch labels with default (thus removing them) \\
+\pitrc & Replace boolean conditions with true\\
+\pitnc & Replace boolean conditions with false\\
 \hline
 \end{tabular}
+}
 \caption{PIT Mutation Opeators (We have used abbreviations instead of operator names.)}
 \label{tbl:pitop}
 \end{table}
