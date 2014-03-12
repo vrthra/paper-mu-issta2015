@@ -104,22 +104,26 @@ print(xtable(f(r.stats.sel.xp.ceil), caption='Randoop', label='table:randr'), in
 
 \section{Analysis}
 \label{sec:analysis}
-Our results for x\% sampling over program elements are given
-in Table~\ref{tbl:xselsample}. The result of its variation, using
-\textit{round(sample)} is given in Table~\ref{tbl:xselround}. The result
-of using \textit{ceil(sample)} is given in Table~\ref{tbl:xselceil}.
-The first column in each table provides the scope of sampling i.e if it was
-done per class, per method, per line etc. The second column provides the
-fraction involved.  Third column contains the $R^2$ value obtained between
-the mutation score of the sampling criteria used and the full mutation score.
-The fourth column contains the mutant reduction factor. This is the average of
-total mutants produced divided by the number of mutants sampled by the criteria.
-Fifth column contains the standard deviation of the same. A few of the projects
-did not return any value for certain sampling criterias for particular mutation
-reduction fractions. The sixth column contains the number of projects that
-actually had valid values for the criteria being considered. The seventh column
-is the average multiplier between the sampled mutation score and the full mutation
-score.
+For the purposes of comparing between the criterias, we computed the
+correlation between sampled mutation score and full mutation score.
+Since for most of the sampling criteria, if there are no mutants to
+sample, it probably means there are no mutants generated on the whole,
+we used $lm(M_{all}~0+M_{sample})$ as the regression formula, and report
+the correlation from this linear regression. We also report the expected
+multiplier factor for the sampled mutation score. This factor determines
+the ease of satisfying the sampling criteria. That is, if the multiplier
+factor is small, then it is easier to satisfy compared to a larger multiplier
+factor.
+Next, for each criteria, we computed the reduction of mutants given by the
+ratio between total number of mutants and sampled mutants.
+We also compute standard deviation of the mutant reduction, which determines
+the consistency of results. (A large amount of standard deviation suggests
+that the mutant reduction ratio achieved is very much dependent on the
+project. So as a heuristic, we suggest looking at only those projects which
+has a mean reduction ratio atleast twice the standard deviation.)
+
+For some of the smaller projects, some of the sampling criteria did not
+return any results. This is also collected in our tables.
 
 \subsection{Sampling Criteria}
 
@@ -170,9 +174,6 @@ ggplot(subset(o.xp, values < 100), aes(power, values, fill=interaction(type,powe
 \end{figure*}
 %TODO : See if the following paragraph is needed, or shall we just sink the ceil(x) discussion completely?
 Our experiments found that while $round(x)$ and $sample(x)$ produced relatively reasonable reduction of mutants, the $ceil(x)$ criteria failed to produce a reasonable reduction of mutants except for higher power where the reduction was some what close to that produced by $round(x)$ and $sample(x)$ (which was expected). The $R^2$ values of $ceil(x)$ were almost always lower than that produced by $round(x)$ and $sample(x)$ for similar reduction of mutants. For this reason, we do not consider this function again. However, interested parties can refer to our published data.
-
-The reduction in mutants for x\% selection using $round(x)$ is graphed in Figure~\ref{fig:xroundsel}. The values for the same are given in Table~\ref{tbl:xsel}.
-Similarly reduction in mutants for x\% selection using $sample(x)$ is graphed in Figure~\ref{fig:xsamplesel}. The values for the same are given in Table~\ref{tbl:xsel}.
 % ----------------------------------------------------------------------
 
 \subsubsection{Lines per element}

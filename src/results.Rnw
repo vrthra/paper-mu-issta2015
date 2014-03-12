@@ -1,5 +1,24 @@
 \section{Results}
 \label{sec:results}
+
+Our results for x\% sampling over program elements are given
+in Table~\ref{tbl:xselsample}. The result of its variation, using
+\textit{round(sample)} is given in Table~\ref{tbl:xselround}. The result
+of using \textit{ceil(sample)} is given in Table~\ref{tbl:xselceil}.
+The first column in each table provides the scope of sampling i.e if it was
+done per class, per method, per line etc. The second column provides the
+fraction involved.  Third column contains the $R^2$ value obtained between
+the mutation score of the sampling criteria used and the full mutation score.
+The fourth column contains the mutant reduction factor. This is the average of
+total mutants produced divided by the number of mutants sampled by the criteria.
+Fifth column contains the standard deviation of the same. A few of the projects
+did not return any value for certain sampling criterias for particular mutation
+reduction fractions. The sixth column contains the number of projects that
+actually had valid values for the criteria being considered. The seventh column
+is the average multiplier between the sampled mutation score and the full mutation
+score.
+
+
 \subsection{Standard deviation of mutant reduction}
 We observe multiple patterns in our results. First, for all sampling criterias used, standard deviation of reduction of mutants is roughly proportional to their mean value. This can be seen in Figure~\ref{fig:roundsel}. Secondly, we also observe that standard deviation based on project sampling is lower than standard deviation of class based sampling for corresponding mean mutant reduction, and the standard deviation of class based sampling is lower than that based on methods, and similarly for lines.
 
