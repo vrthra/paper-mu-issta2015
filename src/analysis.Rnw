@@ -257,17 +257,28 @@ r.stats.sel.one <- subset(r.f(stats.one), select=sel.colnames)
 stats.rest <- subset(stats.rest, !grepl('^o[.]', operator))
 colnames(o.stats.sel.one) <- new.colnames
 colnames(r.stats.sel.one) <- new.colnames
+
+
+o.stats.sel.one$operator  <- gsub('o[.]1x','1/', o.stats.sel.one$operator)
+o.stats.sel.one$scope  <- gsub('.*_','', o.stats.sel.one$operator)
+o.stats.sel.one$sampling  <- gsub('_.*','', o.stats.sel.one$operator)
+
+
+r.stats.sel.one$operator  <- gsub('o[.]1x','1/', r.stats.sel.one$operator)
+r.stats.sel.one$scope  <- gsub('.*_','', r.stats.sel.one$operator)
+r.stats.sel.one$sampling  <- gsub('_.*','', r.stats.sel.one$operator)
+
 @
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(o.stats.sel.one, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+print(xtable(f(o.stats.sel.one), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
-print(xtable(r.stats.sel.one, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+print(xtable(f(r.stats.sel.one), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
 @
 \end{minipage}
 \bigskip
@@ -286,34 +297,6 @@ ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power,
 \label{fig:onesel}
 \end{figure*}
 
-%The values are given in Table~\ref{tbl:onesel}, and its visaulization is in Figure~\ref{fig:onesel}.
-% ----------------------------------------------------------------------
-% <<oth>>=
-% stats.o <- subset(stats.rest, !grepl('^op', operator))
-% o.stats.sel.o <- subset(o.f(stats.o), select=sel.colnames)
-% r.stats.sel.o <- subset(r.f(stats.o), select=sel.colnames)
-% stats.rest <- subset(stats.rest, grepl('^op', operator))
-% colnames(o.stats.sel.o) <- new.colnames
-% colnames(r.stats.sel.o) <- new.colnames
-% @
-% 
-% \begin{table*}
-% \begin{minipage}[h]{0.49\linewidth}
-% <<results='asis'>>=
-% print(xtable(o.stats.sel.o, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
-% @
-% \end{minipage}
-% \hspace{0.5cm}
-% \begin{minipage}[h]{0.49\linewidth}
-% <<results='asis'>>=
-% print(xtable(r.stats.sel.o, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
-% @
-% \end{minipage}
-% \bigskip
-% \caption {Others}
-% \label{tbl:osel}
-% \end{table*}
-% 
 % ----------------------------------------------------------------------
 
 %\subsection{Operator Selection}
@@ -373,6 +356,8 @@ r.stats.sel.op <- subset(r.f(stats.op), select=sel.colnames)
 stats.rest <- subset(stats.rest, !grepl('^(op|TSDL)', operator))
 colnames(o.stats.sel.op) <- new.colnames
 colnames(r.stats.sel.op) <- new.colnames
+
+
 @
 
 \begin{table*}
