@@ -152,9 +152,9 @@ to class and project scope also.
 
 For the first variant, we applied the x\% sampling to the result of the first
 sampling based on line counts. That is, in the case of methods, we first
-selected $#linecount$ mutants each from each method, and applied the x\%
+selected \textit{linecount} mutants each from each method, and applied the x\%
 selection to the result of this selection. For the second variant, we did
-the sampling in one go, where we chose $#linecount/x$ number of mutants from
+the sampling in one go, where we chose \textit{linecount/x} number of mutants from
 each program element.
 
 \subsubsection{One per element}

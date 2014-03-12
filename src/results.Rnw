@@ -18,7 +18,10 @@ actually had valid values for the criteria being considered. The seventh column
 is the average multiplier between the sampled mutation score and the full mutation
 score.
 
-The Table~\ref{tbl:lcountl} provides the results for line count criteria.
+The Table~\ref{tbl:lcountl} provides the results for line count criteria where the
+sampling was conducted outside program element, and Table~\ref{tbl:lcountw} contains
+the results for line count criteria where the sampling was conducted inside the
+program element.
 
 
 \subsection{SDL vs Random selection}
