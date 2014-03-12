@@ -99,7 +99,8 @@ by combining different bytecode operators, which is explained in Subsection~\ref
 
 \subsection{Sampling Criterias}
 
-We used several different sampling criterias, based on different strategies of sampling, and what happens when the number of mutants selected falls below a threshold.
+We used several different sampling criteria. We varied the criterias based on the granularity and
+scope of sampling, and strategy chosen when the number of mutants to be sampled falls below one.
 
 \subsubsection{x\% selection}
 The simplest one consisted of using x\% selection as suggested by Wong et al.~\cite{wong1995reducing}. In this criteria, we choose a specific fraction of the complete mutants. Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we extend this criteria to sample mutants from within different program elements. We sampled x\% selection in the increasing order of scope, --- \textit{line}, \textit{method}, \textit{class}, and \textit{project} --- and decreasing fraction of total mutants -- \textit{1, 1/2, 1/4, 1/8, 1/16, 1/64}.
