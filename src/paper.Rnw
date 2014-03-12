@@ -98,5 +98,7 @@ r.stats.df <- r.f(stats.df)
 @
 <<results, child='discussion.Rnw'>>=
 @
+<<threats, child='threats.Rnw'>>=
+@
 <<conclusion, child='conclusion.Rnw'>>=
 @
