@@ -21,24 +21,35 @@ score.
 The Table~\ref{tbl:lcountl} provides the results for line count criteria where the
 sampling was conducted outside program element, and Table~\ref{tbl:lcountw} contains
 the results for line count criteria where the sampling was conducted inside the
-program element.
+program element. Similaryl the Table~\ref{tbl:onesel} contains the results for
+the criteria of one mutant per program element.
 
+Finally Table~\ref{tbl:opsel} contains the results for operator selectionl. Unlike
+the other tables, the first column here contains the kind of operator selection
+applied. We have tabulated the results of applying particular kinds of operator
+selection. The TSDL row is the result of applying only the higher order mutant
+equivalent to \textit{statement deletion}. The rows that have prefixes \textit{op:}
+are the result of applying only a single mutation operator on the program. The rows
+with \textit{opsel:} contains the results of various operator selection mechansisms.
+All the \textit{opsel:N-sel} are the results of N-selective operator selection
+strategies~\cite{offutt1993anexperimental}. We used the order of operators
+determined from Figure~\ref{fig:op} for this purpose.
 
-\subsection{SDL vs Random selection}
-\begin{figure*}[t]
-<<sdl.x,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-par(mfrow=c(2,2))
-with(o.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Original SDL'))
-with(o.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Original 1 per line'))
-with(r.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Randoop SDl'))
-with(r.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Randoop 1 per line'))
-@
-\label{fig:sdl1}
-\caption{Statement Deletion vs One per line.}
-\end{figure*}
-<<results='asis'>>=
-oprand <- subset(stats.df,!grepl('^..op', rownames(stats.df)))
-
-oprand.x <- subset(oprand,grepl('^.1x[0-9]+_per_', operator))
-oprand.l <- subset(oprand,!grepl('^.1x[0-9]+_per_', operator))
-@
+% \subsection{SDL vs Random selection}
+% \begin{figure*}[t]
+% <<sdl.x,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+% par(mfrow=c(2,2))
+% with(o.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Original SDL'))
+% with(o.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Original 1 per line'))
+% with(r.pit.all, plot(all.cov~TSDL.cov, pch='+', main='Randoop SDl'))
+% with(r.pit.all, plot(all.cov~l.1x1_per_line.cov, pch='+', main='Randoop 1 per line'))
+% @
+% \label{fig:sdl1}
+% \caption{Statement Deletion vs One per line.}
+% \end{figure*}
+% <<results='asis'>>=
+% oprand <- subset(stats.df,!grepl('^..op', rownames(stats.df)))
+% 
+% oprand.x <- subset(oprand,grepl('^.1x[0-9]+_per_', operator))
+% oprand.l <- subset(oprand,!grepl('^.1x[0-9]+_per_', operator))
+% @
