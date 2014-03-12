@@ -55,6 +55,11 @@
 
 \begin{comment}
 <<setup, include=FALSE, message=FALSE, echo=FALSE>>=
+is.installed <- function(mypkg) is.element(mypkg, installed.packages()[,1])
+if (!is.installed("xtable")) install.packages("xtable")
+if (!is.installed("ggplot2")) install.packages("ggplot2")
+if (!is.installed("reshape2")) install.packages("reshape2")
+
 clean <- function(x)sub('CONSTRUCTOR','CONSTR',sub('RETURN','R',sub('INCREMENTS','INC',sub('VOID','V',sub('CONDITIONAL','COND',sub('NON','N',sub('VARIABLE','VAR',sub('MEMBER','MEM',sub('DELETE_','D_',sub('REMOVE_','R_',sub('NEGATE_','N_',sub('_CALLS','',sub('EXPERIMENTAL_','E_',x)))))))))))))
 #options(warn=-1)
 options(digits=3)
