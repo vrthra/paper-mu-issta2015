@@ -24,7 +24,6 @@ The blue shade represent detected mutants, while black represents total mutants.
 \label{fig:op}
 \end{figure*}
 
-
 \section{Methodology}
 \label{sec:methodology}
 Our selection of programs was driven by a few overriding concerns. Our primary
@@ -49,10 +48,21 @@ provided by other mutation systems. The set of operators that we used
 are provided in Table~\ref{tbl:pitop}. A distribution of these operators
 in our projects are provided in Figure~\ref{fig:op}, which shows both the
 distribution of complete mutants and the relative detection rates of each
-mutation operators. For a detailed description of each, please see~\cite{pitmut}
+mutation operators. In the figure, there are two box-plots corresponding
+to each mutation operator on the Y-axis. The black box represents the
+relative frequency of the particular mutation operator in the total mutants
+\textit{generated}. For example for projects in the randoop set, the
+operator \pitnvmc contributed about 23\% of the total number of mutants
+produced while \pitrv contributed about 15\%. Similarly, the blue shaded
+box-plot represents the relative frequency of particular mutation operator
+in the total mutants \textit{detected}. For example, \pitnvmc contribution
+in the detected mutants was 34\% while that of \pitrv was 7\%.
 
-Further, we also modified PIT to provide random selection of mutants according
-to various criterias.
+For a detailed description of each mutants, please see~\cite{pitmut}.
+PIT was also modifed to provide random selection of mutants according
+to various criterias. Finally, to remove random noice, each criteria
+described has been run four times, and the results are averaged to produce
+the final result.
 
 \begin{table}
 \small{
@@ -81,7 +91,6 @@ to various criterias.
 \label{tbl:pitop}
 \end{table}
 
-Finally, to remove random noice, each criteria described has been run four times, and the results are averaged to produce the final result.
 
 One of the criterias we sampled was \textit{statement deletion}.
 Since we use PIT, which is a bytecode based mutation engine, implementing direct equivalent of
