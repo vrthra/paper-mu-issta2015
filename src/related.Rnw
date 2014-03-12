@@ -118,11 +118,11 @@ real-world projects.
 
 \subsection{Execution Reduction}
 
-Weak mutation, devised by Howden \cite{howden1982weak}, considers a mutant as detected, if 
+Weak mutation, devised by Howden \cite{howden1982weak}, considers a mutant as detected, if
 the states of program after the mutated statement in mutant and the original
 program differ. Several oher studies have refined the idea theoretically \cite{horgan1990weak}and
 observed its effectiveness emperically\cite{offutt1994empirical,Offutt:1991:SWM:120807.120826}.
 
-Some studies have utlized parallel computation to enhance the execution time of 
-the mutation testing \cite{}. Others have used custom built compilers and interpretors \cite{}
-to reduce the overall compile time in mutation testing \cite{}.
+%Some studies have utlized parallel computation to enhance the execution time of 
+%the mutation testing \cite{}. Others have used custom built compilers and interpretors \cite{}
+%to reduce the overall compile time in mutation testing \cite{}.
