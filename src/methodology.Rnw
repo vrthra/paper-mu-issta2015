@@ -99,13 +99,37 @@ by combining different bytecode operators, which is explained in Subsection~\ref
 
 \subsection{Sampling Criterias}
 
-We used several different sampling criteria, some of which has been suggested in the literature before,
-and some which are variants of previously suggested criterias, and some that have not been used before.
+We used several different sampling criteria, some of which has been suggested
+in the literature before, and some which are variants of previously suggested
+criteria, and some that have not been used before.  For each sampling
+criteria, we sampled mutants on a decreasing power scale sampling
+\textit{1, 1/2, 1/4, 1/8, 1/16, 1/64} of the total mutants.
 
 \subsubsection{x\% selection}
-The simplest one consisted of using x\% selection. As suggested by Budd~\cite{budd1980mutation}. In this criteria, we choose a specific fraction of the complete mutants. Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we extend this criteria to sample mutants from within different program elements. We sampled x\% selection in the increasing order of scope, --- \textit{line}, \textit{method}, \textit{class}, and \textit{project} --- and decreasing fraction of total mutants -- \textit{1, 1/2, 1/4, 1/8, 1/16, 1/64}.
+The simplest one consisted of using x\% selection as suggested by
+Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
+fraction of the complete set of mutants. This criteria also serves as a
+control for the verifying the effectiveness of other criteria.
 
-While the sampling criteria is simple, it is not immediately clear when we are faced with program elements that produced too few mutants for a particular fraction to yield at-least one mutant. For example, for a line that produced 15 mutants, the number of mutants that can be chosen in \textit{(x\%, line, 1/64)} is less than 1. We analyzed the results of the following criterias: 1) to apply \textit{round} function to the resulting number and covert to the nearest integer, and choose that value as the number of mutants (in effect, ignoring elements that are less complex), 2) to apply \textit{ceil} function to the resulting value, ensuring that there is atleast one mutant per program element, and 3) to apply \textit{sample} criteria suggested by Zhang et al.~\cite{zhang2013ase}, which chooses a mutant with given fracton as probability.
+\subsubsection{x\% selection over program elements}
+Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
+extended x\% selection to sample from within different program elements.
+We sampled in the increasing order of scope, --- \textit{line},
+\textit{method} and \textit{class} (\textit{project} scope was
+analyzed as part of x\% selection).
+
+While the criteria is simple, it is not immediately clear when we
+are faced with program elements that produced too few mutants for a particular
+fraction to yield at-least one mutant. For example, for a line that produced
+15 mutants, the number of mutants that can be chosen in \textit{(x\%, line,
+1/64)} is less than 1. We analyzed the results of the following criterias:
+1) to apply \textit{round} function to the resulting number and covert to
+the nearest integer, and choose that value as the number of mutants (in
+effect, ignoring elements that are less complex), 2) to apply \textit{ceil}
+function to the resulting value, ensuring that there is atleast one mutant
+per program element, and 3) to apply \textit{sample} criteria suggested by
+Zhang et al.~\cite{zhang2013ase}, which chooses a mutant with given fracton
+as probability.
 % TODO: If the criterias ceil and round does not make sense, we might remove them to gain space.
 
 \subsubsection{Lines per element}
