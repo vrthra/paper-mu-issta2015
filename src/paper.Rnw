@@ -56,6 +56,7 @@
 \begin{comment}
 <<setup, include=FALSE, message=FALSE, echo=FALSE>>=
 is.installed <- function(mypkg) is.element(mypkg, installed.packages()[,1])
+options(CRAN = "http://cran.stat.ucla.edu")
 if (!is.installed("xtable")) install.packages("xtable")
 if (!is.installed("ggplot2")) install.packages("ggplot2")
 if (!is.installed("reshape2")) install.packages("reshape2")
