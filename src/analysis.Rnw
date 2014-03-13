@@ -103,7 +103,7 @@ print(xtable(f(r.stats.sel.xp.ceil), caption='Randoop', label='table:randr'), in
 
 \section{Analysis}
 \label{sec:analysis}
-For the purposes of comparing between the criterias, we computed the
+For the purposes of comparing between the criteria, we computed the
 correlation between sampled mutation score and full mutation score.
 Since for most of the sampling criteria, if there are no mutants to
 sample, it probably means there are no mutants generated on the whole,
@@ -119,7 +119,7 @@ We also compute standard deviation of the mutant reduction, which determines
 the consistency of results. (A large amount of standard deviation suggests
 that the mutant reduction ratio achieved is very much dependent on the
 project. So as a heuristic, we suggest looking at only those projects which
-has a mean reduction ratio atleast twice the standard deviation.)
+has a mean reduction ratio at least twice the standard deviation.)
 
 For some of the smaller projects, some of the sampling criteria did not
 return any results. This is also collected in our tables.
