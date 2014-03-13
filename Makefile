@@ -1,6 +1,10 @@
 things=$(wildcard src/*.Rnw src/*.bib etc/*.tex)
 
-all: build/acm_sigproc.pdf
+all: build
+	@curl http://web.engr.oregonstate.edu/~gopinath/fse/Mutsel_1.0.tar.gz.md5 -o build/Mutsel_1.0.tar.gz.md5.new
+	@cat build/Mutsel_1.0.tar.gz.md5.new
+	[ $(cat build/Mutsel_1.0.tar.gz.md5.new) $(cat build/Mutsel_1.0.tar.gz.md5) ] && mv build/Mutsel_1.0.tar.gz.md5.new build/Mutsel_1.0.tar.gz.md5 || true
+	make build/acm_sigproc.pdf
 
 build/acm_sigproc.pdf: $(things) build/data/Mutsel_1.0.tar.gz
 	rm -rf build/fig
@@ -13,7 +17,10 @@ build/acm_sigproc.pdf: $(things) build/data/Mutsel_1.0.tar.gz
 	cd build; ../bin/latexmk -pdf acm_sigproc.tex
 	- cp build/acm_sigproc.pdf /scratch
 
-build/data/Mutsel_1.0.tar.gz: | build build/data
+build/Mutsel_1.0.tar.gz.md5:
+	curl http://web.engr.oregonstate.edu/~gopinath/fse/Mutsel_1.0.tar.gz.md5 -o build/Mutsel_1.0.tar.gz.md5
+
+build/data/Mutsel_1.0.tar.gz: build/Mutsel_1.0.tar.gz.md5 | build build/data
 	rm -rf build/cache
 	make instr
 

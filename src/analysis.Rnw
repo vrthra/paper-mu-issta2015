@@ -356,6 +356,19 @@ stats.rest <- subset(stats.rest, !grepl('^(op|TSDL)', operator))
 colnames(o.stats.sel.op) <- new.colnames
 colnames(r.stats.sel.op) <- new.colnames
 
+o.stats.sel.op$kind  <- ifelse(grepl('opsel:', o.stats.sel.op$operator), 'selection', 'operator')
+r.stats.sel.op$kind  <- ifelse(grepl('opsel:', o.stats.sel.op$operator), 'selection', 'operator')
+
+o.stats.sel.op$operator  <- gsub('_','',gsub('op.*:','', o.stats.sel.op$operator))
+r.stats.sel.op$operator  <- gsub('_','',gsub('op.*:','', r.stats.sel.op$operator))
+
+o.stats.sel.op <- o.stats.sel.op[,c(1,7,2,3,4,5,6)]
+r.stats.sel.op <- r.stats.sel.op[,c(1,7,2,3,4,5,6)]
+
+#o.stats.sel.one$sampling  <- gsub('_.*','', o.stats.sel.one$operator)
+
+
+
 
 @
 
