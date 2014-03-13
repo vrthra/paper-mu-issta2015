@@ -34,11 +34,11 @@ reason we chose a random sample of Java projects from Github\cite{github}
 that uses the popular maven\cite{maven} build system, that has been used
 elsewhere\cite{gopinath2014code}. We utilize two flavors of
 of test-suites. The original test-suites present in a limited number of
-projects, and automatically generatd test-suites using randoop.  Due
+projects, and automatically generated test-suites using randoop.  Due
 limited resources, we had to further reduce the programs and test-suites
 to those that could finish the mutation run in 10 minutes. From this set
 of test-suites, we sampled 110 suites each for both original and randoop
-generated test-suiets. This gave us 81 unique projects for both original
+generated test-suits. This gave us 81 unique projects for both original
 and randoop, and remaining projects having both flavors of test suites.
 
 We ran mutation analysis on this set of projects using
@@ -59,8 +59,8 @@ in the total mutants \textit{detected}. For example, \pitnvmc contribution
 in the detected mutants was 23\% while that of \pitrv was 15\%.
 
 For a detailed description of each mutants, please see~\cite{pitmut}.
-PIT was also modifed to provide random selection of mutants according
-to various criterias. Finally, to remove random noice, each criteria
+PIT was also modified to provide random selection of mutants according
+to various criteria. Finally, to remove random noise, each criteria
 described has been run four times, and the results are averaged to produce
 the final result.
 
@@ -87,17 +87,17 @@ the final result.
 \hline
 \end{tabular}
 }
-\caption{PIT Mutation Opeators (We have used abbreviations instead of operator names.)}
+\caption{PIT Mutation Operators (We have used abbreviations instead of operator names.)}
 \label{tbl:pitop}
 \end{table}
 
 
-One of the criterias we sampled was \textit{statement deletion}.
+One of the criteria we sampled was \textit{statement deletion}.
 Since we use PIT, which is a bytecode based mutation engine, implementing direct equivalent of
 source code statement deletion is very hard. We were able to approximate statement deletion
 by combining different bytecode operators, which is explained in Subsection~\ref{subsec:stmtdel}.
 
-\subsection{Sampling Criterias}
+\subsection{Sampling Criteria}
 
 We used several different sampling criteria, some of which has been suggested
 in the literature before, and some which are variants of previously suggested
@@ -131,9 +131,9 @@ determined by the mutant reduction ratio, that program element did not
 contribute any thing to the final result.
 
 Next, we explored in the other direction, by forcing the program elements
-to return atleast one element by using the \textit{ceil(sample)}. That is,
+to return at least one element by using the \textit{ceil(sample)}. That is,
 irrespective of the fraction being sampled, the simplest elements always
-contributed atleast one mutant to the total sample.
+contributed at least one mutant to the total sample.
 
 \subsubsection{Lines per element and variants}
 Our previous research~\cite{gopinath2014code} found that statement coverage
@@ -216,9 +216,9 @@ multiple mutations are combined together due to coupling effect. This also
 means that not all the lines may be mutated since there may be no applicable
 operators. However, given the constraints of a bytecode based mutation system,
 we believe that our procedure is reasonable. An interesting point is that
-by this procedure statement deletion is nolonger a simple mutation and qualifies
-as a higher order mutation operator. Infact, the procedure we outlined can
+by this procedure statement deletion is no longer a simple mutation and qualifies
+as a higher order mutation operator. In fact, the procedure we outlined can
 be used in general to judge the effectiveness of a higher order operator from
-the results of first order mutatin operators that makeup the higher order
+the results of first order mutation operators that makeup the higher order
 mutant in question.
 
