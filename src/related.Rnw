@@ -1,25 +1,25 @@
 \section{Related Work}
 \label{sec:related}
-In this section we summarize the related work. There have been
-different approaches to reduce the cost of mutation analysis.
+There are several approaches to reducing the cost of mutation analysis.
 These were categorized by Offutt and Untch~\cite{offutt2001mutation}
-into three approaches: Do \textit{fewer}, \textit{smarter}, \textit{faster}.
-The fewer approaches includes selective mutation and mutant sampling while
-weak mutation, parallelization of mutation analysis, space time trade offs
+into three approaches: do \textit{fewer}, \textit{smarter}, or \textit{faster}.
+The fewer approaches includes selective mutation and mutant sampling;
+weak mutation, parallelization of mutation analysis, and space/time trade-offs
 are grouped under the umbrella of \textit{do smarter}. Finally
 \textit{do faster} approaches include mutant schema generation methods,
 code patching techniques, and byte code based mutation analysis systems like PIT.
 
-The idea of using a subset of mutants was born along with the mutation analysis
-itself. Budd~\cite{budd1980mutation} and Acree~\cite{Acree1980} showed that
-even 10\% sampling can achieve 99\% accuracy for the final score.
-
-It was further investigated by Mathur~\cite{mathur1991performance},
-Wong et al.~\cite{wong1993mutation,wong1995reducing}, and
-Offutt et al.~\cite{offutt1993experimental} using the Mothra~\cite{Mothra}
-mutation operators for Fortran. Mathur~\cite{mathur1991performance,wong1995reducing}
-suggested constrained mutation where in only two mutation operators were used which
-were felt to be better than using the entire set.
+The idea of using a subset of mutants was conceived along with
+mutation analysis itself. Budd~\cite{budd1980mutation} and
+Acree~\cite{Acree1980} showed that even 10\% sampling can achieve 99\%
+accuracy for the final score.  The idea was further investigated by
+Mathur~\cite{mathur1991performance}, Wong et
+al.~\cite{wong1993mutation,wong1995reducing}, and Offutt et
+al.~\cite{offutt1993experimental} using the Mothra~\cite{Mothra}
+mutation operators for
+Fortran. Mathur~\cite{mathur1991performance,wong1995reducing}
+suggested constrained mutation where only two mutation operators
+were used.%, which were felt to be better than using the entire set.
 
 % Operator Selection also assumes that fault detection ability of some operators
 % are higher than others, and hence some operators should have higher weight
@@ -28,46 +28,55 @@ were felt to be better than using the entire set.
 A number of studies in the past have looked at the relative merits of operator
 selection and random sampling criteria, starting with Wong and Mathur in
 1995~\cite{wong1995reducing}. They compared x\% selection of each mutant type
-with operator selection of just two mutation operators, and finds that both
+with operator selection using just two mutation operators, and found that both
 achieved similar accuracy and reduction (80\%). This study was conducted on
 five small programs in C and Fortran.
 
-Some studies have tried to find set of \emph{sufficient mutation operators} that
-while reducing the cost of mutations, maintains the correlation with the full
-mutation score. Offutt~\cite{offutt1993experimental} suggested n-selective
-approach which advocates step by step removal of mutation operators that produced
-the largest number of mutants.
+Some studies have tried to find set of \emph{sufficient mutation
+operators} that reduce the cost of mutation but maintain correlation
+with the full mutation score. Offutt~\cite{offutt1993experimental}
+suggested an $n$-selective approach with step-by-step removal of
+mutation operators that produced the largest number of mutants.
 
-Mresa et al.\cite{mresa1999efficiency} used the cost of detection of mutants as
-a means of selection, and uses it to define a set of operators. They find
-that if very high mutation score close to 100\% is required, x\% selective
-mutation is better than operator selection, and conversely for less stringent
-scores, operator selection would be better if cost of mutant is considered.
+Mresa et al.\cite{mresa1999efficiency} used the cost of detection of
+mutants as a means of selection to define a set of operators. They
+found that if very high mutation score (close to 100\%) is required,
+x\% selective mutation is better than operator selection, and,
+conversely, for lower scores, operator selection would be better if
+the cost of mutants is considered.
 
-Barbosa et. al.\cite{barbosa2001toward} provides a set of guidelines for selecting
-such mutation operators. Namin et al.\cite{namin2006finding,siami2008sufficient}
-formulate this problem as a variable reduction problem, and apply statistical
-approaches. They found a subset of 28 operators out of 108 operators as the sufficient
-operators.
+Barbosa et. al.\cite{barbosa2001toward} provide a set of guidelines
+for selecting such mutation operators. Namin et
+al.\cite{namin2006finding,siami2008sufficient} formulate the problem
+as a variable reduction problem, and apply statistical
+approaches. They found a subset of 28 operators out of 108 operators that are
+sufficient.
 
 Using only the statement deletion operator was first suggested by
-Untch~\cite{untch2009onreduced}, who found that it correlated ($R^2 = 0.97$) with the
-full mutation score better than other operator selection methods, while generating the
-least number of mutants.  This was further reinforced by Deng et al.~\cite{deng2013empirical}
-who defined deletion for different language elements, and found that an accuracy of 92\% is
-achieved while reducing the mutants by 80\%.
+Untch~\cite{untch2009onreduced}, who found that it correlated ($R^2 =
+0.97$) with the full mutation score better than other operator
+selection methods, while generating the smallest number of mutants.
+This was further reinforced by Deng et al.~\cite{deng2013empirical}
+who defined deletion for different language elements, and found that
+an accuracy of 92\% is achieved while reducing the number of mutants
+by 80\%.
 
-Zhang et al.~\cite{zhang2010operator} compares operators based mutant selection in
-~\cite{barbosa2001toward,siami2008sufficient,offutt1996anexperimental} to random mutant selection.
-They find that none of these selection techniques are superior to random selection, with same number of
-mutants. They also find that equal mutation sampling is more effective for larger subjects compared to
-equal mutagen sampling and the reverse is true for smaller subjects.
+Zhang et al.~\cite{zhang2010operator} compares operators based mutant
+selection techniques proposed in a set of
+papers~\cite{barbosa2001toward,siami2008sufficient,offutt1996anexperimental}
+to random mutant sampling.  They find that none of the selection
+techniques are superior to random sampling, with the same number of
+mutants. They also find that equal mutation sampling is more effective
+for larger subjects compared to equal mutagen sampling and the reverse
+is true for smaller subjects. {\bf ADG:  not having defined mutagen/mtuation sampling this is not easy for most readers to understand.  also we switch between "sampling" and "random selection" a lot, I tried to make consistent.}
 
-Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as few as 5\% mutants
-was sufficient for a very high correlation (99\%) with the full mutation score, while sampling even
-fewer mutants has good potential for retaining high accuracy. They investigate 8 sampling
-strategies on top of operator based mutant selection and find that sampling strategies
-based on program components (based on methods) performed best.
+Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as
+few as 5\% of mutants was sufficient for a very high correlation
+(99\%) with full mutation score, while sampling even fewer mutants has
+good potential for retaining high accuracy. They investigated 8
+sampling strategies on top of operator-based mutant selection and
+found that sampling strategies based on program components (methods in
+particular) performed best.
 
 %The idea is that normal mutation has quadratic complexity on variable references while eliminatng the most
 %fecund mutagens (SVR and ASR) achieves linear complexity on program size, while still approximating the full
@@ -102,9 +111,10 @@ based on program components (based on methods) performed best.
 %made low enough for appreciable mutant savings). They realize a mean mutation score of 92\% for adequate test suites with
 % SDL alone, and generating a saving of 81\% in the number of mutants, and 41\% fewer equivalent mutants.
 
-This work is closely related to Zhang et al.~\cite{zhang2013ase}. We extend the scope of
-their study with much wider range of mutation selection and we experimented them on much more
-real-world projects.
+Our work is most closely related to that of Zhang et
+al.~\cite{zhang2013ase}. We extend the scope of their study with a
+much wider range of mutation approches and base our results on a large
+set of real-world projects.
 
 % Baseline : x\% from selected set
 % MOP : x\% from each mutagen

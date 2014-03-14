@@ -57,7 +57,6 @@ Random sampling can perform as well as or better than operator
 selection, in these studies; a strategy of either program elements
 based sample or one combining both program element-based sampling
 and operator selection was best.
-%{\bf ADG: did it combing random with pelem or pelem with operator???}
 
 However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field
 has a serious lacuna in large scale research, both in the size of the
