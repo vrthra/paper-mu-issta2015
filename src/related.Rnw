@@ -68,7 +68,11 @@ to random mutant sampling.  They find that none of the selection
 techniques are superior to random sampling, with the same number of
 mutants. They also find that equal mutation sampling is more effective
 for larger subjects compared to equal mutagen sampling and the reverse
-is true for smaller subjects. {\bf ADG:  not having defined mutagen/mtuation sampling this is not easy for most readers to understand.  also we switch between "sampling" and "random selection" a lot, I tried to make consistent.}
+is true for smaller subjects.
+% {\bf ADG:  not having defined mutagen/mtuation sampling this is not easy
+% for most readers to understand.  also we switch between "sampling" and
+% "random selection" a lot, I tried to make consistent.  }
+% RG: Got it.
 
 Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as
 few as 5\% of mutants was sufficient for a very high correlation

@@ -53,12 +53,15 @@ maven\cite{maven} build system, following the methodology used by some
 of the authors in an ICSE 2014 paper~\cite{gopinath2014code}. As in
 that work, we utilize two kinds of of test suites: the original test
 suites present in a limited number of projects, and automatically
-generated test suites from Randoop~\cite{randoop}.  Due to limited resources, we had to
-further reduce the programs and test suites to those that could finish
-mutation analysis in 10 minutes. From this set of test suites, we
-sampled 110 suites each for both original and randoop generated
-test suites. This gave us 81 unique projects for both original and
-Randoop suites, and remaining projects having both flavors of test suites. {\bf ADG I have no idea what that last sentence means, really.}
+generated test suites from Randoop~\cite{randoop}.  Due to limited
+resources, we had to further reduce the programs and test suites to those
+that could finish mutation analysis in 10 minutes. From this set of test
+suites, we sampled 110 suites each for both original and Randoop generated
+test suites. Since there was some overlap between projects with original
+test suites, and those with Randoop test suites, we had 81 unique projects
+each in both sets. The remaining projects had both flavors of test suites.
+% {\bf ADG I have no idea what that last sentence means, really.
+% RG: Fixed}
 
 We ran mutation analysis on this set of projects using
 PIT\cite{pitest}. However, since the operators provided by PIT are limited,
@@ -167,15 +170,22 @@ numbers of mutants between operator selection and random sampling of mutants.
 We next extended this approach to sample from each method instead, but
 used the number of lines in the method as the number of mutants to be
 sampled from it. This provided a test of the hypothesis of how
-important a mutation samplings relationship to simple code coverage
+important a mutation sampling's relationship to simple code coverage
 was. This was extended to class and project scope also.
 
 For the first variant, we applied the x\% sampling to the result of the first
 sampling based on line counts. That is, in the case of methods, we first
 selected \textit{linecount} mutants each from each method, and applied the x\%
-selection to the result of this selection. For the second variant, we did
-the sampling in one go, where we chose \textit{linecount/x} number of mutants from
-each program element. {\bf ADG:  Could maybe make this clearer?}
+selection to the result of this selection. For e.g for $1/2$ sampling on methods
+if a method had $10$ lines and another had $10$ lines, we sampled $10$ mutants
+from the first, and $20$ mutants from the second, and from the combined $30$
+mutants, we sampled $15$.  For the second variant, we did the sampling in one go,
+where we chose \textit{linecount/x} number of mutants from each program element.
+That is, in the previous example, only $5$ mutants from the first and $10$ mutants
+from the second method would be chosen.
+
+%{\bf ADG:  Could maybe make this clearer?}
+% RG: Fixed with an example.
 
 \subsubsection{One per element}
 Another simple strategy of sampling we experimented with is to just choose
