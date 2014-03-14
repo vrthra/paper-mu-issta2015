@@ -240,7 +240,6 @@ ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(pow
 \begin{figure*}[t]
 <<op.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.xp.opsel <- o.op.processed
-o.xp.opsel <- colnames(o.xp.opsel)[]
 colnames(o.xp.opsel)[colnames(o.xp.opsel)=="power"] <- "num.operators"
 
 
