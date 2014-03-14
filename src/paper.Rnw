@@ -198,9 +198,6 @@ colnames(r.stats.sel.op) <- new.colnames
 o.stats.sel.op$operator  <- gsub('NVMC','NMC', gsub('_','',gsub('op.*:','', o.stats.sel.op$operator)))
 r.stats.sel.op$operator  <- gsub('NVMC','NMC', gsub('_','',gsub('op.*:','', r.stats.sel.op$operator)))
 
-o.stats.sel.op <- o.stats.sel.op[,c(0,6,1,2,3,4,5)]
-r.stats.sel.op <- r.stats.sel.op[,c(0,6,1,2,3,4,5)]
-
 stats.opsel <- subset(stats.rest, grepl('^opsel', operator))
 o.stats.sel.opsel <- subset(o.f(stats.opsel), select=sel.colnames)
 r.stats.sel.opsel <- subset(r.f(stats.opsel), select=sel.colnames)
@@ -214,8 +211,6 @@ colnames(r.stats.sel.opsel) <- new.colnames
 o.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', o.stats.sel.opsel$operator))
 r.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', r.stats.sel.opsel$operator))
 
-o.stats.sel.opsel <- o.stats.sel.opsel[,c(0,6,1,2,3,4,5)]
-r.stats.sel.opsel <- r.stats.sel.opsel[,c(0,6,1,2,3,4,5)]
 # 4 done
 
 @

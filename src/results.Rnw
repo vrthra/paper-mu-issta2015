@@ -12,7 +12,7 @@ the mutation score of the sampling criteria used and the full mutation score.
 The fourth column contains the mutant reduction factor. This is the average of
 total mutants produced divided by the number of mutants sampled by the criteria.
 Fifth column contains the standard deviation of the same. A few of the projects
-did not return any value for certain sampling criterias for particular mutation
+did not return any value for certain sampling criteria for particular mutation
 reduction fractions. The sixth column contains the number of projects that
 actually had valid values for the criteria being considered. The seventh column
 is the average multiplier between the sampled mutation score and the full mutation
@@ -21,17 +21,21 @@ score.
 The Table~\ref{tbl:lcountl} provides the results for line count criteria where the
 sampling was conducted outside program element, and Table~\ref{tbl:lcountw} contains
 the results for line count criteria where the sampling was conducted inside the
-program element. Similaryl the Table~\ref{tbl:onesel} contains the results for
+program element. Similarly the Table~\ref{tbl:onesel} contains the results for
 the criteria of one mutant per program element.
 
-Finally Table~\ref{tbl:opsel} contains the results for operator selectionl. Unlike
-the other tables, the first column here contains the kind of operator selection
-applied. We have tabulated the results of applying particular kinds of operator
-selection. The TSDL row is the result of applying only the higher order mutant
-equivalent to \textit{statement deletion}. The rows that have prefixes \textit{op:}
-are the result of applying only a single mutation operator on the program. The rows
-with \textit{opsel:} contains the results of various operator selection mechansisms.
-All the \textit{opsel:N-sel} are the results of N-selective operator selection
+Finally Table~\ref{tbl:operators} contains the results when only a single operator
+is used, and Table~\ref{tbl:opsel} contains the results for specific operator
+selection criteria. The first column in these two tables contain the particular
+operator or operator selection applied. Second column contains the
+correlation coefficient $R^2$ with the final mutation score. Third column contains
+the mean mutant reduction ratio, and fourth contains the standard deviation of the
+mutant reduction ratio achieved. The fifth column contains the number of projects
+that returned valid values for that operator selection mechanism, and the final
+column gives the multiplier factor.
+The TSDL row is the result of applying only the higher order mutant
+equivalent to \textit{statement deletion}.
+All the \textit{N-sel} rows are the results of N-selective operator selection
 strategies~\cite{offutt1993anexperimental}. We used the order of operators
 determined from Figure~\ref{fig:op} for this purpose.
 
