@@ -1,6 +1,12 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Our analysis suggests that simple random sampling, that is, at the project level works best when compared to more sophesticated schemes of sampling. Further, we also note that random sampling performs better in predicting final mutation score when compared against operator selection.
+Our analysis suggests that simple random sampling, that is, at the
+project level works best when compared to more sophesticated schemes of
+sampling. Further, we also note that random sampling performs better in
+predicting final mutation score when compared against operator selection.
 
-This suggests that the best way to reduce the computational requirements while trying to build a representative set is to randomly sample on the whole set of mutants directly.
+This suggests that the best way to reduce the computational requirements
+while trying to build a representative set is to randomly sample on the
+whole set of mutants directly.
+
