@@ -1,11 +1,11 @@
 \section{Results}
 \label{sec:results}
 
-Our results for x\% sampling over program elements are given
-in Table~\ref{tbl:xselsample}. The result of its variation, using
-\textit{round(sample)} is given in Table~\ref{tbl:xselround}. The result
-of using \textit{ceil(sample)} is given in Table~\ref{tbl:xselceil}.
-The first column in each table provides the scope of sampling i.e if it was
+Our results for random sampling over program elements using $sample(x)$
+are given in Table~\ref{tbl:xselsample}. The result of its variation, using
+$round(x)$ is given in Table~\ref{tbl:xselround}, and that using
+$ceil(x)$ is given in Table~\ref{tbl:xselceil}.
+The first column in each table provides the scope of sampling i.e. if it was
 done per class, per method, per line etc. The second column provides the
 fraction involved.  Third column contains the $R^2$ value obtained between
 the mutation score of the sampling criteria used and the full mutation score.
@@ -23,6 +23,8 @@ sampling was conducted outside program element, and Table~\ref{tbl:lcountw} cont
 the results for line count criteria where the sampling was conducted inside the
 program element. Similarly the Table~\ref{tbl:onesel} contains the results for
 the criteria of one mutant per program element.
+
+The same (only for original test suite) is visualized in Figure~\ref{fig:xroundsel}.
 
 Finally Table~\ref{tbl:operators} contains the results when only a single operator
 is used, and Table~\ref{tbl:opsel} contains the results for specific operator

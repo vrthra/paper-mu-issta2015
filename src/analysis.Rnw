@@ -85,7 +85,7 @@ tables.
 % \begin{figure*}[t]
 % <<x.per.sel.sample,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 % o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
-% ggplot(subset(o.xp.sample, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+% ggplot(subset(o.xp.sample, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
 %   stat_boxplot(geom ='errorbar')+
 %   geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none")
 % @
@@ -96,7 +96,7 @@ tables.
 % \begin{figure*}[t]
 % <<x.per.sel.round,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 % o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
-% ggplot(subset(o.xp.round, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+% ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
 %   stat_boxplot(geom ='errorbar')+
 %   geom_boxplot() + facet_wrap(~type)+ myopts+ theme(legend.position="none")
 % @
@@ -202,7 +202,7 @@ print(xtable(r.stats.sel.opsel, caption='Randoop', label='table:randr'), include
 \begin{figure*}[t]
 <<x.per.sel.sample,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
-ggplot(subset(o.xp.sample, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+ggplot(subset(o.xp.sample, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none") + opts(title="sample(x)")
 # @
@@ -213,22 +213,22 @@ ggplot(subset(o.xp.sample, values < 100), aes(power, values, fill=interaction(ty
 # \begin{figure*}[t]
 # <<x.per.sel.round,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
-ggplot(subset(o.xp.round, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type)+ myopts+ theme(legend.position="none")+ opts(title="sample(x)")
 
 o.loc.ext <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
-ggplot(subset(o.loc.ext, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+ggplot(subset(o.loc.ext, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(external)")
 
 o.loc.int <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
-ggplot(subset(o.loc.int, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+ggplot(subset(o.loc.int, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(internal)")
 
 o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
-ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power, values, fill=interaction(type,power), dodge=type)) +
+ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="One per element")
 @
@@ -236,10 +236,27 @@ ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power,
 \label{fig:xroundsel}
 \end{figure*}
 
+
+\begin{figure*}[t]
+<<op.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+o.xp.opsel <- o.op.processed
+o.xp.opsel <- colnames(o.xp.opsel)[]
+colnames(o.xp.opsel)[colnames(o.xp.opsel)=="power"] <- "num.operators"
+
+
+ggplot(subset(o.xp.opsel, reduction < 1000), aes(num.operators, reduction, fill=interaction(type,num.operators), dodge=type)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none") + opts(title="opsel(x)")
+@
+\caption{Operator selection}
+\label{fig:xroundsel}
+\end{figure*}
+
+
 % \begin{figure*}[t]
 % <<loc.per.sel.sample,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 % o.loc.ext <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
-% ggplot(subset(o.loc.ext, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+% ggplot(subset(o.loc.ext, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
 %   stat_boxplot(geom ='errorbar')+
 %   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none")
 % @
@@ -250,7 +267,7 @@ ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power,
 %\begin{figure*}[t]
 %<<wloc.per.sel.sample,fig.width=10, fig.height=2, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 %o.loc.int <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
-%ggplot(subset(o.loc.int, values < 100), aes(power, values, fill=interaction(type,power), dodge=type)) +
+%ggplot(subset(o.loc.int, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
 %  stat_boxplot(geom ='errorbar')+
 %  geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none")
 %@
@@ -271,7 +288,7 @@ ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power,
 %\begin{figure*}[t]
 %<<one.per.sel.sample,fig.width=10, fig.height=2, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 %o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
-%ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power, values, fill=interaction(type,power), dodge=type)) +
+%ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
 %  stat_boxplot(geom ='errorbar')+
 %  geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none")
 %@

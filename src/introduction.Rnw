@@ -112,6 +112,8 @@ final mutation score.
 
 \end{itemize}
 
+Our data is available for replication~\cite{data}\footnote{Available on publication}.
+
 
 %We make the following contributions:
 %\begin{itemize}
