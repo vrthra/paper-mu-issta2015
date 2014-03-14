@@ -362,8 +362,8 @@ colnames(r.stats.sel.op) <- new.colnames
 o.stats.sel.op$operator  <- gsub('_','',gsub('op.*:','', o.stats.sel.op$operator))
 r.stats.sel.op$operator  <- gsub('_','',gsub('op.*:','', r.stats.sel.op$operator))
 
-o.stats.sel.op <- o.stats.sel.op[,c(1,7,2,3,4,5,6)]
-r.stats.sel.op <- r.stats.sel.op[,c(1,7,2,3,4,5,6)]
+o.stats.sel.op <- o.stats.sel.op[,c(0,6,1,2,3,4,5)]
+r.stats.sel.op <- r.stats.sel.op[,c(0,6,1,2,3,4,5)]
 
 #o.stats.sel.one$sampling  <- gsub('_.*','', o.stats.sel.one$operator)
 @
@@ -382,8 +382,8 @@ colnames(r.stats.sel.opsel) <- new.colnames
 o.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', o.stats.sel.opsel$operator))
 r.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', r.stats.sel.opsel$operator))
 
-o.stats.sel.opsel <- o.stats.sel.opsel[,c(1,7,2,3,4,5,6)]
-r.stats.sel.opsel <- r.stats.sel.opsel[,c(1,7,2,3,4,5,6)]
+o.stats.sel.opsel <- o.stats.sel.opsel[,c(0,6,1,2,3,4,5)]
+r.stats.sel.opsel <- r.stats.sel.opsel[,c(0,6,1,2,3,4,5)]
 
 #o.stats.sel.one$sampling  <- gsub('_.*','', o.stats.sel.one$operator)
 @
