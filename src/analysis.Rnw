@@ -288,7 +288,7 @@ ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power,
 # "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
 #  "sample" "r.square" "score.multiplier" "p.value"
 
-df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction) # & mutant.reduction < 20)
+df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction)
 df$sqr <- 1 - df$r.square
 df$mult <- 1 - df$score.multiplier
 df$type <- with(df, as.factor(
@@ -298,18 +298,68 @@ df$type <- with(df, as.factor(
           ifelse(grepl('class',operator), 'class',
             ifelse(grepl('project',operator), 'project',
               'selection')))))))
-df$strat <- with(df,
-    ifelse(grepl('perunit', strategy), 'xpercent',
-      ifelse(grepl('op',strategy), 'opsel',
-        ifelse(grepl('one',strategy), 'oneperelm',
-          ifelse(grepl('elem',strategy), 'loc', 'other'
-            )))))
+df$sampling <- with(df,
+      ifelse(grepl('op',strategy), 'operator(x)',
+          ifelse(grepl('onelement',strategy), 'one(x)',
+            ifelse(grepl('locelement',strategy), 'lines(x)',
+              ifelse(grepl('withinelement',strategy), 'one(x)',
+                ifelse(grepl('xceilperunit',strategy), 'ceil(x)',
+                  ifelse(grepl('xpercentperunit',strategy), 'round(x)',
+                    ifelse(grepl('xprobperunit',strategy), 'sample(x)',
+strategy))))))))
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
-ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=strat, color=type))
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type))
 @
 \caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only those observations with $R^2 > 0.9$ and $2\times $ standard deviation > mean reduction is shown here. }
 \label{fig:fullimgsize}
 \end{figure*}
+
+\begin{figure*}[t]
+<<op.all.2,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
+# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
+#  "sample" "r.square" "score.multiplier" "p.value"
+
+df <-  subset(df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction & mutant.reduction <= 20)
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type))
+@
+\caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only mean reduction <= 20 (5\%)}
+\label{fig:fullimgsize2}
+\end{figure*}
+
+\begin{figure*}[t]
+<<op.all.3,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
+# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
+#  "sample" "r.square" "score.multiplier" "p.value"
+
+df <-  subset(df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction & mutant.reduction <= 10)
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type))
+@
+\caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only mean reduction <= 10 (10\%)}
+\label{fig:fullimgsize3}
+\end{figure*}
+
+
+\begin{figure*}[t]
+<<op.all.4,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
+# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
+#  "sample" "r.square" "score.multiplier" "p.value"
+
+df <-  subset(df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction & mutant.reduction <= 5)
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type))
+@
+\caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only mean reduction <= 5 (20\%)}
+\label{fig:fullimgsize4}
+\end{figure*}
+
+
+
+
 % \begin{figure*}[t]
 % <<op.all.2,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 % @
