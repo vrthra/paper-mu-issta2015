@@ -147,6 +147,24 @@ print(xtable(f(r.stats.sel.loc.w), caption='Randoop', label='table:randr'), incl
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
+print(xtable(f(o.stats.sel.one), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
+@
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
+print(xtable(f(r.stats.sel.one), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
+@
+\end{minipage}
+\bigskip
+\caption {The one per element selection criteria results.}
+\label{tbl:onesel}
+\end{table*}
+
+
+\begin{table*}
+\begin{minipage}[h]{0.49\linewidth}
+<<results='asis'>>=
 print(xtable(o.stats.sel.op, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
 @
 \end{minipage}
@@ -179,24 +197,6 @@ print(xtable(r.stats.sel.opsel, caption='Randoop', label='table:randr'), include
 \caption {Operator Selection}
 \label{tbl:opsel}
 \end{table*}
-
-\begin{table*}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(f(o.stats.sel.one), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small')
-@
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[h]{0.49\linewidth}
-<<results='asis'>>=
-print(xtable(f(r.stats.sel.one), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small')
-@
-\end{minipage}
-\bigskip
-\caption {The one per element selection criteria results.}
-\label{tbl:onesel}
-\end{table*}
-
 
 
 \begin{figure*}[t]
