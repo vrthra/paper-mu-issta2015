@@ -1,35 +1,40 @@
 \section{Introduction}
 
-% 1. Describe the problem
-% 2. State your contributions
-Mutation analysis is a method of evaluating the quality of test-suites. It
-involves producing a family of mutants with simple differences from the
-original program, and evaluating the effectiveness of test-suites against
-these mutants~\cite{lipton1971fault, ammann2008introduction}.  Previous
-research~\cite{andrews2005mutation} suggests that mutations thus introduced
-behave in a fashion similar to the real-faults with respect to the difficulty
-of detection.
+% 1. Describe the problem % 2. State your contributions Mutation
+analysis is a method for evaluating the quality of test-suites. It
+involves producing a family of \emph{mutants}, programs with small
+differences from the original program, and evaluating the
+effectiveness of test suites against these
+mutants~\cite{lipton1971fault, ammann2008introduction}.  Previous
+research~\cite{andrews2005mutation} suggests that mutations thus
+introduced behave in a fashion similar to real faults, with respect to
+the difficulty of detection.
 
-One of the impediments to wider adoption of mutation analysis is its high
-computational cost.  The set of simple mutants of a moderate sized program
-can be very large, and renders mutation analysis prohibitively time-consuming.
+One of the impediments to wider adoption of mutation analysis is its
+high computational cost.  The set of simple mutants for even a
+moderate sized program can be very large, which renders mutation
+analysis prohibitively time consuming.
 
-A major strain of research into cost-reduction of mutation
-analysis is to choose a smaller representative set of
-mutants~\cite{offutt2001mutation,jia2011analysis}-- often called the \textit{do
-fewer} approach. This approach can be generally divided into selective
-strategies and sampling strategies.
+A major strain of research into cost-reduction of mutation analysis is
+to choose a smaller, representative, set of
+mutants~\cite{offutt2001mutation,jia2011analysis} --- often called the
+\textit{do fewer} approach. This approach can be generally divided
+into selective strategies and sampling strategies.
 
-Selective mutation strategies attempt to select a representative subset of
-operators based on heuristics and statistical analysis, and applying this
-subset of operators to generate mutants instead of applying the whole gamut
-of mutation operators~\cite{offutt1993anexperimental,untch2009onreduced}.
+Selective mutation strategies attempt to select a representative
+subset of mutation \emph{operators} based on heuristics and
+statistical analysis, and apply this subset of operators to generate
+mutants instead of applying the whole set of mutation
+operators~\cite{offutt1993anexperimental,untch2009onreduced}.  As an
+example, recent work suggests that using statement deletion only can
+provide effective mutation analysis~\cite{untch2009onreduced}.
 
-Sampling strategies seek to randomly select smaller representative
-mutants.  This was investigated first by Acree~\cite{acree1980mutation} and
-Budd~\cite{budd1980mutation}, who proposed using only $x$\% of the mutants
-produced. The studies by Wong and Mathur found that random sampling with
-ratio as low as 10\% could provide accurate results~\cite{jia2011analysis}.
+Sampling strategies seek to randomly select a set of representative
+mutants.  This was investigated first by
+Acree~\cite{acree1980mutation} and Budd~\cite{budd1980mutation}, who
+proposed using only $x$\% of all mutants produced. Wong and Mathur
+found that random sampling with ratio as low as 10\% could provide
+accurate results~\cite{jia2011analysis}.
 
 %Mathur \cite{} reduced the number of mutagens in Mothra \cite{Mothra} by omitting two operators.
 %Offutt et al.\cite{offutt1993anexperimental} further omitted upto six oprators from the
@@ -46,65 +51,69 @@ ratio as low as 10\% could provide accurate results~\cite{jia2011analysis}.
 %Finally, clustering of mutants~\cite{hussain08mutation} based on similar test cases has also
 %been used successfully for mutant reduction. These are explained more in depth in Section~\ref{sec:related}
 
-A few recent works~\cite{zhang2010icse,zhang2013ase} have investigated the
-relative merits of random sampling strategies and operator selection. It
-was found that while random sampling can generally perform equal to or
-better than operator selection, a strategy that combined random sampling
-with program elements paid superior dividends.
+Recent work~\cite{zhang2010icse,zhang2013ase} has investigated the
+relative merits of random sampling strategies and operator selection.
+Random sampling can perform as well as or better than operator
+selection, in these studies; a strategy combining random sampling with
+program element-based sampling was best.  {\bf ADG: did it combing
+random with pelem or pelem with operator???}
 
-However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the
-field has a serious lacuna in large scale research, both in the
-size of the programs studied, and in the number and diversity of
-programs, which reduces our confidence in their results. This is
-true for selective mutation studies, studies in sampling, and also
-for comparatively newer studies that attempt to combine them. This
-is particularly worrisome if mutation analysis is to gain wider
-acceptance among testing professionals. Further, quite a few of the influential
+However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field
+has a serious lacuna in large scale research, both in the size of the
+programs studied, and in the number and diversity of programs, which
+reduces our confidence in all results. This is true for selective
+mutation studies, studies in sampling, and also for comparatively
+newer studies that attempt to combine methods. This is particularly
+worrisome if mutation analysis is to gain wider acceptance among
+testing professionals. Further, quite a few of the influential
 studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
-has been conducted on older programming languages such as Fortran with
-operators specific to it, and are not directly applicable to newer
-languages such as Java, with significant differences. Finally, with the
-modern research into the byte code based mutation (a \textit{do smarter}
-approach for eliminating the compilation step, and gaining execution speed)
-operators based on source code modification is no longer be applicable,
-and their equivalents in the bytecode needs to be found and compared with
-other approaches. A detailed discussion of these issues can be found in
+were conducted on older programming languages such as Fortran, with
+operators specific to the language, and are not directly applicable to
+newer languages such as Java. Finally, modern research into the byte
+code based mutation (a \textit{do smarter} approach for eliminating
+the compilation step to gain execution speed) operators based on
+source code modification are no longer applicable, and their
+equivalents in bytecode need to be identified and compared with other
+approaches. A detailed discussion of these issues can be found in
 Section~\ref{sec:related}.
 
-We have attempted to rectify this situation with a large scale study of
-industrial programs.  As detailed in Section~\ref{sec:methodology}, we sample
-188 real world Java programs from Github, with size ranging from 50loc to
-100kloc, which allows widely applicable statistical inferences to be made. We
-provide the results from running both original human generated test-suites, and
-also programmatically generated test-suites, increasing the applicability of
-our findings to both researchers who seek to compare test-suites quickly,
-and to industrial software testers who might be looking for a way to
-reduce the time of their build cycle when using mutation coverage. The
-Section~\ref{sec:methodology} discusses the sampling strategies attempted,
-and the operator selection strategies in detail, and the results of our
-experiment are given in Section~\ref{sec:results}, followed by detailed
-discussion of what it implies in section ~\ref{sec:discussion}. The research
-concludes in Section~\ref{sec:conclusion}.
+We have attempted to rectify this situation with a large scale study
+of real world programs.  As detailed in Section~\ref{sec:methodology},
+we sample 188 Java programs from Github, with size ranging from 50 LOC
+to 100 KLOC, which allows widely applicable statistical inferences to
+be made. We provide the results from running both original project
+human generated test-suites and also automatically generated
+test suites using random testing, increasing the applicability of our
+findings to both testers in traditional development who are interested in applying mutation analysis to suite evaluation and to researchers who seek to compare test suites quickly.  
 
-Our specific contributions in this paper are listed as follows:
+Section~\ref{sec:methodology} discusses the sampling and operator
+selection strategies we study in detail, and the results of our
+experiment are given in Section~\ref{sec:results}, followed by
+detailed discussion of what these results imply in Section
+~\ref{sec:discussion}. The specific contributions of this paper are:
+
+%The research concludes in Section~\ref{sec:conclusion}.
+
+
 
 \begin{itemize}
 
 \item Our study is the largest so far in terms of both the size of programs
-involved (50loc to 100kloc), and the number of programs analyzed (188
+involved (50 LOC to 100 KLOC), and the number of programs analyzed (188
 unique open source projects) for mutant reduction strategies. This allows
-for stronger and widely applicable statistical inferences to be drawn.
+for stronger and more widely applicable conclusions about effectiveness.
 
-\item We compare a much large number of mutant reduction strategies,
-especially with respect to their predictive power over the final mutation
-score, the expected mutant reduction, and the stability of the amount of
-mutant reduction expected. Our sampling strategies include some that were
-suggested by other researchers, and also a few novel strategies that has
-not been published elsewhere.
+\item We compare a much large number of mutant reduction strategies
+than previous studies. We compare with respect to the predictive power
+(correlation) with the full mutation score, expected mutant reduction,
+and the stability of the amount of mutant reduction expected. Our
+sampling strategies include some that were suggested by other
+researchers, as well as a few novel strategies that have not been
+previously considered.
 
-\item Our recommendations are valid for both testing researchers who might
-be comparing programmatically generated test-suites, and software testing
-professionals working on real test-suites.
+\item Our recommendations are valid for both testing researchers who
+might be comparing automatically generated test-suites, and software
+testers in real world development working to produce and evaluate manual test suites.
 
 \item Most importantly, we find that random sampling strategies perform
 better than operator selection strategies consistently in predicting the
