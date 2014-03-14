@@ -42,44 +42,44 @@ The blue shade represent detected mutants, while black represents total mutants.
 \label{fig:op}
 \end{figure*}
 
-\section{Methodology}
-\label{sec:methodology}
-Our selection of programs was driven by a few overriding concerns. Our primary
-requirement was that, our results had to be as widely applicable as possible
-for real-world programs. Secondly, we strived for a statistically significant
-result, reducing the amount of variables present in the experiments. For this
-reason we chose a random sample of Java projects from Github\cite{github}
-that uses the popular maven\cite{maven} build system, that has been used
-elsewhere\cite{gopinath2014code}. We utilize two flavors of
-of test-suites. The original test-suites present in a limited number of
-projects, and automatically generated test-suites using randoop.  Due
-limited resources, we had to further reduce the programs and test-suites
-to those that could finish the mutation run in 10 minutes. From this set
-of test-suites, we sampled 110 suites each for both original and randoop
-generated test-suits. This gave us 81 unique projects for both original
-and randoop, and remaining projects having both flavors of test suites.
+\section{Methodology} \label{sec:methodology} Our selection of
+programs was driven by a few overriding concerns. Our primary
+requirement was that our results had to be as widely applicable as
+possible for real-world programs. Secondly, we strived for a
+statistically significant result, reducing the number of variables
+present in the experiments. For this reason we chose a random sample
+of Java projects from Github\cite{github} that use the popular
+maven\cite{maven} build system, following the methodology used by some
+of the authors in an ICSE 2014 paper~\cite{gopinath2014code}. As in
+that work, we utilize two kinds of of test suites: the original test
+suites present in a limited number of projects, and automatically
+generated test suites from Randoop~\cite{randoop}.  Due to limited resources, we had to
+further reduce the programs and test suites to those that could finish
+mutation analysis in 10 minutes. From this set of test suites, we
+sampled 110 suites each for both original and randoop generated
+test suites. This gave us 81 unique projects for both original and
+Randoop suites, and remaining projects having both flavors of test suites. {\bf ADG I have no idea what that last sentence means, really.}
 
 We ran mutation analysis on this set of projects using
 PIT\cite{pitest}. However, since the operators provided by PIT are limited,
 we extended PIT to provide newer operators that are similar to operators
 provided by other mutation systems. The set of operators that we used
-are provided in Table~\ref{tbl:pitop}. A distribution of these operators
-in our projects are provided in Figure~\ref{fig:op}, which shows both the
-distribution of complete mutants and the relative detection rates of each
-mutation operators. In the figure, there are two box-plots corresponding
+is provided in Table~\ref{tbl:pitop}. Figure~\ref{fig:op} which shows both the
+distribution of mutants and the relative detection rates of each
+mutation operator for our projects. In the figure, there are two box-plots corresponding
 to each mutation operator on the Y-axis. The black box represents the
 relative frequency of the particular mutation operator in the total mutants
-\textit{generated}. For example for projects in the randoop set, the
+\textit{generated}. For example for projects in the Randoop set, the
 operator \pitnvmc contributed about 34\% of the total number of mutants
 produced while \pitrv contributed about 7\%. Similarly, the blue shaded
 box-plot represents the relative frequency of particular mutation operator
 in the total mutants \textit{detected}. For example, \pitnvmc contribution
 in the detected mutants was 23\% while that of \pitrv was 15\%.
 
-For a detailed description of each mutants, please see~\cite{pitmut}.
+For a detailed description of each mutant type, please see~\cite{pitmut}.
 PIT was also modified to provide random selection of mutants according
 to various criteria. Finally, to remove random noise, each criteria
-described has been run four times, and the results are averaged to produce
+described was run four times, and the results averaged to produce
 the final result.
 
 \begin{table}
@@ -113,43 +113,44 @@ the final result.
 One of the criteria we sampled was \textit{statement deletion}.
 Since we use PIT, which is a bytecode based mutation engine, implementing direct equivalent of
 source code statement deletion is very hard. We were able to approximate statement deletion
-by combining different bytecode operators, which is explained in Subsection~\ref{subsec:stmtdel}.
+by combining different bytecode operators, as explained in Subsection~\ref{subsec:stmtdel}.
 
 \subsection{Sampling Criteria}
 
 We used several different sampling criteria, some of which has been suggested
-in the literature before, and some which are variants of previously suggested
-criteria, and some that have not been used before.  For each sampling
-criteria, we sampled mutants on a decreasing power scale sampling
+in the literature before, some of which are variants of previously suggested
+criteria, and some of which have not been used before.  For each sampling
+criteria, we sampled mutants on a decreasing power scale, sampling
 \textit{1, 1/2, 1/4, 1/8, 1/16, 1/64} of the total mutants.
 
 \subsubsection{x\% selection}
-The simplest one consisted of using x\% selection as suggested by
+The simplest sampling approach consisted of using x\% selection as suggested by
 Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
 fraction of the complete set of mutants. This criteria also serves as a
-control for the verifying the effectiveness of other criteria.
+control for verifying the effectiveness of other criteria.
 
 \subsubsection{Sampling over program elements (and variations)}
 Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
 extended x\% selection criteria to sample from within different program
-elements.  We sampled in the increasing order of scope,
+elements.  We sampled in increasing order of scope,
 --- \textit{line}, \textit{method} and \textit{class} (\textit{project}
-scope was analyzed as part of x\% selection).
+scope is just x\% selection).
 
 When the number of mutants to be chosen was not a whole number, we used
 the formula suggested by Zhang et a.~\cite{zhang2013ase}, and used the
 decimal part to select a mutant with that probability.
 
-Next, we modified this criteria slightly, and instead of choosing a mutant
-with probability of decimal part, applied \textit{round(sample)} to round
-it to the nearest whole number. We used this as the number of samples to
-be chosen from the population. Our aim was to remove elements that was
-too simple. That is, if the number of mutants dropped below a threshold
-determined by the mutant reduction ratio, that program element did not
-contribute any thing to the final result.
+Next, we modified this criteria slightly, and instead of choosing a
+mutant with probability equal to the decimal part, we applied
+\textit{round(sample)} to round it to the nearest whole number. We
+used this as the number of samples to be chosen from the
+population. Our aim was to \emph{remove} elements that were too simple. That
+is, if the number of mutants dropped below a threshold determined by
+the mutant reduction ratio, that program element did not contribute
+any mutants to the final result.  Conceptually the idea is that mutants of more complex code have more discriminatory power (and may correspond better to real faults though we do not evaluate this concept).
 
 Next, we explored in the other direction, by forcing the program elements
-to return at least one element by using the \textit{ceil(sample)}. That is,
+to return at least one element by using \textit{ceil(sample)}. That is,
 irrespective of the fraction being sampled, the simplest elements always
 contributed at least one mutant to the total sample.
 
@@ -161,19 +162,20 @@ a close approximation of the final mutation score. Further, statement deletion
 has been researched previously~\cite{untch2009onreduced,deng2013empirical} and
 has been found to reduce the number of mutants well, without an appreciable
 decrease in accuracy. This also provides a nice comparison with similar
-number of mutants between operator selection and random sampling of mutants.
+numbers of mutants between operator selection and random sampling of mutants.
 
-We next extended it to sample from each method instead, but using the number
-of lines in the method as the number of mutants to be sampled. This provided
-a test of hypothesis of how important the coverage was. This was extended
-to class and project scope also.
+We next extended this approach to sample from each method instead, but
+used the number of lines in the method as the number of mutants to be
+sampled from it. This provided a test of the hypothesis of how
+important a mutation samplings relationship to simple code coverage
+was. This was extended to class and project scope also.
 
 For the first variant, we applied the x\% sampling to the result of the first
 sampling based on line counts. That is, in the case of methods, we first
 selected \textit{linecount} mutants each from each method, and applied the x\%
 selection to the result of this selection. For the second variant, we did
 the sampling in one go, where we chose \textit{linecount/x} number of mutants from
-each program element.
+each program element. {\bf ADG:  Could maybe make this clearer?}
 
 \subsubsection{One per element}
 Another simple strategy of sampling we experimented with is to just choose
@@ -185,11 +187,11 @@ one mutant per program element, in the order \textit{line},\textit{method},
 For selective methods, we tried mutation operators suggested by Wong et al.~\cite{wong1995reducing}, Offutt et al.~\cite{offutt1996anexperimental,deng2013empirical}, % TODO Barbosa
  and, Namin et al~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized operator selection mechanisms, we also compared the Javalanche operators for operator selection. Note that all of these techniques except 
 Javalanche have targeted C programs, thus some of these operators
-are sensible in C but in Java programs. For example C compilers tolerate
-removing a return statement but, in Java, it causes a compilation error.
-Moreover, there were some operators that are not supported by PIT framework
-like ABS (absolute mutation operators), however, we tried to realize as many
-as possible operators using PIT's bytecode level mutation. We also extended 
+are sensible in C but not in Java programs. For example C compilers tolerate
+removing a return statement --- in Java this causes a compilation error.
+Moreover, there were some operators that are not supported by the PIT framework
+like ABS (absolute mutation operators). We tried to realize as many
+as possible of the operators using PIT's bytecode level mutation. We also extended 
 the PIT framework to support the  statement deletion operator (SDL).
 
 
