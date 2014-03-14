@@ -240,14 +240,18 @@ ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(pow
 \begin{figure*}[t]
 <<op.sample,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.xp.opsel <- o.op.processed
-colnames(o.xp.opsel)[colnames(o.xp.opsel)=="power"] <- "num.operators"
+o.xp.opsel$operators <- 16 - o.xp.opsel$operators
+colnames(o.xp.opsel)[colnames(o.xp.opsel)=="operators"] <- "rm.operators"
 
-
-ggplot(subset(o.xp.opsel, reduction < 1000), aes(num.operators, reduction, fill=interaction(type,num.operators), dodge=type)) +
-  stat_boxplot(geom ='errorbar')+
-  geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none") + opts(title="opsel(x)")
+df <- subset(o.xp.opsel, rm.operators <= 20 & reduction != Inf & type != 'operator' & (type != 'n-selection' | rm.operators < 9))
+#ggplot(df, aes(rm.operators, reduction, fill=interaction(type,rm.operators), dodge=type)) +
+#  stat_boxplot(geom ='errorbar')+
+#  geom_boxplot() + facet_wrap(~type) + myopts +
+#  #theme(legend.position="none") +
+#  opts(title="opsel(x)")
+qplot(rm.operators, reduction, fill=interaction(type,rm.operators), data=df, geom="boxplot", position="dodge") + theme_bw()
 @
-\caption{Operator selection}
+\caption{Operator selection comparison between n-selection and other selection methods in mutation reduction.  We show only up to 8-selection}
 \label{fig:xroundsel}
 \end{figure*}
 
