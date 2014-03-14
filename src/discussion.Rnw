@@ -9,55 +9,57 @@
 
 %Our data from Figure~\ref{fig:op} suggests that while there are small differences, the average rate of detection of mutants of each type is similar to the average number of mutants produced for each type. This suggests that mutants produced by each operator is similar in terms of difficulty of detection.
 
-We see three clear patterns in our results. The first is that sampling strategy
+We see a few patterns in our results. The first is that sampling strategy
 can predict the final score with very minimal loss in accuracy up to a fraction
 of $\frac{1}{64}$ of the total number of mutants (Our experiments suggest up
-to $70$ times reduction, with a low standard deviation of $6.72$). We did nto
+to $70$ times reduction, with a low standard deviation of $6.72$). We did not
 cut off with the 99\% rule as mentioned by Zhang et al.~\cite{zhang2013ase}
 (Originally proposed by Offutt et al.~\cite{offutt1996experimental} for a
 different measurement), and instead chose to observe that we obtained
 $R^2 > 0.96$ which provides a high confidence in the accuracy of prediction.
 
 The second pattern is that fractional sampling based on projects appears to be
-better than that based on classes, which inturn is better than methods and
-lines, with regard to the stability of the result (i.e low sd), and correlation.
+better than that based on classes, which in turn is better than methods and
+lines, with regard to the stability of the result (i.e low sd).
 This seems not very visible at lower levels (where the reduction fraction is less
 than 32), but becomes more pronounced as the mutant reduction fraction increases.
 There seem to exist a hierarchy of sampling, where by as you go more fine grained,
-the stability and correlation decreases. This is infact opposite to what Zhang
-et al.~\cite{zhang2013ase} observed, where they found that $S_{meth}$ ourperforms
-$S_{base}$.
+the stability decreases.
+We did not see the pattern found by Zhang et al.~\cite{zhang2013ase} where by
+the method based sampling had the highest accuracy. In fact, in our measurements,
+the opposite may be true, with project based sampling getting the highest correlation
+with the final score a majority of the time.
 
 The third pattern is that the simplest sampling scheme --- simple random sampling ---
-performs best compared to sampling schems that tried to provide higher weightage
-to specific elements based on specific criterias. More importantly, operator selection
+performs best compared to sampling schemes that tried to provide higher weight
+to specific elements based on specific criteria. More importantly, operator selection
 seems to be generally worse off in predicting the final score than any of the random
 selection schemes.
 
-There may infact be a simple reason for this observation. Consider the Figure~\ref{fig:egmutants}.
-It is a representation of the distribution of mutants along two orthogonal axes --- the
-mutation operators, and program elements such as classes. For the purposes of this
-explanation, assume that each classes contain equal number of lines, and each mutant
-produced per line by each of the mutation operators are marked by a small solid circle.
-The two solid vertical lines in blue and red represents two classes, one with a relatively
-small number of mutants and other with large number of mutants. Consider that we are sampling
-by class, and we are choosing all mutants for simplicity. Let $c$ be the number of classes.
-Here, a mutant in red class contributes to $1/n_{red}$ to the mean of the score of the
-red class, and the red class contributes $1/c$ to the total mean.  So the contribution of a
-mutant in red class to the complete is $1/(c * n_{red})$. Similarly for blue class.
-However, if the sampling is done on a complete project basis, then the contribution of any
-mutant is $\frac{1}{\sum_{i=1}^{c} n_{i}}$, which depending on the size of the class might
-be different from what it would contribute if sampling is used. To put it another way,
-for any kind of sampling used based on sub elements, the units in the sample gets equal
-weightage in contribution irrespective of the size of elements themselves, while if the sampling
-is done on a project basis, the contribution of sub elements depends on the number of mutants
-each elements produced.
-
-What this is saying in effect is that irrespective of the sophestication of sampling used,
-the simplest sampling technique --- that of project based sampling --- is the best form of
-sampling, for a representative set.
-
-This also applies immediately to operator selection as it is another kind of sampling on
-a smaller set. Hence it is no surprise that for larger samples, random sampling is able
-to trump operator selection on predicting the final result.
-
+% There may in fact be a simple reason for this observation. Consider the Figure~\ref{fig:egmutants}.
+% It is a representation of the distribution of mutants along two orthogonal axes --- the
+% mutation operators, and program elements such as classes. For the purposes of this
+% explanation, assume that each classes contain equal number of lines, and each mutant
+% produced per line by each of the mutation operators are marked by a small solid circle.
+% The two solid vertical lines in blue and red represents two classes, one with a relatively
+% small number of mutants and other with large number of mutants. Consider that we are sampling
+% by class, and we are choosing all mutants for simplicity. Let $c$ be the number of classes.
+% Here, a mutant in red class contributes to $1/n_{red}$ to the mean of the score of the
+% red class, and the red class contributes $1/c$ to the total mean.  So the contribution of a
+% mutant in red class to the complete is $1/(c * n_{red})$. Similarly for blue class.
+% However, if the sampling is done on a complete project basis, then the contribution of any
+% mutant is $\frac{1}{\sum_{i=1}^{c} n_{i}}$, which depending on the size of the class might
+% be different from what it would contribute if sampling is used. To put it another way,
+% for any kind of sampling used based on sub elements, the units in the sample gets equal
+% weightage in contribution irrespective of the size of elements themselves, while if the sampling
+% is done on a project basis, the contribution of sub elements depends on the number of mutants
+% each elements produced.
+% 
+% What this is saying in effect is that irrespective of the sophestication of sampling used,
+% the simplest sampling technique --- that of project based sampling --- is the best form of
+% sampling, for a representative set.
+% 
+% This also applies immediately to operator selection as it is another kind of sampling on
+% a smaller set. Hence it is no surprise that for larger samples, random sampling is able
+% to trump operator selection on predicting the final result.
+% 
