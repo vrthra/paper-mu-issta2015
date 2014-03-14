@@ -283,7 +283,7 @@ ggplot(subset(o.one, values < 100 & (type=='line' | type=='method')), aes(power,
 
 %\subsection{Operator Selection}
 \begin{figure*}[t]
-<<op.all,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+<<op.all,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 #with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
 # "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
 #  "sample" "r.square" "score.multiplier" "p.value"
