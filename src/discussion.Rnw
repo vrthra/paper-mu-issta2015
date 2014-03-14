@@ -1,11 +1,11 @@
 \section{Discussion}
 \label{sec:discussion}
 
-\begin{figure}[t]
-\includegraphics[totalheight=4.5cm]{fig/opstrat1.pdf}
-\caption{Mutant distribution in a sample project along operators and program elements}
-\label{fig:egmutants}
-\end{figure}
+%\begin{figure}[t]
+%\includegraphics[totalheight=4.5cm]{fig/opstrat1.pdf}
+%\caption{Mutant distribution in a sample project along operators and program elements}
+%\label{fig:egmutants}
+%\end{figure}
 
 %Our data from Figure~\ref{fig:op} suggests that while there are small differences, the average rate of detection of mutants of each type is similar to the average number of mutants produced for each type. This suggests that mutants produced by each operator is similar in terms of difficulty of detection.
 

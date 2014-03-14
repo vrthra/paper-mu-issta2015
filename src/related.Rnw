@@ -64,7 +64,7 @@ mutants. They also find that equal mutation sampling is more effective for large
 equal mutagen sampling and the reverse is true for smaller subjects.
 
 Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as few as 5\% mutants
-was sufficient for a very correlation (99\%) with the full mutation score, while sampling even
+was sufficient for a very high correlation (99\%) with the full mutation score, while sampling even
 fewer mutants has good potential for retaining high accuracy. They investigate 8 sampling
 strategies on top of operator based mutant selection and find that sampling strategies
 based on program components (based on methods) performed best.
