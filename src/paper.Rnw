@@ -1,3 +1,4 @@
+% MAX LIMIT: 10 pages for all figurs and text + any number of references.
 \newcommand*\per{\scalebox{.5}{\%}}
 \newcommand\Mua{Mutation analysis~}
 \newcommand\mua{mutation analysis~}
