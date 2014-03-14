@@ -61,8 +61,8 @@ Since for most of the sampling criteria, if there are no mutants to
 sample, it probably means there are no mutants generated on the whole,
 we used
 \[\mu_\{M_{all}|M_{reduced}\} = 0 + \beta_1 \times M_{reduced}\]
-as the regression formula, and report
-the correlation from this linear regression. We also report the expected
+as the regression formula, and reported
+the correlation for this linear regression. We also report the expected
 multiplier factor $\beta_1$ for the sampled mutation score. This factor
 determines the ease of satisfying the sampling criteria. That is, if the
 multiplier factor is small, then it is easier to satisfy compared to a
@@ -71,13 +71,13 @@ larger multiplier factor.
 Next, for each criteria, we computed the reduction of mutants given by the
 ratio between total number of mutants and sampled mutants.
 We also compute standard deviation of the mutant reduction, which determines
-the consistency of results. (A large amount of standard deviation suggests
+the consistency of results. A large amount of standard deviation suggests
 that the mutant reduction ratio achieved is very much dependent on the
-project. So as a heuristic, we suggest looking at only those projects which
-has a mean reduction ratio at least twice the standard deviation.)
+project. So as a heuristic, we suggest looking at only those methods which
+have a mean reduction ratio at least twice the standard deviation.
 
 A few projects did not return any results for some large reduction factors.
-This number of valid results from projects are also collected in the result
+Thus number of valid results from projects is also collected in the result
 tables.
 
 %\subsection{Sampling Criteria}

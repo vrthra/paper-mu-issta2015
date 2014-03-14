@@ -1,12 +1,27 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Our analysis suggests that simple random sampling, that is, at the
-project level works best when compared to more sophesticated schemes of
+Our analysis suggests that simple random sampling --- that is, at the
+project level --- works best when compared to more sophesticated schemes of
 sampling. Further, we also note that random sampling performs better in
-predicting final mutation score when compared against operator selection.
+predicting final mutation score than operator selection.
 
-This suggests that the best way to reduce the computational requirements
-while trying to build a representative set is to randomly sample on the
-whole set of mutants directly.
+This suggests that the best way to reduce the computational
+requirements of mutation analysis is fortunately easy to apply in
+almost any setting, given a tool that produces a good starting set of
+mutants.  Namely, randomly sampling the total mutant population, even
+with very small sample sizes, can effectively predict the results of
+running all mutants, but at only a fraction of the computational cost.
+Not only is this method simple and effective, but it is also quite
+stable comapred to some alternatives, with a low standard deviation in
+effectiveness across projects, for both original and random test suites.
 
+There is a second possible point of interest here: as with coverage
+metrics used to predict mutation scores~\cite{gopinath2014code}, using
+a large body of actual open source code to perform experiments seems
+to favor simple and easily-implemented approaches much more strongly
+than limited experiments on more academic subjects.  We speculate that
+the inadequacies in real world test suites, or even in randomly
+generated tests for real world programs, may frequently be more simply
+predicted and evaluated than for typical research subjects, which may
+be smaller or involve less easily distinguished test suites.

@@ -20,13 +20,11 @@ $R^2 > 0.96$ which provides a high confidence in the accuracy of prediction.
 
 The second pattern is that fractional sampling based on projects appears to be
 better than that based on classes, which in turn is better than methods and
-lines, with regard to the stability of the result (i.e low sd).
+lines, with regard to the stability of the result (i.e. low standard deviation).
 This seems not very visible at lower levels (where the reduction fraction is less
 than 32), but becomes more pronounced as the mutant reduction fraction increases.
-There seem to exist a hierarchy of sampling, where by as you go more fine grained,
-the stability decreases.
-We did not see the pattern found by Zhang et al.~\cite{zhang2013ase} where by
-the method based sampling had the highest accuracy. In fact, in our measurements,
+There seem to exist a hierarchy of sampling, where by as sampling becomes more fine grained stability decreases.
+We did not see the pattern found by Zhang et al.~\cite{zhang2013ase} where method-based sampling had the highest accuracy. In fact, in our measurements,
 the opposite may be true, with project based sampling getting the highest correlation
 with the final score a majority of the time.
 
