@@ -1,7 +1,7 @@
 \section{Introduction}
 
-% 1. Describe the problem % 2. State your contributions Mutation
-analysis is a method for evaluating the quality of test-suites. It
+% 1. Describe the problem % 2. State your contributions
+Mutation analysis is a method for evaluating the quality of test-suites. It
 involves producing a family of \emph{mutants}, programs with small
 differences from the original program, and evaluating the
 effectiveness of test suites against these
@@ -54,9 +54,10 @@ accurate results~\cite{jia2011analysis}.
 Recent work~\cite{zhang2010icse,zhang2013ase} has investigated the
 relative merits of random sampling strategies and operator selection.
 Random sampling can perform as well as or better than operator
-selection, in these studies; a strategy combining random sampling with
-program element-based sampling was best.  {\bf ADG: did it combing
-random with pelem or pelem with operator???}
+selection, in these studies; a strategy of either program elements
+based sample or one combining both program element-based sampling
+and operator selection was best.
+%{\bf ADG: did it combing random with pelem or pelem with operator???}
 
 However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field
 has a serious lacuna in large scale research, both in the size of the
@@ -70,7 +71,7 @@ studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,m
 were conducted on older programming languages such as Fortran, with
 operators specific to the language, and are not directly applicable to
 newer languages such as Java. Finally, modern research into the byte
-code based mutation (a \textit{do smarter} approach for eliminating
+code based mutation (a \textit{do faster} approach for eliminating
 the compilation step to gain execution speed) operators based on
 source code modification are no longer applicable, and their
 equivalents in bytecode need to be identified and compared with other

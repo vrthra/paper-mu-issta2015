@@ -7,8 +7,8 @@ into three approaches: Do \textit{fewer}, \textit{smarter}, \textit{faster}.
 The fewer approaches includes selective mutation and mutant sampling while
 weak mutation, parallelization of mutation analysis, space time trade offs
 are grouped under the umbrella of \textit{do smarter}. Finally
-\textit{do faster} approaches include byte code based mutation analysis
-systems like PIT, and similar binary patching methods.
+\textit{do faster} approaches include mutant schema generation methods,
+code patching techniques, and byte code based mutation analysis systems like PIT.
 
 The idea of using a subset of mutants was born along with the mutation analysis
 itself. Budd~\cite{budd1980mutation} and Acree~\cite{Acree1980} showed that
