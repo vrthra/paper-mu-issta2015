@@ -38,7 +38,7 @@ generated test suites it is still quite strong, with $R^2 = 0.90$
 
 Our \textit{round(x)}, the strategy of ignoring low complexity elements,
 did not pay off, with line scope having a tendency to become unstable and
-inaccurate at high sampling ratios. At very low sampling ratio ($1/64$), the
+inaccurate at low sampling ratios. At very low sampling ratio ($1/64$), the
 strategy with method scope also becomes unstable and inaccurate. On the whole
 \textit{round(x)} did not perform as well as \textit{sample(x)}
 
