@@ -3,17 +3,17 @@
 
 % About Randoop and Original
 From our data, we see that for original and generated test suites, the
-mutant reduction ratio and standard deviation was similar for stable strategies
+mutant reduction ratio and standard deviation were similar for stable strategies
 (where the standard deviation of the reduction achieved was less than half
 of the reduction achieved). This suggests that our analysis is equally
-applicable for both generated test suites and original test suites.
+applicable for both original test suites and generated ones.
 
 % About Randoop and Original
-Analysing the scores achieved further, we note that the accuracy of prediction
+Analysing the scores further, we note that the accuracy of prediction
 ($R^2$) achieved by sampling is generally lower for generated test
-suites. Especially, as the fraction of sampling becomes larger the accuracy
-reduces drastically for generated test suites while the accuracy still
-holds good for original test suites
+suites. As the sampling denominator increases, the accuracy
+reduces drastically for generated test suites while correlation remains strong
+for original test suites
 Secondly, we also observe that the multiplier factor $\beta_1$ 
 is smaller for generated test suites than original test suites. This
 observation holds good for all sampling and operator selection strategies
@@ -22,10 +22,8 @@ test suites have a higher variability in their sampled mutation scores than
 original test suites. We note that since $\beta_1$ was generally smaller
 for generated test suites than original test suites, the full mutation score
 corresponding to a sampled mutation score for generated test suites would
-be lower than what would be expected from original test suite.
-Secondly, the amount of reduction that can be gained by sampling satisfying
-a given accuracy is lower for generated test suites in comparison with original
-test suites.
+be lower than what would be expected from the original test suite.
+Secondly, the amount of reduction that can be gained by sampling that must reach a given correlation is lower for generated test suites.
 
 % Different sampling strategies
 Considering different sampling strategies, based on their stability and mutation
@@ -33,73 +31,82 @@ reduction achieved, we note that using simple sampling (\textit{sample(x)})
 produced the most stable results. For both generated and original test suites,
 this strategy produced valid results for all different scopes and sampling
 ratios. It also was able to achieve the highest mutation reduction of $72.63$,
-that is only $1.37\%$ of the original mutants is needed to produce a highly
-accurate ($R^2 = 0.97$) mutation score, with minimal deviation
-($\sigma = 6.36$) for original test suites. While the accuracy suffers for
-generated test suites it is still high at $R^2 = 0.90$
+that is only $1.37\%$ of the original mutants were needed to produce a highly
+correlated ($R^2 = 0.97$) mutation score, with minimal deviation
+($\sigma = 6.36$) for original test suites. While the correlation is weaker for
+generated test suites it is still quite strong, with $R^2 = 0.90$
 
-Considering \textit{round(x)}, the strategy of ignoring low complexity elements
-did not pay off, with the scope line having a tendency to become unstable and
-inaccurate at high sampling ratios. At very high sampling ratio $1/64$, the
+Our \textit{round(x)}, the strategy of ignoring low complexity elements,
+did not pay off, with line scope having a tendency to become unstable and
+inaccurate at high sampling ratios. At very low sampling ratio ($1/64$), the
 strategy with method scope also becomes unstable and inaccurate. On the whole
 \textit{round(x)} did not perform as well as \textit{sample(x)}
 
-The strategy of \textit{ceil(x)} did not perform well either. While the
-results were generally stable, the reduction ratios achieved was lower than
-\textit{sample(x)}, with similar accuracy.
+The strategy of \textit{ceil(x)} also did not perform well. While the
+results were generally stable, the reduction ratios achieved were lower than
+\textit{sample(x)}, with similar correlations.
 
-For line count strategies, only the external sampling produced consistent
-results, which was again not as good as \textit{round(x)} for similar mutation
-reduction ratios. Secondly, we had hypothesised that perhaps coverage was
-a significant contributor to the accuracy of sampled mutation score. However
-we could find no evidence in support of this hypothesis with line, method,
-class, and project showing similar accuracy and consistency at similar reduction
-ratios.
+For line count strategies, only the external sampling produced
+consistent results, which were again not as good as \textit{round(x)}
+for similar mutation reduction ratios. Secondly, we had hypothesised
+that perhaps coverage was a significant contributor to the accuracy of
+sampled mutation score. However we could find no evidence in support
+of this hypothesis with line, method, class, and project scope showing
+similar accuracy and consistency at similar reduction ratios.
 
 The one per element strategy did not have stable results in general except
-for at the scope of line (at which point it was same as count per element
+for at the scope of line (at which point it was same as the count-per-element
 strategy).
 
 While the x\% per operator strategy produced consistent results, its
-consistency was lower than \textit{sample(x)} results, and was either on
-par or below \textit{sample(x)} for accuracy.
+consistency was not as good as \textit{sample(x)}, and was either on
+par with or worse than \textit{sample(x)} in correlation.
 
 Considering mutation operators, only three operators \textit{NC},
-\textit{RC},and \textit{DC} had consistent results (and only for original
-test suites). On considering operator selection, n-selection strategy had high accuracy
-and consistency (though low reduction ratio) until 7-selection (removing
-seven most numerous operators) for both generated and original test suites.
-Javalanche did not have a high mutation reduction ratio, though it had high
-accuracy for both kinds of test suites. The other operator selection methods
-performed poorly on generated test suites, while they had high accuracy
-and reasonable stability on original test suites. However, for comparable
-mutation reduction, they performed worse than random sampling strategies.
+\textit{RC},and \textit{DC} had consistent results (and only for
+original test suites). The n-selection strategy had high accuracy and
+consistency (though low reduction ratio) until 7-selection (removing
+the seven most numerous operators) for both generated and original
+test suites.  Javalanche did not have a high mutation reduction ratio,
+though it had high correlation for both kinds of test suites. The other
+operator selection methods performed poorly on generated test suites,
+while they had high correlation and reasonable stability on original test
+suites. However, for comparable mutation reduction levels, they all performed
+worse than random sampling strategies.
 
 Considering different sampling strategies, we see a few general patterns. The
 first is that sampling strategy can predict the final score with very
-minimal loss in accuracy up to a fraction of $\frac{1}{64}$ of the total
-number of mutants (Our experiments suggest up to $70$ times reduction,
+minimal loss up to a fraction of $\frac{1}{64}$ of the total
+number of mutants (our experiments suggest up to $70$ times reduction,
 with a low standard deviation of $6.72$). We did not cut off with the 99\%
-rule as mentioned by Zhang et al.~\cite{zhang2013ase} (Originally proposed
+rule as mentioned by Zhang et al.~\cite{zhang2013ase} (originally proposed
 by Offutt et al.~\cite{offutt1996experimental} for a different measurement),
 and instead chose to observe that we obtained $R^2 > 0.96$ which provides
 a high confidence in the accuracy of prediction.
 
-The second pattern is that fractional sampling based on projects appears
-to be better than that based on classes, which in turn is better than
-methods and lines, with regard to the stability of the result (i.e. low
-standard deviation).  This seems not very visible at lower levels (where
-the reduction fraction is less than 32), but becomes more pronounced as the
-mutant reduction fraction increases.  There seem to exist a hierarchy of
-sampling, where by as sampling becomes more fine grained stability decreases.
-We did not see the pattern found by Zhang et al.~\cite{zhang2013ase} where
-method-based sampling had the highest accuracy. In fact, in our measurements,
-the opposite may be true, with project based sampling getting the highest
-correlation with the final score a majority of the time.
+The second pattern is that fractional sampling based on projects
+appears to be better than that based on classes, which in turn is
+better than methods and lines, with regard to the stability of the
+result (i.e. low standard deviation).  This is not clear at lower
+levels of reduction (more than 1/32), but becomes more pronounced as
+the denominator of the mutant reduction fraction increases.  There
+seems to exist a hierarchy of sampling, whereby as sampling becomes
+more fine grained stability decreases.  We did not observe the pattern
+found by Zhang et al.~\cite{zhang2013ase} where method-based sampling
+had the best correlations. In fact, in our measurements, the opposite
+may be true, with project based sampling having the highest
+correlation with the total mutation score a majority of the time.
 
-The third pattern is that the simplest sampling scheme --- simple random sampling ---
-performs best compared to sampling schemes that tried to provide higher weight
-to specific elements based on specific criteria. More importantly, operator selection
-seems to be generally worse off in predicting the final score than any of the random
-selection schemes.
+The third "pattern" is that the simplest sampling scheme --- simple
+random sampling --- performs best compared to sampling schemes that
+tried to provide higher weight to specific elements based on specific
+criteria. Additionally, operator selection seems to be generally worse
+off in predicting the final mutation score than any of the random selection
+schemes.  In principle, if we could devise sampling methods that
+somehow captured only the most discriminative mutants for programs,
+they might perform better than any of these; our results suggest that
+most schemes that (we assume) aim at this goal do not in fact achieve
+the goal over a large body of programs, and so tend to perform worse
+than simply randomly sampling the whole pool of mutants, which has
+attractive simplicity in the absence of a better strategy.
 

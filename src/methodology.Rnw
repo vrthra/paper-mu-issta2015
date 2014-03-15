@@ -48,20 +48,20 @@ requirement was that our results had to be as widely applicable as
 possible for real-world programs. Secondly, we strived for a
 statistically significant result, reducing the number of variables
 present in the experiments. For this reason we chose a random sample
-of Java projects from Github\cite{github} that use the popular
-maven\cite{maven} build system, following the methodology used by some
-of the authors in an ICSE 2014 paper~\cite{gopinath2014code}. As in
-that work, we utilize two kinds of of test suites: the original test
-suites present in a limited number of projects, and automatically
-generated test suites from Randoop~\cite{randoop}.  Due to limited
-resources, we had to further reduce the programs and test suites to those
-that could finish mutation analysis in 10 minutes. From this set of test
-suites, we sampled 110 suites each for both original and Randoop generated
-test suites. Since there was some overlap between projects with original
-test suites, and those with Randoop test suites, we had 81 unique projects
-each in both sets. The remaining projects had both flavors of test suites.
-% {\bf ADG I have no idea what that last sentence means, really.
-% RG: Fixed}
+of Java projects from Github~\cite{github} that use the popular
+maven~\cite{maven} build system, following the methodology we used
+previously in an ICSE 2014 paper~\cite{gopinath2014code}. As in that
+work, we utilize two kinds of of test suites: the original test suites
+present in a limited number of projects, and automatically generated
+test suites from Randoop~\cite{randoop}.  Due to limited resources, we
+had to further reduce the programs and test suites to those that could
+finish mutation analysis in 10 minutes. From this set of test suites,
+we sampled 110 suites each for both original and Randoop generated
+test suites. Since there was some overlap between projects with
+original test suites, and those with Randoop test suites, we had 81
+unique projects each in both sets. The remaining projects had both
+flavors of test suites.  % {\bf ADG I have no idea what that last
+sentence means, really.  % RG: Fixed}
 
 We ran mutation analysis on this set of projects using
 PIT\cite{pitest}. However, since the operators provided by PIT are limited,
@@ -159,7 +159,7 @@ contributed at least one mutant to the total sample.
 
 \subsubsection{Lines per element and variants}
 Our previous research~\cite{gopinath2014code} found that statement coverage
-was highly correlated with mutation coverage for a project. This immediately
+was highly correlated with mutation score for a project. This immediately
 suggests that perhaps choosing one mutant per line may be sufficient to achieve
 a close approximation of the final mutation score. Further, statement deletion
 has been researched previously~\cite{untch2009onreduced,deng2013empirical} and
@@ -173,24 +173,25 @@ sampled from it. This provided a test of the hypothesis of how
 important a mutation sampling's relationship to simple code coverage
 was. This was extended to class and project scope also.
 
-For the first variant, we applied the x\% sampling to the result of the first
-sampling based on line counts. That is, in the case of methods, we first
-selected \textit{linecount} mutants each from each method, and applied the x\%
-selection to the result of this selection. For e.g for $1/2$ sampling on methods
-if a method had $10$ lines and another had $10$ lines, we sampled $10$ mutants
-from the first, and $20$ mutants from the second, and from the combined $30$
-mutants, we sampled $15$.  For the second variant, we did the sampling in one go,
-where we chose \textit{linecount/x} number of mutants from each program element.
-That is, in the previous example, only $5$ mutants from the first and $10$ mutants
-from the second method would be chosen.
+For the first variant, we applied the x\% sampling to the result of
+the first sampling based on line counts. That is, in the case of
+methods, we first selected \textit{linecount} mutants each from each
+method, and applied the x\% selection to the result of this
+selection. For example, for $1/2$ sampling on methods if one method had
+$10$ lines and another had $20$ lines, we sampled $10$ mutants from
+the first, and $20$ mutants from the second, and from the combined
+$30$ mutants, we sampled $15$.  For the second variant, we did the
+sampling in one go, where we chose \textit{linecount/x} number of
+mutants from each program element.  That is, in the previous example,
+only $5$ mutants from the first and $10$ mutants from the second
+method would be chosen.
 
 %{\bf ADG:  Could maybe make this clearer?}
 % RG: Fixed with an example.
 
 \subsubsection{One per element}
 Another simple strategy of sampling we experimented with is to just choose
-one mutant per program element, in the order \textit{line},\textit{method},
-\textit{class}.
+one mutant per program element, in the order \textit{line}, \textit{method}, \textit{class}.
 
 \subsubsection{x\% selection per operator}
 This strategy, first suggested by Wong et al.~\cite{wong1995reducing} samples an equal percentage
@@ -202,7 +203,7 @@ For selective methods, we tried mutation operators suggested by Wong et al.~\cit
  and, Namin et al~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized operator selection mechanisms, we also compared the Javalanche operators for operator selection. Note that all of these techniques except 
 Javalanche have targeted C programs, thus some of these operators
 are sensible in C but not in Java programs. For example C compilers tolerate
-removing a return statement --- in Java this causes a compilation error.
+removing a return statement --- but in Java this causes a compilation error.
 Moreover, there were some operators that are not supported by the PIT framework
 like ABS (absolute mutation operators). We tried to realize as many
 as possible of the operators using PIT's bytecode level mutation. We also extended 
@@ -212,51 +213,52 @@ the PIT framework to support the  statement deletion operator (SDL).
 % {\bf Amin: The rest of this section is for Alex and Carlos info and should be verified if we should include this or wave our hands about approximation instead.}
 
 \subsubsection{Criteria I}
-For this criteria, we used the two operators \pitcb, and \pitnc which are similar to those given by Wong. We did not have ABS operator available in PIT.
+For this criteria, we used the two operators \pitcb and \pitnc which are similar to those given by Wong. We did not have ABS operator available in PIT.
 \subsubsection{Criteria II}
 We used the operators given by Offutt et al. \pitin, \pitm, \pitcb, \pitnc. We did not have LCR available in PIT.
 \subsubsection{Criteria III}
 Those given by Javalanche \pitnc, \pitvmc, \pitnvmc, \pitm, \pitic, \pitemv. 
 \subsubsection{Criteria IV}
-By Namin et al. \pitin, \pitm, \piti, \pitnc. Many of operators were not applicable in Java and some were not available in PIT like IndVarBitNeg.
+Namin et al. used \pitin, \pitm, \piti, \pitnc. Many of these operators were not applicable in Java, and some were not available in PIT (e.g. IndVarBitNeg).
 \subsubsection{Criteria V}
 For this criteria, we utilized the approach suggested by
-Offutt et al.~\cite{offutt1993experimental} where by most numerous operators
+Offutt et al.~\cite{offutt1993experimental} where the most numerous operators
 are discarded at each step.
 
-\subsubsection{Statement Deletion:}
-\label{subsec:stmtdel}
-The basic statement deletion was modeled on the work by Deng et
-al.~\cite{deng2013empirical}. The operations on single statements was modeled
-using \pitvmc, \pitnvmc, \pitcc, \pitemv, \pitri
-for simple statements, and using \pitrc for control structures,
-which replaced the boolean condition with false, resulting in removal of
-the block of statements. The operator for return values was modeled using
-\pitrv, which is similar.  The operators for \textit{while,for},
-and \textit{if} statements were modeled using \pitdc,
-which replaced the boolean condition with true, which removed the effect
-of conditional. The \textit{switch} statement deletion was modeled using
-\pitrs which replaced the first 100 labels with default label,
-resulting in the switch element getting deleted. (Due to the constraints
-of the architecture of PIT only the first 100 labels were replaced). The
-\textit{try catch} was not necessary at bytecode level.  Finally, to get an
-accurate estimation of the effect of true statement deletion, we grouped
-the mutants by line, and considered a single virtual mutant (That is, the
-total number of mutants is equal to the total number of lines). Further,
+\subsubsection{Statement Deletion:} \label{subsec:stmtdel} The basic
+statement deletion was modeled on the work by Deng et
+al.~\cite{deng2013empirical}. The operations on single statements were
+modeled using \pitvmc, \pitnvmc, \pitcc, \pitemv, and \pitri for
+simple statements, and using \pitrc for control structures, which
+replaced the boolean condition with false, resulting in removal of the
+block of statements. The operator for return values was modeled using
+\pitrv, which is similar.  The operators for \textit{while},
+\textit{for}, and \textit{if} statements were modeled using \pitdc,
+which replaced the boolean condition with true, which removed the
+effect of conditional. The \textit{switch} statement deletion was
+modeled using \pitrs which replaced the first 100 labels with a
+\textit{default} label, resulting in the switch element being
+deleted. Due to the constraints of the architecture of PIT only the
+first 100 labels were replaced. Deleting \textit{try/catch} was not
+necessary at bytecode level.  Finally, to get an accurate estimation
+of the effect of true statement deletion, we grouped the mutants by
+line, and considered a single virtual mutant (that is, the total
+number of mutants is equal to the total number of lines). Further,
 killing any mutant from a line resulted in marking the virtual mutant
-for that line as killed. This gave us the mutation score for the virtual
-statement deletion operator.  We note that the approximation of simple
-statement deletion, especially when arithmetic operators are involved is not
-complete. However, as seen in Figure~\ref{fig:op}, the number of mutants
-produced by \pitm operator is very small. We also note that our
-approximation does not account for the increase in ease of detection when
-multiple mutations are combined together due to coupling effect. This also
-means that not all the lines may be mutated since there may be no applicable
-operators. However, given the constraints of a bytecode based mutation system,
-we believe that our procedure is reasonable. An interesting point is that
-by this procedure statement deletion is no longer a simple mutation and qualifies
-as a higher order mutation operator. In fact, the procedure we outlined can
-be used in general to judge the effectiveness of a higher order operator from
-the results of first order mutation operators that makeup the higher order
-mutant in question.
+for that line as killed. This gave us the mutation score for the
+virtual statement deletion operator.  We note that the approximation
+of simple statement deletion, especially when arithmetic operators are
+involved, is not complete. However, as seen in Figure~\ref{fig:op},
+the number of mutants produced by \pitm operator is very small. We
+also note that our approximation does not account for the increase in
+ease of detection when multiple mutations are combined together due to
+the coupling effect. This also means that not all the lines may be
+mutated ,since there may be no applicable operators. However, given
+the constraints of a bytecode based mutation system, we believe that
+our procedure is reasonable. An interesting point is that using this
+procedure statement deletion is no longer a simple mutation and
+qualifies as a higher order mutation operator. In fact, the procedure
+we outlined can be used in general to judge the effectiveness of a
+higher order operator from the results of the first order mutation
+operators that together compose the higher order mutant.
 
