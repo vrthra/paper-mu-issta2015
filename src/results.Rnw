@@ -30,7 +30,7 @@ Finally, Table~\ref{tbl:operators} contains the results when only a single opera
 is used, and Table~\ref{tbl:opsel} contains the results for specific operator
 selection criteria. The first columns in these two tables contain the particular
 operator or operator selection applied. The second column contains the
-correlation coefficient $R^2$ with the final mutation score. The third column contains
+coefficient $R^2$ with the final mutation score. The third column contains
 the mean mutant reduction ratio, and the fourth contains the standard deviation of the
 mutant reduction ratio achieved. The fifth column contains the number of projects
 that returned valid values for that operator selection mechanism, and the final
@@ -38,8 +38,8 @@ column gives the multiplier factor.
 The TSDL row is the result of applying only the higher order mutant
 equivalent to \textit{statement deletion}.
 All the \textit{N-sel} rows are the results of N-selective operator selection
-strategies~\cite{offutt1993anexperimental}. We used the order of operators
-determined from Figure~\ref{fig:op} for this purpose. The complete data
+strategies~\cite{offutt1993anexperimental}, using the order of operators
+from Figure~\ref{fig:op}. The complete data
 (only for original test suites) is visualized in Figure~\ref{fig:fullimgsize}.
 
 % \subsection{SDL vs Random selection}

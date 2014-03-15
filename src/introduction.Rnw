@@ -12,8 +12,8 @@ the difficulty of detection.
 
 One of the impediments to wider adoption of mutation analysis is its
 high computational cost.  The set of simple mutants for even a
-moderate sized program can be very large, which renders mutation
-analysis prohibitively time consuming.
+moderate sized program can be very large, making mutation
+analysis prohibitivey time consuming.
 
 A major strain of research into cost-reduction of mutation analysis is
 to choose a smaller, representative, set of
@@ -25,9 +25,9 @@ Selective mutation strategies attempt to select a representative
 subset of mutation \emph{operators} based on heuristics and
 statistical analysis, and apply this subset of operators to generate
 mutants instead of applying the whole set of mutation
-operators~\cite{offutt1993anexperimental,untch2009onreduced}.  As an
-example, recent work suggests that using statement deletion only can
-provide effective mutation analysis~\cite{untch2009onreduced}.
+operators~\cite{offutt1993anexperimental,untch2009onreduced}.
+Recent work suggests that using statement deletion only can
+be effective~\cite{untch2009onreduced}.
 
 Sampling strategies seek to randomly select a set of representative
 mutants.  This was investigated first by
@@ -95,7 +95,7 @@ underlying reason for this is that, while many mutants have little
 ability to distinguish between good and bad test suites, some smaller
 set of mutants show subtle deficiencies in suites that are not clear
 from, say, code coverage.  The full set of mutants obviously contains
-these mutants, and correlating with (rather than exactly matching) the
+these mutants, and correlating with (rather than matching) the
 full mutation score is a strong indicator that many of these
 discriminatory mutants have been preserved in a sample.
 
@@ -121,12 +121,11 @@ than previous studies. We compare with respect to the predictive power
 (correlation) with the full mutation score, expected mutant reduction,
 and the stability of the amount of mutant reduction expected. Our
 sampling strategies include some that were suggested by other
-researchers, as well as a few novel strategies that have not been
-previously considered.
+researchers, as well as a few novel strategies not previously considered.
 
 \item Our recommendations are useful for both testing researchers who
 might be comparing automatically generated test suites, and software
-testers in real world development working to produce and evaluate manual test suites.
+testers in real world working to produce and evaluate manual test suites.
 
 \item Most importantly, we find that random sampling strategies perform
 better than operator selection strategies in consistently predicting the
@@ -134,7 +133,8 @@ final mutation score while obtaining stable computational reduction.
 
 \end{itemize}
 
-Our data is available for replication~\cite{data}\footnote{Available on publication}.
+Our data will be available for replication on publication~\cite{data}
+%\footnote{Available on publication}.
 
 
 %We make the following contributions:

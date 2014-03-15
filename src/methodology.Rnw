@@ -139,8 +139,8 @@ elements.  We sampled in increasing order of scope,
 --- \textit{line}, \textit{method} and \textit{class} (\textit{project}
 scope is just x\% selection).
 
-When the number of mutants to be chosen was not a whole number, we used
-the formula suggested by Zhang et a.~\cite{zhang2013ase}, and used the
+When the number of mutants sampled was not a whole number, we used
+the formula by Zhang et a.~\cite{zhang2013ase}, using the
 decimal part to select a mutant with that probability.
 
 Next, we modified this criteria slightly, and instead of choosing a
@@ -176,10 +176,10 @@ was. This was extended to class and project scope also.
 For the first variant, we applied the x\% sampling to the result of
 the first sampling based on line counts. That is, in the case of
 methods, we first selected \textit{linecount} mutants each from each
-method, and applied the x\% selection to the result of this
-selection. For example, for $1/2$ sampling on methods if one method had
-$10$ lines and another had $20$ lines, we sampled $10$ mutants from
-the first, and $20$ mutants from the second, and from the combined
+method, and applied the x\% selection to this result.
+For example, for $1/2$ sampling on methods if one method had
+$10$ lines and another had $20$, we sampled $10$ mutants from
+the first, and $20$ from the second, and from the combined
 $30$ mutants, we sampled $15$.  For the second variant, we did the
 sampling in one go, where we chose \textit{linecount/x} number of
 mutants from each program element.  That is, in the previous example,
@@ -219,7 +219,7 @@ We used the operators given by Offutt et al. \Pitin, \Pitm, \Pitcb, \Pitnc. We d
 \subsubsection{Criteria III}
 Those given by Javalanche \Pitnc, \Pitvmc, \Pitnvmc, \Pitm, \Pitic, \Pitemv. 
 \subsubsection{Criteria IV}
-Namin et al. used \Pitin, \Pitm, \Piti, \Pitnc. Many of these operators were not applicable in Java, and some were not available in PIT (e.g. IndVarBitNeg).
+Namin et al. used \Pitin, \Pitm, \Piti, \Pitnc. Many of these operators were not applicable in Java, and some not in PIT.
 \subsubsection{Criteria V}
 For this criteria, we utilized the approach suggested by
 Offutt et al.~\cite{offutt1993experimental} where the most numerous operators

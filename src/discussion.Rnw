@@ -48,8 +48,8 @@ results were generally stable, the reduction ratios achieved were lower than
 
 For line count strategies, only the external sampling produced
 consistent results, which were again not as good as \textit{round(x)}
-for similar mutation reduction ratios. Secondly, we had hypothesised
-that perhaps coverage was a significant contributor to having a high
+for similar reduction ratios. Secondly, we had hypothesised
+that coverage was a significant contributor to having a high
 correlation with the full mutation score. However we could find no
 evidence in support of this hypothesis with line, method, class, and
 project scope showing similar correlation and consistency at similar
@@ -61,7 +61,7 @@ strategy).
 
 While the x\% per operator strategy produced consistent results, its
 consistency was not as good as \textit{sample(x)}, and was either on
-par with or worse than \textit{sample(x)} in correlation.
+par with or worse than \textit{sample(x)} in $R^2$.
 
 Considering mutation operators, only three operators \textit{NC},
 \textit{RC},and \textit{DC} had consistent results (and only for
@@ -69,7 +69,7 @@ original test suites). The n-selection strategy had high correlation and
 consistency (though low reduction ratio) until 7-selection (removing
 the seven most numerous operators) for both generated and original
 test suites.  Javalanche did not have a high mutation reduction ratio,
-though it had high correlation for both kinds of test suites. The other
+though it had high $R^2$ for both kinds of test suites. The other
 operator selection methods performed poorly on generated test suites,
 while they had high correlation and reasonable stability on original test
 suites. However, for comparable mutation reduction levels, they all performed
@@ -89,14 +89,13 @@ The second pattern is that fractional sampling based on projects
 appears to be better than that based on classes, which in turn is
 better than methods and lines, with regard to the stability of the
 result (i.e. low standard deviation).  This is not clear at lower
-levels of reduction (more than 1/32), but becomes more pronounced as
-the denominator of the mutant reduction fraction increases.  There
-seems to exist a hierarchy of sampling, whereby as sampling becomes
+levels of reduction ($< 1/32$), but becomes more pronounced for lower
+ratios. There seems to exist a hierarchy of sampling, whereby as sampling becomes
 more fine grained stability decreases.  We did not observe the pattern
 found by Zhang et al.~\cite{zhang2013ase} where method-based sampling
 had the best correlations. In fact, in our measurements, the opposite
 may be true, with project based sampling having the highest
-correlation with the total mutation score a majority of the time.
+$R^2$ a majority of the time.
 
 The third "pattern" is that the simplest sampling scheme --- simple
 random sampling --- performs best compared to sampling schemes that

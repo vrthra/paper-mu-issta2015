@@ -1,6 +1,6 @@
 \section{Threats to Validity}
 While we have taken every care to ensure that our results are valid, and to eliminate the
-effects of random noise in experiments, our results are subject to the following threats
+effects of random noise, our results are subject to the following threats
 to validity.
 
 Our results were observed on open source Java programs from the Github repository, using the

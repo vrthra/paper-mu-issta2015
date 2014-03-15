@@ -7,7 +7,7 @@ The fewer approaches includes selective mutation and mutant sampling;
 weak mutation, parallelization of mutation analysis, and space/time trade-offs
 are grouped under the umbrella of \textit{do smarter}. Finally
 \textit{do faster} approaches include mutant schema generation methods,
-code patching techniques, and byte code based mutation analysis systems like PIT.
+code patching etc.
 
 The idea of using a subset of mutants was conceived along with
 mutation analysis itself. Budd~\cite{budd1980mutation} and
@@ -18,7 +18,7 @@ al.~\cite{wong1993mutation,wong1995reducing}, and Offutt et
 al.~\cite{offutt1993experimental} using the Mothra~\cite{Mothra}
 mutation operators for
 Fortran. Mathur~\cite{mathur1991performance,wong1995reducing}
-suggested constrained mutation where only two mutation operators
+suggested constrained mutation where only two operators
 were used.%, which were felt to be better than using the entire set.
 
 % Operator Selection also assumes that fault detection ability of some operators
