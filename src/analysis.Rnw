@@ -80,35 +80,6 @@ A few projects did not return any results for some large reduction factors.
 Thus number of valid results from projects is also collected in the result
 tables.
 
-%\subsection{Sampling Criteria}
-
-% \begin{figure*}[t]
-% <<x.per.sel.sample,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
-% ggplot(subset(o.xp.sample, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-%   stat_boxplot(geom ='errorbar')+
-%   geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none")
-% @
-% \caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
-% \label{fig:xsamplesel}
-% \end{figure*}
-% 
-% \begin{figure*}[t]
-% <<x.per.sel.round,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
-% ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-%   stat_boxplot(geom ='errorbar')+
-%   geom_boxplot() + facet_wrap(~type)+ myopts+ theme(legend.position="none")
-% @
-% \caption{The effect of round(x) reduction, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
-% \label{fig:xroundsel}
-% \end{figure*}
-%Our experiments found that while $round(x)$ and $sample(x)$ produced relatively reasonable reduction of mutants, the $ceil(x)$ criteria failed to produce a reasonable reduction of mutants except for higher power where the reduction was some what close to that produced by $round(x)$ and $sample(x)$ (which was expected). The $R^2$ values of $ceil(x)$ were almost always lower than that produced by $round(x)$ and $sample(x)$ for similar reduction of mutants. For this reason, we do not consider this function again. However, interested parties can refer to our published data.
-% ----------------------------------------------------------------------
-
-%\subsubsection{Lines per element}
-%The aim of this criteria is similar in some sense to selective mutation. While n-selective mutation ignores the most numerous mutant species, this criteria seeks to deprioritize the most complex program elements.
-
 <<count>>=
 #2
 @
@@ -205,13 +176,6 @@ o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
 ggplot(subset(o.xp.sample, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none") + opts(title="sample(x)")
-# @
-# \caption{The effect of sample(x) reduction. All are above 0.90 $R^2$.}
-# \label{fig:xsamplesel}
-# \end{figure*}
-# 
-# \begin{figure*}[t]
-# <<x.per.sel.round,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
 ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
   stat_boxplot(geom ='errorbar')+
@@ -244,11 +208,6 @@ o.xp.opsel$operators <- 16 - o.xp.opsel$operators
 colnames(o.xp.opsel)[colnames(o.xp.opsel)=="operators"] <- "rm.operators"
 
 df <- subset(o.xp.opsel, rm.operators <= 20 & reduction != Inf & type != 'operator' & (type != 'n-selection' | rm.operators < 9))
-#ggplot(df, aes(rm.operators, reduction, fill=interaction(type,rm.operators), dodge=type)) +
-#  stat_boxplot(geom ='errorbar')+
-#  geom_boxplot() + facet_wrap(~type) + myopts +
-#  #theme(legend.position="none") +
-#  opts(title="opsel(x)")
 qplot(rm.operators, reduction, fill=interaction(type,rm.operators), data=df, geom="boxplot", position="dodge") + theme_bw()
 @
 \caption{Operator selection comparison between n-selection and other selection methods in mutation reduction.  We show only up to 8-selection}
@@ -256,57 +215,8 @@ qplot(rm.operators, reduction, fill=interaction(type,rm.operators), data=df, geo
 \end{figure*}
 
 
-% \begin{figure*}[t]
-% <<loc.per.sel.sample,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% o.loc.ext <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
-% ggplot(subset(o.loc.ext, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-%   stat_boxplot(geom ='errorbar')+
-%   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none")
-% @
-% \caption{The effect of loc (external) reduction. All are above 0.98 $R^2$.}
-% \label{fig:locsel}
-% \end{figure*}
-% 
-%\begin{figure*}[t]
-%<<wloc.per.sel.sample,fig.width=10, fig.height=2, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-%o.loc.int <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
-%ggplot(subset(o.loc.int, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-%  stat_boxplot(geom ='errorbar')+
-%  geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none")
-%@
-%\caption{The effect of loc (internal) reduction. All are above 0.90 $R^2$.}
-%\label{fig:wlocsel}
-%\end{figure*}
-%
-%
-%The results of this selection criteria are provided in Table~\ref{tbl:locsel}. The effect of random selection within the program elements are visualized in Figure~\ref{fig:wlocsel}, and when it is made external to the program elements is visualized in Figure~\ref{fig:wlocsel}.
-
-% ----------------------------------------------------------------------
-%\subsubsection{One per element}
-%The aim of this criteria is is to take the previous idea to the extreme. We choose only a single mutant per program element.
-
-<<one>>=
-#3
-@
-%\begin{figure*}[t]
-%<<one.per.sel.sample,fig.width=10, fig.height=2, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-%o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
-%ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-%  stat_boxplot(geom ='errorbar')+
-%  geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none")
-%@
-%\caption{The effect of one element selection, All are above 0.98 $R^2$.}
-%\label{fig:onesel}
-%\end{figure*}
-%
-% ----------------------------------------------------------------------
-
-%\subsection{Operator Selection}
 \begin{figure*}[t]
 <<op.all,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
-# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
-#  "sample" "r.square" "score.multiplier" "p.value"
 
 df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction)
 df$sqr <- 1 - df$r.square
@@ -336,10 +246,6 @@ ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling,
 
 \begin{figure*}[t]
 <<op.all.2,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
-# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
-#  "sample" "r.square" "score.multiplier" "p.value"
-
 df <-  subset(df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction & mutant.reduction <= 20)
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type))
@@ -350,9 +256,6 @@ ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling,
 
 \begin{figure*}[t]
 <<op.all.3,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
-# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
-#  "sample" "r.square" "score.multiplier" "p.value"
 
 df <-  subset(df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction & mutant.reduction <= 10)
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
@@ -365,9 +268,6 @@ ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling,
 
 \begin{figure*}[t]
 <<op.all.4,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-#with(subset(stats.df,r.square > 0.9),plot(mutant.reduction, (1-r.square)*100, pch='*', col=as.factor(strategy)))
-# "kind" "operator" "s.power" "s.element" "strategy" "mutant.reduction" "sd.reduction"
-#  "sample" "r.square" "score.multiplier" "p.value"
 
 df <-  subset(df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction & mutant.reduction <= 5)
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
@@ -377,47 +277,3 @@ ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling,
 \label{fig:fullimgsize4}
 \end{figure*}
 
-
-
-
-% \begin{figure*}[t]
-% <<op.all.2,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% @
-% \caption{The mean reduction of mutants vs its standard deviation. Only those observations with $R^2 > 0.9$ and $2\times $ standard deviation > mean reduction is shown here. }
-% \end{figure*}
-% 
-% \begin{figure*}[t]
-% <<op.all.4,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=strat, color=mult))
-% @
-% \caption{The mean reduction of mutants vs its standard deviation. Only those observations with $R^2 > 0.9$ and $2\times $ standard deviation > mean reduction is shown here. The color represents the (1-multiplier) to the sampled mutation score to get final score }
-% \end{figure*}
-% 
-
-% \begin{figure*}[t]
-% <<op.all.3,fig.width=10, fig.height=3, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% dfd <- subset(df, !(strategy %in% c('op','opsel')) )
-% ggplot(dfd, aes(sd.reduction, mutant.reduction)) + geom_point(aes(shape=type, color=sqr)) + facet_wrap(~strategy) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
-% @
-% \label{fig:fullimgshape}
-% \end{figure*}
-<<opsel>>=
-#4
-@
-
-%For operator selection, we approximated the operators as far as possible from the research works into the operators exposed by PIT. The results of this are provided in Table~\ref{tbl:opsel}.
-% The subsumption graphs are provided in Figure~\ref{fig:subsumptiono}
-% TODO : Check if this makes sense.
-%\begin{figure*}[t]
-%\includegraphics[totalheight=6cm]{fig/original.pdf}
-%\caption{Subsumption Original}
-%\label{fig:subsumptiono}
-%\end{figure*}
-
-%\begin{figure*}[t]
-%\includegraphics[totalheight=6cm]{fig/randoop.pdf}
-%\caption{Subsumption Randoop}
-%\label{fig:subsumptionr}
-%\end{figure*}[t]
-
-% ----------------------------------------------------------------------
