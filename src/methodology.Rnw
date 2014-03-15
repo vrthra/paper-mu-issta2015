@@ -215,11 +215,11 @@ the PIT framework to support the  statement deletion operator (SDL).
 \subsubsection{Criteria I}
 For this criteria, we used the two operators \pitcb and \pitnc which are similar to those given by Wong. We did not have ABS operator available in PIT.
 \subsubsection{Criteria II}
-We used the operators given by Offutt et al. \pitin, \pitm, \pitcb, \pitnc. We did not have LCR available in PIT.
+We used the operators given by Offutt et al. \Pitin, \Pitm, \Pitcb, \Pitnc. We did not have LCR available in PIT.
 \subsubsection{Criteria III}
-Those given by Javalanche \pitnc, \pitvmc, \pitnvmc, \pitm, \pitic, \pitemv. 
+Those given by Javalanche \Pitnc, \Pitvmc, \Pitnvmc, \Pitm, \Pitic, \Pitemv. 
 \subsubsection{Criteria IV}
-Namin et al. used \pitin, \pitm, \piti, \pitnc. Many of these operators were not applicable in Java, and some were not available in PIT (e.g. IndVarBitNeg).
+Namin et al. used \Pitin, \Pitm, \Piti, \Pitnc. Many of these operators were not applicable in Java, and some were not available in PIT (e.g. IndVarBitNeg).
 \subsubsection{Criteria V}
 For this criteria, we utilized the approach suggested by
 Offutt et al.~\cite{offutt1993experimental} where the most numerous operators
@@ -228,12 +228,12 @@ are discarded at each step.
 \subsubsection{Statement Deletion:} \label{subsec:stmtdel} The basic
 statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements were
-modeled using \pitvmc, \pitnvmc, \pitcc, \pitemv, and \pitri for
+modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and \Pitri for
 simple statements, and using \pitrc for control structures, which
 replaced the boolean condition with false, resulting in removal of the
 block of statements. The operator for return values was modeled using
-\pitrv, which is similar.  The operators for \textit{while},
-\textit{for}, and \textit{if} statements were modeled using \pitdc,
+\Pitrv, which is similar.  The operators for \textit{while},
+\textit{for}, and \textit{if} statements were modeled using \Pitdc,
 which replaced the boolean condition with true, which removed the
 effect of conditional. The \textit{switch} statement deletion was
 modeled using \pitrs which replaced the first 100 labels with a
