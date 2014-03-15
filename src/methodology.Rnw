@@ -37,8 +37,7 @@ r.det$ind <- clean(r.det$ind)
 with(r.all,boxplot(values~ind,horizontal=T,border=c(bcol), pch='.', axes=F,ylim=c(0,0.6),  col=icol))
 with(r.det,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
 @
-\caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected.
-The blue shade represent detected mutants, while black represents total mutants.}
+\caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected. The generated mutants are shown with black outline while detected mutants have blue border and shade.}
 \label{fig:op}
 \end{figure*}
 
