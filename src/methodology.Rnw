@@ -192,6 +192,10 @@ Another simple strategy of sampling we experimented with is to just choose
 one mutant per program element, in the order \textit{line},\textit{method},
 \textit{class}.
 
+\subsubsection{x\% selection per operator}
+This strategy was first suggested by Wong et. al. where an equal percentage
+of mutants are selected per each operator.
+
 \subsection{Operator Selection}
 
 For selective methods, we tried mutation operators suggested by Wong et al.~\cite{wong1995reducing}, Offutt et al.~\cite{offutt1996anexperimental,deng2013empirical}, % TODO Barbosa
