@@ -193,7 +193,7 @@ one mutant per program element, in the order \textit{line},\textit{method},
 \textit{class}.
 
 \subsubsection{x\% selection per operator}
-This strategy was first suggested by Wong et. al. where an equal percentage
+This strategy was first suggested by Wong et al.~\cite{wong1995reducing} where an equal percentage
 of mutants are selected per each operator.
 
 \subsection{Operator Selection}
