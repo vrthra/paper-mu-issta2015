@@ -64,9 +64,9 @@ While the x\% per operator strategy produced consistent results, its
 consistency was lower than \textit{sample(x)} results, and was either on
 par or below \textit{sample(x)} for accuracy.
 
-Considering mutation operators, only three operators \textit{NC,RC},and
-\textit{DC} had consistent results (and only for original test suites).
-On considering operator selection, n-selection strategy had high accuracy
+Considering mutation operators, only three operators \textit{NC},
+\textit{RC},and \textit{DC} had consistent results (and only for original
+test suites). On considering operator selection, n-selection strategy had high accuracy
 and consistency (though low reduction ratio) until 7-selection (removing
 seven most numerous operators) for both generated and original test suites.
 Javalanche did not have a high mutation reduction ratio, though it had high
