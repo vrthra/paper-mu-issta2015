@@ -2,7 +2,7 @@
 \label{sec:conclusion}
 
 Our analysis suggests that simple random sampling --- that is, at the
-project level --- works best when compared to more sophesticated schemes of
+project level --- works best when compared to more sophisticated schemes of
 sampling. Further, we also note that random sampling performs better in
 predicting final mutation score than operator selection.
 
@@ -13,7 +13,7 @@ mutants.  Namely, randomly sampling the total mutant population, even
 with very small sample sizes, can effectively predict the results of
 running all mutants, but at only a fraction of the computational cost.
 Not only is this method simple and effective, but it is also quite
-stable comapred to some alternatives, with a low standard deviation in
+stable compared to some alternatives, with a low standard deviation in
 effectiveness across projects, for both original and random test suites.
 
 There is a second possible point of interest here: as with coverage

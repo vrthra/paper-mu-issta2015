@@ -1,7 +1,7 @@
 \section{Introduction}
 
 % 1. Describe the problem % 2. State your contributions
-Mutation analysis is a method for evaluating the quality of test-suites. It
+Mutation analysis is a method for evaluating the quality of test suites. It
 involves producing a family of \emph{mutants}, programs with small
 differences from the original program, and evaluating the
 effectiveness of test suites against these
@@ -82,7 +82,7 @@ of real world programs.  As detailed in Section~\ref{sec:methodology},
 we sample 188 Java programs from Github, with size ranging from 50 LOC
 to 100 KLOC, which allows widely applicable statistical inferences to
 be made. We provide the results from running both original project
-human generated test-suites and also automatically generated
+human generated test suites and also automatically generated
 test suites using random testing, increasing the applicability of our
 findings to both testers in traditional development who are interested in applying mutation analysis to suite evaluation and to researchers who seek to compare test suites quickly.  
 
@@ -112,7 +112,7 @@ researchers, as well as a few novel strategies that have not been
 previously considered.
 
 \item Our recommendations are valid for both testing researchers who
-might be comparing automatically generated test-suites, and software
+might be comparing automatically generated test suites, and software
 testers in real world development working to produce and evaluate manual test suites.
 
 \item Most importantly, we find that random sampling strategies perform
@@ -129,14 +129,14 @@ Our data is available for replication~\cite{data}\footnote{Available on publicat
 %\item We compare a large number of mutation sampling and selection strategies (Section~\ref{sec:analysis}).
 %\item It seek sto improve the statistical confidence in our results by utilizing a much larger sample of projects
 %      (188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
-%      generated test-suites using Randoop~\cite{randoop} (Section~\ref{sec:methodology}). 
+%      generated test suites using Randoop~\cite{randoop} (Section~\ref{sec:methodology}). 
 %\item It analyses the results and suggest strategies (Section~\ref{sec:results}).
 %\end{itemize}
 
 %Our contributions in this paper are the following. First, as described in Section~\ref{sec:methodo%logy},
 %we seek to improve the statistical confidence in our results by utilizing a much larger sample of projects
 %(188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
-%generated test-suites using Randoop~\cite{randoop}. Second, as detailed in Section~\ref{sec:analysis}, we
+%generated test suites using Randoop~\cite{randoop}. Second, as detailed in Section~\ref{sec:analysis}, we
 %compare the reduction effectiveness of a large number of random sampling criterias (some of which are novel,
 %and some that has been proposed by other researchers), and a some of the common operator selection
 %criterias proposed in literature using statistical analysis. This provides us with insight for choosing

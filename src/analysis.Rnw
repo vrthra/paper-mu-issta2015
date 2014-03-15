@@ -1,6 +1,3 @@
-<<xpercentunit>>=
-#1
-@
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
@@ -80,9 +77,6 @@ A few projects did not return any results for some large reduction factors.
 Thus number of valid results from projects is also collected in the result
 tables.
 
-<<count>>=
-#2
-@
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
@@ -149,8 +143,6 @@ print(xtable(f(r.stats.sel.xop), caption='Randoop', label='table:randr'), includ
 \label{tbl:onesel}
 \end{table*}
 
-
-
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
 <<results='asis'>>=
@@ -167,8 +159,6 @@ print(xtable(r.stats.sel.op, caption='Randoop', label='table:randr'), include.ro
 \caption {Operators}
 \label{tbl:operators}
 \end{table*}
-
-
 
 \begin{table*}
 \begin{minipage}[h]{0.49\linewidth}
@@ -188,50 +178,50 @@ print(xtable(r.stats.sel.opsel, caption='Randoop', label='table:randr'), include
 \end{table*}
 
 
-\begin{figure*}[t]
-<<x.per.sel.sample,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
-ggplot(subset(o.xp.sample, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-  stat_boxplot(geom ='errorbar')+
-  geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none") + opts(title="sample(x)")
-# o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
-# ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-#   stat_boxplot(geom ='errorbar')+
-#   geom_boxplot() + facet_wrap(~type)+ myopts+ theme(legend.position="none")+ opts(title="sample(x)")
-# 
-# o.loc.ext <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
-# ggplot(subset(o.loc.ext, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-#   stat_boxplot(geom ='errorbar')+
-#   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(external)")
-# 
-# o.loc.int <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
-# ggplot(subset(o.loc.int, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-#   stat_boxplot(geom ='errorbar')+
-#   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(internal)")
-# 
-# o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
-# ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-#   stat_boxplot(geom ='errorbar')+
-#   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="One per element")
-@
-\caption{The effect of sampling reductions, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
-\label{fig:xroundsel}
-\end{figure*}
+% \begin{figure*}[t]
+% <<x.per.sel.sample,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+% o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
+% ggplot(subset(o.xp.sample, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+%   stat_boxplot(geom ='errorbar')+
+%   geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none") + opts(title="sample(x)")
+% # o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
+% # ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+% #   stat_boxplot(geom ='errorbar')+
+% #   geom_boxplot() + facet_wrap(~type)+ myopts+ theme(legend.position="none")+ opts(title="sample(x)")
+% # 
+% # o.loc.ext <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
+% # ggplot(subset(o.loc.ext, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+% #   stat_boxplot(geom ='errorbar')+
+% #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(external)")
+% # 
+% # o.loc.int <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
+% # ggplot(subset(o.loc.int, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+% #   stat_boxplot(geom ='errorbar')+
+% #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(internal)")
+% # 
+% # o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
+% # ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+% #   stat_boxplot(geom ='errorbar')+
+% #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="One per element")
+% @
+% \caption{The effect of sampling reductions, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
+% \label{fig:xroundsel}
+% \end{figure*}
+% 
 
-
-\begin{figure*}[t]
-<<op.sample,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-o.xp.opsel <- o.op.processed
-o.xp.opsel$operators <- 16 - o.xp.opsel$operators
-colnames(o.xp.opsel)[colnames(o.xp.opsel)=="operators"] <- "rm.operators"
-
-df <- subset(o.xp.opsel, rm.operators <= 20 & reduction != Inf & type != 'operator' & (type != 'n-selection' | rm.operators < 9))
-qplot(rm.operators, reduction, fill=interaction(type,rm.operators), data=df, geom="boxplot", position="dodge") + theme_bw()
-@
-\caption{Operator selection comparison between n-selection and other selection methods in mutation reduction.  We show only up to 8-selection}
-\label{fig:xroundsel}
-\end{figure*}
-
+% \begin{figure*}[t]
+% <<op.sample,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+% o.xp.opsel <- o.op.processed
+% o.xp.opsel$operators <- 16 - o.xp.opsel$operators
+% colnames(o.xp.opsel)[colnames(o.xp.opsel)=="operators"] <- "rm.operators"
+% 
+% df <- subset(o.xp.opsel, rm.operators <= 20 & reduction != Inf & type != 'operator' & (type != 'n-selection' | rm.operators < 9))
+% qplot(rm.operators, reduction, fill=interaction(type,rm.operators), data=df, geom="boxplot", position="dodge") + theme_bw()
+% @
+% \caption{Operator selection comparison between n-selection and other selection methods in mutation reduction.  We show only up to 8-selection}
+% \label{fig:xroundsel}
+% \end{figure*}
+% 
 
 \begin{figure*}[t]
 <<op.all,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
