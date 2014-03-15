@@ -212,6 +212,23 @@ colnames(r.stats.sel.opsel) <- new.colnames
 o.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', o.stats.sel.opsel$operator))
 r.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', r.stats.sel.opsel$operator))
 
+stats.xop <- subset(stats.rest, grepl('^OP', operator))
+stats.rest <- subset(stats.rest, !grepl('^OP', operator))
+
+o.stats.sel.xop <- subset(o.f(stats.xop), select=sel.colnames)
+r.stats.sel.xop <- subset(r.f(stats.xop), select=sel.colnames)
+colnames(o.stats.sel.xop) <- new.colnames
+colnames(r.stats.sel.xop) <- new.colnames
+
+o.stats.sel.xop$scope  <- 'op'
+o.stats.sel.xop$sampling  <- gsub('_per_op','',gsub('OP[.]1x','1/', o.stats.sel.xop$operator))
+r.stats.sel.xop$scope  <- 'op'
+r.stats.sel.xop$sampling  <- gsub('_per_op','',gsub('OP[.]1x','1/', r.stats.sel.xop$operator))
+
+o.stats.sel.xop$operator  <- gsub('_per_op','',gsub('OP[.]1x','1/', o.stats.sel.xop$operator))
+r.stats.sel.xop$operator  <- gsub('_per_op','',gsub('OP[.]1x','1/', r.stats.sel.xop$operator))
+
+
 # 4 done
 
 @
