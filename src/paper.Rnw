@@ -220,9 +220,9 @@ r.stats.sel.xop <- subset(r.f(stats.xop), select=sel.colnames)
 colnames(o.stats.sel.xop) <- new.colnames
 colnames(r.stats.sel.xop) <- new.colnames
 
-o.stats.sel.xop$scope  <- 'op'
+o.stats.sel.xop$scope  <- 'operator'
 o.stats.sel.xop$sampling  <- gsub('_per_op','',gsub('OP[.]1x','1/', o.stats.sel.xop$operator))
-r.stats.sel.xop$scope  <- 'op'
+r.stats.sel.xop$scope  <- 'operator'
 r.stats.sel.xop$sampling  <- gsub('_per_op','',gsub('OP[.]1x','1/', r.stats.sel.xop$operator))
 
 o.stats.sel.xop$operator  <- gsub('_per_op','',gsub('OP[.]1x','1/', o.stats.sel.xop$operator))
