@@ -24,8 +24,6 @@ the results for line count criteria where the sampling was conducted inside the
 program element. Similarly Table~\ref{tbl:onesel} contains the results for
 the criteria of one mutant per program element.
 
-The same data (only for original test suite) is visualized in Figure~\ref{fig:xroundsel}.
-
 Finally Table~\ref{tbl:operators} contains the results when only a single operator
 is used, and Table~\ref{tbl:opsel} contains the results for specific operator
 selection criteria. The first column in these two tables contain the particular
@@ -39,7 +37,8 @@ The TSDL row is the result of applying only the higher order mutant
 equivalent to \textit{statement deletion}.
 All the \textit{N-sel} rows are the results of N-selective operator selection
 strategies~\cite{offutt1993anexperimental}. We used the order of operators
-determined from Figure~\ref{fig:op} for this purpose.
+determined from Figure~\ref{fig:op} for this purpose. The complete data
+(only for original test suite) is visualized in Figure~\ref{fig:fullimgsize}.
 
 % \subsection{SDL vs Random selection}
 % \begin{figure*}[t]

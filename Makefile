@@ -34,3 +34,8 @@ build build/data:
 clean:
 	rm -rf build/*
 
+makepaper:
+	 pdftk build/acm_sigproc.pdf cat 1-10 output result.pdf
+	 pdftk result.pdf fig/refs.pdf output paper.pdf
+
+

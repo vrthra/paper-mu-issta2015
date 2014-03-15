@@ -7,8 +7,7 @@ Our results were observed on open source Java programs from the Github repositor
 maven build system. Further, only those projects that successfully completed mutation
 testing within a designated amount of time were chosen. This implies that if there is a
 confounding factor in play that affects the relation between the full mutation score and
-sampling mutation score, and any of the noted factors, it might cause our results to be
-either wrong or less applicable.
+sampling mutation score, it might cause our results to be either wrong or less applicable.
 
 Secondly, we had to rely on the PIT mutation testing tool, and had to extend its capabilities
 to some extent for our purposes. Software bugs are a fact of life. While every care has been
