@@ -104,7 +104,7 @@ r.stats.sel.xp$sampling <- NA
 
 f <- function(x) {
   x <- x[,c(7,8,2,3,4,5,6)]
-  names(x)[names(x) == 'sampling'] <- '$\\Delta$'
+  names(x)[names(x) == 'sampling'] <- '$\\ltimes$'
   return(x)
 }
 
