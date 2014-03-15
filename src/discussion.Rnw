@@ -1,12 +1,14 @@
 \section{Discussion}
 \label{sec:discussion}
 
+% About Randoop and Original
 From our data, we see that for original and generated test suites, the
 mutant reduction ratio and standard deviation was similar for stable strategies
 (where the standard deviation of the reduction achieved was less than half
 of the reduction achieved). This suggests that our analysis is equally
 applicable for both generated test suites and original test suites.
 
+% About Randoop and Original
 Analysing the scores achieved further, we note that the accuracy of prediction
 ($R^2$) achieved by sampling is generally lower for generated test
 suites. Especially, as the fraction of sampling becomes larger the accuracy
@@ -24,6 +26,50 @@ be lower than what would be expected from original test suite.
 Secondly, the amount of reduction that can be gained by sampling satisfying
 a given accuracy is lower for generated test suites in comparison with original
 test suites.
+
+% Different sampling strategies
+Considering different sampling strategies, based on their stability and mutation
+reduction achieved, we note that using simple sampling (\textit{sample(x)})
+produced the most stable results. For both generated and original test suites,
+this strategy produced valid results for all different scopes and sampling
+ratios. It also was able to achieve the highest mutation reduction of $72.63$,
+that is only $1.37\%$ of the original mutants is needed to produce a highly
+accurate ($R^2 = 0.97$) mutation score, with minimal deviation
+($\sigma = 6.36$) for original test suites. While the accuracy suffers for
+generated test suites it is still high at $R^2 = 0.90$
+
+Considering \textit{round(x)}, the strategy of ignoring low complexity elements
+did not pay off, with the scope line having a tendency to become unstable and
+inaccurate at high sampling ratios. At very high sampling ratio $1/64$, the
+strategy with method scope also becomes unstable and inaccurate. On the whole
+\textit{round(x)} did not perform as well as \textit{sample(x)}
+
+The strategy of \textit{ceil(x)} did not perform well either. While the
+results were generally stable, the reduction ratios achieved was lower than
+\textit{sample(x)}, with similar accuracy.
+
+For line count strategies, only the external sampling produced consistent
+results, which was again not as good as \textit{round(x)} for similar mutation
+reduction ratios. Secondly, we had hypothesised that perhaps coverage was
+a significant contributor to the accuracy of sampled mutation score. However
+we could find no evidence in support of this hypothesis with line, method,
+class, and project showing similar accuracy and consistency at similar reduction
+ratios.
+
+The one per element strategy did not have stable results in general except
+for at the scope of line (at which point it was same as count per element
+strategy).
+
+Considering mutation operators, only three operators \textit{NC,RC,DC} had
+consistent results (and only for original test suites). On considering
+operator selection, n-selection strategy had high accuracy and consistency
+(though low reduction ratio) until 7-selection (removing seven most numerous
+operators) for both generated and original test suites. Javalanche did not
+have a high mutation reduction ratio, though it had high accuracy for both
+kinds of test suites. The other operator selection methods performed poorly
+on generated test suites, while they had high accuracy and reasonable
+stability on original test suites. However, for comparable mutation
+reduction, they performed worse than random sampling strategies.
 
 Considering different sampling strategies, we see a few general patterns. The
 first is that sampling strategy can predict the final score with very
