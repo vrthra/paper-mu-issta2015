@@ -215,6 +215,10 @@ We used the operators given by Offutt et al. \pitin, \pitm, \pitcb, \pitnc. We d
 Those given by Javalanche \pitnc, \pitvmc, \pitnvmc, \pitm, \pitic, \pitemv. 
 \subsubsection{Criteria IV}
 By Namin et al. \pitin, \pitm, \piti, \pitnc. Many of operators were not applicable in Java and some were not available in PIT like IndVarBitNeg.
+\subsubsection{Criteria V}
+For this criteria, we utilized the approach suggested by
+Offutt et al.~\cite{offutt1993experimental} where by most numerous operators
+are discarded at each step.
 
 \subsubsection{Statement Deletion:}
 \label{subsec:stmtdel}
