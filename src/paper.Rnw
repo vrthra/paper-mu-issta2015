@@ -89,7 +89,7 @@ theme_set(theme_bw(12))
 myopts <- theme(panel.background = element_blank())
 
 sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
-new.colnames <- c('operator', 'r^2',      'm.red',            'm.sd',         'num',    'B*')
+new.colnames <- c('operator', '$R^2$',      '$\\mu_{red}$',            '$\\sigma_{red}$',         'num',    '$\\beta_1$')
 stats.xp <- subset(stats.df, grepl('^(r|rr|rc)[.]', operator)) # We are ignoring ceil here. add rc if needed.
 
 o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
