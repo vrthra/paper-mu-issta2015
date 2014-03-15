@@ -11,7 +11,7 @@ applicable for both original test suites and generated ones.
 % About Randoop and Original
 Analysing the scores further, we note that the accuracy of prediction
 ($R^2$) achieved by sampling is generally lower for generated test
-suites. As the sampling denominator increases, the accuracy
+suites. As the sampling denominator increases, the correlation
 reduces drastically for generated test suites while correlation remains strong
 for original test suites
 Secondly, we also observe that the multiplier factor $\beta_1$ 
@@ -49,10 +49,11 @@ results were generally stable, the reduction ratios achieved were lower than
 For line count strategies, only the external sampling produced
 consistent results, which were again not as good as \textit{round(x)}
 for similar mutation reduction ratios. Secondly, we had hypothesised
-that perhaps coverage was a significant contributor to the accuracy of
-sampled mutation score. However we could find no evidence in support
-of this hypothesis with line, method, class, and project scope showing
-similar accuracy and consistency at similar reduction ratios.
+that perhaps coverage was a significant contributor to having a high
+correlation with the full mutation score. However we could find no
+evidence in support of this hypothesis with line, method, class, and
+project scope showing similar correlation and consistency at similar
+reduction ratios.
 
 The one per element strategy did not have stable results in general except
 for at the scope of line (at which point it was same as the count-per-element
@@ -64,7 +65,7 @@ par with or worse than \textit{sample(x)} in correlation.
 
 Considering mutation operators, only three operators \textit{NC},
 \textit{RC},and \textit{DC} had consistent results (and only for
-original test suites). The n-selection strategy had high accuracy and
+original test suites). The n-selection strategy had high correlation and
 consistency (though low reduction ratio) until 7-selection (removing
 the seven most numerous operators) for both generated and original
 test suites.  Javalanche did not have a high mutation reduction ratio,
