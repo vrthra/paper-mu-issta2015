@@ -52,11 +52,10 @@ maven~\cite{maven} build system, following the methodology we used
 previously in an ICSE 2014 paper~\cite{gopinath2014code}. As in that
 work, we utilize two kinds of of test suites: the original test suites
 present in a limited number of projects, and automatically generated
-test suites from Randoop~\cite{randoop}.  Due to limited resources, we
-had to further reduce the programs and test suites to those that could
-finish mutation analysis in 10 minutes. From this set of test suites,
-we sampled 107 suites each for both original and Randoop generated
-test suites. Since there was some overlap between projects with
+test suites from Randoop~\cite{randoop}. From this set of test suites,
+After eliminating those that took too long to finish, we sampled 107
+suites each for both original and Randoop generated test suites,
+Since there was some overlap between projects with
 original test suites, and those with generated test suites, we had 81
 unique projects each in both sets. The remaining 26 projects had both
 flavors of test suites.
@@ -66,7 +65,7 @@ PIT\cite{pitest}. However, since the operators provided by PIT are
 limited, we extended PIT to provide newer operators that are similar to
 operators provided by other mutation systems. The set of operators that
 we used is provided in Table~\ref{tbl:pitop}. Figure~\ref{fig:op} shows
-both the distribution of mutants and the relative detection rates of each
+the distribution of mutants and the relative detection rates of each
 mutation operator for our projects. In the figure, there are two box-plots
 corresponding to each mutation operator on the Y-axis. The black box represents
 the relative frequency of the particular mutation operator in the total
@@ -77,9 +76,10 @@ box-plot represents the relative frequency of particular mutation operator
 in the total mutants \textit{detected}. For example, \pitnvmc contribution
 in the detected mutants was 23\% while that of \pitrv was 15\%.
 
-For a detailed description of each mutant type, please refer to PIT documentation~\cite{pitmut}.
+For a detailed description of each mutation operator, please refer to PIT documentation~\cite{pitmut}.
 PIT was also modified to provide random selection of mutants according
-to various criteria. Finally, to remove random noise, each criteria
+to various criteria.
+Finally, to remove random noise, each criteria
 described was run four times, and the results averaged to produce
 the final result.
 
@@ -109,12 +109,6 @@ the final result.
 \caption{PIT Mutation Operators (We have used abbreviations instead of operator names.)}
 \label{tbl:pitop}
 \end{table}
-
-
-One of the criteria we sampled was \textit{statement deletion}.
-Since we use PIT, which is a bytecode based mutation engine, implementing direct equivalent of
-source code statement deletion is very hard. We were able to approximate statement deletion
-by combining different bytecode operators, as explained in Subsection~\ref{subsec:stmtdel}.
 
 \subsection{Sampling Criteria}
 

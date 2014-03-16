@@ -3,7 +3,7 @@
 There are several approaches to reducing the cost of mutation analysis.
 These were categorized by Offutt and Untch~\cite{offutt2001mutation}
 into three approaches: do \textit{fewer}, \textit{smarter}, and \textit{faster}.
-The \textit{do fewer} approaches includes selective mutation and mutant sampling,
+The \textit{do fewer} approaches include selective mutation and mutant sampling,
 while weak mutation, parallelization of mutation analysis, and space/time trade-offs
 are grouped under the umbrella of \textit{do smarter}. Finally
 \textit{do faster} approaches include mutant schema generation methods,
@@ -21,8 +21,8 @@ suggested constrained mutation where only two operators
 were used.%, which were felt to be better than using the entire set.
 
 A number of studies in the past have looked at the relative merits of operator
-selection and random sampling criteria, starting with Wong and Mathur in
-1995~\cite{wong1995reducing}. They compared x\% selection of each mutant type
+selection and random sampling criteria. Wong et al.~\cite{wong1995reducing}
+compared x\% selection of each mutant type
 with operator selection using just two mutation operators, and found that both
 achieved similar accuracy and reduction (80\%).
 
@@ -33,14 +33,12 @@ x\% selective mutation is better than operator selection, and,
 conversely, for lower scores, operator selection would be better if
 the cost of mutants is considered.
 
-Zhang et al.~\cite{zhang2010operator} compared operators based mutant
-selection techniques proposed in a set of
-papers~\cite{barbosa2001toward,siami2008sufficient,offutt1996anexperimental}
-to random mutant sampling. They found that none of the selection
-techniques are superior to random sampling, with the same number of
-mutants. They also found that uniform sampling of mutations is more effective
-for larger subjects compared to equal sampling of mutation operators
-and the reverse is true for smaller subjects.
+Zhang et al.~\cite{zhang2010operator} compared operator based mutant
+selection techniques to random mutant sampling. They found that none of
+the selection techniques are superior to random sampling, with the same
+number of mutants. They also found that uniform sampling of mutations is
+more effective for larger subjects compared to equal sampling of mutation
+operators and the reverse is true for smaller subjects.
 
 Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as
 few as 5\% of mutants was sufficient for a very high correlation
@@ -57,7 +55,7 @@ suggested an $n$-selective approach with step-by-step removal of operators
 with most numerous mutations. Barbosa et al.\cite{barbosa2001toward}
 provided a set of guidelines for selecting such mutation operators.
 Namin et al.\cite{namin2006finding,siami2008sufficient} formulated
-the problem as a variable reduction problem in statistics, and
+the problem as a variable reduction problem, and
 found that just 28 out of 108 operators in Proteum were sufficient.
 
 Using only the statement deletion operator was first suggested by

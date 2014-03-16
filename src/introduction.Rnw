@@ -47,7 +47,7 @@ However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field
 has a serious lacuna in large scale research, both in the size of the
 programs studied, and in the number and diversity of programs, which
 reduces our confidence in all results. This is true for selective
-mutation studies, studies in sampling, and also for comparatively
+mutation studies, sampling studies, and also for comparatively
 newer studies that attempt to combine methods. This is particularly
 worrisome if mutation analysis is to gain wider acceptance among
 testing professionals. Further, quite a few of the influential
@@ -63,16 +63,16 @@ equivalents in bytecode need to be identified and compared with other
 approaches. A detailed discussion of these issues can be found in
 Section~\ref{sec:related}.
 
-We have attempted to rectify this situation with a large scale study
-of real world programs.  As detailed in Section~\ref{sec:methodology},
-we sample 188 Java programs from Github, with size ranging from 50 LOC
-to 100 KLOC, which allows widely applicable statistical inferences to
-be made. We provide the results from running both the original
-project's (presumably human-generated) test suites and also
-automatically generated test suites using random testing, increasing
-the applicability of our findings to both testers in traditional
-development who are interested in applying mutation analysis to suite
-evaluation and to researchers who seek to compare test suites quickly to evaluate testing techniques.
+We have attempted to rectify this situation with a large scale study of real
+world programs.  As detailed in Section~\ref{sec:methodology}, we sample
+188 Java programs from Github, with size ranging from 50 LOC to 100 KLOC,
+which should allow widely applicable statistical inferences to be made. We
+provide the results from running both the original project's (presumably
+human-generated) test suites and also automatically generated test suites
+using random testing, increasing the applicability of our findings to both
+testers in traditional development who are interested in applying mutation
+analysis to suite evaluation and to researchers who seek to compare test
+suites quickly to evaluate testing techniques.
 
 One note about our, and other researchers, evaluation criteria is in
 order.  We, like others, use the ability of a sample to correlate well
@@ -98,7 +98,7 @@ involved (50 LOC to 100 KLOC), and the number of programs analyzed (188
 unique open source projects) for mutant reduction strategies. This allows
 for stronger and more widely applicable conclusions about effectiveness.
 
-\item We compare a much large number of mutant reduction strategies
+\item We compare a much larger number of mutant reduction strategies
 than previous studies. We compare with respect to the predictive power
 (correlation with the full mutation score), expected mutant reduction,
 and the stability of the amount of mutant reduction expected. Our
