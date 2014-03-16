@@ -245,8 +245,8 @@ df$sampling <- with(df,
                   ifelse(grepl('xpercentperunit',strategy), 'round(x)',
                     ifelse(grepl('xprobperunit',strategy), 'sample(x)',
 'other')))))))
-ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
-ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type))
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type)) + myopts
+ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type)) + myopts
 @
 \caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only those observations with $R^2 > 0.9$ and $2\times $ standard deviation > mean reduction is shown here. }
 \label{fig:fullimgsize}
