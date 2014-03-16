@@ -54,12 +54,10 @@ print(xtable(f(r.stats.sel.xp.ceil), caption='Randoop', label='table:randr'), in
 \label{sec:analysis}
 For the purposes of comparing between the criteria, we computed the
 linear correlation between sampled mutation score and full mutation score.
-Since for most of the sampling criteria, if there are no mutants to
-sample, it probably means there are no mutants generated,
-we used
-\[\mu_\{M_{all}|M_{reduced}\} = 0 + \beta_1 \times M_{reduced}\]
-as the regression formula, and reported
-the correlation for this linear regression. We also report the expected
+Since for the control sampling criteria, no mutants sampled implies none generated,
+our model was
+\[\mu_\{M_{all}|M_{reduced}\} = \beta_1 \times M_{reduced}\]
+We reported the correlation for this linear regression. We also report the expected
 multiplier factor $\beta_1$ for the sampled mutation score. This factor
 determines the ease of satisfying the sampling criteria. That is, if the
 multiplier factor is small, then it is easier to satisfy compared to a
