@@ -13,7 +13,7 @@ the difficulty of detection.
 One of the impediments to wider adoption of mutation analysis is its
 high computational cost.  The set of simple mutants for even a
 moderate sized program can be very large, making mutation
-analysis prohibitivey time consuming.
+analysis prohibitively time consuming.
 
 A major strain of research into cost-reduction of mutation analysis is
 to choose a smaller, representative, set of
@@ -26,8 +26,8 @@ subset of mutation \emph{operators} based on heuristics and
 statistical analysis, and apply this subset of operators to generate
 mutants instead of applying the whole set of mutation
 operators~\cite{offutt1993anexperimental,untch2009onreduced}.
-Recent work suggests that using statement deletion only can
-be effective~\cite{untch2009onreduced}.
+Recent work suggests that using statement deletion alone can
+be an effective approach~\cite{untch2009onreduced}.
 
 Sampling strategies seek to randomly select a set of representative
 mutants.  This was investigated first by
@@ -36,25 +36,10 @@ proposed using only $x$\% of all mutants produced. Wong and Mathur
 found that random sampling with ratio as low as 10\% could provide
 accurate results~\cite{jia2011analysis}.
 
-%Mathur \cite{} reduced the number of mutagens in Mothra \cite{Mothra} by omitting two operators.
-%Offutt et al.\cite{offutt1993anexperimental} further omitted upto six oprators from the
-%mutagens and observed negligible loss of effectiveness in mutation analysis.
-%Unch\cite{untch2009onreduced} and more recently Deng et al.\cite{deng2013empirical} suggest
-%that using only statement deletion operator gives a close approximation of original mutation score.
-
-%While some studies try to
-%find the \emph{sufficient} subset of mutagens, like\cite{siami2008sufficient}, others
-%have suggested that \emph{random} selection of mutants works as fine, e.g. \cite{zhang2010operator}.
-%Some approaches combine the selective mutation selection and random selection, e.g. \cite{zhang2013ase}.
-
-% {Amin: I am not a fan of this ~\cite{hussain08mutation} }
-%Finally, clustering of mutants~\cite{hussain08mutation} based on similar test cases has also
-%been used successfully for mutant reduction. These are explained more in depth in Section~\ref{sec:related}
-
 Recent work~\cite{zhang2010icse,zhang2013ase} has investigated the
 relative merits of random sampling strategies and operator selection.
 Random sampling can perform as well as or better than operator
-selection, in these studies; a strategy of either sampling based on
+selection, in these studies; and a strategy of either sampling based on
 program elements or one combining both program element-based sampling
 and operator selection was best.
 
@@ -69,8 +54,9 @@ testing professionals. Further, quite a few of the influential
 studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
 were conducted on older programming languages such as Fortran, with
 operators specific to the language, and are not directly applicable to
-newer languages such as Java. Finally, due to modern research into the byte
-code based mutation (a \textit{do faster} approach for eliminating
+newer languages such as Java. Finally, with bytecode based mutation
+engines like PIT~\cite{pitest} and Javalanche~\cite{javalanche}
+(a \textit{do faster} approach for eliminating
 the compilation step to gain execution speed), operators based on
 source code modification are no longer applicable, and their
 equivalents in bytecode need to be identified and compared with other
@@ -105,10 +91,6 @@ experiment are given in Section~\ref{sec:results}, followed by
 detailed discussion of what these results imply in Section
 ~\ref{sec:discussion}. The specific contributions of this paper are:
 
-%The research concludes in Section~\ref{sec:conclusion}.
-
-
-
 \begin{itemize}
 
 \item Our study is the largest so far in terms of both the size of programs
@@ -118,7 +100,7 @@ for stronger and more widely applicable conclusions about effectiveness.
 
 \item We compare a much large number of mutant reduction strategies
 than previous studies. We compare with respect to the predictive power
-(correlation) with the full mutation score, expected mutant reduction,
+(correlation with the full mutation score), expected mutant reduction,
 and the stability of the amount of mutant reduction expected. Our
 sampling strategies include some that were suggested by other
 researchers, as well as a few novel strategies not previously considered.
@@ -135,57 +117,4 @@ final mutation score while obtaining stable computational reduction.
 
 Our data will be available for replication on publication~\cite{data}
 %\footnote{Available on publication}.
-
-
-%We make the following contributions:
-%\begin{itemize}
-%\item We compare a large number of mutation sampling and selection strategies (Section~\ref{sec:analysis}).
-%\item It seek sto improve the statistical confidence in our results by utilizing a much larger sample of projects
-%      (188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
-%      generated test suites using Randoop~\cite{randoop} (Section~\ref{sec:methodology}). 
-%\item It analyses the results and suggest strategies (Section~\ref{sec:results}).
-%\end{itemize}
-
-%Our contributions in this paper are the following. First, as described in Section~\ref{sec:methodo%logy},
-%we seek to improve the statistical confidence in our results by utilizing a much larger sample of projects
-%(188 projects) from the open source repository at Github~\cite{github}, using both original and automatically
-%generated test suites using Randoop~\cite{randoop}. Second, as detailed in Section~\ref{sec:analysis}, we
-%compare the reduction effectiveness of a large number of random sampling criterias (some of which are novel,
-%and some that has been proposed by other researchers), and a some of the common operator selection
-%criterias proposed in literature using statistical analysis. This provides us with insight for choosing
-%mutation reduction techniqus according to the trade-offs in accuracy, and reduction ratios that a tester
-%is willing to make for their specific requirements. This is detailed in Section~\ref{sec:results}.
-
-%Our conclusion and recommendation for practicing testers are provided in Section~\ref{sec:conclusion}.
-
-
-% \begin{comment}
-% Order of most fertile operators for N-selective operator selection.
-% NON_VOID_METHOD_CALLS
-% NEGATE_CONDITIONALS
-% REMOVE_CONDITIONALS
-% DELETE_CONDITIONALS
-% RETURN_VALS
-% INLINE_CONSTS
-% CONSTRUCTOR_CALLS
-% EXPERIMENTAL_MEMBER_VARIABLE
-% VOID_METHOD_CALLS
-% MATH
-% CONDITIONALS_BOUNDARY
-% INCREMENTS
-% REMOVE_INCREMENTS
-% RMSWITCH
-% EXPERIMENTAL_SWITCH
-% INVERT_NEGS
-%
-% \end{comment}
-%
-% NON_VOID_METHOD_CALLS VOID_METHOD_CALLS CONSTRUCTOR_CALLS
-% NEGATE_CONDITIONALS REMOVE_CONDITIONALS DELETE_CONDITIONALS CONDITIONALS_BOUNDARY
-% RETURN_VALS INLINE_CONSTS EXPERIMENTAL_MEMBER_VARIABLE
-% MATH INCREMENTS REMOVE_INCREMENTS INVERT_NEGS
-% RMSWITCH EXPERIMENTAL_SWITCH
-
-
-
 
