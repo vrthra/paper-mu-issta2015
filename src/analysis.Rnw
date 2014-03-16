@@ -59,9 +59,9 @@ our model was
 \[\mu_\{M_{all}|M_{reduced}\} = \beta_1 \times M_{reduced}\]
 We reported the correlation for this linear regression. We also report the expected
 multiplier factor $\beta_1$ for the sampled mutation score. This factor
-determines the ease of satisfying the sampling criteria. That is, if the
-multiplier factor is small, then it is easier to satisfy compared to a
-larger multiplier factor.
+determines the ease of detecting mutants in the sampling criteria. That is, if the
+multiplier factor is small, then the sample mutation score was larger than
+the full mutation score, and hence it was easier to detect mutants in the sample.
 
 Next, for each criteria, we computed the reduction of mutants given by the
 ratio between total number of mutants and sampled mutants.
