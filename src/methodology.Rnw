@@ -37,7 +37,7 @@ r.det$ind <- clean(r.det$ind)
 with(r.all,boxplot(values~ind,horizontal=T,border=c(bcol), pch='.', axes=F,ylim=c(0,0.6),  col=icol))
 with(r.det,boxplot(values~ind,horizontal=T,border=c('black'), pch='.',main='Randoop', cex.axis=0.8,ylim=c(0,0.6),add=T))
 @
-\caption{The relative contribution of mutation operators in terms of fraction of mutants generated and detected. The generated mutants are shown with black outline while detected mutants have blue border and shade.}
+\caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected. The produced mutants are shown with black outline while detected mutants have blue border and shade.}
 \label{fig:op}
 \end{figure*}
 
@@ -55,30 +55,29 @@ present in a limited number of projects, and automatically generated
 test suites from Randoop~\cite{randoop}.  Due to limited resources, we
 had to further reduce the programs and test suites to those that could
 finish mutation analysis in 10 minutes. From this set of test suites,
-we sampled 110 suites each for both original and Randoop generated
+we sampled 107 suites each for both original and Randoop generated
 test suites. Since there was some overlap between projects with
-original test suites, and those with Randoop test suites, we had 81
-unique projects each in both sets. The remaining projects had both
-flavors of test suites.  % {\bf ADG I have no idea what that last
-sentence means, really.  % RG: Fixed}
+original test suites, and those with generated test suites, we had 81
+unique projects each in both sets. The remaining 26 projects had both
+flavors of test suites.
 
 We ran mutation analysis on this set of projects using
-PIT\cite{pitest}. However, since the operators provided by PIT are limited,
-we extended PIT to provide newer operators that are similar to operators
-provided by other mutation systems. The set of operators that we used
-is provided in Table~\ref{tbl:pitop}. Figure~\ref{fig:op} which shows both the
-distribution of mutants and the relative detection rates of each
-mutation operator for our projects. In the figure, there are two box-plots corresponding
-to each mutation operator on the Y-axis. The black box represents the
-relative frequency of the particular mutation operator in the total mutants
-\textit{generated}. For example for projects in the Randoop set, the
-operator \pitnvmc contributed about 34\% of the total number of mutants
+PIT\cite{pitest}. However, since the operators provided by PIT are
+limited, we extended PIT to provide newer operators that are similar to
+operators provided by other mutation systems. The set of operators that
+we used is provided in Table~\ref{tbl:pitop}. Figure~\ref{fig:op} shows
+both the distribution of mutants and the relative detection rates of each
+mutation operator for our projects. In the figure, there are two box-plots
+corresponding to each mutation operator on the Y-axis. The black box represents
+the relative frequency of the particular mutation operator in the total
+mutants \textit{produced}. For example, for projects in the (Randoop) generated set,
+the operator \pitnvmc contributed about 34\% of the total number of mutants
 produced while \pitrv contributed about 7\%. Similarly, the blue shaded
 box-plot represents the relative frequency of particular mutation operator
 in the total mutants \textit{detected}. For example, \pitnvmc contribution
 in the detected mutants was 23\% while that of \pitrv was 15\%.
 
-For a detailed description of each mutant type, please see~\cite{pitmut}.
+For a detailed description of each mutant type, please refer to PIT documentation~\cite{pitmut}.
 PIT was also modified to provide random selection of mutants according
 to various criteria. Finally, to remove random noise, each criteria
 described was run four times, and the results averaged to produce
@@ -120,10 +119,10 @@ by combining different bytecode operators, as explained in Subsection~\ref{subse
 \subsection{Sampling Criteria}
 
 We used several different sampling criteria, some of which has been suggested
-in the literature before, some of which are variants of previously suggested
-criteria, and some of which have not been used before.  For each sampling
+in the literature before, some which are variants of previously suggested
+criteria, and a few novel ones.  For each sampling
 criteria, we sampled mutants on a decreasing power scale, sampling
-\textit{1, 1/2, 1/4, 1/8, 1/16, 1/64} of the total mutants.
+\textit{1/2, 1/4, 1/8, 1/16, 1/32, 1/64} of the total mutants.
 
 \subsubsection{x\% selection}
 The simplest sampling approach consisted of using x\% selection as suggested by
@@ -131,30 +130,30 @@ Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
 fraction of the complete set of mutants. This criteria also serves as a
 control for verifying the effectiveness of other criteria.
 
-\subsubsection{Sampling over program elements (and variations)}
+\subsubsection{Sampling over program elements and variants}
 Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
 extended x\% selection criteria to sample from within different program
 elements.  We sampled in increasing order of scope,
 --- \textit{line}, \textit{method} and \textit{class} (\textit{project}
 scope is just x\% selection).
 
-When the number of mutants sampled was not a whole number, we used
-the formula by Zhang et a.~\cite{zhang2013ase}, using the
-decimal part to select a mutant with that probability.
-
-Next, we modified this criteria slightly, and instead of choosing a
-mutant with probability equal to the decimal part, we applied
-\textit{round(sample)} to round it to the nearest whole number. We
-used this as the number of samples to be chosen from the
-population. Our aim was to \emph{remove} elements that were too simple. That
+We used the formula by Zhang et al.~\cite{zhang2013ase},
+\[sample(x) = floor (x + random(0..1))\]
+to correctly sample decimal numbers.
+Next, we modified this criteria slightly, and instead of
+\textit{sample()} which uses probability to manage the decimal numbers,
+we applied \textit{round()} to obtain the nearest whole number, which
+was used as the number of samples to be chosen from the population.
+Our aim was to \emph{remove} elements that were too simple. That
 is, if the number of mutants dropped below a threshold determined by
 the mutant reduction ratio, that program element did not contribute
 any mutants to the final result.  Conceptually the idea is that mutants of more complex code have more discriminatory power (and may correspond better to real faults though we do not evaluate this concept).
 
 Next, we explored in the other direction, by forcing the program elements
-to return at least one element by using \textit{ceil(sample)}. That is,
+to return at least one element by using \textit{ceil()}. That is,
 irrespective of the fraction being sampled, the simplest elements always
-contributed at least one mutant to the total sample.
+contributed at least one mutant to the total sample, ensuring coverage but
+also giving priority to complex elements.
 
 \subsubsection{Lines per element and variants}
 Our previous research~\cite{gopinath2014code} found that statement coverage
@@ -163,7 +162,7 @@ suggests that perhaps choosing one mutant per line may be sufficient to achieve
 a close approximation of the final mutation score. Further, statement deletion
 has been researched previously~\cite{untch2009onreduced,deng2013empirical} and
 has been found to reduce the number of mutants well, without an appreciable
-decrease in accuracy. This also provides a nice comparison with similar
+decrease in effectiveness. This also provides a nice comparison with similar
 numbers of mutants between operator selection and random sampling of mutants.
 
 We next extended this approach to sample from each method instead, but
@@ -199,17 +198,10 @@ of mutants from each operator.
 \subsection{Operator Selection}
 
 For selective methods, we tried mutation operators suggested by Wong et al.~\cite{wong1995reducing}, Offutt et al.~\cite{offutt1996anexperimental,deng2013empirical}, % TODO Barbosa
- and, Namin et al~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized operator selection mechanisms, we also compared the Javalanche operators for operator selection. Note that all of these techniques except 
-Javalanche have targeted C programs, thus some of these operators
-are sensible in C but not in Java programs. For example C compilers tolerate
-removing a return statement --- but in Java this causes a compilation error.
-Moreover, there were some operators that are not supported by the PIT framework
-like ABS (absolute mutation operators). We tried to realize as many
-as possible of the operators using PIT's bytecode level mutation. We also extended 
-the PIT framework to support the  statement deletion operator (SDL).
-
-
-% {\bf Amin: The rest of this section is for Alex and Carlos info and should be verified if we should include this or wave our hands about approximation instead.}
+ and, Namin et al.~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized operator selection mechanisms, we also compared the Javalanche operators for operator selection. Note that all of these techniques except
+Javalanche have targeted C programs. Thus some of these operators
+are sensible in C but not in Java programs. For example, deletion of return statement is tolerated in C, not in Java.
+Moreover, there were a few operators that were not supported by the PIT, and could not be implemented easily.
 
 \subsubsection{Criteria I}
 For this criteria, we used the two operators \pitcb and \pitnc which are similar to those given by Wong. We did not have ABS operator available in PIT.
@@ -227,13 +219,13 @@ are discarded at each step.
 \subsubsection{Statement Deletion:} \label{subsec:stmtdel} The basic
 statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements were
-modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and \Pitri for
-simple statements, and using \pitrc for control structures, which
-replaced the boolean condition with false, resulting in removal of the
-block of statements. The operator for return values was modeled using
+modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and \Pitri~for
+simple statements, and using \pitrc for control structures. \pitrc
+replaces boolean conditions with \textit{false}, resulting in removal of the
+conditional block. The operator for return values was modeled using
 \Pitrv, which is similar.  The operators for \textit{while},
 \textit{for}, and \textit{if} statements were modeled using \Pitdc,
-which replaced the boolean condition with true, which removed the
+which replaced the boolean condition with \textit{true}, which removed the
 effect of conditional. The \textit{switch} statement deletion was
 modeled using \pitrs which replaced the first 100 labels with a
 \textit{default} label, resulting in the switch element being
@@ -241,7 +233,7 @@ deleted. Due to the constraints of the architecture of PIT only the
 first 100 labels were replaced. Deleting \textit{try/catch} was not
 necessary at bytecode level.  Finally, to get an accurate estimation
 of the effect of true statement deletion, we grouped the mutants by
-line, and considered a single virtual mutant (that is, the total
+line, and considered each line a single virtual mutant (that is, the total
 number of mutants is equal to the total number of lines). Further,
 killing any mutant from a line resulted in marking the virtual mutant
 for that line as killed. This gave us the mutation score for the
@@ -254,10 +246,11 @@ ease of detection when multiple mutations are combined together due to
 the coupling effect. This also means that not all the lines may be
 mutated ,since there may be no applicable operators. However, given
 the constraints of a bytecode based mutation system, we believe that
-our procedure is reasonable. An interesting point is that using this
-procedure statement deletion is no longer a simple mutation and
-qualifies as a higher order mutation operator. In fact, the procedure
-we outlined can be used in general to judge the effectiveness of a
-higher order operator from the results of the first order mutation
-operators that together compose the higher order mutant.
+our procedure is reasonable.
+% An interesting point is that using this
+%procedure statement, deletion is no longer a simple mutation and
+%qualifies as a higher order mutation operator. In fact, the procedure
+%we outlined can be used in general to judge the effectiveness of a
+%higher order operator from the results of the first order mutation
+%operators that together compose the higher order mutant.
 
