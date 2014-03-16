@@ -115,6 +115,3 @@ final mutation score while obtaining stable computational reduction.
 
 \end{itemize}
 
-Our data will be available for replication on publication~\cite{data}
-%\footnote{Available on publication}.
-
