@@ -86,17 +86,17 @@ by Offutt et al.~\cite{offutt1996experimental} for a different measurement),
 and instead observe that we obtained $R^2 = 0.97$ which provides
 a high confidence in the accuracy of prediction of the full score.
 
-The second pattern is that fractional sampling based on projects
-appears to be better than that based on classes, which in turn is
-better than methods and lines, with regard to the stability of the
-result (i.e. low standard deviation).  This is not clear at lower
-levels of reduction ($< 1/32$), but becomes more pronounced for lower
-ratios. There seems to exist a hierarchy of sampling, whereby as sampling becomes
-more fine grained stability decreases.  We did not observe the pattern
-found by Zhang et al.~\cite{zhang2013ase} where method-based sampling
-had the best correlations. In fact, in our measurements, the opposite
-may be true, with project based sampling having the highest
-$R^2$ a majority of the time.
+The second pattern is that fractional sampling based on projects appears
+to be better than that based on classes, which in turn is better
+than methods and lines, with regard to the stability of the result
+(i.e. low standard deviation).  This is not clear at lower levels of
+reduction ($< 1/32$), but becomes more pronounced for lower ratios (see
+Figure~\ref{fig:powerplot}). There seems to exist a hierarchy of sampling,
+whereby as sampling becomes more fine grained stability decreases.  We did
+not observe the pattern found by Zhang et al.~\cite{zhang2013ase} where
+method-based sampling had the best correlations. In fact, in our measurements,
+the opposite may be true, with project based sampling having the highest $R^2$
+a majority of the time.
 
 The third "pattern" is that the simplest sampling scheme --- simple
 random sampling --- performs best compared to sampling schemes that

@@ -176,36 +176,43 @@ print(xtable(r.stats.sel.opsel, caption='Randoop', label='table:randr'), include
 \end{table*}
 
 
-% \begin{figure*}[t]
-% <<x.per.sel.sample,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-% o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
-% ggplot(subset(o.xp.sample, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-%   stat_boxplot(geom ='errorbar')+
-%   geom_boxplot() + facet_wrap(~type) + myopts + theme(legend.position="none") + opts(title="sample(x)")
-% # o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
-% # ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-% #   stat_boxplot(geom ='errorbar')+
-% #   geom_boxplot() + facet_wrap(~type)+ myopts+ theme(legend.position="none")+ opts(title="sample(x)")
-% # 
-% # o.loc.ext <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
-% # ggplot(subset(o.loc.ext, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-% #   stat_boxplot(geom ='errorbar')+
-% #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(external)")
-% # 
-% # o.loc.int <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
-% # ggplot(subset(o.loc.int, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-% #   stat_boxplot(geom ='errorbar')+
-% #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(internal)")
-% # 
-% # o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
-% # ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
-% #   stat_boxplot(geom ='errorbar')+
-% #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="One per element")
-% @
-% \caption{The effect of sampling reductions, Except for line sampling of power $5$ and $6$ all others are above 0.90 $R^2$.}
-% \label{fig:xroundsel}
-% \end{figure*}
-% 
+\begin{figure*}[t]
+<<x.per.sel.sample,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
+o.xp.sample$type <- factor(o.xp.sample$type, levels=c('project','class','method','line'))
+ggplot(subset(o.xp.sample, reduction < 100), aes(factor(power), reduction, fill=type, dodge=type)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot() + #facet_wrap(~type) +
+  myopts +
+  #xlab(label=expression(frac(all,sample))) +
+  xlab(label=expression(all%/%sample)) +
+  ylab('reduction') +
+  #theme(legend.position="none") +
+  opts(title="sample(x)")
+# o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
+# ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+#   stat_boxplot(geom ='errorbar')+
+#   geom_boxplot() + facet_wrap(~type)+ myopts+ theme(legend.position="none")+ opts(title="sample(x)")
+# 
+# o.loc.ext <- subset(o.processed, grepl('^l[.].*.m[.]red',ind))
+# ggplot(subset(o.loc.ext, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+#   stat_boxplot(geom ='errorbar')+
+#   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(external)")
+# 
+# o.loc.int <- subset(o.processed, grepl('^wl[.].*.m[.]red',ind))
+# ggplot(subset(o.loc.int, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+#   stat_boxplot(geom ='errorbar')+
+#   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="loc(internal)")
+# 
+# o.one <- subset(o.processed, grepl('^o[.].*.m[.]red',ind))
+# ggplot(subset(o.one, reduction < 100 & (type=='line' | type=='method')), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
+#   stat_boxplot(geom ='errorbar')+
+#   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="One per element")
+@
+\caption{The effect of sampling reductions, Original set $R^2 > 0.90$.}
+\label{fig:powerplot}
+\end{figure*}
+
 
 % \begin{figure*}[t]
 % <<op.sample,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
@@ -246,14 +253,15 @@ df$sampling <- with(df,
 
 df$type <- factor(df$type, levels=c('block','line','method','class','project','x% operator','operator selection'))
 
-ggplot(df, aes(mutant.reduction, sd.reduction)) +
-   labs(x=expression(mu[red]), y=expression(sigma[red]) ) +
-   geom_point(aes(size=sqr, color=type)) + myopts
+#ggplot(df, aes(mutant.reduction, sd.reduction)) +
+#   labs(x=expression(mu[red]), y=expression(sigma[red]) ) +
+#   geom_point(aes(size=sqr, color=type)) + myopts
 ggplot(df, aes(mutant.reduction, sd.reduction)) +
    labs(x=expression(mu[red]), y=expression(sigma[red]) ) +
    geom_point(aes(shape=sampling, color=type)) + myopts
 @
-\caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only those observations with $R^2 > 0.9$ and $2\times \sigma_{red} > \mu_{red}$ is shown here. }
+\caption{The mean reduction of mutants vs its standard deviation. Original set, only observations with $R^2 > 0.9$ and $2\times \sigma_{red} < \mu_{red}$ is shown here. }
+%\caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only those observations with $R^2 > 0.9$ and $2\times \sigma_{red} > \mu_{red}$ is shown here. }
 \label{fig:fullimgsize}
 \end{figure*}
  
