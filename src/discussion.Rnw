@@ -1,4 +1,4 @@
-\section{Discussion}
+section{Discussion}
 \label{sec:discussion}
 
 % About Randoop and Original
@@ -9,7 +9,7 @@ of the reduction achieved). This suggests that our analysis is equally
 applicable for both original test suites and generated ones.
 
 % About Randoop and Original
-Analysing the scores further, we note that the accuracy of prediction
+Analyzing the scores further, we note that the accuracy of prediction
 ($R^2$) achieved by sampling is generally lower for generated test
 suites. As the sampling denominator increases, the correlation
 reduces drastically for generated test suites while correlation remains strong
@@ -48,7 +48,7 @@ results were generally stable, the reduction ratios achieved were lower than
 
 For line count strategies, only the external sampling produced
 consistent results, which were again not as good as \textit{round(x)}
-for similar reduction ratios. Secondly, we had hypothesised
+for similar reduction ratios. Secondly, we had hypothesized
 that coverage was a significant contributor to having a high
 correlation with the full mutation score. However we could find no
 evidence in support of this hypothesis with line, method, class, and
