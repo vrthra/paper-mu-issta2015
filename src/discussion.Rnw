@@ -14,7 +14,7 @@ Analyzing the scores further, we note that the accuracy of prediction
 suites. As the sampling denominator increases, the correlation
 reduces drastically for generated test suites while correlation remains strong
 for original test suites
-Secondly, we also observe that the multiplier factor $\beta_1$ 
+Secondly, we also observe that the multiplier factor $\beta_1$
 is smaller for generated test suites than original test suites. This
 observation holds good for all sampling and operator selection strategies
 examined.  Both these factors together suggest that generated

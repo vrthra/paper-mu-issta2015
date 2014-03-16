@@ -64,7 +64,7 @@ multiplier factor is small, then the sample mutation score was larger than
 the full mutation score, and hence it was easier to detect mutants in the sample.
 
 Next, for each criteria, we computed the reduction of mutants given by the
-ratio between total number of mutants and sampled mutants.
+ratio between sampled mutants and total number of mutants.
 We also compute standard deviation of the mutant reduction, which determines
 the consistency of results. A large standard deviation suggests
 that the mutant reduction ratio achieved is very much dependent on the
