@@ -9,11 +9,11 @@ of the reduction achieved). This suggests that our analysis is equally
 applicable for both original test suites and generated ones.
 
 % About Randoop and Original
-Analyzing the scores further, we note that the accuracy of prediction
+Analyzing the scores further, we note that the correlation
 ($R^2$) achieved by sampling is generally lower for generated test
 suites. As the sampling denominator increases, the correlation
 reduces drastically for generated test suites while correlation remains strong
-for original test suites
+for original test suites.
 Secondly, we also observe that the multiplier factor $\beta_1$
 is smaller for generated test suites than original test suites. This
 observation holds good for all sampling and operator selection strategies
@@ -23,28 +23,30 @@ original test suites. We note that since $\beta_1$ was generally smaller
 for generated test suites than original test suites, the full mutation score
 corresponding to a sampled mutation score for generated test suites would
 be lower than what would be expected from the original test suite.
-Secondly, the amount of reduction that can be gained by sampling that must reach a given correlation is lower for generated test suites.
+Further, the amount of mutant reduction possible such that the sampled
+mutation scores still has a high enough correlation with the total score
+is lower for generated test suites.
 
 % Different sampling strategies
 Considering different sampling strategies, based on their stability and mutation
 reduction achieved, we note that using simple sampling (\textit{sample(x)})
 produced the most stable results. For both generated and original test suites,
 this strategy produced valid results for all different scopes and sampling
-ratios. It also was able to achieve the highest mutation reduction of $72.63$,
-that is only $1.37\%$ of the original mutants were needed to produce a highly
-correlated ($R^2 = 0.97$) mutation score, with minimal deviation
+ratios. It also was able to achieve a highest mutation reduction of $72.63$,
+with high stability. That is, only $1.37\%$ of the original mutants were needed
+to produce a highly correlated ($R^2 = 0.97$) mutation score, with minimal deviation
 ($\sigma = 6.36$) for original test suites. While the correlation is weaker for
 generated test suites it is still quite strong, with $R^2 = 0.90$
 
 Our \textit{round(x)}, the strategy of ignoring low complexity elements,
 did not pay off, with line scope having a tendency to become unstable and
-inaccurate at low sampling ratios. At very low sampling ratio ($1/64$), the
-strategy with method scope also becomes unstable and inaccurate. On the whole
+low correlated at low sampling ratios. At very low sampling ratio ($1/64$), the
+strategy with method scope also becomes unstable and low correlated. On the whole
 \textit{round(x)} did not perform as well as \textit{sample(x)}
 
-The strategy of \textit{ceil(x)} also did not perform well. While the
-results were generally stable, the reduction ratios achieved were lower than
-\textit{sample(x)}, with similar correlations.
+The strategy of ensuring coverage with \textit{ceil(x)} also did not perform
+well. While the results were generally stable, the reduction ratios achieved
+were lower than \textit{sample(x)}, with similar correlations.
 
 For line count strategies, only the external sampling produced
 consistent results, which were again not as good as \textit{round(x)}
@@ -78,12 +80,11 @@ worse than random sampling strategies.
 Considering different sampling strategies, we see a few general patterns. The
 first is that sampling strategy can predict the final score with very
 minimal loss up to a fraction of $\frac{1}{64}$ of the total
-number of mutants (our experiments suggest up to $70$ times reduction,
-with a low standard deviation of $6.72$). We did not cut off with the 99\%
-rule as mentioned by Zhang et al.~\cite{zhang2013ase} (originally proposed
+number of mutants. We did not cut off with the 99\% rule as mentioned
+byZhang et al.~\cite{zhang2013ase} (originally proposed
 by Offutt et al.~\cite{offutt1996experimental} for a different measurement),
-and instead chose to observe that we obtained $R^2 > 0.96$ which provides
-a high confidence in the accuracy of prediction.
+and instead observe that we obtained $R^2 = 0.97$ which provides
+a high confidence in the accuracy of prediction of the full score.
 
 The second pattern is that fractional sampling based on projects
 appears to be better than that based on classes, which in turn is
