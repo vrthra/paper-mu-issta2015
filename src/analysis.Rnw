@@ -235,16 +235,16 @@ df$type <- with(df, as.factor(
         ifelse(grepl('method',operator), 'method',
           ifelse(grepl('class',operator), 'class',
             ifelse(grepl('project',operator), 'project',
-              'selection')))))))
+              ifelse(grepl('per_op',operator), 'x% operator',
+              'operator selection'))))))))
 df$sampling <- with(df,
-      ifelse(grepl('op',strategy), 'operator(x)',
           ifelse(grepl('onelement',strategy), 'one(x)',
             ifelse(grepl('locelement',strategy), 'lines(x)',
               ifelse(grepl('withinelement',strategy), 'one(x)',
                 ifelse(grepl('xceilperunit',strategy), 'ceil(x)',
                   ifelse(grepl('xpercentperunit',strategy), 'round(x)',
                     ifelse(grepl('xprobperunit',strategy), 'sample(x)',
-strategy))))))))
+'other')))))))
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(size=sqr, color=type))
 ggplot(df, aes(mutant.reduction, sd.reduction)) + geom_point(aes(shape=sampling, color=type))
 @
