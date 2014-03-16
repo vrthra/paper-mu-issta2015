@@ -11,7 +11,7 @@ print(xtable(f(r.stats.sel.xp.sample), caption='Randoop', label='table:randr'), 
 @
 \end{minipage}
 \bigskip
-\caption {The sample(x)\% random selection criteria results.}
+\caption {The sample(x)\% random selection criteria results. (left: Original, right: Generated)}
 \label{tbl:xselsample}
 \end{table*}
 
@@ -28,7 +28,7 @@ print(xtable(f(r.stats.sel.xp.round), caption='Randoop', label='table:randr', ma
 @
 \end{minipage}
 \bigskip
-\caption {The round(x)\% random selection criteria results.}
+\caption {The round(x)\% random selection criteria results. (left: Original, right: Generated)}
 \label{tbl:xselround}
 \end{table*}
 
@@ -45,7 +45,7 @@ print(xtable(f(r.stats.sel.xp.ceil), caption='Randoop', label='table:randr'), in
 @
 \end{minipage}
 \bigskip
-\caption {The ceil(x)\% random selection criteria results.}
+\caption {The ceil(x)\% random selection criteria results. (left: Original, right: Generated)}
 \label{tbl:xselceil}
 \end{table*}
 
@@ -87,7 +87,7 @@ print(xtable(f(o.stats.sel.loc), caption='Original', label='table:rando'), inclu
 print(xtable(f(r.stats.sel.loc), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\caption {The line count selection criteria results.}
+\caption {The line count selection criteria results. (left: Original, right: Generated)}
 \label{tbl:lcountl}
 \end{table*}
 
@@ -103,7 +103,7 @@ print(xtable(f(o.stats.sel.loc.w), caption='Original', label='table:rando'), inc
 print(xtable(f(r.stats.sel.loc.w), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\caption {The line count selection criteria results (within).}
+\caption {The line count selection criteria results (within). (left: Original, right: Generated)}
 \label{tbl:lcountw}
 \end{table*}
 
@@ -120,7 +120,7 @@ print(xtable(f(r.stats.sel.one), caption='Randoop', label='table:randr'), includ
 @
 \end{minipage}
 \bigskip
-\caption {The one per element selection criteria results.}
+\caption {The one per element selection criteria results. (left: Original, right: Generated)}
 \label{tbl:onesel}
 \end{table*}
 
@@ -137,7 +137,7 @@ print(xtable(f(r.stats.sel.xop), caption='Randoop', label='table:randr'), includ
 @
 \end{minipage}
 \bigskip
-\caption {The x\% per operator criteria results.}
+\caption {The x\% per operator criteria results. (left: Original, right: Generated)}
 \label{tbl:onesel}
 \end{table*}
 
@@ -154,7 +154,7 @@ print(xtable(r.stats.sel.op, caption='Randoop', label='table:randr'), include.ro
 @
 \end{minipage}
 \bigskip
-\caption {Operators}
+\caption {Operators (left: Original, right: Generated)}
 \label{tbl:operators}
 \end{table*}
 
@@ -171,7 +171,7 @@ print(xtable(r.stats.sel.opsel, caption='Randoop', label='table:randr'), include
 @
 \end{minipage}
 \bigskip
-\caption {Operator Selection}
+\caption {Operator Selection (left: Original, right: Generated)}
 \label{tbl:opsel}
 \end{table*}
 
