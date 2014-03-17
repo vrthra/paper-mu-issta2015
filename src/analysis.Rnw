@@ -209,7 +209,7 @@ ggplot(subset(o.xp.sample, reduction < 100), aes(factor(power), reduction, fill=
 #   stat_boxplot(geom ='errorbar')+
 #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="One per element")
 @
-\caption{The effect of sampling reductions, Original set $R^2 > 0.90$.}
+\caption{The effect of sampling reductions, Original set $R^2 > 0.90$. Notice the hierarchy of spread within boxplot for similar sampling ratios ($\div$) project < class < method < line i.e project is better}
 \label{fig:powerplot}
 \end{figure*}
 
@@ -232,6 +232,7 @@ ggplot(subset(o.xp.sample, reduction < 100), aes(factor(power), reduction, fill=
 <<op.all,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 
 df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction)
+
 df$sqr <- 1 - df$r.square
 df$mult <- 1 - df$score.multiplier
 df$type <- with(df, as.factor(
@@ -243,24 +244,38 @@ df$type <- with(df, as.factor(
               ifelse(grepl('per_op',operator), 'x% operator',
               'operator selection'))))))))
 df$sampling <- with(df,
-          ifelse(grepl('onelement',strategy), 'one(x)',
-            ifelse(grepl('locelement',strategy), 'lines(x)',
-              ifelse(grepl('withinelement',strategy), 'one(x)',
+          ifelse(grepl('onelement',strategy), 'one.per.elem(x)',
+            ifelse(grepl('locelement',strategy), 'num.lines(x)',
+              ifelse(grepl('withinelement',strategy), 'within.one(x)',
                 ifelse(grepl('xceilperunit',strategy), 'ceil(x)',
                   ifelse(grepl('xpercentperunit',strategy), 'round(x)',
                     ifelse(grepl('xprobperunit',strategy), 'sample(x)',
-'other')))))))
+                      ifelse(grepl('xop',strategy), 'op.x%(x)',
+                        ifelse(grepl('opsel',strategy), 'opsel(x)',
+                          ifelse(grepl('^op$',strategy), 'op(x)',
+'other'))))))))))
 
-df$type <- factor(df$type, levels=c('block','line','method','class','project','x% operator','operator selection'))
+df <- subset(df, type!='block')
+df <- subset(df, sampling %in% c('sample(x)', 'num.lines(x)', 'one.per.elem(x)', 'op.x%(x)', 'opsel(x)'))
+df$sampling <- factor(df$sampling,levels=c('sample(x)', 'num.lines(x)', 'one.per.elem(x)', 'op.x%(x)', 'opsel(x)'))
+#df$type <- factor(df$type, levels=c('block','line','method','class','project','x% operator','operator selection'))
+df$type <- factor(df$type, levels=c('line','method','class','project','x% operator','operator selection'))
 
 #ggplot(df, aes(mutant.reduction, sd.reduction)) +
 #   labs(x=expression(mu[red]), y=expression(sigma[red]) ) +
 #   geom_point(aes(size=sqr, color=type)) + myopts
 ggplot(df, aes(mutant.reduction, sd.reduction)) +
    labs(x=expression(mu[red]), y=expression(sigma[red]) ) +
-   geom_point(aes(shape=sampling, color=type)) + myopts
+#   geom_point(aes(shape=sampling, color=type)) + myopts
+   geom_point(aes(shape=sampling, color=type),
+   #position=position_jitter(width=0.1, height=0.1),
+   size=3) +
+   myopts +
+   scale_color_manual(values = c('orange', 'purple', 'brown', 'red','blue', 'black'))
+   # block scale_color_manual(values = c('brown','orange', 'purple', 'green', 'red','blue', 'black'))
+   #theme(legend.position=c(0,1) ,legend.justification=c(0,1))
 @
-\caption{The mean reduction of mutants vs its standard deviation. Original set, only observations with $R^2 > 0.9$ and $2\times \sigma_{red} < \mu_{red}$ is shown here. }
+\caption{The mean reduction of mutants vs its standard deviation. Original set, main variations of sampling, only observations with $R^2 > 0.9$ and $2\times \sigma_{red} < \mu_{red}$ are shown here. Notice that operator selection is has high $\sigma$ for corresponding $\mu$, and project based sampling is better for high reduction}
 %\caption{The mean reduction of mutants vs its standard deviation. The sqr represents (1-$R^2$), i.e smaller is good. Only those observations with $R^2 > 0.9$ and $2\times \sigma_{red} > \mu_{red}$ is shown here. }
 \label{fig:fullimgsize}
 \end{figure*}
