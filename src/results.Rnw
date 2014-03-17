@@ -4,8 +4,7 @@
 Our results for random sampling over program elements using $sample(x)$
 are given in Table~\ref{tbl:xselsample}. The result of the variation using
 $round(x)$ is given in Table~\ref{tbl:xselround} and that using $ceil(x)$
-is given in Table~\ref{tbl:xselceil}. The left tables show results from the
-original set, while right tables show results from generated set.  The first
+is given in Table~\ref{tbl:xselceil}. The first
 column in each table provides the scope of sampling: per project, per class,
 per method, or per line. The second column ($\div$) provides the fraction
 involved. The third column contains the $R^2$ value obtained between the

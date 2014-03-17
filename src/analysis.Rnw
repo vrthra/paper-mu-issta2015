@@ -1,51 +1,57 @@
-\begin{table*}
-\begin{minipage}[htb]{0.49\linewidth}
+\begin{table*}[!ht]
+\begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(f(o.stats.sel.xp.sample), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(f(r.stats.sel.xp.sample), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\bigskip
-\caption {The sample(x)\% random selection criteria results. (left: Original, right: Generated)}
+%\medskip
+\caption {The sample(x)\% random selection criteria results. }
 \label{tbl:xselsample}
 \end{table*}
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(f(o.stats.sel.xp.round), caption='Original', label='table:rando', main='Original'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(f(r.stats.sel.xp.round), caption='Randoop', label='table:randr', main='Randoop'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\bigskip
-\caption {The round(x)\% random selection criteria results. (left: Original, right: Generated)}
+%\medskip
+\caption {The round(x)\% random selection criteria results. }
 \label{tbl:xselround}
 \end{table*}
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(f(o.stats.sel.xp.ceil), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(f(r.stats.sel.xp.ceil), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\bigskip
-\caption {The ceil(x)\% random selection criteria results. (left: Original, right: Generated)}
+%\medskip
+\caption {The ceil(x)\% random selection criteria results. }
 \label{tbl:xselceil}
 \end{table*}
 
@@ -78,109 +84,123 @@ A few projects did not return any results for some large reduction factors.
 Thus the number of valid results from projects is also collected in the result
 tables.
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(f(o.stats.sel.loc), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(f(r.stats.sel.loc), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\caption {The line count selection criteria results. (left: Original, right: Generated)}
+%\medskip
+\caption {The line count selection criteria results. }
 \label{tbl:lcountl}
 \end{table*}
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(f(o.stats.sel.loc.w), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(f(r.stats.sel.loc.w), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\caption {The line count selection criteria results (within). (left: Original, right: Generated)}
+%\medskip
+\caption {The line count selection criteria results (within). }
 \label{tbl:lcountw}
 \end{table*}
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(f(o.stats.sel.one), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(f(r.stats.sel.one), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\bigskip
-\caption {The one per element selection criteria results. (left: Original, right: Generated)}
+%\medskip
+\caption {The one per element selection criteria results. }
 \label{tbl:onesel}
 \end{table*}
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(f(o.stats.sel.xop), caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(f(r.stats.sel.xop), caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\bigskip
-\caption {The x\% per operator criteria results. (left: Original, right: Generated)}
+%\medskip
+\caption {The x\% per operator criteria results. }
 \label{tbl:onesel}
 \end{table*}
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(o.stats.sel.op, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(r.stats.sel.op, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\bigskip
-\caption {Operators (left: Original, right: Generated)}
+%\medskip
+\caption {Operators}
 \label{tbl:operators}
 \end{table*}
 
-\begin{table*}
+\begin{table*}[!ht]
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Original}
 <<results='asis'>>=
 print(xtable(o.stats.sel.opsel, caption='Original', label='table:rando'), include.rownames=FALSE, floating=FALSE, size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[h]{0.49\linewidth}
+\caption*{Generated}
 <<results='asis'>>=
 print(xtable(r.stats.sel.opsel, caption='Randoop', label='table:randr'), include.rownames=FALSE, floating=FALSE,size='\\small',sanitize.text.function=function(x){x})
 @
 \end{minipage}
-\bigskip
-\caption {Operator Selection (left: Original, right: Generated)}
+%\medskip
+\caption {Operator Selection}
 \label{tbl:opsel}
 \end{table*}
 
 
-\begin{figure*}[t]
-<<x.per.sel.sample,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+\begin{figure*}[htb]
+<<x.per.sel.sample,fig.width=10, fig.height=8, out.width='.95\\linewidth', out.heigth='8in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 o.xp.sample <- subset(o.processed, grepl('^rr[.].*.m[.]red',ind))
 o.xp.sample$type <- factor(o.xp.sample$type, levels=c('project','class','method','line'))
 ggplot(subset(o.xp.sample, reduction < 100), aes(factor(power), reduction, fill=type, dodge=type)) +
@@ -188,10 +208,11 @@ ggplot(subset(o.xp.sample, reduction < 100), aes(factor(power), reduction, fill=
   geom_boxplot() + #facet_wrap(~type) +
   myopts +
   #xlab(label=expression(frac(all,sample))) +
-  xlab(label=expression(all%/%sample)) +
+  xlab(label=expression(sample%/%all)) +
   ylab('reduction') +
   #theme(legend.position="none") +
-  opts(title="sample(x)")
+  opts(title="sample(x)") +
+  scale_x_discrete(breaks=c(1,2,3,4,5,6), labels=c("1/2", "1/4", "1/8",'1/16','1/32','1/64'))
 # o.xp.round <- subset(o.processed, grepl('^r[.].*.m[.]red',ind))
 # ggplot(subset(o.xp.round, reduction < 100), aes(power, reduction, fill=interaction(type,power), dodge=type)) +
 #   stat_boxplot(geom ='errorbar')+
@@ -212,7 +233,7 @@ ggplot(subset(o.xp.sample, reduction < 100), aes(factor(power), reduction, fill=
 #   stat_boxplot(geom ='errorbar')+
 #   geom_boxplot() + facet_wrap(~type) + myopts+ theme(legend.position="none") + opts(title="One per element")
 @
-\caption{The effect of sampling reductions, Original set $R^2 > 0.90$. Notice the hierarchy of spread within boxplot for similar sampling ratios ($\div$) project < class < method < line i.e project is better}
+\caption{The effect of sampling reductions, Original set $R^2 > 0.90$. Notice the hierarchy of spread within boxplot for similar sampling ratios ($\div$) project < class < method < line i.e. project is better}
 \label{fig:powerplot}
 \end{figure*}
 
@@ -231,8 +252,8 @@ ggplot(subset(o.xp.sample, reduction < 100), aes(factor(power), reduction, fill=
 % \end{figure*}
 % 
 
-\begin{figure*}[t]
-<<op.all,fig.width=10, fig.height=7, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+\begin{figure*}[htb]
+<<op.all,fig.width=10, fig.height=8, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 
 df <-  subset(stats.df, r.square>=0.9 & (sd.reduction * 2) < mutant.reduction)
 

@@ -193,39 +193,50 @@ This strategy, first suggested by Wong et al.~\cite{wong1995reducing} samples an
 of mutants from each operator.
 
 \subsection{Operator Selection}
-
 For selective methods, we tried mutation operators
 suggested by Wong et al.~\cite{wong1995reducing}, Offutt et
 al.~\cite{offutt1996anexperimental,deng2013empirical}, and, Namin et
 al.~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized
 operator selection mechanisms, we also compared the Javalanche operators for
 operator selection. Note that all of these techniques except Javalanche have
-targeted C programs. Thus, some of these operators are sensible in C but not
-in Java programs. For example, deletion of return statement is tolerated in C,
+targeted C programs. Thus, some of these operators may be sensible in C but not
+in Java. For example, deletion of return statement is tolerated in C,
 not in Java.  Moreover, there were a few operators that were not supported
 by the PIT, and could not be implemented easily (as mentioned below).
 
-\subsubsection{Criteria I} For this criteria, we used the two operators
-\pitcb and \pitnc which are similar to those given by Wong. We did not have
-ABS operator available in PIT.
+\subsubsection{Constrained Mutation}
+\noindent\textbf{Wong et al. ~\cite{wong1995reducing}.}
+They selected ROR  and ABS  from Mothra for
+mutation analysis. We used operators
+\pitcb and \pitnc to model ROR operator. There are no comparable operators to ABS in PIT.
 
-\subsubsection{Criteria II} We used the operators given by Offutt et
-al. \Pitin, \Pitm, \Pitcb, \Pitnc. We did not have LCR available in PIT.
+\subsubsection{E-Selective}
+\noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.}
+They selected ABS, UOI, LCR, AOR, ROR from Mothra operators.
+We have used  \Pitin, \Pitm, \Pitcb, and \Pitnc. PIT does not have any operator
+comparable to LCR.
 
-\subsubsection{Criteria III} Those given by Javalanche : \Pitnc, \Pitvmc,
-\Pitnvmc, \Pitm, \Pitic, \Pitemv.
+\subsubsection{Javalanche}
+\noindent\textbf{Javalanche \cite{javalanche}.}
+Javalanche uses Negate Jump Condition, Omit Method
+ Call, Replace Arithmetic Operator, and Replace Numerical
+ Constant operators. We have used \Pitnc, \Pitvmc,
+\Pitnvmc, \Pitm, \Pitic and \Pitemv to model them.
 
-\subsubsection{Criteria IV} Given by Namin et
-al~\cite{siami2008sufficient}. Many of these operators were not applicable
-in Java, and some not in PIT. The operators used by us were \Pitin, \Pitm,
-\Piti, \Pitnc.
+\subsubsection{Variable Reduction}
+\noindent\textbf{Namin et al.~\cite{siami2008sufficient}.}
+They have tried to reduce the mutation operators of Proteum analysis
+tool which is for C programs. They suggest 28 operators which many of them
+are not applicable in Java, and some not in PIT.
+We  used by  \Pitin, \Pitm, \Piti and \Pitnc.
 
-\subsubsection{Criteria V} In this criteria suggested by
-Offutt et al.~\cite{offutt1993experimental} the most numerous operators are
-discarded at each step. Our order was:
+\subsubsection{N-selection}
+\noindent\textbf{Offut et al. ~\cite{offutt1993experimental}.} They suggested removal of
+$n$ most numerous operators. In our experiment, the order of operators was
 \Pitnvmc, \Pitnc, \Pitrc, \Pitdc, \Pitrv, \Pitic, \Pitcc, \Pitemv, \Pitvmc,
-\Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, \Pitin.
-
+\Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, and \Pitin. We discarded one at each
+step and evaluated the effectiveness at each $n$.
+%----------------------------------------
 \subsubsection{Statement Deletion:} \label{subsec:stmtdel} The basic
 statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements were
