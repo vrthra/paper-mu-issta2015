@@ -11,7 +11,7 @@ code patching etc.
 
 The idea of using a subset of mutants was conceived along with
 mutation analysis itself. Budd~\cite{budd1980mutation} and
-Acree~\cite{Acree1980} showed that even 10\% sampling can achieve 99\%
+Acree~\cite{acree1980mutation} showed that even 10\% sampling can achieve 99\%
 accuracy for the final score.  The idea was further investigated by
 Mathur~\cite{mathur1991performance}, Wong et
 al.~\cite{wong1993mutation,wong1995reducing}, and Offutt et

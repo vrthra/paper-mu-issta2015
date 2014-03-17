@@ -237,7 +237,7 @@ $n$ most numerous operators. In our experiment, the order of operators was
 \Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, and \Pitin. We discarded one at each
 step and evaluated the effectiveness at each $n$.
 %----------------------------------------
-\subsubsection{Statement Deletion:} \label{subsec:stmtdel} The basic
+\subsubsection{Statement Deletion} \label{subsec:stmtdel} The basic
 statement deletion was modeled on the work by Deng et
 al.~\cite{deng2013empirical}. The operations on single statements were
 modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and \Pitri~for
