@@ -10,15 +10,12 @@ column in each table provides the scope of sampling: per project, per class,
 per method, or per line. The second column ($\div$) provides the fraction
 involved. The third column contains the $R^2$ value obtained between the
 mutation score of the sampling criteria used and the full mutation score.
-The fourth column ($\mu_{red}$) contains the mutant reduction factor.
-This is the average of total mutants produced divided by the number of
-mutants sampled by the criteria. The fifth column ($\sigma_{red}$) contains
-the standard deviation of the same. A few of the projects did not return
-any value for certain sampling criteria for particular mutation reduction
-fractions. The sixth column contains the number of projects that actually
-had valid values for the criteria being considered. The seventh column
-($\beta_1$) is the average multiplier between the sampled mutation score
-and the full mutation score.
+The fourth column ($\mu_{red}$) the mutant reduction factor,
+which is the average of total mutants divided by the number of
+mutants sampled. The fifth column ($\sigma_{red}$) is the standard deviation
+of the same. As we explained in the analysis, the sixth column contains
+the valid responses obtained.  The seventh column ($\beta_1$) is the
+multiplier factor (coefficient reported by the regression.)
 
 Table~\ref{tbl:lcountl} provides the results for line count criteria
 where the sampling was conducted after combining program elements, and

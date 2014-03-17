@@ -122,7 +122,7 @@ criteria, we sampled mutants on a decreasing power scale, sampling
 The simplest sampling approach consisted of using x\% selection as suggested by
 Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
 fraction of the complete set of mutants. This criteria also serves as a
-control for verifying the effectiveness of other criteria.
+baseline for verifying the effectiveness of other criteria.
 
 \subsubsection{Sampling over program elements and variants}
 Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
@@ -132,16 +132,20 @@ elements.  We sampled in increasing order of scope,
 scope is just x\% selection).
 
 We used the formula by Zhang et al.~\cite{zhang2013ase},
-\[sample(x) = floor (x + random(0..1))\]
+\[sample(x) = \lfloor x + random(0..1) \rfloor \]
 to correctly sample decimal numbers.
-Next, we modified this criteria slightly, and instead of
+Next, we slightly modified this criteria, and instead of
 \textit{sample()} which uses probability to manage the decimal numbers,
 we applied \textit{round()} to obtain the nearest whole number, which
 was used as the number of samples to be chosen from the population.
-Our aim was to \emph{remove} elements that were too simple. That
-is, if the number of mutants dropped below a threshold determined by
-the mutant reduction ratio, that program element did not contribute
-any mutants to the final result.  Conceptually the idea is that mutants of more complex code have more discriminatory power (and may correspond better to real faults though we do not evaluate this concept).
+The new strategy ignores program elements with small number of mutants.
+This strategy can potentially guide mutation generation toward more
+complex program elements.
+That is, if the number of mutants dropped below a threshold determined by
+the mutant reduction ratio, that program element would not contribute any
+mutants to the final result.  Conceptually the idea is that mutants of more
+complex code have more discriminatory power (and may correspond better to
+real faults --- though we do not evaluate this concept).
 
 Next, we explored in the other direction, by forcing the program elements
 to return at least one element by using \textit{ceil()}. That is,
@@ -155,15 +159,17 @@ was highly correlated with mutation score for a project. This immediately
 suggests that perhaps choosing one mutant per line may be sufficient to achieve
 a close approximation of the final mutation score. Further, statement deletion
 has been researched previously~\cite{untch2009onreduced,deng2013empirical} and
-has been found to reduce the number of mutants well, without an appreciable
+has been found to reduce the number of mutants well, with negligible
 decrease in effectiveness. This also provides a nice comparison with similar
 numbers of mutants between operator selection and random sampling of mutants.
 
-We next extended this approach to sample from each method instead, but
-used the number of lines in the method as the number of mutants to be
-sampled from it. This provided a test of the hypothesis of how
-important a mutation sampling's relationship to simple code coverage
-was. This was extended to class and project scope also.
+We extended sampling to levels coarser than methods, i.e. method, class, and
+project. We sampled $n$ mutants from a method (class or project), where $n$
+is the number of statements in the method (class or project).
+
+This provided a test of the hypothesis of how important a mutation sampling's
+relationship to simple code coverage is. This was extended to class and
+project scope also.
 
 For the first variant, we applied the x\% sampling to the result of
 the first sampling based on line counts. That is, in the case of
@@ -178,9 +184,6 @@ mutants from each program element.  That is, in the previous example,
 only $5$ mutants from the first and $10$ mutants from the second
 method would be chosen.
 
-%{\bf ADG:  Could maybe make this clearer?}
-% RG: Fixed with an example.
-
 \subsubsection{One per element}
 Another simple strategy of sampling we experimented with is to just choose
 one mutant per program element, in the order \textit{line}, \textit{method}, \textit{class}.
@@ -191,24 +194,37 @@ of mutants from each operator.
 
 \subsection{Operator Selection}
 
-For selective methods, we tried mutation operators suggested by Wong et al.~\cite{wong1995reducing}, Offutt et al.~\cite{offutt1996anexperimental,deng2013empirical}, % TODO Barbosa
- and, Namin et al.~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized operator selection mechanisms, we also compared the Javalanche operators for operator selection. Note that all of these techniques except
-Javalanche have targeted C programs. Thus some of these operators
-are sensible in C but not in Java programs. For example, deletion of return statement is tolerated in C, not in Java.
-Moreover, there were a few operators that were not supported by the PIT, and could not be implemented easily.
+For selective methods, we tried mutation operators
+suggested by Wong et al.~\cite{wong1995reducing}, Offutt et
+al.~\cite{offutt1996anexperimental,deng2013empirical}, and, Namin et
+al.~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized
+operator selection mechanisms, we also compared the Javalanche operators for
+operator selection. Note that all of these techniques except Javalanche have
+targeted C programs. Thus, some of these operators are sensible in C but not
+in Java programs. For example, deletion of return statement is tolerated in C,
+not in Java.  Moreover, there were a few operators that were not supported
+by the PIT, and could not be implemented easily (as mentioned below).
 
-\subsubsection{Criteria I}
-For this criteria, we used the two operators \pitcb and \pitnc which are similar to those given by Wong. We did not have ABS operator available in PIT.
-\subsubsection{Criteria II}
-We used the operators given by Offutt et al. \Pitin, \Pitm, \Pitcb, \Pitnc. We did not have LCR available in PIT.
-\subsubsection{Criteria III}
-Those given by Javalanche \Pitnc, \Pitvmc, \Pitnvmc, \Pitm, \Pitic, \Pitemv. 
-\subsubsection{Criteria IV}
-Namin et al. used \Pitin, \Pitm, \Piti, \Pitnc. Many of these operators were not applicable in Java, and some not in PIT.
-\subsubsection{Criteria V}
-For this criteria, we utilized the approach suggested by
-Offutt et al.~\cite{offutt1993experimental} where the most numerous operators
-are discarded at each step.
+\subsubsection{Criteria I} For this criteria, we used the two operators
+\pitcb and \pitnc which are similar to those given by Wong. We did not have
+ABS operator available in PIT.
+
+\subsubsection{Criteria II} We used the operators given by Offutt et
+al. \Pitin, \Pitm, \Pitcb, \Pitnc. We did not have LCR available in PIT.
+
+\subsubsection{Criteria III} Those given by Javalanche : \Pitnc, \Pitvmc,
+\Pitnvmc, \Pitm, \Pitic, \Pitemv.
+
+\subsubsection{Criteria IV} Given by Namin et
+al~\cite{siami2008sufficient}. Many of these operators were not applicable
+in Java, and some not in PIT. The operators used by us were \Pitin, \Pitm,
+\Piti, \Pitnc.
+
+\subsubsection{Criteria V} In this criteria suggested by
+Offutt et al.~\cite{offutt1993experimental} the most numerous operators are
+discarded at each step. Our order was:
+\Pitnvmc, \Pitnc, \Pitrc, \Pitdc, \Pitrv, \Pitic, \Pitcc, \Pitemv, \Pitvmc,
+\Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, \Pitin.
 
 \subsubsection{Statement Deletion:} \label{subsec:stmtdel} The basic
 statement deletion was modeled on the work by Deng et

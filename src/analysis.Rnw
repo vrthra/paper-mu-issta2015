@@ -54,16 +54,19 @@ print(xtable(f(r.stats.sel.xp.ceil), caption='Randoop', label='table:randr'), in
 \label{sec:analysis}
 For the purposes of comparing between the criteria, we computed the
 linear correlation between sampled mutation score and full mutation score.
-Since for the control sampling criteria, no mutants sampled implies none generated,
+Since for the baseline sampling criteria, no mutants sampled implies none generated,
 our model was
-\[\mu_\{M_{all}|M_{reduced}\} = \beta_1 \times M_{reduced}\]
+\[\mu\{M_{all}|M_{reduced}\} = \beta_1 \times M_{reduced}\]
+where $M_{all}$ is the mutation score of original mutation analysis and
+$M_{reduced}$ is the mutation score of the sample.
+
 We reported the correlation for this linear regression. We also report the expected
 multiplier factor $\beta_1$ for the sampled mutation score. This factor
 determines the ease of detecting mutants in the sampling criteria. That is, if the
 multiplier factor is small, then the sample mutation score was larger than
 the full mutation score, and hence it was easier to detect mutants in the sample.
 
-Next, for each criteria, we computed the reduction of mutants given by the
+Next, for each criterion, we computed the reduction of mutants given by the
 ratio between sampled mutants and total number of mutants.
 We also compute standard deviation of the mutant reduction, which determines
 the consistency of results. A large standard deviation suggests
