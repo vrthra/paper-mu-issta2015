@@ -86,28 +86,47 @@ r.stats.df <- r.f(stats.df)
 @
 \end{comment}
 <<>>=
-theme_set(theme_bw(12))
-myopts <- theme(panel.background = element_blank())
-
-sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
-new.colnames <- c('operator', '$R^2$',      '$\\mu_{red}$',            '$\\sigma_{red}$',         'valid',    '$\\beta_1$')
-stats.xp <- subset(stats.df, grepl('^(r|rr|rc)[.]', operator)) # We are ignoring ceil here. add rc if needed.
-
-o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
-r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
-stats.rest <- subset(stats.df, !grepl('^(r|rr|rc)[.]', operator))
-colnames(o.stats.sel.xp) <- new.colnames
-colnames(r.stats.sel.xp) <- new.colnames
-o.stats.sel.xp$scope <- NA
-r.stats.sel.xp$scope <- NA
-o.stats.sel.xp$sampling <- NA
-r.stats.sel.xp$sampling <- NA
 
 f <- function(x) {
   x <- x[,c(7,8,2,3,4,5,6)]
   names(x)[names(x) == 'sampling'] <- '$\\div$'
   return(x)
 }
+
+colorize.rsqr <- function(x) {
+  ifelse(x >= 0.90,
+      paste("\\textcolor{blue}{", formatC(x, dig=2, format="f"), "}"),
+      paste("\\textcolor{black}{", formatC(x, dig=2, format="f"), "}"))
+}
+
+colorize.it <- function(x) {
+  x$sd.reduction <- ifelse(x$sd.reduction * 2 < x$mutant.reduction,
+      paste("\\textcolor{black}{", formatC(x$sd.reduction, dig=2, format="f"), "}"),
+      paste("\\textcolor{red}{", formatC(x$sd.reduction, dig=2, format="f"), "}"))
+  x$r.square <- colorize.rsqr(x$r.square)
+  return(x)
+}
+
+
+theme_set(theme_bw(12))
+myopts <- theme(panel.background = element_blank())
+
+sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
+new.colnames <- c('operator', '$R^2$',      '$\\mu_{red}$',            '$\\sigma_{red}$',         'valid',    '$\\beta_1$')
+
+c.df <- colorize.it(stats.df)
+
+stats.xp <- subset(c.df, grepl('^(r|rr|rc)[.]', operator)) # We are ignoring ceil here. add rc if needed.
+
+o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
+r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
+stats.rest <- subset(c.df, !grepl('^(r|rr|rc)[.]', operator))
+colnames(o.stats.sel.xp) <- new.colnames
+colnames(r.stats.sel.xp) <- new.colnames
+o.stats.sel.xp$scope <- NA
+r.stats.sel.xp$scope <- NA
+o.stats.sel.xp$sampling <- NA
+r.stats.sel.xp$sampling <- NA
 
 o.stats.sel.xp.sample <- subset(o.stats.sel.xp, grepl('^rr[.]', operator))
 r.stats.sel.xp.sample <- subset(r.stats.sel.xp, grepl('^rr[.]', operator))
