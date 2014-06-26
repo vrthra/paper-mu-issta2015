@@ -1,0 +1,142 @@
+----------------------- REVIEW 1 ---------------------
+PAPER: 55
+TITLE: An Empirical Comparison of Mutant Selection Approaches
+AUTHORS: Rahul Gopinath, Mohammad Amin Alipour, Iftekhar Ahmed, Carlos Jensen and Alex Groce
+
+
+----------- REVIEW -----------
+This paper presents an empirical study of comparing several random mutant selection approaches and several operator-based mutant selection approaches, including some approaches not studied previously. The empirical results indicate that pure random selection of mutants seems to outperform the other mutant selection approaches.
+
+In general, I feel positive with this paper.
+First, compared with previous studies on selective mutation testing, the study reported in this paper is larger due to the use of larger and more subject programs. Therefore, the empirical results should be more solid.
+Second, to me the study reported in this paper is also the most comprehensive in terms of the number of approaches compared in the study. Furthermore, two types of test suites (i.e., manually generated test suites and automatically generated test suites) are used in the study, while previous studies typically use only one type of test suites (i.e., manually generated test suites).
+Third, the findings of this study are generally interesting. I believe that the findings can provide some guidance for mutation testing in research and/or practice.
+
+However, I still have some concerns with this paper.
+First, I am not quite sure whether the contributions in this paper are significant enough. There are already several studies of mutant selection in the literature. Some of the findings are similar to those reported in previous studies, although the study reported in this paper seems to be more solid. In this aspect, I view this study more of an incremental study than a revolutionary study.
+Second, I am not fully satisfied with the presentation of this paper. I think the presentation is generally clear. My concern is that there is no clear distinction between discussions of findings that have been reported previously and discussions of findings newly discovered in this paper. Therefore, the delta over previous studies is not very clear.
+Third, Section 3.2 seems odd to me. It is unclear what approaches are actually used in the study. If all the approaches mentioned in Sections 3.2.1 to 3.2.6 are used in the study, some experimented approaches are not the exact approaches reported in the literature. Therefore, the results regarding these approaches may not be convincing. If some of the approaches mentioned in Sections 3.2.1 to 3.2.6 are not used in the study, I don’t know why they should be mentioned there.
+
+Minor issues
+
+Page 7: “We did not cut off with the 99% rule as mentioned byZhang et al. [30]…”. There should be a blank before “Zhang”.
+Reference [31] and reference [32] are the same paper. Please remove one of them.
+
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 55
+TITLE: An Empirical Comparison of Mutant Selection Approaches
+AUTHORS: Rahul Gopinath, Mohammad Amin Alipour, Iftekhar Ahmed, Carlos Jensen and Alex Groce
+
+
+----------- REVIEW -----------
+The paper presents an extensive empirical comparison of mutant
+selection approaches. Selective mutation testing has been widely used
+to reduce the cost of mutation testing. Recent work has shown that
+random mutant sampling can be as effective as or even more effective
+than the operator-based mutant selection. However, the paper claims
+that the existing studies are limited due to the small number of
+subject programs studied and may suffer threats to external
+validity. Thus, this paper studies a larger number of open-source Java
+programs from GIT repository to revisit the existing studies for
+mutant selection. The experimental results validate that the random
+mutant sampling techniques indeed outperform the operator-based mutant
+selection.  The main experimental setups of this study are similar
+with previous work [30, 31].
+
+Overall, I enjoyed reading the paper, and appreciate the efforts that
+the authors took to conduct this experimental study. Here is the list
+pros of this paper:
+
++ The study is well designed and the paper is easy to follow.
+
++ The experimental study is evaluated on a large set of open-source
+subjects.
+
++ This study evaluates two types of test suites for mutant selection:
+original suites and automatically generated test suites.
+
++ This empirical study further extends the existing work [30,31] by
+considering more mutant selection techniques and evaluating using more
+experimental subjects.
+
+There are also some issues with the paper. If they can be addressed,
+the paper can be even stronger:
+
+- The experimental setup is not clearly described. For example, the
+  study does not mention how the automated test suites were generated?
+  e.g., what is the time limit for Randoop to generate those suites?
+  what is the coverage and quality of those generated test suites? how
+  does the automatically generated test suites compare with original
+  test suites in terms of coverage or quality? Those factors may
+  influence the experimental results of automatically generated
+  suites.
+
+- Several approximations were made during the experiments. For
+  example, the paper uses the existing mutation operators from PIT to
+  simulate different operators studied by other papers using other
+  tools.
+
+- The paper does not give much explanation for the difference in
+  performances of original and automatically generated test suites.
+  Since automated test generation techniques are more and more widely
+  used, some reasoning here can give practitioners some useful
+  guidelines.
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 55
+TITLE: An Empirical Comparison of Mutant Selection Approaches
+AUTHORS: Rahul Gopinath, Mohammad Amin Alipour, Iftekhar Ahmed, Carlos Jensen and Alex Groce
+
+
+----------- REVIEW -----------
+This paper is about mutation testing. Specifically, the paper focuses on the problem of mutation testing has because of the large number of mutants required. Two of the approaches that have previously been proposed to deal with this problem are selecting mutation operators, and selecting from the set of mutants generated. When selecting operators, the technique rules out whole class of mutants, without even considering which actual mutants might be created. By contrast, sampling techniques allow all mutation operators to be applied, but then sample from these, a subset of overall mutants.
+
+Though there have been previous studies have this problem, this paper is undoubtedly the most thorough and comprehensive study of the different techniques for reducing mutation cost you to the large number of mutations possible.
+
+Specifically, the paper analyses a large corpus of programs from 188 different systems. These programs are selected from GitHub and the authors claim they contain between 50 and 100,000 lines of code. Some of these programs come with initial test suites, while others do not. In order to evaluate mutation testing, we need to test we each program with a realistic test suite (that has a high mutation score on the unselected = full set of all mutants). To address this issue the authors use Randoop, a random test data generation technique.
+
+On the positive side, this paper is clearly an attempt to perform a very thorough study of selective mutation testing techniques. It definitely considers programs of a larger size and also of larger number than any previously reported study. It also covers more selection techniques and any previously reported study. These questions are very important for mutation testers, and, since mutation testing could be a promising test technique, they also important more widely.
+
+Having said that, there are number of non-trivial issues with the presentation of results, and the methodology by which they're obtained.
+
+
+Issues that need to be addressed
+================================
+
+Program selection methodology:
+The authors cite their ICSE paper in order to explain the methodology used to extract programs for study. Since this is such a crucial aspect of the paper, and since there seems to be space remaining which goes used, I would strongly recommend that the authors should  summarise this approach in paragraph. It is also unclear whether these data (the programs, test data and so on) are going to be made available publicly on the website somewhere. This is very important for replication, and I strongly urge the authors to do so.
+
+Mutation testing tool used:
+The authors use a publicly available mutation testing tool PIT. However, this raises some issues, since the tool does not have available some of the operators needed in order to fully evaluate some of the previously proposed selective techniques. For example, the most widely used technique for selective mutation testing is the one considered in Section 3.2.2, the so-called E-selective approach of Offutt et al.
+
+Unfortunately, the tool that the authors have chosen to use does not have one of the operators needed to implement this particular selective technique for mutation testing. It's odd that in the (very short) threats to validity section, the authors talk about the tool, but do not mention this aspect which seems to be very fundamental.
+
+The authors also do not explain why they chose to use this particular tool. Given the limitations on experimentation if imposes, one wonders why different tools were not selected, since there are several available. The authors need to better motivate their choice of this particular tool: what are the advantages that has to outweigh the disadvantages, for example this one I just mentioned?
+
+Results reported using regression fitting analysis:
+The authors use an "interesting" approach to reporting the relative difference in sampling techniques as opposed to the original full set of mutants. That is, they use linear regression, to fit a straight line on the scatterplot of data, where one axis represents the unadulterated's mutation score, while the other represents the mutation score that arises from sampling.
+
+This is an interesting approach, but all previous work has used the more informative approach of reporting the reduction in mutant effectiveness. It's not clear why the authors dont report these numbers, which would give us a much more clear understanding of the reduction in test effectiveness that arises from each sampling technique.
+
+The use of the regression plot, gives us a kind of "approximation" to this. However, this approximation is just that; an approximation. If the R value (it would have been better to report R not R^2) is quite close to 1.0, then we can trust that the beta_1 value indicates the trade-off between sampling and not sampling.
+
+That is, it is a reasonable measure of the trend; the closer to 1, the less reduction in test effectiveness occurs. However, this really is only an approximation, since it is a best fit line and the slope of that line is not really the true reduction in test effectiveness.
+
+Since test effectiveness can easily be measured, and its reduction can also be measured it is unclear why the authors chose to just report these regression fits. I can see that it might be interesting to report the regression results, but it's surely essential to also report on the actual reduction test effectiveness that arises from each  selection approach.
+
+In order to report thus, what we need to do is to discover whether, on average, a set of test data which kills all of the sample of mutants would also kill all of the full set of mutants. This is the approach that has been adopted by all previous work. In order to do this, we need to sample test suites; those tests that kill the entire sample set (or as close as possible to this, notwithstanding the equivalent mutant problem). We then need to check, on average, what proportion of the full set of mutants are killed by these same sets of test data. It really is baffling to me why the author's don't report this, and I think it's a serious problem.
+
+The use of randomly generated test suites:
+The authors use a random test data generation technique in order to generate a test suite for each program. The problem with this is that the test suite so-generated may not actually kill all (or even nearly all) of the mutants, either in the sample or in the full set of mutants.
+
+As such, where the mutation score is already low for the full set of mutants, the sample may achieve artificially good results.
+
+This is because random test data tends to kill the easy-to-kill mutants, leaving behind those which are harder to kill. If we sample sets of mutants, then we may miss out some which are harder to kill and thereby reduce the pressure on the test data generation side of the equation.
+
+I recognise that this issue is one that cannot be overcome, given the current state of test data generation technology (we do not have tools that  can generate tests that kill all mutants - or nearly all- for large real world systems). However, it is one that deserves to be fully explained in the threats to validity section.
+
+More importantly, it is also an issue that needs to be addressed in the scientific reporting of results. That is, without knowing what the proportion of mutants killed by each test suite in the original set of (unselected) mutants is, we cannot seek to replicate these results. Furthermore, we cannot understand the impact of this potential threat to validity on the results reported.
+
+If the paper is accepted, then the authors really need to report, for each program, the proportion of mutants killed from the unselected set, and the proportion killed from the selected set. These data absolutely essential for any chance of proper interpretation of the results reported here.
