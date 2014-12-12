@@ -272,4 +272,4 @@ r.stats.sel.xop$operator  <- gsub('_per_op','',gsub('OP[.]1x','1/', r.stats.sel.
 <<conclusion, child='conclusion.Rnw'>>=
 @
 %\FloatBarrier
-\clearpage
+%\clearpage

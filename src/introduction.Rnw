@@ -5,18 +5,20 @@ Mutation analysis is a method for evaluating the quality of test suites. It
 involves producing a family of \emph{mutants}, programs with small
 differences from the original program, and evaluating the
 effectiveness of test suites against these
-mutants~\cite{lipton1971fault, ammann2008introduction}.  Previous
-research~\cite{andrews2005mutation} suggests that mutations thus
-introduced behave in a fashion similar to real faults, with respect to
-the difficulty of detection.
+mutants~\cite{lipton1971fault, ammann2008introduction}.  Andrews et. al 
+~\cite{andrews2005mutation} suggest mutations can simulate
+behavior of real faults.
+% thus
+% introduced behave in a fashion similar to real faults, with respect to
+% the difficulty of detection.
 
-One of the impediments to wider adoption of mutation analysis is its
+An impediments to wider adoption of mutation analysis is its
 high computational cost.  The set of simple mutants for even a
 moderate sized program can be very large, making mutation
 analysis prohibitively time consuming.
 
 A major strain of research into cost-reduction of mutation analysis is
-to choose a smaller, representative, set of
+to choose a smaller, representative set of
 mutants~\cite{offutt2001mutation,jia2011analysis} --- often called the
 \textit{do fewer} approach. This approach can be generally divided
 into selective strategies and sampling strategies.
@@ -43,6 +45,7 @@ selection, in these studies; and a strategy of either sampling based on
 program elements or one combining both program element-based sampling
 and operator selection was best.
 
+
 However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field
 has a serious lacuna in large scale research, both in the size of the
 programs studied, and in the number and diversity of programs, which
@@ -62,6 +65,7 @@ source code modification are no longer applicable, and their
 equivalents in bytecode need to be identified and compared with other
 approaches. A detailed discussion of these issues can be found in
 Section~\ref{sec:related}.
+
 
 We have attempted to rectify this situation with a large scale study of real
 world programs.  As detailed in Section~\ref{sec:methodology}, we sample
