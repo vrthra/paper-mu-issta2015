@@ -5,9 +5,9 @@ Mutation analysis is a method for evaluating the quality of test suites. It
 involves producing a family of \emph{mutants}, programs with small
 differences from the original program, and evaluating the
 effectiveness of test suites against these
-mutants~\cite{lipton1971fault, ammann2008introduction}.  Andrews et. al 
-~\cite{andrews2005mutation} suggest mutations can simulate
-behavior of real faults.
+mutants~\cite{lipton1971fault, ammann2008introduction}. Research by
+Andrews et. al~\cite{andrews2005mutation} suggest that mutations can
+simulate behavior of real faults.
 % thus
 % introduced behave in a fashion similar to real faults, with respect to
 % the difficulty of detection.
@@ -38,26 +38,27 @@ proposed using only $x$\% of all mutants produced. Wong and Mathur
 found that random sampling with ratio as low as 10\% could provide
 accurate results~\cite{jia2011analysis}.
 
-Recent work~\cite{zhang2010icse,zhang2013ase} has investigated the
-relative merits of random sampling strategies and operator selection.
-Random sampling can perform as well as or better than operator
-selection, in these studies; and a strategy of either sampling based on
-program elements or one combining both program element-based sampling
-and operator selection was best.
-
+Recent work~\cite{zhang2010icse,zhang2013ase} investigating the
+relative merits of random sampling strategies and operator selection
+suggests that random sampling can perform as well as or better than operator
+selection, and a strategy of either sampling based on program elements or
+one combining both program element-based sampling and operator selection
+was the best approach.
 
 However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field
 has a serious lacuna in large scale research, both in the size of the
 programs studied, and in the number and diversity of programs, which
-reduces our confidence in all results. This is true for selective
-mutation studies, sampling studies, and also for comparatively
-newer studies that attempt to combine methods. This is particularly
-worrisome if mutation analysis is to gain wider acceptance among
-testing professionals. Further, quite a few of the influential
-studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
+reduces our confidence. This is true for selective mutation studies,
+sampling studies, and also for comparatively newer studies that attempt
+to combine methods. This is particularly worrisome if mutation analysis
+is to gain wider acceptance among testing professionals.
+
+Further, quite a few of the influential studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
 were conducted on older programming languages such as Fortran, with
 operators specific to the language, and are not directly applicable to
-newer languages such as Java. Finally, with bytecode~\footnote{
+newer languages such as Java.
+
+Finally, with bytecode~\footnote{
 A \textit{do faster} approach for eliminating
 the compilation step to gain execution speed
 } based mutation
@@ -74,13 +75,22 @@ world programs. As detailed in Section~\ref{sec:methodology}, we sample
 250 Java programs from Github\footnote{Our dataset is 322 programs, but as of
 this writing the larger projects have not completed finished running
 full-mutation analysis.},
-with size ranging from 50 LOC to 100 KLOC, excluding tests,
-which allow widely applicable statistical inferences to be made.
+with size ranging from $50$ to $100,000$ lines (excluding tests), allowing
+us to draw more widely applicable statistical inferences.
 
-For a mutation selection strategy to be considered effective, especially during
-the development, it should be able to expose as many defect-like behaviors as
-possible.
-
+% For a mutation selection strategy to be considered effective, especially during
+% the development, it should be able to expose as many defect-like behaviors as
+% possible.
+Consider any test in a test suite. It is written with the intent of
+checking for the absence of some (faulty) behavior. If supposing, tests
+were equivalent in the number of behaviors that they test, then the best test
+suite would be one that included the largest number of non-redundant test
+cases~\footnote{We show later why this assumption is valid (Specifically,
+assertion distribution was $\mu=1.7$ and $\sigma=2$ )}. This suggests that
+we could evaluate different mutation reduction strategies on their ability
+to choose mutants such that they are killed by a larger number of
+non-redundant test cases. Further, such a technique is not limited by the
+adequacy of test suite under consideration.
 
 Section~\ref{sec:methodology} discusses the sampling and operator
 selection strategies we study in detail, and the results of our
