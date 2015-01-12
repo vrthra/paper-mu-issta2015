@@ -6,32 +6,43 @@ smaller subset of mutations to run is a simple approach that can
 alleviate this problem.  Mutation operator selection has been heavily
 researched. Recently, researchers have found that sampling mutants can
 achieve accuracy and mutant reduction similar to operator selection.
+Newer research has also indicated that program element based sampling
+may be better than pure random sampling or traditional operator selection.
+
 %
 %2.Saywhyit’saninterestingproblem
-However, the empirical support for these conclusions has been limited, due to the small number of subject programs investigated.  The best sampling technique is also an open problem.
-% that can be drawn from the previous
-%research has been limited due to the small number of subject programs. Further,
-%which sampling technique is best is still an open problem that needs to be
-%tackled on a much larger range of test subjects.
-
+However, the empirical support for these conclusions has been limited,
+due to the small number of subject programs investigated. The best sampling
+technique is also an open problem. Further, current research has focused
+on evaluating mutation analysis techniques over adequate test suites. However,
+real world test suites are often far from test adequacy, and it is not clear
+if the results carry over to non-adequate test suites.
 %3.Saywhatyoursolutionachieves
 
-Our research compares a large number of sampling and operator
-selection criteria based on their ability to predict the full mutation
-score as well as the consistency of mutation reduction ratios
-achieved. Our results can be used to choose an appropriate mutation
-reduction technique by the reduction and level of fidelity to full
-mutation results required.
+We propose that a better mutation selection criteria should generate a larger
+number of defective behaviors than a worse mutation selection criteria, which
+we judge using the number of non-redundant tests able to kill the sampled
+mutants.
+
+We evaluate the performance of various selection criteria on 250 opensource
+projects from github, which shows that the popular operator selection and
+element based sampling are not much better than random selection, and often
+performs worse than random selection. This suggests a need for further research
+on better methods of operator selection and sampling.
+
+% Our results can be used to choose an appropriate mutation
+% reduction technique by the reduction and level of fidelity to full
+% mutation results required.
 
 %according to the mutation reduction ratio desired, and
 %how much reduction in accuracy is acceptable.
 
 %4.Saywhatfollowsfromyoursolution
 
-We find that all sampling approaches perform better than operator
-selection methods, when considering ability to predict the full
-mutation score as well as the consistency of mutation reduction ratios
-achieved.
+% We find that all sampling approaches perform better than operator
+% selection methods, when considering ability to predict the full
+% mutation score as well as the consistency of mutation reduction ratios
+% achieved.
 
 %and also the consistency of mutation reduction ratios achieved.  Specifically,
 %we find that random selection of a mutant performs better than statement
