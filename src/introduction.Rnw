@@ -57,10 +57,12 @@ testing professionals. Further, quite a few of the influential
 studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
 were conducted on older programming languages such as Fortran, with
 operators specific to the language, and are not directly applicable to
-newer languages such as Java. Finally, with bytecode based mutation
+newer languages such as Java. Finally, with bytecode~\footnote{
+A \textit{do faster} approach for eliminating
+the compilation step to gain execution speed
+} based mutation
 engines like PIT~\cite{pitest} and Javalanche~\cite{javalanche}
-(a \textit{do faster} approach for eliminating
-the compilation step to gain execution speed), operators based on
+, operators based on
 source code modification are no longer applicable, and their
 equivalents in bytecode need to be identified and compared with other
 approaches. A detailed discussion of these issues can be found in
@@ -68,26 +70,12 @@ Section~\ref{sec:related}.
 
 
 We have attempted to rectify this situation with a large scale study of real
-world programs.  As detailed in Section~\ref{sec:methodology}, we sample
-188 Java programs from Github, with size ranging from 50 LOC to 100 KLOC,
-which should allow widely applicable statistical inferences to be made. We
-provide the results from running both the original project's (presumably
-human-generated) test suites and also automatically generated test suites
-using random testing, increasing the applicability of our findings to both
-testers in traditional development who are interested in applying mutation
-analysis to suite evaluation and to researchers who seek to compare test
-suites quickly to evaluate testing techniques.
-
-One note about our, and other researchers, evaluation criteria is in
-order.  We, like others, use the ability of a sample to correlate well
-to the score over all mutants as a measure of sampling quality.  The
-underlying reason for this is that, while many mutants have little
-ability to distinguish between good and bad test suites, some smaller
-set of mutants show subtle deficiencies in suites that are not clear
-from, say, code coverage.  The full set of mutants obviously contains
-these mutants, and correlating with (rather than matching) the
-full mutation score is a strong indicator that many of these
-discriminatory mutants have been preserved in a sample.
+world programs. As detailed in Section~\ref{sec:methodology}, we sample
+250 Java programs from Github\footnote{Our dataset is 322 programs, but as of
+this writing the larger projects have not completed finished running
+full-mutation analysis.},
+with size ranging from 50 LOC to 100 KLOC, excluding tests,
+which should allow widely applicable statistical inferences to be made.
 
 Section~\ref{sec:methodology} discusses the sampling and operator
 selection strategies we study in detail, and the results of our
@@ -97,25 +85,25 @@ detailed discussion of what these results imply in Section
 
 \begin{itemize}
 
-\item Our study is the largest so far in terms of both the size of programs
-involved (50 LOC to 100 KLOC), and the number of programs analyzed (188
-unique open source projects) for mutant reduction strategies. This allows
-for stronger and more widely applicable conclusions about effectiveness.
+\item Our study is the largest so far in terms of
+both the size of programs involved (50 LOC to 100 KLOC excluding tests),
+and the number of programs analyzed (250 unique open source projects) for
+mutant reduction strategies. This allows for stronger and more widely
+applicable conclusions about effectiveness.
 
-\item We compare a much larger number of mutant reduction strategies
-than previous studies. We compare with respect to the predictive power
-(correlation with the full mutation score), expected mutant reduction,
-and the stability of the amount of mutant reduction expected. Our
-sampling strategies include some that were suggested by other
-researchers, as well as a few novel strategies not previously considered.
+\item We compare a much larger
+number of mutant reduction strategies than previous studies. Our reduction
+strategies include all the common and influential strategies for
+random sampling, element scoped sampling, and operator selection, that
+have been proposed in previous studeies.
 
-\item Our recommendations are useful for both testing researchers who
-might be comparing automatically generated test suites, and software
-testers in real world working to produce and evaluate manual test suites.
+\item Our evaluation crtieria is applicable to non-adequate test suites
+which makes the results immediately relevant for real world programs with
+non-adequate test suites.
 
-\item Most importantly, we find that random sampling strategies perform
-better than operator selection strategies in consistently predicting the
-final mutation score while obtaining stable computational reduction.
+\item Most importantly, we find that current operator reduction strategies
+seldom perform better than random sampling of mutants, which suggests a need
+for further research in this area.
 
 \end{itemize}
 
