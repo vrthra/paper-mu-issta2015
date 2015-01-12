@@ -72,17 +72,12 @@ require(reshape2)
 require(scales)
 require(xtable)
 require(ggplot2)
-require(Mutsel)
+require(MutSel)
 @
 <<chunk-hook, echo=2>>=
 <<setup>>
-v=data(package='Mutsel')
+v=data(package='MutSel')
 data(list = v$results[,3])
-original.stats.df <- stats.df # save it
-o.f <- function(x) subset(x, kind == 'original')
-r.f <- function(x) subset(x, kind == 'randoop')
-o.stats.df <- o.f(stats.df)
-r.stats.df <- r.f(stats.df)
 @
 \end{comment}
 <<>>=
@@ -110,146 +105,6 @@ colorize.it <- function(x) {
 
 theme_set(theme_bw(12))
 myopts <- theme(panel.background = element_blank())
-
-sel.colnames <- c('operator', 'r.square', 'mutant.reduction', 'sd.reduction', 'sample', 'score.multiplier')
-new.colnames <- c('operator', '$R^2$',      '$\\mu_{red}$',            '$\\sigma_{red}$',         'valid',    '$\\beta_1$')
-
-c.df <- colorize.it(stats.df)
-
-stats.xp <- subset(c.df, grepl('^(r|rr|rc)[.]', operator)) # We are ignoring ceil here. add rc if needed.
-
-o.stats.sel.xp <- subset(o.f(stats.xp), select=sel.colnames)
-r.stats.sel.xp <- subset(r.f(stats.xp), select=sel.colnames)
-stats.rest <- subset(c.df, !grepl('^(r|rr|rc)[.]', operator))
-colnames(o.stats.sel.xp) <- new.colnames
-colnames(r.stats.sel.xp) <- new.colnames
-o.stats.sel.xp$scope <- NA
-r.stats.sel.xp$scope <- NA
-o.stats.sel.xp$sampling <- NA
-r.stats.sel.xp$sampling <- NA
-
-o.stats.sel.xp.sample <- subset(o.stats.sel.xp, grepl('^rr[.]', operator))
-r.stats.sel.xp.sample <- subset(r.stats.sel.xp, grepl('^rr[.]', operator))
-
-o.stats.sel.xp.sample$operator <- gsub('rr[.]1x','1/', o.stats.sel.xp.sample$operator)
-o.stats.sel.xp.sample$scope <- gsub('.*_','', o.stats.sel.xp.sample$operator)
-o.stats.sel.xp.sample$sampling <- gsub('_.*','', o.stats.sel.xp.sample$operator)
-r.stats.sel.xp.sample$operator  <- gsub('rr[.]1x','1/', r.stats.sel.xp.sample$operator)
-r.stats.sel.xp.sample$scope <- gsub('.*_','', r.stats.sel.xp.sample$operator)
-r.stats.sel.xp.sample$sampling <- gsub('_.*','', r.stats.sel.xp.sample$operator)
-
-o.stats.sel.xp.round <- subset(o.stats.sel.xp, grepl('^r[.]', operator))
-r.stats.sel.xp.round <- subset(r.stats.sel.xp, grepl('^r[.]', operator))
-
-o.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', o.stats.sel.xp.round$operator)
-o.stats.sel.xp.round$scope  <- gsub('.*_','', o.stats.sel.xp.round$operator)
-o.stats.sel.xp.round$sampling  <- gsub('_.*','', o.stats.sel.xp.round$operator)
-r.stats.sel.xp.round$operator  <- gsub('r[.]1x','1/', r.stats.sel.xp.round$operator)
-r.stats.sel.xp.round$scope  <- gsub('.*_','', r.stats.sel.xp.round$operator)
-r.stats.sel.xp.round$sampling  <- gsub('_.*','', r.stats.sel.xp.round$operator)
-
-o.stats.sel.xp.ceil <- subset(o.stats.sel.xp, grepl('^rc[.]', operator))
-r.stats.sel.xp.ceil <- subset(r.stats.sel.xp, grepl('^rc[.]', operator))
-
-o.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', o.stats.sel.xp.ceil$operator)
-o.stats.sel.xp.ceil$scope  <- gsub('.*_','', o.stats.sel.xp.ceil$operator)
-o.stats.sel.xp.ceil$sampling  <- gsub('_.*','', o.stats.sel.xp.ceil$operator)
-r.stats.sel.xp.ceil$operator  <- gsub('rc[.]1x','1/', r.stats.sel.xp.ceil$operator)
-r.stats.sel.xp.ceil$scope  <- gsub('.*_','', r.stats.sel.xp.ceil$operator)
-r.stats.sel.xp.ceil$sampling  <- gsub('_.*','', r.stats.sel.xp.ceil$operator)
-# 1 done
-stats.loc <- subset(stats.rest, grepl('^l[.]', operator))
-o.stats.sel.loc <- subset(o.f(stats.loc), select=sel.colnames)
-r.stats.sel.loc <- subset(r.f(stats.loc), select=sel.colnames)
-stats.rest <- subset(stats.rest, !grepl('^l[.]', operator))
-colnames(o.stats.sel.loc) <- new.colnames
-colnames(r.stats.sel.loc) <- new.colnames
-
-o.stats.sel.loc$operator  <- gsub('l[.]1x','1/', o.stats.sel.loc$operator)
-o.stats.sel.loc$scope  <- gsub('.*_','', o.stats.sel.loc$operator)
-o.stats.sel.loc$sampling  <- gsub('_.*','', o.stats.sel.loc$operator)
-r.stats.sel.loc$operator  <- gsub('l[.]1x','1/', r.stats.sel.loc$operator)
-r.stats.sel.loc$scope  <- gsub('.*_','', r.stats.sel.loc$operator)
-r.stats.sel.loc$sampling  <- gsub('_.*','', r.stats.sel.loc$operator)
-
-stats.loc.w <- subset(stats.rest, grepl('^wl[.]', operator))
-o.stats.sel.loc.w <- subset(o.f(stats.loc.w), select=sel.colnames)
-r.stats.sel.loc.w <- subset(r.f(stats.loc.w), select=sel.colnames)
-stats.rest <- subset(stats.rest, !grepl('^wl[.]', operator))
-colnames(o.stats.sel.loc.w) <- new.colnames
-colnames(r.stats.sel.loc.w) <- new.colnames
-
-o.stats.sel.loc.w$operator  <- gsub('wl[.]1x','1/', o.stats.sel.loc.w$operator)
-o.stats.sel.loc.w$scope  <- gsub('.*_','', o.stats.sel.loc.w$operator)
-o.stats.sel.loc.w$sampling  <- gsub('_.*','', o.stats.sel.loc.w$operator)
-r.stats.sel.loc.w$operator  <- gsub('wl[.]1x','1/', r.stats.sel.loc.w$operator)
-r.stats.sel.loc.w$scope  <- gsub('.*_','', r.stats.sel.loc.w$operator)
-r.stats.sel.loc.w$sampling  <- gsub('_.*','', r.stats.sel.loc.w$operator)
-# 2 done
-
-stats.one <- subset(stats.rest, grepl('^o[.]', operator))
-
-o.stats.sel.one <- subset(o.f(stats.one), select=sel.colnames)
-r.stats.sel.one <- subset(r.f(stats.one), select=sel.colnames)
-stats.rest <- subset(stats.rest, !grepl('^o[.]', operator))
-colnames(o.stats.sel.one) <- new.colnames
-colnames(r.stats.sel.one) <- new.colnames
-
-
-o.stats.sel.one$operator  <- gsub('o[.]1x','1/', o.stats.sel.one$operator)
-o.stats.sel.one$scope  <- gsub('.*_','', o.stats.sel.one$operator)
-o.stats.sel.one$sampling  <- gsub('_.*','', o.stats.sel.one$operator)
-
-
-r.stats.sel.one$operator  <- gsub('o[.]1x','1/', r.stats.sel.one$operator)
-r.stats.sel.one$scope  <- gsub('.*_','', r.stats.sel.one$operator)
-r.stats.sel.one$sampling  <- gsub('_.*','', r.stats.sel.one$operator)
-# 3 done
-
-stats.op <- subset(stats.rest, grepl('^(op:|TSDL)', operator))
-o.stats.sel.op <- subset(o.f(stats.op), select=sel.colnames)
-r.stats.sel.op <- subset(r.f(stats.op), select=sel.colnames)
-stats.rest <- subset(stats.rest, !grepl('^(op:|TSDL)', operator))
-colnames(o.stats.sel.op) <- new.colnames
-colnames(r.stats.sel.op) <- new.colnames
-
-#o.stats.sel.op$kind  <- ifelse(grepl('opsel:', o.stats.sel.op$operator), 'selection', 'operator')
-#r.stats.sel.op$kind  <- ifelse(grepl('opsel:', o.stats.sel.op$operator), 'selection', 'operator')
-
-o.stats.sel.op$operator  <- gsub('NVMC','NMC', gsub('_','',gsub('op.*:','', o.stats.sel.op$operator)))
-r.stats.sel.op$operator  <- gsub('NVMC','NMC', gsub('_','',gsub('op.*:','', r.stats.sel.op$operator)))
-
-stats.opsel <- subset(stats.rest, grepl('^opsel', operator))
-o.stats.sel.opsel <- subset(o.f(stats.opsel), select=sel.colnames)
-r.stats.sel.opsel <- subset(r.f(stats.opsel), select=sel.colnames)
-stats.rest <- subset(stats.rest, !grepl('^opsel', operator))
-colnames(o.stats.sel.opsel) <- new.colnames
-colnames(r.stats.sel.opsel) <- new.colnames
-
-#o.stats.sel.op$kind  <- ifelse(grepl('opsel:', o.stats.sel.op$operator), 'selection', 'operator')
-#r.stats.sel.op$kind  <- ifelse(grepl('opsel:', o.stats.sel.op$operator), 'selection', 'operator')
-
-o.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', o.stats.sel.opsel$operator))
-r.stats.sel.opsel$operator  <- gsub('_','',gsub('op.*:','', r.stats.sel.opsel$operator))
-
-stats.xop <- subset(stats.rest, grepl('^OP', operator))
-stats.rest <- subset(stats.rest, !grepl('^OP', operator))
-
-o.stats.sel.xop <- subset(o.f(stats.xop), select=sel.colnames)
-r.stats.sel.xop <- subset(r.f(stats.xop), select=sel.colnames)
-colnames(o.stats.sel.xop) <- new.colnames
-colnames(r.stats.sel.xop) <- new.colnames
-
-o.stats.sel.xop$scope  <- 'operator'
-o.stats.sel.xop$sampling  <- gsub('_per_op','',gsub('OP[.]1x','1/', o.stats.sel.xop$operator))
-r.stats.sel.xop$scope  <- 'operator'
-r.stats.sel.xop$sampling  <- gsub('_per_op','',gsub('OP[.]1x','1/', r.stats.sel.xop$operator))
-
-o.stats.sel.xop$operator  <- gsub('_per_op','',gsub('OP[.]1x','1/', o.stats.sel.xop$operator))
-r.stats.sel.xop$operator  <- gsub('_per_op','',gsub('OP[.]1x','1/', r.stats.sel.xop$operator))
-
-
-# 4 done
 
 @
 % 10 pages for the main text + 1 for references.
