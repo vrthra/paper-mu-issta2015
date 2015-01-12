@@ -75,7 +75,12 @@ world programs. As detailed in Section~\ref{sec:methodology}, we sample
 this writing the larger projects have not completed finished running
 full-mutation analysis.},
 with size ranging from 50 LOC to 100 KLOC, excluding tests,
-which should allow widely applicable statistical inferences to be made.
+which allow widely applicable statistical inferences to be made.
+
+For a mutation selection strategy to be considered effective, especially during
+the development, it should be able to expose as many defect-like behaviors as
+possible.
+
 
 Section~\ref{sec:methodology} discusses the sampling and operator
 selection strategies we study in detail, and the results of our

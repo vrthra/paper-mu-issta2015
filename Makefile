@@ -15,7 +15,6 @@ build/acm_sigproc.pdf: $(things) build/data/MutSel_1.0.tar.gz
 	cp src/*.tex build
 	cd build; Rscript -e "require(knitr); knit('paper.Rnw', encoding='UTF-8');"
 	cd build; ../bin/latexmk -pdf acm_sigproc.tex
-	- cp build/acm_sigproc.pdf /scratch
 
 build/MutSel_1.0.tar.gz.md5:
 	curl http://web.engr.oregonstate.edu/~gopinath/issta15/MutSel_1.0.tar.gz.md5 -o build/MutSel_1.0.tar.gz.md5
