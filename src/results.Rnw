@@ -1,39 +1,6 @@
 \section{Results}
 \label{sec:results}
 
-Our results for random sampling over program elements using $sample(x)$
-are given in Table~\ref{tbl:xselsample}. The result of the variation using
-$round(x)$ is given in Table~\ref{tbl:xselround} and that using $ceil(x)$
-is given in Table~\ref{tbl:xselceil}. The first
-column in each table provides the scope of sampling: per project, per class,
-per method, or per line. The second column ($\div$) provides the fraction
-involved. The third column contains the $R^2$ value obtained between the
-mutation score of the sampling criteria used and the full mutation score.
-The fourth column ($\mu_{red}$) the mutant reduction factor,
-which is the average of total mutants divided by the number of
-mutants sampled. The fifth column ($\sigma_{red}$) is the standard deviation
-of the same. As we explained in the analysis, the sixth column contains
-the valid responses obtained.  The seventh column ($\beta_1$) is the
-multiplier factor (coefficient reported by the regression.)
-
-Table~\ref{tbl:lcountl} provides the results for line count criteria
-where the sampling was conducted after combining program elements, and
-Table~\ref{tbl:lcountw} contains the results for line count criteria
-where the sampling was conducted inside each program element. Similarly
-Table~\ref{tbl:onesel} contains the results for the criteria of one mutant
-per program element.
-
-Finally, Table~\ref{tbl:operators} contains the results when only a single
-operator is used, and Table~\ref{tbl:opsel} contains the results for specific
-operator selection criteria. The first columns in these two tables contain
-the particular operator or operator selection applied, and the fraction
-column ($\div$) is absent. The remaining columns are same as previous tables.
-The TSDL row is the result of applying only the higher order mutant equivalent
-to \textit{statement deletion}.  All the \textit{N-sel} rows are the results
-of N-selective operator selection strategies~\cite{offutt1993anexperimental},
-using the order of operators from Figure~\ref{fig:op}. The complete data
-(only for original test suites) is visualized in Figure~\ref{fig:fullimgsize}.
-
 % \subsection{SDL vs Random selection}
 % \begin{figure*}[t]
 % <<sdl.x,fig.width=10, fig.height=10, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=

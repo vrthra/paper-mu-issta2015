@@ -12,7 +12,7 @@ behavior of real faults.
 % introduced behave in a fashion similar to real faults, with respect to
 % the difficulty of detection.
 
-An impediments to wider adoption of mutation analysis is its
+An impediment to the wider adoption of mutation analysis is its
 high computational cost.  The set of simple mutants for even a
 moderate sized program can be very large, making mutation
 analysis prohibitively time consuming.

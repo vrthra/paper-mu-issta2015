@@ -21,17 +21,18 @@ We ran mutation analysis on this set of projects using
 PIT\cite{pitest}. However, since the operators provided by PIT are
 limited, we extended PIT to provide newer operators that are similar to
 operators provided by other mutation systems. The set of operators that
-we used is provided in Table~\ref{tbl:pitop}. Figure~\ref{fig:op} shows
-the distribution of mutants and the relative detection rates of each
-mutation operator for our projects. In the figure, there are two box-plots
-corresponding to each mutation operator on the Y-axis. The black box represents
-the relative frequency of the particular mutation operator in the total
-mutants \textit{produced}. For example, for projects in the (Randoop) generated set,
-the operator \pitnvmc contributed about 34\% of the total number of mutants
-produced while \pitrv contributed about 7\%. Similarly, the blue shaded
-box-plot represents the relative frequency of particular mutation operator
-in the total mutants \textit{detected}. For example, \pitnvmc contribution
-in the detected mutants was 23\% while that of \pitrv was 15\%.
+we used is provided in Table~\ref{tbl:pitop}.
+% Figure~\ref{fig:op} shows
+% the distribution of mutants and the relative detection rates of each
+% mutation operator for our projects. In the figure, there are two box-plots
+% corresponding to each mutation operator on the Y-axis. The black box represents
+% the relative frequency of the particular mutation operator in the total
+% mutants \textit{produced}. For example, for projects in the (Randoop) generated set,
+% the operator \pitnvmc contributed about 34\% of the total number of mutants
+% produced while \pitrv contributed about 7\%. Similarly, the blue shaded
+% box-plot represents the relative frequency of particular mutation operator
+% in the total mutants \textit{detected}. For example, \pitnvmc contribution
+% in the detected mutants was 23\% while that of \pitrv was 15\%.
 
 For a detailed description of each mutation operator, please refer to PIT documentation~\cite{pitmut}.
 PIT was also modified to provide random selection of mutants according
@@ -217,7 +218,7 @@ killing any mutant from a line resulted in marking the virtual mutant
 for that line as killed. This gave us the mutation score for the
 virtual statement deletion operator.  We note that the approximation
 of simple statement deletion, especially when arithmetic operators are
-involved, is not complete. However, as seen in Figure~\ref{fig:op},
+involved, is not complete. However,
 the number of mutants produced by \pitm operator is very small. We
 also note that our approximation does not account for the increase in
 ease of detection when multiple mutations are combined together due to
