@@ -1,38 +1,38 @@
-\begin{table}[!ht]
+\begin{table*}[!ht]
 \caption*{Selective}
 <<results='asis'>>=
-print(xtable(r.selective.db, caption='Selective', label='table:selective'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(xtable(s.selective.db, caption='Selective', label='table:selective'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The operator selection criteria results. }
 \label{tbl:lcountl}
-\end{table}
+\end{table*}
 
-\begin{table}[!ht]
+\begin{table*}[!ht]
 \caption*{Element Scoped}
 <<results='asis'>>=
-print(xtable(r.lmc.db, caption='Element Scoped', label='table:element'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(xtable(s.lmcp.db, caption='Element Scoped', label='table:element'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The element based sampling criteria results. }
 \label{tbl:lcountl}
-\end{table}
+\end{table*}
 
-\begin{table}[!ht]
+\begin{table*}[!ht]
 \caption*{N-Selection}
 <<results='asis'>>=
-print(xtable(r.nselection.db, caption='N-Selection', label='table:nselection'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(xtable(s.nselection.db, caption='N-Selection', label='table:nselection'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The n-selection criteria results}
 \label{tbl:lcountl}
-\end{table}
+\end{table*}
 
-\begin{table}[!ht]
+\begin{table*}[!ht]
 \caption*{Single Operators}
 <<results='asis'>>=
-print(xtable(r.singles.db, caption='Single Operators', label='table:singles'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(xtable(s.singles.db, caption='Single Operators', label='table:singles'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The n-selection criteria results}
 \label{tbl:lcountl}
-\end{table}
+\end{table*}
 
 
 \section{Analysis}
