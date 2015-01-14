@@ -72,7 +72,11 @@ Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
 fraction of the complete set of mutants. This criteria also serves as a
 baseline for verifying the effectiveness of other criteria.
 
-\subsubsection{Sampling over program elements and variants}
+\subsubsection{x\% selection per operator}
+This strategy, first suggested by Wong et al.~\cite{wong1995reducing} samples an equal percentage
+of mutants from each operator.
+
+\subsubsection{Sampling over program elements}
 Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
 extended x\% selection criteria to sample from within different program
 elements.  We sampled in increasing order of scope,
@@ -82,59 +86,6 @@ scope is just x\% selection).
 We used the formula by Zhang et al.~\cite{zhang2013ase},
 \[sample(x) = \lfloor x + random(0..1) \rfloor \]
 to correctly sample decimal numbers.
-Next, we slightly modified this criteria, and instead of
-\textit{sample()} which uses probability to manage the decimal numbers,
-we applied \textit{round()} to obtain the nearest whole number, which
-was used as the number of samples to be chosen from the population.
-The new strategy ignores program elements with small number of mutants.
-This strategy can potentially guide mutation generation toward more
-complex program elements.
-That is, if the number of mutants dropped below a threshold determined by
-the mutant reduction ratio, that program element would not contribute any
-mutants to the final result.  Conceptually the idea is that mutants of more
-complex code have more discriminatory power (and may correspond better to
-real faults --- though we do not evaluate this concept).
-
-Next, we explored in the other direction, by forcing the program elements
-to return at least one element by using \textit{ceil()}. That is,
-irrespective of the fraction being sampled, the simplest elements always
-contributed at least one mutant to the total sample, ensuring coverage but
-also giving priority to complex elements.
-
-\subsubsection{Lines per element and variants}
-Our previous research~\cite{gopinath2014code} found that statement coverage
-was highly correlated with mutation score for a project. This immediately
-suggests that perhaps choosing one mutant per line may be sufficient to achieve
-a close approximation of the final mutation score. Further, statement deletion
-has been researched previously~\cite{untch2009onreduced,deng2013empirical} and
-has been found to reduce the number of mutants well, with negligible
-decrease in effectiveness. This also provides a nice comparison with similar
-numbers of mutants between operator selection and random sampling of mutants.
-
-We extended sampling to levels coarser than methods, i.e. method, class, and
-project. We sampled $n$ mutants from a method (class or project), where $n$
-is the number of statements in the method (class or project).
-
-This provided a test of the hypothesis of how important a mutation sampling's
-relationship to simple code coverage is. This was extended to class and
-project scope also.
-
-For the first variant, we applied the x\% sampling to the result of
-the first sampling based on line counts. That is, in the case of
-methods, we first selected \textit{linecount} mutants each from each
-method, and applied the x\% selection to this result.
-For example, for $1/2$ sampling on methods if one method had
-$10$ lines and another had $20$, we sampled $10$ mutants from
-the first, and $20$ from the second, and from the combined
-$30$ mutants, we sampled $15$.  For the second variant, we did the
-sampling in one go, where we chose \textit{linecount/x} number of
-mutants from each program element.  That is, in the previous example,
-only $5$ mutants from the first and $10$ mutants from the second
-method would be chosen.
-
-\subsubsection{x\% selection per operator}
-This strategy, first suggested by Wong et al.~\cite{wong1995reducing} samples an equal percentage
-of mutants from each operator.
 
 \subsection{Operator Selection}
 For selective methods, we tried mutation operators
