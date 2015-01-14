@@ -4,18 +4,10 @@ requirement was that our results had to be as widely applicable as
 possible for real-world programs. Secondly, we strived for a
 statistically significant result, reducing the number of variables
 present in the experiments. For this reason we chose a random sample
-of Java projects from Github~\cite{github} that use the popular
+of Java projects from Github~\cite{github} and Apache Software
+Foundation~\cite{apache} that use the popular
 maven~\cite{maven} build system, following the methodology we used
-previously in an ICSE 2014 paper~\cite{gopinath2014code}. As in that
-work, we utilize two kinds of of test suites: the original test suites
-present in a limited number of projects, and automatically generated
-test suites from Randoop~\cite{randoop}. From this set of test suites,
-After eliminating those that took too long to finish, we sampled 107
-suites each for both original and Randoop generated test suites,
-Since there was some overlap between projects with
-original test suites, and those with generated test suites, we had 81
-unique projects each in both sets. The remaining 26 projects had both
-flavors of test suites.
+previously in an ICSE 2014 paper~\cite{gopinath2014code}.
 
 We ran mutation analysis on this set of projects using
 PIT\cite{pitest}. However, since the operators provided by PIT are
@@ -35,11 +27,10 @@ we used is provided in Table~\ref{tbl:pitop}.
 % in the detected mutants was 23\% while that of \pitrv was 15\%.
 
 For a detailed description of each mutation operator, please refer to PIT documentation~\cite{pitmut}.
-PIT was also modified to provide random selection of mutants according
-to various criteria.
-Finally, to remove random noise, each criteria
-described was run four times, and the results averaged to produce
-the final result.
+We modified PIT to report the entire test matrix of $tests \times failures$
+rather than just the first failure, and used this for our analysis. To remove
+the effects of random noice, results of each criteria was averaged out of ten
+runs.
 
 \begin{table}
 \small{
@@ -70,11 +61,10 @@ the final result.
 
 \subsection{Sampling Criteria}
 
-We used several different sampling criteria, some of which has been suggested
-in the literature before, some which are variants of previously suggested
-criteria, and a few novel ones.  For each sampling
-criteria, we sampled mutants on a decreasing power scale, sampling
-\textit{1/2, 1/4, 1/8, 1/16, 1/32, 1/64} of the total mutants.
+We used several different sampling criteria that has been mentioned in the
+literature, For each sampling criteria, we sampled mutants on a decreasing
+power scale, sampling \textit{1/2, 1/4, 1/8, 1/16, 1/32, 1/64} of the total
+mutants.
 
 \subsubsection{x\% selection}
 The simplest sampling approach consisted of using x\% selection as suggested by
@@ -141,10 +131,6 @@ sampling in one go, where we chose \textit{linecount/x} number of
 mutants from each program element.  That is, in the previous example,
 only $5$ mutants from the first and $10$ mutants from the second
 method would be chosen.
-
-\subsubsection{One per element}
-Another simple strategy of sampling we experimented with is to just choose
-one mutant per program element, in the order \textit{line}, \textit{method}, \textit{class}.
 
 \subsubsection{x\% selection per operator}
 This strategy, first suggested by Wong et al.~\cite{wong1995reducing} samples an equal percentage
