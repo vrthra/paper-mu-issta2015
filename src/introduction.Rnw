@@ -72,28 +72,48 @@ Section~\ref{sec:related}.
 
 We have attempted to rectify this situation with a large scale study of real
 world programs. As detailed in Section~\ref{sec:methodology}, we sample
-250 Java programs from Github\footnote{Our dataset is 322 programs, but as of
-this writing the larger projects have not completed finished running
-full-mutation analysis.},
-with size ranging from $50$ to $100,000$ lines (excluding tests), allowing
-us to draw more widely applicable statistical inferences.
+312 Java programs from Github, with size ranging from $50$ to $100,000$
+lines (excluding tests), allowing us to draw more widely applicable
+statistical inferences.
 
 % For a mutation selection strategy to be considered effective, especially during
 % the development, it should be able to expose as many defect-like behaviors as
 % possible.
 Consider any test in a test suite. It is written with the intent of
-checking for the absence of some (faulty) behavior. If supposing, tests
-were equivalent in the number of behaviors that they test, then the best test
-suite would be one that included the largest number of non-redundant test
-cases~\footnote{We show later why this assumption is valid (Specifically,
-assertion distribution was $\mu=1.7$ and $\sigma=2$ )}. This suggests that
-we could evaluate different mutation reduction strategies on their ability
-to choose mutants such that they are killed by a larger number of
-non-redundant test cases. Further, such a technique is not limited by the
-adequacy of test suite under consideration.
+checking for the absence of some (faulty) behavior. From the perspective of a
+a tester, the best testsuite is one that checks for the absence
+of the largest number of faulty behaviors. If tests were equivalent in the
+amount of behaviors that they verify, then the best testsuite would be one that
+encouraged adding the largest number of non-redundant test cases. However,
+it is possible that different tests are not equivalent in the number of
+behaviors that they check. We can approximate this to some extent by
+including the number of assert statements within each test~\footnote{We
+approximate the effect of exception-only test cases by starting the assert
+count from $1$ rather than $0$}.
 
-Section~\ref{sec:methodology} discusses the sampling and operator
-selection strategies we study in detail, and the results of our
+Hence an easy way to evaluate a mutation reduction strategy would be to
+see if it promotes such test suites; that is, either test suites with a large
+number of non-redundant test cases, or those with a large number of asserts.
+
+If we assume that testers would prefer adding test cases that increases the
+mutation score, then a good strategy should reward the behavior of adding
+non-redundant test cases and test suites with larger number of asserts.
+Thus it should choose a set of mutants that are killed by a larger number
+of such non-redundant tests at-least in comparison with random selection
+of the same number of mutants as the chosen set. We could also ensure that
+a reduction strategy does not miss out on important tests by running the
+set of non-redundant tests against the full set of mutants to see how many
+of the mutants were detected in comparison with the original number of
+detected mutants. Since this evaluation crtieria does not depend on the
+mutation-adequacy of the test suite under consideration, we can run the
+evaluation using real world projects which almost always have non-adequate
+test suites.
+
+Section~\ref{sec:related} describes the research in mutation reduction 
+strategies. Section~\ref{sec:methodology} discusses the sampling and
+operator
+selection strategies we study in detail. The analysis is given in
+Section~\ref{sec:analysis}, and the results of our
 experiment are given in Section~\ref{sec:results}, followed by
 detailed discussion of what these results imply in Section
 ~\ref{sec:discussion}. The specific contributions of this paper are:
@@ -101,16 +121,16 @@ detailed discussion of what these results imply in Section
 \begin{itemize}
 
 \item Our study is the largest so far in terms of
-both the size of programs involved (50 LOC to 100 KLOC excluding tests),
-and the number of programs analyzed (250 unique open source projects) for
+both the size of programs involved ($50$ to $100,000$ lines excluding tests),
+and the number of programs analyzed ($312$ unique open source projects) for
 mutant reduction strategies. This allows for stronger and more widely
 applicable conclusions about effectiveness.
 
 \item We compare a much larger
 number of mutant reduction strategies than previous studies. Our reduction
 strategies include all the common and influential strategies for
-random sampling, element scoped sampling, and operator selection, that
-have been proposed in previous studeies.
+random sampling, element scoped sampling, operator based sampling,
+and operator selection, that have been proposed in previous studeies.
 
 \item Our evaluation crtieria is applicable to non-adequate test suites
 which makes the results immediately relevant for real world programs with
