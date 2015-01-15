@@ -56,9 +56,9 @@ non-redundant test cases by discarding any test case that can be removed
 without letting any of the mutants escape. This is repeated $10$ times,
 and the average number of non-redundant test cases are found.
 
-While computing the test cases, we also collect assertion number each
+While computing the test cases, we also collect assertion information each
 test case has. We compute this as the number of asserts in the test case
-incremented by one to account for test cases without any asserts. Thus the
+incremented by one to account for test cases without any asserts. Thus we
 compute both the assertions from non-redundant test cases for the mutant
 selection, and also the assertions for the full set of killing test cases
 for the mutant selection.
@@ -67,6 +67,23 @@ The \textit{test utility} is computed as the difference between the number
 of non-redundant test cases the mutant selection achieved and the number of
 non-redundant test cases of a random sample of same number of mutants.
 The result is reported as a percentage of the non-redundant tests of the random
-sample (the baseline).
+sample which is taken as the baseline.
 
-Similarly \textit{assert utility} of a strategy is computed
+Similarly \textit{assert utility} of a strategy is computed as the difference
+between the number of assertions of non-redundant test cases the mutatnt
+selection achieved and the number of assertions the test cases for random
+sample of same number of mutants. As before, it is reported as a percentage of
+the asserts of the non-redundant tests of the random sample which is taken
+as the baseline.
+
+\textit{Strategy effectiveness} is computed by collecting all the test cases
+that detected any of the mutants in the selected subset, and applying these
+test cases to the complete set of mutants. The mutation score thus obtained
+is then divided by the original number of detected mutants.
+
+Similarly \textit{baseline effectiveness} is computed by getting the number
+of mutants selected by the strategy, and selecting the same number of mutants
+randomly, collecting the test cases that kill any of these mutants, and
+applying the same test cases against the original set of mutants. The result
+is then divided by the original number of detected mutants.
+
