@@ -28,15 +28,15 @@ subset of mutation \emph{operators} based on heuristics and
 statistical analysis, and apply this subset of operators to generate
 mutants instead of applying the whole set of mutation
 operators~\cite{offutt1993anexperimental,untch2009onreduced}.
-Recent work suggests that using statement deletion alone can
-be an effective approach~\cite{untch2009onreduced}.
+%Recent work suggests that using statement deletion alone can
+%be an effective approach~\cite{untch2009onreduced}.
 
 Sampling strategies seek to randomly select a set of representative
 mutants.  This was investigated first by
 Acree~\cite{acree1980mutation} and Budd~\cite{budd1980mutation}, who
-proposed using only $x$\% of all mutants produced. Wong and Mathur
-found that random sampling with ratio as low as 10\% could provide
-accurate results~\cite{jia2011analysis}.
+proposed using only a small fraction of randomly selected mutants.
+Wong and Mathur found that random sampling fraction as low as 10\%
+could provide accurate results~\cite{jia2011analysis}.
 
 Recent work~\cite{zhang2010icse,zhang2013ase} investigating the
 relative merits of random sampling strategies and operator selection
@@ -72,7 +72,7 @@ Section~\ref{sec:related}.
 
 We have attempted to rectify this situation with a large scale study of real
 world programs. As detailed in Section~\ref{sec:methodology}, we sample
-312 Java programs from Github, with size ranging from $50$ to $100,000$
+$312$ Java programs from Github, with size ranging from $50$ to $100,000$
 lines (excluding tests), allowing us to draw more widely applicable
 statistical inferences.
 
@@ -104,10 +104,12 @@ of the same number of mutants as the chosen set. We could also ensure that
 a reduction strategy does not miss out on important tests by running the
 set of non-redundant tests against the full set of mutants to see how many
 of the mutants were detected in comparison with the original number of
-detected mutants. Since this evaluation crtieria does not depend on the
-mutation-adequacy of the test suite under consideration, we can run the
-evaluation using real world projects which almost always have non-adequate
-test suites.
+detected mutants. This can again be compared to the test cases selected by
+a random sample of same number of mutants to see if the strategy performed
+better at-least with respect to random sampling. Since this evaluation crtieria
+does not depend on the mutation-adequacy of the test suite under consideration,
+we can run the evaluation using real world projects which almost always have
+non-adequate test suites.
 
 Section~\ref{sec:related} describes the research in mutation reduction 
 strategies. Section~\ref{sec:methodology} discusses the sampling and

@@ -1,9 +1,9 @@
 things=$(wildcard src/*.Rnw src/*.bib etc/*.tex)
 
 all: build
-	@curl http://web.engr.oregonstate.edu/~gopinath/issta15/MutSel_1.0.tar.gz.md5 -o build/MutSel_1.0.tar.gz.md5.new
-	@cat build/MutSel_1.0.tar.gz.md5.new
-	[ $(cat build/MutSel_1.0.tar.gz.md5.new) $(cat build/MutSel_1.0.tar.gz.md5) ] && mv build/MutSel_1.0.tar.gz.md5.new build/MutSel_1.0.tar.gz.md5 || true
+	#@curl http://web.engr.oregonstate.edu/~gopinath/issta15/MutSel_1.0.tar.gz.md5 -o build/MutSel_1.0.tar.gz.md5.new
+	#@cat build/MutSel_1.0.tar.gz.md5.new
+	#[ $(cat build/MutSel_1.0.tar.gz.md5.new) $(cat build/MutSel_1.0.tar.gz.md5) ] && mv build/MutSel_1.0.tar.gz.md5.new build/MutSel_1.0.tar.gz.md5 || true
 	make build/acm_sigproc.pdf
 
 build/acm_sigproc.pdf: $(things) build/data/MutSel_1.0.tar.gz

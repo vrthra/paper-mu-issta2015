@@ -45,29 +45,28 @@ print(xtable(s.lmcp.db, caption='Element Scoped', label='table:element'), includ
 
 \section{Analysis}
 \label{sec:analysis}
-For the purposes of comparing between the criteria, we computed the
-linear correlation between sampled mutation score and full mutation score.
-Since for the baseline sampling criteria, no mutants sampled implies none generated,
-our model was
-\[\mu\{M_{all}|M_{reduced}\} = \beta_1 \times M_{reduced}\]
-where $M_{all}$ is the mutation score of original mutation analysis and
-$M_{reduced}$ is the mutation score of the sample.
+For the purpose of comparing different mutation reduction strategies, we
+computed the average \textit{test utility}, and \textit{assert utility} of
+different strategies.
 
-We reported the correlation for this linear regression. We also report the expected
-multiplier factor $\beta_1$ for the sampled mutation score. This factor
-determines the ease of detecting mutants in the sampling criteria. That is, if the
-multiplier factor is small, then the sample mutation score was larger than
-the full mutation score, and hence it was easier to detect mutants in the sample.
+We use the mutant reduction strategy to select a subset
+of mutants from the original set. We then collect all test cases that were
+able to kill any of the selected set of mutants. Next we compute the
+non-redundant test cases by discarding any test case that can be removed
+without letting any of the mutants escape. This is repeated $10$ times,
+and the average number of non-redundant test cases are found.
 
-Next, for each criterion, we computed the reduction of mutants given by the
-ratio between sampled mutants and total number of mutants.
-We also compute standard deviation of the mutant reduction, which determines
-the consistency of results. A large standard deviation suggests
-that the mutant reduction ratio achieved is very much dependent on the
-project. Therefore, as a heuristic, we suggest looking at only those methods which
-have a mean reduction ratio at least twice the standard deviation.
+While computing the test cases, we also collect assertion number each
+test case has. We compute this as the number of asserts in the test case
+incremented by one to account for test cases without any asserts. Thus the
+compute both the assertions from non-redundant test cases for the mutant
+selection, and also the assertions for the full set of killing test cases
+for the mutant selection.
 
-A few projects did not return any results for some large reduction factors.
-Thus the number of valid results from projects is also collected in the result
-tables.
+The \textit{test utility} is computed as the difference between the number
+of non-redundant test cases the mutant selection achieved and the number of
+non-redundant test cases of a random sample of same number of mutants.
+The result is reported as a percentage of the non-redundant tests of the random
+sample (the baseline).
 
+Similarly \textit{assert utility} of a strategy is computed
