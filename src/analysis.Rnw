@@ -4,7 +4,7 @@
 print(xtable(s.selective.db, caption='Selective', label='table:selective'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The operator selection criteria results. }
-\label{tbl:lcountl}
+\label{tbl:selective}
 \end{table*}
 
 \begin{table*}[!ht]
@@ -13,16 +13,7 @@ print(xtable(s.selective.db, caption='Selective', label='table:selective'), incl
 print(xtable(s.nselection.db, caption='N-Selection', label='table:nselection'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The n-selection criteria results}
-\label{tbl:lcountl}
-\end{table*}
-
-\begin{table*}[!ht]
-\caption*{Single Operators}
-<<results='asis'>>=
-print(xtable(s.singles.db, caption='Single Operators', label='table:singles'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
-@
-\caption {The single operator selection results}
-\label{tbl:lcountl}
+\label{tbl:nselection}
 \end{table*}
 
 \begin{table*}[!ht]
@@ -31,7 +22,7 @@ print(xtable(s.singles.db, caption='Single Operators', label='table:singles'), i
 print(xtable(s.opsample.db, caption='Operator x samples', label='table:opsample'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The operator x\% sample criteria results}
-\label{tbl:lcountl}
+\label{tbl:opsample}
 \end{table*}
 
 \begin{table*}[!ht]
@@ -40,7 +31,16 @@ print(xtable(s.opsample.db, caption='Operator x samples', label='table:opsample'
 print(xtable(s.lmcp.db, caption='Element Scoped', label='table:element'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The element based sampling criteria results. }
-\label{tbl:lcountl}
+\label{tbl:element}
+\end{table*}
+
+\begin{table*}[!ht]
+\caption*{Single Operators}
+<<results='asis'>>=
+print(xtable(s.singles.db, caption='Single Operators', label='table:singles'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+@
+\caption {The single operator selection results}
+\label{tbl:singles}
 \end{table*}
 
 \section{Analysis}
