@@ -1,45 +1,49 @@
 \begin{table*}[!ht]
-\caption*{Selective}
+%\caption*{Selective}
 <<results='asis'>>=
-print(xtable(s.selective.db, caption='Selective', label='table:selective'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+tbl.place <- function(xtb) {
+  align(xtb) <- "p{0.1\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}"
+  return(xtb)
+}
+print(tbl.place(xtable(s.selective.db, caption='Selective Strategy', label='table:selective')),include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The operator selection criteria results. }
+\caption {The operator selection strategy}
 \label{tbl:selective}
 \end{table*}
 
 \begin{table*}[!ht]
-\caption*{N-Selection}
+%\caption*{N-Selection}
 <<results='asis'>>=
-print(xtable(s.nselection.db, caption='N-Selection', label='table:nselection'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(tbl.place(xtable(s.nselection.db, caption='N-Selection', label='table:nselection')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The n-selection criteria results}
+\caption {The N-selective strategy}
 \label{tbl:nselection}
 \end{table*}
 
 \begin{table*}[!ht]
-\caption*{Operator Samples x\%}
+%\caption*{Operator Samples x\%}
 <<results='asis'>>=
-print(xtable(s.opsample.db, caption='Operator x samples', label='table:opsample'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(tbl.place(xtable(s.opsample.db, caption='Operator x samples', label='table:opsample')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The operator x\% sample criteria results}
+\caption {The operator based fractional sample strategy}
 \label{tbl:opsample}
 \end{table*}
 
 \begin{table*}[!ht]
-\caption*{Element Scoped}
+%\caption*{Element Scoped}
 <<results='asis'>>=
-print(xtable(s.lmcp.db, caption='Element Scoped', label='table:element'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(tbl.place(xtable(s.lmcp.db, caption='Element Scoped', label='table:element')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The element based sampling criteria results. }
+\caption {The element based fractional sample strategy}
 \label{tbl:element}
 \end{table*}
 
 \begin{table*}[!ht]
-\caption*{Single Operators}
+%\caption*{Single Operators}
 <<results='asis'>>=
-print(xtable(s.singles.db, caption='Single Operators', label='table:singles'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(tbl.place(xtable(s.singles.db, caption='Single Operators', label='table:singles')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The single operator selection results}
+\caption {The single operator selection strategy}
 \label{tbl:singles}
 \end{table*}
 
