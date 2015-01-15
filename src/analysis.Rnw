@@ -25,7 +25,7 @@ print(tbl.place(xtable(s.nselection.db, caption='N-Selection', label='table:nsel
 <<results='asis'>>=
 print(tbl.place(xtable(s.opsample.db, caption='Operator x samples', label='table:opsample')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The operator based fractional sample strategy}
+\caption {The operator based x\% sample strategy}
 \label{tbl:opsample}
 \end{table*}
 
@@ -34,7 +34,7 @@ print(tbl.place(xtable(s.opsample.db, caption='Operator x samples', label='table
 <<results='asis'>>=
 print(tbl.place(xtable(s.lmcp.db, caption='Element Scoped', label='table:element')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The element based fractional sample strategy}
+\caption {The element based x\% sample strategy}
 \label{tbl:element}
 \end{table*}
 
