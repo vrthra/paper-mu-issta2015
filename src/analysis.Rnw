@@ -41,7 +41,8 @@ print(tbl.place(xtable(s.lmcp.db, caption='Element Scoped', label='table:element
 \begin{table*}[!ht]
 %\caption*{Single Operators}
 <<results='asis'>>=
-print(tbl.place(xtable(s.singles.db, caption='Single Operators', label='table:singles')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+norder <- c('nmc','rv','ic','dc','nc','rc','vmc','cc','emv','m','cb','i','ri','rs','es','in')
+print(tbl.place(xtable(s.singles.db[norder,], caption='Single Operators', label='table:singles')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The single operator selection strategy}
 \label{tbl:singles}
