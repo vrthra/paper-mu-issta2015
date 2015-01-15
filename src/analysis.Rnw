@@ -58,8 +58,9 @@ We use the mutant reduction strategy to select a subset
 of mutants from the original set. We then collect all test cases that were
 able to kill any of the selected set of mutants. Next we compute the
 non-redundant test cases by discarding any test case that can be removed
-without letting any of the mutants escape. This is repeated $10$ times,
-and the average number of non-redundant test cases are found.
+without letting any of the mutants escape. This is repeated and averaged
+over multiple runs, and the average number of non-redundant test cases are
+found.
 
 While computing the test cases, we also collect assertion information each
 test case has. We compute this as the number of asserts in the test case
