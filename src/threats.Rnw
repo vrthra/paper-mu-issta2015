@@ -1,14 +1,30 @@
 \section{Threats to Validity}
-While we have taken every care to ensure that our results are valid, and to eliminate the
-effects of random noise, our results are subject to the following threats
-to validity.
+While we have taken every care to ensure that our results are valid, and
+to eliminate the effects of random noise, our results are subject to the
+following threats to validity.
 
-Our results were observed on open source Java programs from the Github repository, using the
-maven build system. Further, only those projects that successfully completed mutation
-testing within a designated amount of time were chosen. This implies that if there is a
-confounding factor in play that affects the relation between the full mutation score and
-sampling mutation score, it might cause our results to be either wrong or less applicable.
+Our results were observed on open source Java programs from the Github
+repository, and Apache Commons Library, using the maven build system. Further,
+only those projects that successfully completed mutation testing within
+a designated amount of time were chosen.  This implies that if there is
+a confounding factor in play that affects the relation between the full
+mutation score and sampling mutation score, it might cause our results to
+be either wrong or less applicable.
 
-Secondly, we had to rely on the PIT mutation testing tool, and had to extend its capabilities
-to some extent for our purposes. Software bugs are a fact of life. While every care has been
-taken to avoid them, there is still some possibility of some bugs having escaped us.
+Secondly, we had to rely on the PIT mutation testing tool, and had to extend
+its capabilities to some extent for our purposes. Software bugs are a fact
+of life. While every care has been taken to avoid them, there is still some
+possibility of some bugs having escaped us.
+
+Finally, and most importanly, most of the previous research has been done on
+source level mutants. However, for a study of the size we have conducted,
+it is infeasible to rely on source level mutants (even using the bytecode
+based fast mutation evaluation provided by PIT, the mutation analysis took
+months to complete). This also means that we had to rely on translation of
+source level mutants to their bytecode equivalents, which was in most cases
+not a one to one process, and this could have introduced unintented errors.
+However, as we mentioned earlier, it is infeasible to run mutation analysis
+on source level for large programs using the tools we currently have. It is
+also important to evaluate different strategies on byte code based engines
+at least to provide guidance for testers trying to do the same.
+
