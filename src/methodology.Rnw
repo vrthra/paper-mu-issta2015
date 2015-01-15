@@ -129,7 +129,7 @@ We  used by  \Pitin, \Pitm, \Piti and \Pitnc.
 \noindent\textbf{Offut et al. ~\cite{offutt1993experimental}.} They suggested removal of
 $n$ most numerous operators. In our experiment, the order of operators was
 \Pitnvmc, \Pitrv, \Pitic, \Pitdc, \Pitnc, \Pitrc, \Pitvmc, \Pitcc, \Pitemv,
-\Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, and \Pitin
+\Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, and \Pitin.
 We discarded one at each
 step and evaluated the effectiveness at each $n$.
 %----------------------------------------

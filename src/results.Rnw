@@ -20,6 +20,6 @@
 % oprand.l <- subset(oprand,!grepl('^.1x[0-9]+_per_', operator))
 % @
 
-Our data will be available for replication on publication~\cite{data}
+Our data is available for replication~\cite{ourdata}.
 %\footnote{Available on publication}.
 
