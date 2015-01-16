@@ -95,7 +95,7 @@ applying the same test cases against the original set of mutants. The result
 is then divided by the original number of detected mutants.
 
 \begin{figure*}
-<<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+<<mutantdet,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 bcol <- '#2171B5'
 icol <- '#9ECAE0'
 m.db <- subset(allmutants.db, total > 0)
@@ -128,9 +128,38 @@ options(warn=0)
 #pushViewport(viewport(layout = grid.layout(1, 2)))
 #print(p1, vp = vplayout(1, 1))
 #print(p2, vp = vplayout(1, 2))
-
 @
-\caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected. The produced mutants are shown with black outline while detected mutants have blue border and shade.}
+\caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected.}
 \end{figure*}
 
+\begin{figure*}
+<<mutanttest,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+bcol <- '#2171B5'
+icol <- '#9ECAE0'
+m.db <- subset(allmutants.db, ncovering > 0)
+d.db <- subset(allmutants.db, nkilling > 0)
+m.db$covering <- m.db$tstcovering * 100.0 / m.db$ncovering
+d.db$killing <- d.db$tstkilling * 100.0 / d.db$nkilling
 
+tmp1 <- subset(m.db, select=c("mutator","covering"))
+colnames(tmp1) <- c("mutator","tests")
+tmp1$type <- "covering"
+
+tmp2 <- subset(d.db, select=c("mutator","killing"))
+colnames(tmp2) <- c("mutator","tests")
+tmp2$type <- "killing"
+
+tmp <- rbind(tmp1, tmp2)
+tmp$type <- factor(tmp$type, levels=c("covering", "killing"))
+tmp$mutator <- factor(tmp$mutator, levels=c("nmc", "rv", "ic", "dc", "nc", "rc", "vmc", "cc", "emv", "m", "cb", "i", "ri", "rs", "es", "in"))
+options(warn=-1)
+ggplot(aes(y=tests, x=mutator, fill=type),data=tmp) +
+  geom_boxplot(outlier.color=NA, outlier.shape=NA) +
+  scale_fill_manual(name = "Mutation Details", values = c(bcol, icol)
+                    , labels = c("covering" = "Total covering", "killing" = "Total killing")) +
+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+ theme(axis.line = element_line(colour = "black"))
+options(warn=0)
+@
+\caption{The relative contribution of mutation operators in terms of fraction of tests killed and covered.}
+\end{figure*}
