@@ -1,3 +1,4 @@
+
 \begin{table*}[!ht]
 %\caption*{Selective}
 <<results='asis'>>=
@@ -92,4 +93,44 @@ of mutants selected by the strategy, and selecting the same number of mutants
 randomly, collecting the test cases that kill any of these mutants, and
 applying the same test cases against the original set of mutants. The result
 is then divided by the original number of detected mutants.
+
+\begin{figure*}
+<<op,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+bcol <- '#2171B5'
+icol <- '#9ECAE0'
+m.db <- subset(allmutants.db, total > 0)
+d.db <- subset(allmutants.db, detected > 0)
+m.db$mutations <- m.db$mtotal * 100.0 / m.db$total
+d.db$detected <- d.db$mdetected * 100.0 / d.db$detected
+
+tmp1 <- subset(m.db, select=c("mutator","mutations"))
+tmp1$type <- "mutations"
+tmp2 <- subset(d.db, select=c("mutator","detected"))
+colnames(tmp2) <- c("mutator","mutations")
+tmp2$type <- "detected"
+tmp <- rbind(tmp1, tmp2)
+tmp$type <- factor(tmp$type, levels=c("mutations", "detected"))
+tmp$mutator <- factor(tmp$mutator, levels=c("nmc", "rv", "ic", "dc", "nc", "rc", "vmc", "cc", "emv", "m", "cb", "i", "ri", "rs", "es", "in"))
+options(warn=-1)
+ggplot(aes(y=mutations, x=mutator, fill=type),data=tmp) +
+  geom_boxplot(outlier.color=NA, outlier.shape=NA) +
+  scale_fill_manual(name = "Mutation Details", values = c(bcol, icol)
+                    , labels = c("mutations" = "Total mutations", "detected" = "Detected mutations")) +
+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+ theme(axis.line = element_line(colour = "black"))
+ # coord_flip() +
+options(warn=0)
+# + stat_boxplot(geom ='errorbar') 
+#p1 <- ggplot(aes(y=mutations, x=mutator, fill=F),data=m.db) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+#p2 <- ggplot(aes(y=detected, x=mutator, fill=F),data=d.db) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+
+#grid.newpage()
+#pushViewport(viewport(layout = grid.layout(1, 2)))
+#print(p1, vp = vplayout(1, 1))
+#print(p2, vp = vplayout(1, 2))
+
+@
+\caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected. The produced mutants are shown with black outline while detected mutants have blue border and shade.}
+\end{figure*}
+
 

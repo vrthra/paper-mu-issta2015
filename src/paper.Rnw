@@ -71,7 +71,10 @@ require(reshape2)
 require(scales)
 require(xtable)
 require(ggplot2)
+require(grid)
 require(MutSel)
+vplayout <- function(x, y) viewport(layout.pos.row = x, layout.pos.col = y)
+theme = theme_set(theme_minimal())
 @
 <<chunk-hook, echo=2>>=
 <<setup>>
