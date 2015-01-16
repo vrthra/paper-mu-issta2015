@@ -6,7 +6,7 @@ slightly advantageous mutation subsets, overall, the advantage thus gained
 is very little. None of the common operator selection strategies performed
 consistently well against random sampling while using either the utility or
 the mutation effectiveness criteria. While some of the individual operators
-such as \Pitrv, \Piti, \Pitri, and \Pites show promise in test utility,
+such as \Pitrv, \Piti, \Pitri, and \Pites~show promise in test utility,
 they do not stand out when we examine the mutation effectiveness in comparison
 to baseline.
 
