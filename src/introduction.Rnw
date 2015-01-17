@@ -79,17 +79,38 @@ statistical inferences.
 % For a mutation selection strategy to be considered effective, especially during
 % the development, it should be able to expose as many defect-like behaviors as
 % possible.
-Consider any test in a test suite. It is written with the intent of
-checking for the absence of some (faulty) behavior. From the perspective of a
-a tester, the best testsuite is one that checks for the absence
-of the largest number of faulty behaviors. If tests were equivalent in the
-amount of behaviors that they verify, then the best testsuite would be one that
-encouraged adding the largest number of non-redundant test cases. However,
-it is possible that different tests are not equivalent in the number of
-behaviors that they check. We can approximate this to some extent by
-including the number of assert statements within each test~\footnote{We
-approximate the effect of exception-only test cases by starting the assert
-count from $1$ rather than $0$}.
+
+% Alex: added
+Given a set of mutants and a universe of test cases, we can approximate the
+minimal set of test cases required to kill those mutants.\footnote{We only
+approximate this, with greedy methods, due to the high cost of computing a
+perfect minimal set, as established in the test case selection literature
+\cite{YooHarman}.}  Ideally, we would like a set of mutants that require
+as many test cases as possible, if we assume that the original set of test
+cases is populated with useful, non-redundant test cases.  While the suites
+of many open source programs are far from adequate, they should satisfy that
+requirement:  each test was almost always added by considerable manual labor,
+and was at least believed to be useful.  Therefore, any tests omitted likely
+indicate a potential to miss faults.  A good mutation selection strategy,
+therefore, should 1) be as close to the original set of mutants as possible,
+in terms of the test cases it requires in a minimal suite and 2) require
+more test cases than a randomly selected set of mutants of the same size.
+
+All test cases are not created equal, of course -- we use assertion counts
+and execution time as other measures.
+
+% Alex: rm
+% Consider any test in a test suite. It is written with the intent of
+% checking for the absence of some (faulty) behavior. From the perspective of a
+% a tester, the best testsuite is one that checks for the absence
+% of the largest number of faulty behaviors. If tests were equivalent in the
+% amount of behaviors that they verify, then the best testsuite would be one that
+% encouraged adding the largest number of non-redundant test cases. However,
+% it is possible that different tests are not equivalent in the number of
+% behaviors that they check. We can approximate this to some extent by
+% including the number of assert statements within each test~\footnote{We
+% approximate the effect of exception-only test cases by starting the assert
+% count from $1$ rather than $0$}.
 
 Hence an easy way to evaluate a mutation reduction strategy would be to
 see if it promotes such test suites; that is, either test suites with a large
