@@ -123,7 +123,7 @@ Javalanche uses Negate Jump Condition, Omit Method
 They have tried to reduce the mutation operators of Proteum analysis
 tool which is for C programs. They suggest 28 operators which many of them
 are not applicable in Java, and some not in PIT.
-We  used by  \Pitin, \Pitm, \Piti and \Pitnc.
+We  used by  \Pitin, \Pitm, \Piti, and \Pitnc.
 
 \subsubsection{N-selection}
 \noindent\textbf{Offut et al. ~\cite{offutt1993experimental}.} They suggested removal of
