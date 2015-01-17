@@ -30,8 +30,11 @@ instr: | build build/data
 build build/data:
 	mkdir -p build/data
 
-clean:
+clobber:
 	rm -rf build/*
+
+clean:
+	rm -rf build/cache
 
 makepaper:
 	 pdftk build/acm_sigproc.pdf cat 1-10 output result.pdf

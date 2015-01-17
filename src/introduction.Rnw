@@ -87,7 +87,7 @@ Given a set of mutants and a universe of test cases, we can approximate the
 minimal set of test cases required to kill those mutants.\footnote{We only
 approximate this, with greedy methods, due to the high cost of computing a
 perfect minimal set, as established in the test case selection literature
-\cite{YooHarman}.}  Ideally, we would like a set of mutants that require
+\cite{yoo2012regression}.}  Ideally, we would like a set of mutants that require
 as many test cases as possible, if we assume that the original set of test
 cases is populated with useful, non-redundant test cases.  While the suites
 of many open source programs are far from adequate, they should satisfy that
