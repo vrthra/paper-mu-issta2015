@@ -24,20 +24,7 @@ opx.m <- mutant.t.test(db)
 db <- subset(common.db, kind == "lmcp")
 lmcp.t <- mintc.t.test(db)
 lmcp.m <- mutant.t.test(db)
-# #---------------------------------------
-# # nmc     nc       rc       dc       rv       ic       cc
-# # emv      vmc      m       cb       i        ri       rs       es in
-# db <- subset(common.db, operator == "rm_nmc")
-# with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater")))
-# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater")))
-# #---------------------------------------
-# db <- subset(common.db, operator == "cc")
-# with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater")))
-# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater")))
-# #---------------------------------------
-# db <- subset(common.db, operator == "clazz")
-# with(db, t.test(sel.mintc,sample.mintc, paired=T)) #, alternative=c("greater")))
-# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T))#, alternative=c("greater")))
+
 db <- subset(common.db, operator=="constrained")
 constrained.t <- mintc.t.test(db)
 constrained.m <- mutant.t.test(db)
@@ -76,7 +63,7 @@ clazz.m <- mutant.t.test(db)
 db <- subset(common.db, operator=="rm_nmc")
 rm.nmc.t <- mintc.t.test(db)
 rm.nmc.m <- mutant.t.test(db)
-
+ 
 db <- subset(common.db, operator=="rm_rv")
 rm.rv.t <- mintc.t.test(db)
 rm.rv.m <- mutant.t.test(db)
@@ -124,7 +111,7 @@ rm.i.m <- mutant.t.test(db)
 db <- subset(common.db, operator=="rm_ri")
 rm.ri.t <- mintc.t.test(db)
 rm.ri.m <- mutant.t.test(db)
-
+ 
 db <- subset(common.db, operator=="rm_rs")
 rm.rs.t <- mintc.t.test(db)
 rm.rs.m <- mutant.t.test(db)
@@ -132,10 +119,6 @@ rm.rs.m <- mutant.t.test(db)
 db <- subset(common.db, operator=="rm_es")
 rm.es.t <- mintc.t.test(db)
 rm.es.m <- mutant.t.test(db)
-
-db <- subset(common.db, operator=="rm_in")
-rm.in.t <- mintc.t.test(db)
-rm.in.m <- mutant.t.test(db)
-
+ 
 @
 
