@@ -36,7 +36,9 @@ mutants.  This was investigated first by
 Acree~\cite{acree1980mutation} and Budd~\cite{budd1980mutation}, who
 proposed using only a small fraction of randomly selected mutants.
 Wong and Mathur found that random sampling fraction as low as 10\%
-could provide accurate results~\cite{jia2011analysis}.
+could provide accurate results~\cite{jia2011analysis}, and was recently
+found that it increases at a rate of $O(x^{\frac{1}{4}})$ when program
+size increases linearly~\cite{zhang2014empirical}.
 
 Recent work~\cite{zhang2010icse,zhang2013ase} investigating the
 relative merits of random sampling strategies and operator selection
