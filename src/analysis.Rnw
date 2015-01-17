@@ -61,17 +61,15 @@ of mutants selected by the strategy, and selecting the same number of mutants
 randomly, collecting the test cases that kill any of these mutants, and
 applying the same test cases against the original set of mutants. The result
 is then divided by the original number of detected mutants. It is given by
-$\frac{k(T_{random})}{k(M)}\times 100.0$.
+$\frac{|k(T_{random})|}{|k(M)|}\times 100.0$.
 
 \textit{Strategy effectiveness} is computed by collecting all the test cases
 that detected any of the mutants in the selected subset, and applying these
 test cases to the complete set of mutants. The mutation score thus obtained
-is then divided by the original number of detected mutants, giving
-$\frac{k(T_{strategy})}{k(M)}$
-
+is then divided by the original number of detected mutants.
 This is reported as difference from the corresponding baseline effectiveness,
 given by 
-$\frac{k(T_{strategy}) - k(T_{random})}{k(M)}\times100.0$.
+$\frac{|k(T_{strategy})| - |k(T_{random})|}{|k(M)|}\times100.0$.
 
 
 \begin{figure*}
