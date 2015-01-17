@@ -1,7 +1,7 @@
 \section{Results}
 \label{sec:results}
 
-The results for operator selection criteria are given in Table~\ref{tbl:selective}. Those of N-Selection are given in Table~\ref{tbl:nselection}. The fractional sampling per operator is provided in Table~\ref{tbl:opsample}, and that of element scoped sampling is provided in Table~\ref{tbl:element}. Finally, operation selection using just single operators are given in Table~\ref{tbl:singles}.
+The results for operator selection criteria are given in Table~\ref{tbl:selective}. Those of N-Selection are given in Table~\ref{tbl:nselection}. The fractional sampling per operator is provided in Table~\ref{tbl:opsample}, and that of element scoped sampling is provided in Table~\ref{tbl:element}. Finally, operation selection using just single operators are given in Table~\ref{tbl:singles}. The results from t-tests are available at Table~\ref{tbl:ttests}.
 
 Our data is available for replication~\cite{ourdata}.
 
