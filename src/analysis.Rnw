@@ -1,4 +1,45 @@
 
+<<results='asis'>>=
+mintc.t.test <- function(db) {
+  return(with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater"))))
+}
+mutant.t.test <- function(db) {
+  return(with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater"))))
+}
+db <- subset(common.db, kind == "nsel")
+nsel.t <- mintc.t.test(db)
+nsel.m <- mutant.t.test(db)
+#-- Insufficient evidence that sel.mintc is greater than random selection
+db <- subset(common.db, kind == "opsel")
+opsel.t <- mintc.t.test(db)
+opsel.m <- mutant.t.test(db)
+#-- Insufficient evidence that sel.mintc is greater than random selection
+db <- subset(common.db, kind == "single")
+single.t <- mintc.t.test(db)
+single.m <- mutant.t.test(db)
+#-- Insufficient evidence that sel.mintc is greater than random selection
+db <- subset(common.db, kind == "opx")
+opx.t <- mintc.t.test(db)
+opx.m <- mutant.t.test(db)
+#-- Insufficient evidence that sel.mintc is greater than random selection
+db <- subset(common.db, kind == "lmcp")
+lmcp.t <- mintc.t.test(db)
+lmcp.m <- mutant.t.test(db)
+# #---------------------------------------
+# # nmc     nc       rc       dc       rv       ic       cc
+# # emv      vmc      m       cb       i        ri       rs       es in
+# db <- subset(common.db, operator == "rm_nmc")
+# with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater")))
+# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater")))
+# #---------------------------------------
+# db <- subset(common.db, operator == "cc")
+# with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater")))
+# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater")))
+# #---------------------------------------
+# db <- subset(common.db, operator == "clazz")
+# with(db, t.test(sel.mintc,sample.mintc, paired=T)) #, alternative=c("greater")))
+# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T))#, alternative=c("greater")))
+@
 \begin{table*}[!ht]
 %\caption*{Selective}
 <<results='asis'>>=
@@ -87,16 +128,17 @@ sample of same number of mutants. As before, it is reported as a percentage of
 the asserts of the non-redundant tests of the random sample which is taken
 as the baseline.
 
-\textit{Strategy effectiveness} is computed by collecting all the test cases
-that detected any of the mutants in the selected subset, and applying these
-test cases to the complete set of mutants. The mutation score thus obtained
-is then divided by the original number of detected mutants.
-
-Similarly \textit{baseline effectiveness} is computed by getting the number
+\textit{Baseline effectiveness} is computed by getting the number
 of mutants selected by the strategy, and selecting the same number of mutants
 randomly, collecting the test cases that kill any of these mutants, and
 applying the same test cases against the original set of mutants. The result
 is then divided by the original number of detected mutants.
+
+\textit{Strategy effectiveness} is computed by collecting all the test cases
+that detected any of the mutants in the selected subset, and applying these
+test cases to the complete set of mutants. The mutation score thus obtained
+is then divided by the original number of detected mutants. This is reported
+as difference from the correspondign baseline effectiveness.
 
 \begin{figure*}
 <<mutantdet,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
