@@ -120,5 +120,71 @@ db <- subset(common.db, operator=="rm_es")
 rm.es.t <- mintc.t.test(db)
 rm.es.m <- mutant.t.test(db)
  
+
+
+db <- subset(common.db, operator=="nmc")
+nmc.t <- mintc.t.test(db)
+nmc.m <- mutant.t.test(db)
+ 
+db <- subset(common.db, operator=="rv")
+rv.t <- mintc.t.test(db)
+rv.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="ic")
+ic.t <- mintc.t.test(db)
+ic.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="dc")
+dc.t <- mintc.t.test(db)
+dc.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="nc")
+nc.t <- mintc.t.test(db)
+nc.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="rc")
+rc.t <- mintc.t.test(db)
+rc.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="vmc")
+vmc.t <- mintc.t.test(db)
+vmc.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="cc")
+cc.t <- mintc.t.test(db)
+cc.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="emv")
+emv.t <- mintc.t.test(db)
+emv.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="m")
+m.t <- mintc.t.test(db)
+m.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="cb")
+cb.t <- mintc.t.test(db)
+cb.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="i")
+i.t <- mintc.t.test(db)
+i.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="ri")
+ri.t <- mintc.t.test(db)
+ri.m <- mutant.t.test(db)
+ 
+db <- subset(common.db, operator=="rs")
+rs.t <- mintc.t.test(db)
+rs.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="es")
+es.t <- mintc.t.test(db)
+es.m <- mutant.t.test(db)
+ 
+db <- subset(common.db, operator=="in")
+in.t <- mintc.t.test(db)
+in.m <- mutant.t.test(db)
+
 @
 

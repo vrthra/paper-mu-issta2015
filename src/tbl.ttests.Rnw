@@ -32,6 +32,22 @@ t.test.table['N-Selection -ri',]            <- c(rm.ri.t$estimate,rm.ri.t$conf.i
 t.test.table['N-Selection -rs',]            <- c(rm.rs.t$estimate,rm.rs.t$conf.int[1],rm.rs.t$conf.int[2],rm.rs.t$p.value, rm.rs.m$estimate,rm.rs.m$conf.int[1],rm.rs.m$conf.int[2],rm.rs.m$p.value)
 t.test.table['N-Selection -es',]            <- c(rm.es.t$estimate,rm.es.t$conf.int[1],rm.es.t$conf.int[2],rm.es.t$p.value, rm.es.m$estimate,rm.es.m$conf.int[1],rm.es.m$conf.int[2],rm.es.m$p.value)
 
+t.test.table['Op-Selection nmc',]            <- c(nmc.t$estimate,nmc.t$conf.int[1],nmc.t$conf.int[2],nmc.t$p.value, nmc.m$estimate,nmc.m$conf.int[1],nmc.m$conf.int[2],nmc.m$p.value)
+t.test.table['Op-Selection rv',]            <- c(rv.t$estimate,rv.t$conf.int[1],rv.t$conf.int[2],rv.t$p.value, rv.m$estimate,rv.m$conf.int[1],rv.m$conf.int[2],rv.m$p.value)
+t.test.table['Op-Selection ic',]            <- c(ic.t$estimate,ic.t$conf.int[1],ic.t$conf.int[2],ic.t$p.value, ic.m$estimate,ic.m$conf.int[1],ic.m$conf.int[2],ic.m$p.value)
+t.test.table['Op-Selection dc',]            <- c(dc.t$estimate,dc.t$conf.int[1],dc.t$conf.int[2],dc.t$p.value, dc.m$estimate,dc.m$conf.int[1],dc.m$conf.int[2],dc.m$p.value)
+t.test.table['Op-Selection nc',]            <- c(nc.t$estimate,nc.t$conf.int[1],nc.t$conf.int[2],nc.t$p.value, nc.m$estimate,nc.m$conf.int[1],nc.m$conf.int[2],nc.m$p.value)
+t.test.table['Op-Selection rc',]            <- c(rc.t$estimate,rc.t$conf.int[1],rc.t$conf.int[2],rc.t$p.value, rc.m$estimate,rc.m$conf.int[1],rc.m$conf.int[2],rc.m$p.value)
+t.test.table['Op-Selection vmc',]            <- c(vmc.t$estimate,vmc.t$conf.int[1],vmc.t$conf.int[2],vmc.t$p.value, vmc.m$estimate,vmc.m$conf.int[1],vmc.m$conf.int[2],vmc.m$p.value)
+t.test.table['Op-Selection m',]            <- c(m.t$estimate,m.t$conf.int[1],m.t$conf.int[2],m.t$p.value, m.m$estimate,m.m$conf.int[1],m.m$conf.int[2],m.m$p.value)
+t.test.table['Op-Selection cb',]            <- c(cb.t$estimate,cb.t$conf.int[1],cb.t$conf.int[2],cb.t$p.value, cb.m$estimate,cb.m$conf.int[1],cb.m$conf.int[2],cb.m$p.value)
+t.test.table['Op-Selection i',]            <- c(i.t$estimate,i.t$conf.int[1],i.t$conf.int[2],i.t$p.value, i.m$estimate,i.m$conf.int[1],i.m$conf.int[2],i.m$p.value)
+t.test.table['Op-Selection ri',]            <- c(ri.t$estimate,ri.t$conf.int[1],ri.t$conf.int[2],ri.t$p.value, ri.m$estimate,ri.m$conf.int[1],ri.m$conf.int[2],ri.m$p.value)
+t.test.table['Op-Selection rs',]            <- c(rs.t$estimate,rs.t$conf.int[1],rs.t$conf.int[2],rs.t$p.value, rs.m$estimate,rs.m$conf.int[1],rs.m$conf.int[2],rs.m$p.value)
+t.test.table['Op-Selection es',]            <- c(es.t$estimate,es.t$conf.int[1],es.t$conf.int[2],es.t$p.value, es.m$estimate,es.m$conf.int[1],es.m$conf.int[2],es.m$p.value)
+t.test.table['Op-Selection in',]            <- c(in.t$estimate,in.t$conf.int[1],in.t$conf.int[2],in.t$p.value, in.m$estimate,in.m$conf.int[1],in.m$conf.int[2],in.m$p.value)
+
+
 print(xtable(t.test.table, caption='T-Tests', label='table:ttest'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 

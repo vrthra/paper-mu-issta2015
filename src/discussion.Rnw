@@ -1,4 +1,55 @@
 \section{Discussion}
 \label{sec:discussion}
 
+We will analyze each of the different types of mutation reduction strategies in
+detail, and summarize the broad patterns we see at the end.
 
+\subsubsection{Operator Selection}
+From Table~\ref{tbl:selective}, we see that except for statement deletion, we
+have negative utility in comparison to baseline for both tests and asserts.
+Even for statement deleition, the utility is just 0.5 tests better than
+baseline. A similar result is present in the strategy effectiveness also,
+where the effectiveness over baseline is either negettive or extremely small.
+
+This is corroborated by statistical analysis where using paired t-test given in
+Table~\ref{tbl:ttests}, it was found that the test utiilty was lower than
+baseline for selective mutation strategies except statement deletion
+($p < 0.01$), and strategy effectiveness was found to be lower than baseline,
+but not significant.
+
+For statement deletion, while utility was found to be positive ($p < 0.05$),
+the magnitude was less than a single test.
+
+For N-selection, which is given in Table~\ref{tbl:nselection}, the situation
+is similar a few steps in operator removal seem to indicate a positive utility
+and a positive strategy effectiveness. However, as Table~\ref{tbl:ttests}
+shows, the mean utility is mostly negative, and for strategy effectiveness,
+the magnitude is very low~\footnote{The difference between
+Table~\ref{tbl:nselection} and Table~\ref{tbl:ttests} is due to test or mutant
+number being zero for baseline, and hence remvoed for computing percentage}.
+
+The strategy of selecting a single operator in Table~\ref{tbl:singles} also
+does not seem to do very well, with either negative or very small positive
+utility and strategy effectiveness when compared to baseline.
+
+\subsubsection{Sampling over program elements}
+For sampling over program elements in Table~\ref{tbl:element}, and t-tests
+in Table~\ref{tbl:ttests}, there appears to be a consistent advantage. However,
+even this advantage is extremely small with roughly 1 test utility or less
+than $6$ mutants advantage for strategy effectiveness.
+
+
+\subsubsection{Operator based x\% sampling}
+The operator based sampling given in Table~\ref{tbl:opsample} and t-tests in
+Table~\ref{tbl:ttests}, we see that there is a small positive test utility.
+However, as before, the magnitude is very low to be of practical significance.
+
+A general pattern that we can glean from this analysis is that none of the
+mutation reduction strategies appear to be practically better than the simplest
+strategy of all, the random selection strategy. This suggests that at least
+from the perspective of a software tester wishing to use mutation analysis
+as an evaluation criteria to judge when or which tests to add, random sampling
+is the easiest way to reduce the computational requirements of mutation
+analysis. This assumes even more importance when we consider that the adequate
+random sample of mutants increases at a rate less than $O(n^\frac{1}{4})$ when
+the program size increases linearly~\cite{zhang2014empirical}.
