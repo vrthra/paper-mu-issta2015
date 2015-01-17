@@ -1,98 +1,7 @@
-
-<<results='asis'>>=
-mintc.t.test <- function(db) {
-  return(with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater"))))
-}
-mutant.t.test <- function(db) {
-  return(with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater"))))
-}
-db <- subset(common.db, kind == "nsel")
-nsel.t <- mintc.t.test(db)
-nsel.m <- mutant.t.test(db)
-#-- Insufficient evidence that sel.mintc is greater than random selection
-db <- subset(common.db, kind == "opsel")
-opsel.t <- mintc.t.test(db)
-opsel.m <- mutant.t.test(db)
-#-- Insufficient evidence that sel.mintc is greater than random selection
-db <- subset(common.db, kind == "single")
-single.t <- mintc.t.test(db)
-single.m <- mutant.t.test(db)
-#-- Insufficient evidence that sel.mintc is greater than random selection
-db <- subset(common.db, kind == "opx")
-opx.t <- mintc.t.test(db)
-opx.m <- mutant.t.test(db)
-#-- Insufficient evidence that sel.mintc is greater than random selection
-db <- subset(common.db, kind == "lmcp")
-lmcp.t <- mintc.t.test(db)
-lmcp.m <- mutant.t.test(db)
-# #---------------------------------------
-# # nmc     nc       rc       dc       rv       ic       cc
-# # emv      vmc      m       cb       i        ri       rs       es in
-# db <- subset(common.db, operator == "rm_nmc")
-# with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater")))
-# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater")))
-# #---------------------------------------
-# db <- subset(common.db, operator == "cc")
-# with(db, t.test(sel.mintc,sample.mintc, paired=T, alternative=c("greater")))
-# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T, alternative=c("greater")))
-# #---------------------------------------
-# db <- subset(common.db, operator == "clazz")
-# with(db, t.test(sel.mintc,sample.mintc, paired=T)) #, alternative=c("greater")))
-# with(db, t.test(sel.all.killtcd_mutant,sample.all.killtcd_mutant, paired=T))#, alternative=c("greater")))
+<<t.tests,child='ttests.Rnw'>>=
 @
-\begin{table*}[!ht]
-%\caption*{Selective}
-<<results='asis'>>=
-eff <- function(v) {
-  v$strategy.effectiveness <- v$strategy.effectiveness - v$baseline.effectiveness
-  return(v)
-}
-tbl.place <- function(xtb) {
-  align(xtb) <- "p{0.1\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}"
-  return(xtb)
-}
-print(tbl.place(xtable(eff(s.selective.db), caption='Selective Strategy', label='table:selective')),include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+<<tblsingles, child='tables.Rnw'>>=
 @
-\caption {The operator selection strategy}
-\label{tbl:selective}
-\end{table*}
-
-\begin{table*}[!ht]
-%\caption*{N-Selection}
-<<results='asis'>>=
-print(tbl.place(xtable(eff(s.nselection.db), caption='N-Selection', label='table:nselection')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
-@
-\caption {The N-selective strategy}
-\label{tbl:nselection}
-\end{table*}
-
-\begin{table*}[!ht]
-%\caption*{Operator Samples x\%}
-<<results='asis'>>=
-print(tbl.place(xtable(eff(s.opsample.db), caption='Operator x samples', label='table:opsample')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
-@
-\caption {The operator based x\% sample strategy}
-\label{tbl:opsample}
-\end{table*}
-
-\begin{table*}[!ht]
-%\caption*{Element Scoped}
-<<results='asis'>>=
-print(tbl.place(xtable(eff(s.lmcp.db), caption='Element Scoped', label='table:element')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
-@
-\caption {The element based x\% sample strategy}
-\label{tbl:element}
-\end{table*}
-
-\begin{table*}[!ht]
-%\caption*{Single Operators}
-<<results='asis'>>=
-norder <- c('nmc','rv','ic','dc','nc','rc','vmc','cc','emv','m','cb','i','ri','rs','es','in')
-print(tbl.place(xtable(eff(s.singles.db[norder,]), caption='Single Operators', label='table:singles')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
-@
-\caption {The single operator selection strategy}
-\label{tbl:singles}
-\end{table*}
 
 \section{Analysis}
 \label{sec:analysis}
@@ -122,7 +31,7 @@ The result is reported as a percentage of the non-redundant tests of the random
 sample which is taken as the baseline.
 
 Similarly \textit{assert utility} of a strategy is computed as the difference
-between the number of assertions of non-redundant test cases the mutatnt
+between the number of assertions of non-redundant test cases the mutant
 selection achieved and the number of assertions the test cases for random
 sample of same number of mutants. As before, it is reported as a percentage of
 the asserts of the non-redundant tests of the random sample which is taken
@@ -138,76 +47,16 @@ is then divided by the original number of detected mutants.
 that detected any of the mutants in the selected subset, and applying these
 test cases to the complete set of mutants. The mutation score thus obtained
 is then divided by the original number of detected mutants. This is reported
-as difference from the correspondign baseline effectiveness.
+as difference from the corresponding baseline effectiveness.
 
 \begin{figure*}
-<<mutantdet,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-bcol <- '#2171B5'
-icol <- '#9ECAE0'
-m.db <- subset(allmutants.db, total > 0)
-d.db <- subset(allmutants.db, detected > 0)
-m.db$mutations <- m.db$mtotal * 100.0 / m.db$total
-d.db$detected <- d.db$mdetected * 100.0 / d.db$detected
-
-tmp1 <- subset(m.db, select=c("mutator","mutations"))
-tmp1$type <- "mutations"
-tmp2 <- subset(d.db, select=c("mutator","detected"))
-colnames(tmp2) <- c("mutator","mutations")
-tmp2$type <- "detected"
-tmp <- rbind(tmp1, tmp2)
-tmp$type <- factor(tmp$type, levels=c("mutations", "detected"))
-tmp$mutator <- factor(tmp$mutator, levels=c("nmc", "rv", "ic", "dc", "nc", "rc", "vmc", "cc", "emv", "m", "cb", "i", "ri", "rs", "es", "in"))
-options(warn=-1)
-ggplot(aes(y=mutations, x=mutator, fill=type),data=tmp) +
-  geom_boxplot(outlier.color=NA, outlier.shape=NA) +
-  scale_fill_manual(name = "Mutation Details", values = c(bcol, icol)
-                    , labels = c("mutations" = "Total mutations", "detected" = "Detected mutations")) +
- theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
- theme(axis.line = element_line(colour = "black"))
- # coord_flip() +
-options(warn=0)
-# + stat_boxplot(geom ='errorbar') 
-#p1 <- ggplot(aes(y=mutations, x=mutator, fill=F),data=m.db) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
-#p2 <- ggplot(aes(y=detected, x=mutator, fill=F),data=d.db) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
-
-#grid.newpage()
-#pushViewport(viewport(layout = grid.layout(1, 2)))
-#print(p1, vp = vplayout(1, 1))
-#print(p2, vp = vplayout(1, 2))
+<<mutantdet, child='fig.mutantdist.Rnw'>>=
 @
 \caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected.}
 \end{figure*}
 
 \begin{figure*}
-<<mutanttest,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-bcol <- '#2171B5'
-icol <- '#9ECAE0'
-m.db <- subset(allmutants.db, ncovering > 0)
-d.db <- subset(allmutants.db, nkilling > 0)
-#m.db$covering <- m.db$tstcovering * 100.0 / m.db$ncovering
-m.db$covering <- m.db$tstcovering * 100.0 / m.db$ntests
-#d.db$killing <- d.db$tstkilling * 100.0 / d.db$nkilling
-d.db$killing <- d.db$tstkilling * 100.0 / d.db$ntests
-
-tmp1 <- subset(m.db, select=c("mutator","covering"))
-colnames(tmp1) <- c("mutator","tests")
-tmp1$type <- "covering"
-
-tmp2 <- subset(d.db, select=c("mutator","killing"))
-colnames(tmp2) <- c("mutator","tests")
-tmp2$type <- "killing"
-
-tmp <- rbind(tmp1, tmp2)
-tmp$type <- factor(tmp$type, levels=c("covering", "killing"))
-tmp$mutator <- factor(tmp$mutator, levels=c("nmc", "rv", "ic", "dc", "nc", "rc", "vmc", "cc", "emv", "m", "cb", "i", "ri", "rs", "es", "in"))
-options(warn=-1)
-ggplot(aes(y=tests, x=mutator, fill=type),data=tmp) +
-  geom_boxplot(outlier.color=NA, outlier.shape=NA) +
-  scale_fill_manual(name = "Mutation Details", values = c(bcol, icol)
-                    , labels = c("covering" = "Total covering", "killing" = "Total killing")) +
- theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
- theme(axis.line = element_line(colour = "black"))
-options(warn=0)
+<<testdet, child='fig.testdist.Rnw'>>=
 @
 \caption{The relative contribution of mutation operators in terms of fraction of tests killed and covered.}
 \end{figure*}

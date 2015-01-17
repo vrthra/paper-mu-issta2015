@@ -1,0 +1,52 @@
+\begin{table*}[!ht]
+%\caption*{Selective}
+<<results='asis'>>=
+eff <- function(v) {
+  v$strategy.effectiveness <- v$strategy.effectiveness - v$baseline.effectiveness
+  return(v)
+}
+tbl.place <- function(xtb) {
+  align(xtb) <- "p{0.1\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}"
+  return(xtb)
+}
+print(tbl.place(xtable(eff(s.selective.db), caption='Selective Strategy', label='table:selective')),include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+@
+\caption {The operator selection strategy}
+\label{tbl:selective}
+\end{table*}
+
+\begin{table*}[!ht]
+%\caption*{N-Selection}
+<<results='asis'>>=
+print(tbl.place(xtable(eff(s.nselection.db), caption='N-Selection', label='table:nselection')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+@
+\caption {The N-selective strategy}
+\label{tbl:nselection}
+\end{table*}
+
+\begin{table*}[!ht]
+%\caption*{Operator Samples x\%}
+<<results='asis'>>=
+print(tbl.place(xtable(eff(s.opsample.db), caption='Operator x samples', label='table:opsample')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+@
+\caption {The operator based x\% sample strategy}
+\label{tbl:opsample}
+\end{table*}
+
+\begin{table*}[!ht]
+%\caption*{Element Scoped}
+<<results='asis'>>=
+print(tbl.place(xtable(eff(s.lmcp.db), caption='Element Scoped', label='table:element')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+@
+\caption {The element based x\% sample strategy}
+\label{tbl:element}
+\end{table*}
+
+\begin{table*}[!ht]
+<<tblsingles, child='tbl.singleop.Rnw'>>=
+@
+%\caption*{Single Operators}
+\caption {The single operator selection strategy}
+\label{tbl:singles}
+\end{table*}
+
