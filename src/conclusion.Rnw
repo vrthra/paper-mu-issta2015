@@ -6,17 +6,17 @@ slightly advantageous mutation subsets, overall, the advantage thus gained
 is very little. None of the common operator selection strategies performed
 consistently well against random sampling while using either the utility or
 the mutation effectiveness criteria. While some of the individual operators
-such as \Pitrv, \Piti, \Pitri, and \Pites~show promise in test utility,
-they do not stand out when we examine the mutation effectiveness in comparison
-to baseline.
+seemed to indicate a mean positive test utility or a mean strategy
+effectiveness, the effect itself is too small (of the order of one or two
+mutants or tests) to be of much help for a tester in the real world.
 
 A similar result seems to be the case for operator based x\% selection
 strategy or even for the element based x\% strategy. They in general show a
-slight advantage in test utility which doesn't seem to translate to the
-strategy effectiveness in comparison with baseline.
+slight advantage in test utility which while consistent, is not of much
+practical utility.
 
-Thus we find that that none of the well known reduction strategies are actually
-able to consistenly select useful mutants, and the best path forward
+This suggests that that none of the well known reduction strategies are
+actually able to consistenly select useful mutants, and the best path forward
 for a working tester is to rely on the simplest scheme of all -- the random
 selection of mutants.
 
