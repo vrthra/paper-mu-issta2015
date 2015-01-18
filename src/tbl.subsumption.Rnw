@@ -1,8 +1,7 @@
 \begin{table*}[!ht]
 <<tblsubsumption,results='asis'>>=
 library(ellipse)
-subsumption <- read.csv('data/subsumption.csv')
-print(xtable(1 - subsumption, caption='subsumption', label='table:subsumption'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(xtable(1 - subsumption.db, caption='subsumption', label='table:subsumption'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption{The subsumption relationship.}
 \end{table*}
