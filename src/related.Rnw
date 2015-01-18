@@ -1,6 +1,9 @@
 \section{Related Work}
 \label{sec:related}
 
+%The idea of mutation analysis was first proposed by Richard
+%Lipton~\cite{demillo1978hints}, and was implemented by Budd
+
 % Sinec mutation analysis has started to become popular~\cite{daka2014asurvey}
 
 There are several approaches to reducing the cost of mutation analysis.

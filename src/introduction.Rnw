@@ -67,22 +67,39 @@ were conducted on older programming languages such as Fortran, with
 operators specific to the language, and may not directly applicable to
 newer languages such as Java.
 
-Finally, with bytecode~\footnote{
-A \textit{do faster} approach for eliminating
-the compilation step to gain execution speed
-} based mutation
-engines like PIT~\cite{pitest} and Javalanche~\cite{javalanche},
-operators based on source code modification are no longer applicable, and their
-equivalents in bytecode need to be identified and compared with other
-approaches. A detailed discussion of our approach can be found in
-Section~\ref{sec:methodology}.
+Finally, with bytecode~\footnote{A \textit{do faster} approach for
+eliminating the compilation step to gain execution speed} based mutation
+engines such as PIT~\cite{pitest} and Javalanche~\cite{javalanche} becoming
+common in both development and research (e.g. \cite{zhang2013ase},
+\cite{gopinath2014code}, and \cite{inozemtseva2014coverage}),
+operators based on source code modification are no longer directly applicable,
+and their equivalents in bytecode need to be identified and compared with other
+approaches.
 
+This paper studies different mutant selection strategies on large number of
+Java programs using a popular bytecode-based mutation PIT.
+We sampled $312$ opensource Java project between $50$ to $100K$ non-comment
+lines of code (excluding test cases) from Github and Apache Foundation. This
+set of projects include many of popular Java projects that are regualry used in
+literature (such as Apache Common Lang, Common Math and Joda Time). For the
+mutation analysis of this study, we choose PIT, a fast and easy to use mutation
+analysis tool for Java, which has been used by researchers in the
+past~\cite{gopinath2014code,inozemtseva2014coverage} for its wide range of
+operators.
+% Amin: Total lines of code, total number of mutants
 
+For this study, we experimented four classic mutation selection techniques: Constrained \cite{wong1995reducing}, E-       Selective \cite{offutt1996anexperimental}, Javalanche \cite{javalanche} and N-Selection
+\cite{offutt1993experimental}, along with two sampling approaches: element based \cite{zhang2013ase} and operator based   sampling \cite{wong1995reducing}. We compare test effectiveness of each of techniques
+with pure random sampling. Our results show that in most cases there is no statistically significant benefit for mutation selection techniques. Moreover, in cases with statistically significant benefit, the gain is
+so low that is essentially negligible.
+
+\begin{comment}
 We have attempted to rectify this situation with a large scale study of real
 world programs. As detailed in Section~\ref{sec:methodology}, we sample
 $312$ Java programs from Github, with size ranging from $50$ to $100,000$
 lines (excluding tests), allowing us to draw more widely applicable
 statistical inferences.
+\end{comment}
 
 % For a mutation selection strategy to be considered effective, especially during
 % the development, it should be able to expose as many defect-like behaviors as
@@ -142,14 +159,7 @@ does not depend on the mutation-adequacy of the test suite under consideration,
 we can run the evaluation using real world projects which almost always have
 non-adequate test suites.
 
-Section~\ref{sec:related} describes the research in mutation reduction 
-strategies. Section~\ref{sec:methodology} discusses the sampling and
-operator
-selection strategies we study in detail. The analysis is given in
-Section~\ref{sec:analysis}, and the results of our
-experiment are given in Section~\ref{sec:results}, followed by
-detailed discussion of what these results imply in Section
-~\ref{sec:discussion}. The specific contributions of this paper are:
+The specific contributions of this paper are:
 
 \begin{itemize}
 
@@ -174,4 +184,13 @@ seldom perform better than random sampling of mutants, which suggests a need
 for further research in this area.
 
 \end{itemize}
+
+\noindent\textbf{Organization.} Section~\ref{sec:related} describes the
+research in mutation reduction strategies. Section~\ref{sec:methodology}
+ discusses the sampling and operator
+selection strategies we study in detail. The analysis is given in
+Section~\ref{sec:analysis}, and the results of our
+experiment are given in Section~\ref{sec:results}, followed by
+detailed discussion of what these results imply in Section
+~\ref{sec:discussion}.
 
