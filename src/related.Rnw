@@ -86,6 +86,18 @@ mutants.  This was further reinforced by Deng et al.~\cite{deng2013empirical}
 who defined deletion for different language elements, and found that an
 accuracy of 92\% is achieved while reducing the number of mutants by 80\%.
 
+Operator and mutant subsumption is another active area of research
+for reduction of number of mutants where by operators or mutants
+that do not significantly differ from others are eliminated. Kurtz et
+al.~\cite{kurtz2014mutant} finds that savings up to 2400\% can be achieved
+using subsumption alone, even though the result is based on investigation
+of a single program \textit{cal}. Research into subsumption of mutants also
+includes Higher Order Mutants, where by multiple mutations are introduced
+into the same set of mutants, reducing the total number of individual mutants
+by subsuming the component mutants. These have investigated by
+Jia et al.~\cite{jia2009higher,jia2008constructing}, and finds that it can
+reduce the number of mutants by 50\%.
+
 % Our work is most closely related to that of Zhang et
 % al.~\cite{zhang2013ase}. We extend the scope of their study with a
 % much wider range of mutation approaches and base our results on a much larger
