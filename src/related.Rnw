@@ -1,10 +1,24 @@
 \section{Related Work}
 \label{sec:related}
 
-%The idea of mutation analysis was first proposed by Richard
-%Lipton~\cite{demillo1978hints}, and was implemented by Budd
+The idea of mutation analysis was first proposed by Richard Lipton~\cite{mathur2012foundations},
+and formalized by DeMillo et al.~\cite{demillo1978hints} A practical implementation of
+mutation analysis was accomplished by Budd et al.~\cite{budd1980theoretical} in 1980.
 
-% Sinec mutation analysis has started to become popular~\cite{daka2014asurvey}
+Mutation analysis was found to subsume different coverage measures~\cite{budd1980mutation,mathur1994empirical,offutt1996subsumption},
+and it was found that the faults produced by mutation analysis were similar to real
+faults in the errors it produced~\cite{daran1996software} and the ease of detection~\cite{andrews2005mutation,andrews2006using}.
+Just et al.~\cite{just2014mutants} investigated the relation between mutation score and test
+case effectiveness using 357 real bugs, and found that the mutation score increased
+with effectiveness for 75\% of the cases, which was better than the 46\% reported
+for structural coverage.
+
+The foundational assumptions of mutation analysis are the competent programmer
+hypothesis which states that programmers tend to make very simple mistakes, and
+coupling effect which states that a test case able to detect a fault in
+isolation will continue to detect it even in the presence of other
+faults~\cite{demillo1978hints}. This was confirmed using theoretical analysis by Wah~\cite{wah2000atheoretical,wah2003ananalysis}
+and using empirical studies by Offutt~\cite{offutt1989thecoupling,offutt1992investigations}
 
 There are several approaches to reducing the cost of mutation analysis.
 These were categorized by Offutt and Untch~\cite{offutt2001mutation}

@@ -224,7 +224,7 @@ Mutation testing is better at finding faults than other techniques.
 
 * A measure of test case completeness (software, engineering)},
 Mutation testing is better at finding faults than other techniques.
-@phdthesis{Walsh:1985:MTC:912107,
+@phdthesis{walsh1985ameasure,
   author = {Walsh, Patrick Joseph},
   title = {A measure of test case completeness (software, engineering)},
   year = {1985},
@@ -434,6 +434,7 @@ human effort needed to check a large number of mutants for equivalence was almos
   year={2012},
   school={University of Waterloo}
 }
+
 @inproceedings{inozemtseva2014coverage,
   author = {Inozemtseva, Laura and Holmes, Reid},
   booktitle = icse,
@@ -1195,15 +1196,6 @@ the ACM SIGSOFT International Symposium on Foundations of Software Engineering",
   year={1990}
 }
 
-@phdthesis{Budd1980,
- author = {Budd, Timothy Alan},
- title = {Mutation Analysis of Program Test Data},
- year = {1980},
- note = {AAI8025191},
- publisher = {Yale University},
- address = {New Haven, CT, USA},
-} 
-
 @misc{data,
   author = {Rahul Gopinath},
   title = {Replication Data for: A comparison of mutation approaches},
@@ -1264,14 +1256,79 @@ the ACM SIGSOFT International Symposium on Foundations of Software Engineering",
   keywords = {regression test selection, regression testing, test case prioritization, test suite minimization},
 }
 
-@article{demillo1978hints,
-  title={Hints on test data selection: Help for the practicing programmer},
-  author={DeMillo, Richard A and Lipton, Richard J and Sayward, Frederick G},
-  journal=computer,
-  volume={11},
-  number={4},
-  pages={34--41},
-  year={1978},
-  publisher={IEEE}
+@incollection{mathur2012foundations,
+  author = {Mathur, Aditya P},
+  booktitle = fst,
+  title = {{Foundations of Software Testing}},
+  year = {2012}
+}
+@inproceedings{budd1980theoretical,
+  title={Theoretical and empirical studies on using program mutation to test the functional correctness of programs},
+  author={Budd, Timothy A and DeMillo, Richard A and Lipton, Richard J and Sayward, Frederick G},
+  booktitle=popl,
+  pages={220--233},
+  year={1980},
+  organization={ACM}
+}
+
+@phdthesis{budd1980thesis,
+  author = {Budd, Timothy Alan},
+  keywords = {mutation,unread},
+  school = {Yale},
+  title = {{Mutation Analysis of Program Test Data}},
+  year = {1980}
+}
+
+@techreport{just2014mutants,
+  author={Just, René and Jalali, Darioush and Inozemtseva, Laura and Ernst, Michael D. and Holmes, Reid and Fraser, Gordon},
+  title={Are Mutants a Valid Substitute for Real Faults in Software Testing?},
+  institution={University of Washington},
+  number={UW-CSE-14-02-02},
+  tag={printed},
+  year={2014},
+}
+
+@article{wah2000atheoretical,
+  author = {Wah, K S How Tai},
+  keywords = {alternate,coupled,coupling ratio,degeneracy structure,double-fault,fault coupling,fault-based testing,mutation,proper,single-fault,test set,unread},
+  journal=stvr,
+  number = {March 1999},
+  pages = {3--45},
+  title = {{A theoretical study of fault coupling}},
+  year = {2000}
+}
+
+@article{wah2003ananalysis,
+  abstract = {The focus in mutation testing is on the elimination of ?rst-order mutants. It is widely believed that there is a      coupling e?ect between ?rst-order and higher-order mutants such that a test set that kills the former would be expected to kill the latter too; it follows that, if the belief is correct, there is no need whatsoever to bother with higher-order mutants. It turns    out, in practice, that most higher-order mutants do get killed by such a test set, though a few somehow manage to survive. This is  the ?rst of two papers dealing with the coupling e?ect from a theoretical standpoint. The overall results indicate that the         hypothesis of a coupling e?ect is largely valid, provided the program is not too large; only a tiny proportion of higher-order      mutants is expected to survive a test set that kills all ?rst-order mutants. The basis of the approach is that programs can be      modelled as compositions of ?nite functions, the domain of which is assumed to be large. The problem is a complex one, so the       present paper only considers the case where there is just one test data; the case where there are more than one test data is left   to a second paper. The aim is not only to show that the coupling e?ect actually exists, but also to gain some understanding of the  various factors underlying it.},
+  author = {{How Tai Wah}, K.S.},
+  doi = {10.1016/S0167-6423(03)00022-4},
+  issn = {01676423},
+  journal = scp,
+  keywords = {alternate,coupling e ect,expected,fault size,function degeneracy,multi-fault,mutation,number of survivors,proper test set,single-fault,survival ratio,unread},
+  month = aug,
+  number = {2-3},
+  pages = {119--161},
+  title = {{An analysis of the coupling effect I: single test data}},
+  volume = {48},
+  year = {2003}
+}
+
+@article{offutt1989thecoupling,
+  annote = {Morell says that it is not clear what simple faults and complex faults are.},
+  author = {Offutt, A Jefferson},
+  journal = acmsen,
+  isbn = {0897913426},
+  volume = {14},
+  number = {8},
+  month = nov,
+  issn = {0163-5948},
+  doi = {10.1145/75309.75324},
+  acmid = {75324},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  keywords = {mutation,unread},
+  pages = {131--140},
+  title = {{The Coupling Effect : Fact or Fiction?}},
+  year = {1989}
 }
 
