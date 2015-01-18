@@ -66,8 +66,8 @@ mutants.  This was further reinforced by Deng et al.~\cite{deng2013empirical}
 who defined deletion for different language elements, and found that an
 accuracy of 92\% is achieved while reducing the number of mutants by 80\%.
 
-Our work is most closely related to that of Zhang et
-al.~\cite{zhang2013ase}. We extend the scope of their study with a
-much wider range of mutation approaches and base our results on a much larger
-set of real-world projects.
+% Our work is most closely related to that of Zhang et
+% al.~\cite{zhang2013ase}. We extend the scope of their study with a
+% much wider range of mutation approaches and base our results on a much larger
+% set of real-world projects.
 
