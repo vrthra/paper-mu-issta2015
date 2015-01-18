@@ -1,6 +1,5 @@
 \begin{table*}[!ht]
 <<tblsubsumption,results='asis'>>=
-library(ellipse)
 print(xtable(1 - subsumption.db, caption='subsumption', label='table:subsumption'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption{The subsumption relationship.}
