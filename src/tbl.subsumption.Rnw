@@ -1,8 +1,9 @@
 \begin{table*}[!ht]
 <<tblsubsumption,results='asis'>>=
-print(xtable(1 - subsumption.db, caption='subsumption', label='table:subsumption'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+print(xtable(1 - subsumption.db, caption='Subsumption of operators by others', label='tbl:subsumption'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption{The subsumption relationship.}
+\label{tbl:subsumption}
 \end{table*}
 
 % \begin{figure*}
