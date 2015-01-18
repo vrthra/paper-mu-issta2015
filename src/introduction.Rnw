@@ -6,8 +6,13 @@ involves producing a family of \emph{mutants}, programs with small
 differences from the original program, and evaluating the
 effectiveness of test suites against these
 mutants~\cite{lipton1971fault, ammann2008introduction}. Research by
-Andrews et. al~\cite{andrews2005mutation} suggest that mutations can
-simulate behavior of real faults.
+Andrews et. al~\cite{andrews2005mutation,andrews2006using} suggest that
+mutations can simulate behavior of real faults. However, mutation analysis
+of test suites has not sufficiently permeated software engineering
+practice~\cite{daka2014asurvey} even though the need for a tool that is
+able to evaluate tests based on their fault finding quality is keenly
+felt~\cite{runeson2006asurvey}.
+
 % thus
 % introduced behave in a fashion similar to real faults, with respect to
 % the difficulty of detection.
@@ -36,9 +41,10 @@ mutants.  This was investigated first by
 Acree~\cite{acree1980mutation} and Budd~\cite{budd1980mutation}, who
 proposed using only a small fraction of randomly selected mutants.
 Wong and Mathur found that random sampling fraction as low as 10\%
-could provide accurate results~\cite{jia2011analysis}, and was recently
-found that it increases at a rate of $O(x^{\frac{1}{4}})$ when program
-size increases linearly~\cite{zhang2014empirical}.
+could provide accurate results~\cite{jia2011analysis}. It was recently
+found that the fraction required to achieve adequacy on mutation sampling
+increases at a rate of $O(x^{\frac{1}{4}})$ when program size increases
+linearly~\cite{zhang2014empirical}.
 
 Recent work~\cite{zhang2010icse,zhang2013ase} investigating the
 relative merits of random sampling strategies and operator selection
@@ -55,21 +61,21 @@ sampling studies, and also for comparatively newer studies that attempt
 to combine methods. This is particularly worrisome if mutation analysis
 is to gain wider acceptance among testing professionals.
 
-Further, quite a few of the influential studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
+We also note that quite a few of the influential
+studies~\cite{offutt1993experimental,offutt1996anexperimental,wong1995reducing,mresa1999efficiency}
 were conducted on older programming languages such as Fortran, with
-operators specific to the language, and are not directly applicable to
+operators specific to the language, and may not directly applicable to
 newer languages such as Java.
 
 Finally, with bytecode~\footnote{
 A \textit{do faster} approach for eliminating
 the compilation step to gain execution speed
 } based mutation
-engines like PIT~\cite{pitest} and Javalanche~\cite{javalanche}
-, operators based on
-source code modification are no longer applicable, and their
+engines like PIT~\cite{pitest} and Javalanche~\cite{javalanche},
+operators based on source code modification are no longer applicable, and their
 equivalents in bytecode need to be identified and compared with other
-approaches. A detailed discussion of these issues can be found in
-Section~\ref{sec:related}.
+approaches. A detailed discussion of our approach can be found in
+Section~\ref{sec:methodology}.
 
 
 We have attempted to rectify this situation with a large scale study of real
@@ -87,16 +93,17 @@ Given a set of mutants and a universe of test cases, we can approximate the
 minimal set of test cases required to kill those mutants.\footnote{We only
 approximate this, with greedy methods, due to the high cost of computing a
 perfect minimal set, as established in the test case selection literature
-\cite{yoo2012regression}.}  Ideally, we would like a set of mutants that require
-as many test cases as possible, if we assume that the original set of test
-cases is populated with useful, non-redundant test cases.  While the suites
-of many open source programs are far from adequate, they should satisfy that
-requirement:  each test was almost always added by considerable manual labor,
-and was at least believed to be useful.  Therefore, any tests omitted likely
-indicate a potential to miss faults.  A good mutation selection strategy,
-therefore, should 1) be as close to the original set of mutants as possible,
-in terms of the test cases it requires in a minimal suite and 2) require
-more test cases than a randomly selected set of mutants of the same size.
+\cite{yoo2012regression}.}  Ideally, we would like a set of mutants that
+require as many test cases as possible, if we assume that the original set
+of test cases is populated with useful, non-redundant test cases.  While
+the suites of many open source programs are far from adequate, they should
+satisfy that requirement:  each test was almost always added by considerable
+manual labor, and was at least believed to be useful.  Therefore, any tests
+omitted likely indicate a potential to miss faults.  A good mutation selection
+strategy, therefore, should 1) be as close to the original set of mutants
+as possible, in terms of the test cases it requires in a minimal suite and
+2) require more test cases than a randomly selected set of mutants of the
+same size.
 
 All test cases are not created equal, of course -- we use assertion counts
 and execution time as other measures.
@@ -114,9 +121,10 @@ and execution time as other measures.
 % approximate the effect of exception-only test cases by starting the assert
 % count from $1$ rather than $0$}.
 
-Hence an easy way to evaluate a mutation reduction strategy would be to
-see if it promotes such test suites; that is, either test suites with a large
-number of non-redundant test cases, or those with a large number of asserts.
+This suggests that an easy way to evaluate a mutation reduction strategy
+would be to see if it promotes such test suites; that is, either test suites
+with a large number of non-redundant test cases, or those with a large number
+of asserts.
 
 If we assume that testers would prefer adding test cases that increases the
 mutation score, then a good strategy should reward the behavior of adding
