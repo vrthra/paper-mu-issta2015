@@ -140,11 +140,12 @@ $n$ most numerous operators. In our experiment, the order of operators was
 We discarded one at each
 step and evaluated the effectiveness at each $n$.
 %----------------------------------------
-\subsubsection{Statement Deletion} \label{subsec:stmtdel} The basic
-statement deletion was modeled on the work by Deng et
-al.~\cite{deng2013empirical}. The operations on single statements were
-modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and \Pitri~for
-simple statements, and using \pitrc for control structures. \pitrc
+\subsubsection{Statement deletion emulation} \label{subsec:stmtdel}
+
+The statement deletion based operator selection was based on the work by
+Deng et al.~\cite{deng2013empirical}. The operations on single
+statements were modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and
+\Pitri~for simple statements, and using \pitrc for control structures. \pitrc
 replaces boolean conditions with \textit{false}, resulting in removal of the
 conditional block. The operator for return values was modeled using
 \Pitrv, which is similar.  The operators for \textit{while},
@@ -155,23 +156,46 @@ modeled using \pitrs which replaced the first 100 labels with a
 \textit{default} label, resulting in the switch element being
 deleted. Due to the constraints of the architecture of PIT only the
 first 100 labels were replaced. Deleting \textit{try/catch} was not
-necessary at bytecode level.  Finally, to get an accurate estimation
-of the effect of true statement deletion, we grouped the mutants by
-line, and considered each line a single virtual mutant (that is, the total
-number of mutants is equal to the total number of lines). Further,
-killing any mutant from a line resulted in marking the virtual mutant
-for that line as killed. This gave us the mutation score for the
-virtual statement deletion operator.  We note that the approximation
-of simple statement deletion, especially when arithmetic operators are
-involved, is not complete. However,
-the number of mutants produced by \pitm operator is very small. We
-also note that our approximation does not account for the increase in
-ease of detection when multiple mutations are combined together due to
-the coupling effect. This also means that not all the lines may be
-mutated ,since there may be no applicable operators. However, given
-the constraints of a bytecode based mutation system, we believe that
-our procedure is reasonable.
+necessary at bytecode level.
+
+Note that we are not attempting to evaluate statement deletion mutation
+directly here. Rather, we have chosen a set of operators that could be
+involved in deletion of statements, and have used that as an operator
+selection criteria. This means that in order to translate the results
+from our experiment back to original statement deletion operator, we need
+to rely on some assumptions. They are, 1) Coupling effect: If a test is
+able to kill a mutant in this set, then it should kill it even when it
+is in combination with other mutants of this set (resulting in deletion
+of deletion of the statement in question). Note that there is a
+possibility for statement deletion to be less effective than our
+experiment, that is, for actual deleted statements to be detected more
+often than individual mutants are detected. However, this does not adversely
+affect our final conclusions.
+
+Finally, while the utility measures and the effectiveness for deletion based
+operators should hold when translating to true statement deletion, the mutation
+share reported is based on the independent mutants, and should not be taken
+as the mutation share of true statement deletion.
+
+% Finally, to get an accurate estimation
+% of the effect of true statement deletion, we grouped the mutants by
+% line, and considered each line a single virtual mutant (that is, the total
+% number of mutants is equal to the total number of lines). Further,
+% killing any mutant from a line resulted in marking the virtual mutant
+% for that line as killed. This gave us the mutation score for the
+% virtual statement deletion operator.  We note that the approximation
+% of simple statement deletion, especially when arithmetic operators are
+% involved, is not complete. However,
+% the number of mutants produced by \pitm operator is very small. We
+% also note that our approximation does not account for the increase in
+% ease of detection when multiple mutations are combined together due to
+% the coupling effect. This also means that not all the lines may be
+% mutated ,since there may be no applicable operators. However, given
+% the constraints of a bytecode based mutation system, we believe that
+% our procedure is reasonable.
 % An interesting point is that using this
+
+
 %procedure statement, deletion is no longer a simple mutation and
 %qualifies as a higher order mutation operator. In fact, the procedure
 %we outlined can be used in general to judge the effectiveness of a

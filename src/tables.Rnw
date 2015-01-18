@@ -9,6 +9,7 @@ tbl.place <- function(xtb) {
   align(xtb) <- "p{0.1\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}|p{0.15\\textwidth}"
   return(xtb)
 }
+# s.selective.db['sdl','mutation.share'] <- -1 #paste(s.opsample.db['sdl','mutation.share'],'*')
 print(tbl.place(xtable(eff(s.selective.db), caption='Selective Strategy', label='table:selective')),include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
 \caption {The operator selection strategy}
