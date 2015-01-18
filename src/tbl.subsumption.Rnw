@@ -1,0 +1,18 @@
+\begin{table*}[!ht]
+<<tblsubsumption,results='asis'>>=
+library(ellipse)
+subsumption <- read.csv('data/subsumption.csv')
+print(xtable(1 - subsumption, caption='subsumption', label='table:subsumption'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+@
+\caption{The subsumption relationship.}
+\end{table*}
+
+% \begin{figure*}
+% <<subsumption,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+% m <- as.matrix(subsumption)
+% library(ellipse)
+% #plotcorr(m, outline=F,col='white')
+% colorfun <- colorRamp(c("#3366CC","white"), space="Lab")
+% plotcorr(m, col=rgb(colorfun((m+1)/2), maxColorValue=255), outline=F)
+% @
+% \end{figure*}
