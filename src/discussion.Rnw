@@ -5,11 +5,14 @@ We will analyze each of the different types of mutation reduction strategies in
 detail, and summarize the broad patterns we see at the end.
 
 \subsubsection{Operator Selection}
-From Table~\ref{tbl:selective}, we see that except for statement deletion, we
-have negative utility in comparison to baseline for both tests and asserts.
-Even for statement deleition, the utility is just 0.5 tests better than
-baseline. A similar result is present in the strategy effectiveness also,
-where the effectiveness over baseline is either negettive or extremely small.
+From Table~\ref{tbl:selective}, looking at the test and assert utility,
+we see that there are a few selective strategies that seem to score a positive
+test utility. Notably, the statement modification strategy sselective does
+about 1.86\% better than the random selection for test utility, and has similar
+advantage in assert utility. It also seem to have a slight advantage of 0.27\%
+in the strategy effectivenss.
+
+The statistical analysis in Table~\ref{tbl:ttests}
 
 This is corroborated by statistical analysis where using paired t-test given in
 Table~\ref{tbl:ttests}, it was found that the test utiilty was lower than

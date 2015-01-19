@@ -33,6 +33,26 @@ db <- subset(common.db, operator=="eselective")
 eselective.t <- mintc.t.test(db)
 eselective.m <- mutant.t.test(db)
 
+db <- subset(common.db, operator=="sselective")
+sselective.t <- mintc.t.test(db)
+sselective.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="rselective")
+rselective.t <- mintc.t.test(db)
+rselective.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="esselective")
+esselective.t <- mintc.t.test(db)
+esselective.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="reselective")
+reselective.t <- mintc.t.test(db)
+reselective.m <- mutant.t.test(db)
+
+db <- subset(common.db, operator=="rsselective")
+rsselective.t <- mintc.t.test(db)
+rsselective.m <- mutant.t.test(db)
+
 db <- subset(common.db, operator=="javalanche")
 javalanche.t <- mintc.t.test(db)
 javalanche.m <- mutant.t.test(db)
