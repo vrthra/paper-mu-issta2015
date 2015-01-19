@@ -1,3 +1,4 @@
+\begin{table*}[!ht]
 <<results='asis'>>=
 t.test.table <- data.frame(u.mean=NA,u.CI.high=NA,u.CI.low=NA,u.p.value=NA, m.mean=NA,m.CI.high=NA,m.CI.low=NA,m.p.value=NA)[numeric(0),]
 
@@ -50,4 +51,7 @@ t.test.table['Op-Selection in',]            <- c(in.t$estimate,in.t$conf.int[1],
 
 print(xtable(t.test.table, caption='T-Tests', label='table:ttest'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
+\caption {The t-test for difference between mutants selected by reduction strategies and the baseline. It shows that there is no practical difference between the two.}
+\label{tbl:ttests}
+\end{table*}
 
