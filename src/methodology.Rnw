@@ -142,7 +142,7 @@ model comparison to obtain the best model given by
 \[\mu{M_s} = 0+.55 nmc + .2 rc + .1 dc + .2 rv + .1 cc + .7emv + .02 m + .02 ri \]
 
 with $R^2 = 0.96$. This suggests that the variables we should be interested
-in are \Pitnvmc, \Pitrc, \Pitdc, \Pitrv, \Pitcc, \Pitemv, \Pitm, \Pitri
+in are \Pitnvmc, \Pitrc, \Pitdc, \Pitrv, \Pitcc, \Pitemv, \Pitm, and \Pitri.
 
 \begin{comment}
 Call:
