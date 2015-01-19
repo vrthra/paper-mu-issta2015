@@ -92,15 +92,27 @@ the reasoning that it forces users to consider all parts of the input domain,
 and ROR was chosen because it forces users to consider values of predicates.
 ROR mutates relational operators, while ABS replaces variables and expressions
 by their positive or negative absolute value or zero. \Pitcb and \Pitnc from
-PIT are a good map for ROR. However, we could not map ABS to PIT operators.
+PIT are a good map for ROR. Similarly, \Pitin is able to partially provide ABS
+functionality.
 
 % ROR Relational Operator Replacement a > b to b < a
 % ABS Absolute value insertion a = b to a = abs(b), -abs(b), 0
 
 \subsubsection{E-Selective}
-\noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.} They selected
-ABS, UOI, LCR, AOR, ROR from Mothra operators.  We have used  \Pitin, \Pitm,
-\Pitcb, and \Pitnc. PIT does not have any operator comparable to LCR.
+\noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.} Mothra supports
+three main classes of operators; operand mutators, operator (expression)
+mutators and statement mutators. The E-Selective strategy chooses only those
+mutators that modify operators. These for Mothra were ABS, UOI, LCR, AOR, and
+ROR. UOI operates by incrementing or decrementing arithmetic expressions by 1,
+LCR changes the relational operators, and AOR mutates arithmetic operators.
+
+% UOI : Unary insertion : toggle +1, -1
+% LCR : Logical connectives : a && b -> a || b, a, b, T, F
+% AOR : Arithmetic a + b ->  a - b, *,%,a,b
+
+For mapping to PIT, we have tried to follow the spirit of choosing only
+operator mutators form the mutators available in PIT. The operators we have
+used are \Pitin, \Pitm, \Pitcb, \Pitnc, \Pitrc, and \Pitnc.
 
 \subsubsection{Javalanche}
 \noindent\textbf{Javalanche \cite{javalanche}.}
@@ -110,10 +122,61 @@ Operator, and Replace Numerical Constant operators. We have used \Pitnc,
 
 \subsubsection{Variable Reduction}
 \noindent\textbf{Namin et al.~\cite{siami2008sufficient}.}
-They have tried to reduce the mutation operators of Proteum analysis
-tool which is for C programs. They suggest 28 operators which many of them
-are not applicable in Java, and some not in PIT.
-We  used by  \Pitin, \Pitm, \Piti, and \Pitnc.
+For variable reduction, Namin framed the question of finding the best set of
+mutation operators as a statistical problem of finding the set of operators
+such that we can best predict the final mutation score. That is, given that
+$M$ is the final mutation score, and $m_1,m_2..m_n$ are mutation scores given
+by $n$ mutation operators, Namin wanted to find the smallest set of mutations
+such that we can predict $M$ from the set of $m_{1..n}$. This boils down to
+finding the linear model
+
+\[M = \alpha m_1 + \beta m_2 ... \omega m_n\]
+
+where $\alpha,\beta .. \omega$ are constants. However we take advantage of the
+limited set of operators to run a complete subset model comparison to obtain
+the best model given by
+\[\mu{M_s} = 0+.55 nmc + .2 rc + .1 dc + .2 rv + .1 cc + .7emv + .02 m + .02 ri \]
+
+with $R^2 = 0.96$. This suggests that the variables we should be interested
+in are \Pitnvmc, \Pitrc, \Pitdc, \Pitrv, \Pitcc, \Pitemv, \Pitm, \Pitri
+
+\begin{comment}
+Call:
+lm(formula = x ~ xnmc + xrc + xdc + xrv + xcc + xemv + xm + xri)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.12643 -0.01446 -0.00313  0.00768  0.52589 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.003130   0.004537   0.690  0.49083    
+xnmc         0.549245   0.031977  17.176  < 2e-16 ***
+xrc          0.197321   0.037466   5.267 2.64e-07 ***
+xdc          0.067979   0.027314   2.489  0.01336 *  
+xrv          0.205544   0.028226   7.282 2.87e-12 ***
+xcc         -0.074420   0.023555  -3.159  0.00174 ** 
+xemv         0.071699   0.020909   3.429  0.00069 ***
+xm           0.022937   0.015159   1.513  0.13131    
+xri         -0.026070   0.016472  -1.583  0.11453    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.05318 on 302 degrees of freedom
+Multiple R-squared:  0.9669,  Adjusted R-squared:  0.9661 
+F-statistic:  1104 on 8 and 302 DF,  p-value: < 2.2e-16
+
+
+\end{comment}
+
+%The variable reduction procedure given by Namin results in 28 operators of
+%Proteum analysis tool. Unfortunately for us, unlike the previous selection
+%techniques
+
+%They have tried to reduce the mutation operators of Proteum analysis
+%tool which is for C programs. They suggest 28 operators which many of them
+%are not applicable in Java, and some not in PIT.
+%We used \Pitin, \Pitm, \Piti, and \Pitnc.
 
 \subsubsection{N-selection}
 \noindent\textbf{Offut et al. ~\cite{offutt1993experimental}.} They suggested
@@ -123,8 +186,6 @@ operators was \Pitnvmc, \Pitrv, \Pitic, \Pitdc, \Pitnc, \Pitrc, \Pitvmc,
 We discarded one at each step and evaluated the effectiveness at each $n$.
 
 \subsubsection{Statement deletion emulation} \label{subsec:stmtdel}
-The original statement deletion was proposed by Acree~\cite{acree1980onmutation}.
-
 The statement deletion based operator selection was based on the work by
 Deng et al.~\cite{deng2013empirical}. The operations on single
 statements were modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and
