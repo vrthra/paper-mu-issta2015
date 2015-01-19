@@ -5,11 +5,9 @@
 <<tblsubsumption, child='tbl.subsumption.Rnw'>>=
 @
 
-\begin{figure}
-\includegraphics[width=0.45\textwidth]{fig/subsumption.pdf}
-\caption{Subsumption relationship between operators. No area implies complete subsumption}
-\label{fig:subsumption}
-\end{figure}
+<<figsubsumption, child='fig.subsumption.Rnw'>>=
+@
+
 
 \section{Analysis}
 \label{sec:analysis}
