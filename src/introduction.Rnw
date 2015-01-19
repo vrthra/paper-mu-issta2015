@@ -77,11 +77,12 @@ mutation analysis tool for Java, which has been used by researchers in the
 past~\cite{gopinath2014code,inozemtseva2014coverage} for its wide range
 of operators.
 
-For this study, we experimented four classic mutation selection
+For this study, we experimented five classic mutation selection
 techniques: Constrained \cite{wong1995reducing}, E-Selective
-\cite{offutt1996anexperimental}, Javalanche \cite{javalanche} and
-N-Selection \cite{offutt1993experimental}, along with two sampling
-approaches: element based \cite{zhang2013ase} and operator based   sampling
+\cite{offutt1996anexperimental}, Javalanche \cite{javalanche},
+Variable Reduction~\cite{namin2006finding} and N-Selection
+\cite{offutt1993experimental}, along with two sampling approaches:
+element based \cite{zhang2013ase} and operator based sampling
 \cite{wong1995reducing}. We compare test effectiveness of each of techniques
 with pure random sampling. Our results show that in most cases there is no
 statistically significant benefit for mutation selection techniques. Moreover,
@@ -116,17 +117,20 @@ If we assume that testers would prefer adding test cases that increases the
 mutation score, then a good strategy should reward the behavior of adding
 non-redundant test cases and test suites with larger number of asserts.
 Thus it should choose a set of mutants that are killed by a larger number
-of such non-redundant tests at-least in comparison with random selection of
-the same number of mutants as the chosen set. We could also ensure that a
-reduction strategy does not miss out on important tests by running the set
-of non-redundant tests against the full set of mutants to see how many of
-the mutants were detected in comparison with the original number of detected
-mutants. This can again be compared to the test cases selected by a random
-sample of same number of mutants to see if the strategy performed better
-at-least with respect to random sampling. Since this evaluation crtieria does
-not depend on the mutation-adequacy of the test suite under consideration,
-we can run the evaluation using real world projects which almost always have
-non-adequate test suites.
+of such non-redundant tests at-least in comparison with random selection
+of the same number of mutants as the chosen set. We could also ensure that
+a reduction strategy does not miss out on important tests by running the
+set of non-redundant tests against the full set of mutants to see how many
+of the mutants were detected in comparison with the original number of
+detected mutants~\footnote{This is defined as the operator mutation score
+by Mresa et al.~\cite{mresa1999efficiency}. But the term mutation score is
+already a popular synonym for the mutation fraction detected. We call it the
+strategy effectiveness in this paper}. This can again be compared to the test
+cases selected by a random sample of same number of mutants to see if the
+strategy performed better at-least with respect to random sampling. Since
+this evaluation crtieria does not depend on the mutation-adequacy of the
+test suite under consideration, we can run the evaluation using real world
+projects which almost always have non-adequate test suites.
 
 The specific contributions of this paper are:
 
