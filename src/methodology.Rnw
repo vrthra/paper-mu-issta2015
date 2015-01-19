@@ -77,7 +77,7 @@ to correctly sample decimal numbers.
 For selective methods, we tried mutation operators
 suggested by Wong et al.~\cite{wong1995reducing}, Offutt et
 al.~\cite{offutt1996anexperimental,deng2013empirical}, and, Namin et
-al.~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized
+al.~\cite{siami2008sufficient}. Since Javalanche~\cite{schuler2009efficient} utilized
 operator selection mechanisms, we also compared the Javalanche operators for
 operator selection. Note that all of these techniques except Javalanche have
 targeted C programs. Thus, some of these operators may be sensible in C but

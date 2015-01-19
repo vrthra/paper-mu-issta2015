@@ -60,7 +60,7 @@ such as Java.
 
 Finally, with bytecode~\footnote{A \textit{do faster} approach for eliminating
 the compilation step to gain execution speed} based mutation engines such as
-PIT~\cite{pitest} and Javalanche~\cite{javalanche} becoming common in both
+PIT~\cite{pitest} and Javalanche~\cite{schuler2009efficient} becoming common in both
 development and research (e.g. \cite{zhang2013ase}, \cite{gopinath2014code},
 and \cite{inozemtseva2014coverage}), operators based on source code
 modification are no longer directly applicable, and their equivalents in
@@ -79,7 +79,7 @@ of operators.
 
 For this study, we experimented five classic mutation selection
 techniques: Constrained \cite{wong1995reducing}, E-Selective
-\cite{offutt1996anexperimental}, Javalanche \cite{javalanche},
+\cite{offutt1996anexperimental}, Javalanche \cite{schuler2009efficient},
 Variable Reduction~\cite{namin2006finding} and N-Selection
 \cite{offutt1993experimental}, along with two sampling approaches:
 element based \cite{zhang2013ase} and operator based sampling

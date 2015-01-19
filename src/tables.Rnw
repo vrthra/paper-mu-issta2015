@@ -1,4 +1,6 @@
 \begin{table*}[!ht]
+\caption*{\textbf{The operator selection results.} }
+
 %\caption*{Selective}
 <<results='asis'>>=
 eff <- function(v) {
