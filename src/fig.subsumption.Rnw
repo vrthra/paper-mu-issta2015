@@ -1,6 +1,6 @@
 \begin{figure}
 \includegraphics[width=0.45\textwidth]{fig/subsumption.pdf}
-\caption{Subsumption relationship between operators, with subsumption shown by decrease in area from circle.
+\caption{Subsumption relationship between operators -- operators are ordered by decreasing number of mutants produced -- , with subsumption shown by decrease in area from circle.
 No area implies complete subsumption}
 \label{fig:subsumption}
 \end{figure}
