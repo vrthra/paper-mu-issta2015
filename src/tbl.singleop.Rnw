@@ -1,4 +1,0 @@
-<<tblsingle,results='asis'>>=
-norder <- c('nmc','rv','ic','dc','nc','rc','vmc','cc','emv','m','cb','i','ri','rs','es','in')
-print(tbl.place(xtable(eff(s.singles.db[norder,]), caption='Single Operators', label='table:singles')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
-@
