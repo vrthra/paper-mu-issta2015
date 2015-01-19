@@ -21,7 +21,7 @@ print(tbl.place(xtable(eff(s.selective.db), caption='Selective Strategy', label=
 <<results='asis'>>=
 print(tbl.place(xtable(eff(s.nselection.db), caption='N-Selection', label='table:nselection')), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption {The N-selective strategy}
+\caption {The N-selective strategy. Each row removes the named mutation operator from the preceding row}
 \label{tbl:nselection}
 \end{table*}
 
