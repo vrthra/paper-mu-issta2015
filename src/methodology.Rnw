@@ -102,7 +102,7 @@ functionality.
 \noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.} Mothra supports
 three main classes of operators; Replacement (operand) mutators, Expression (operator)
 mutators and Statement mutators. The operator selections used in this paper
-are groupings of these operators, such as ES, ER, RS, RS, and E.
+are groupings of these operators, such as ES, ER, RE, RS, and E.
 
 The best strategy identified was E-Selective strategy chooses only those
 mutators that modify operators. These for Mothra were ABS, UOI, LCR, AOR, and
@@ -113,6 +113,8 @@ To accomplish the same with Pit, we divided the Pit operators similarly.
 Operand mutators are \Pitic, \Pitemv, and \Pitin. Operator mutators are \Pitm,
 \Pitcb, \Pitnc, \Pitrc, and \Pitdc. Statement mutators are given by \Pitrv,
 \Piti, \Pitvmc, \Pitnvmc, \Pitcc, \Pitri, \Pites, \Pitrs.
+
+We report the results of all combinations: ES, ER, RS, E, R, and S
 
 % UOI : Unary insertion : toggle +1, -1
 % LCR : Logical connectives : a && b -> a || b, a, b, T, F
@@ -132,13 +134,11 @@ such that we can best predict the final mutation score. That is, given that
 $M$ is the final mutation score, and $m_1,m_2..m_n$ are mutation scores given
 by $n$ mutation operators, Namin wanted to find the smallest set of mutations
 such that we can predict $M$ from the set of $m_{1..n}$. This boils down to
-finding the linear model
+finding the linear model statistically.
 
-\[M = \alpha m_1 + \beta m_2 ... \omega m_n\]
+We take advantage of the limited set of operators to run a complete subset
+model comparison to obtain the best model given by
 
-where $\alpha,\beta .. \omega$ are constants. However we take advantage of the
-limited set of operators to run a complete subset model comparison to obtain
-the best model given by
 \[\mu{M_s} = 0+.55 nmc + .2 rc + .1 dc + .2 rv + .1 cc + .7emv + .02 m + .02 ri \]
 
 with $R^2 = 0.96$. This suggests that the variables we should be interested
