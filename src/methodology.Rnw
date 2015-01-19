@@ -87,8 +87,15 @@ by the PIT, and could not be implemented easily (as mentioned below).
 
 \subsubsection{Constrained Mutation}
 \noindent\textbf{Wong et al. ~\cite{wong1995reducing}.} They selected ROR
-and ABS from Mothra for mutation analysis. We used operators \Pitcb and
-\Pitnc to model ROR operator. There are no comparable operators to ABS in PIT.
+and ABS from Mothra for mutation analysis. The ABS operator was chosen with
+the reasoning that it forces users to consider all parts of the input domain,
+and ROR was chosen because it forces users to consider values of predicates.
+ROR mutates relational operators, while ABS replaces variables and expressions
+by their positive or negative absolute value or zero. \Pitcb and \Pitnc from
+PIT are a good map for ROR. However, we could not map ABS to PIT operators.
+
+% ROR Relational Operator Replacement a > b to b < a
+% ABS Absolute value insertion a = b to a = abs(b), -abs(b), 0
 
 \subsubsection{E-Selective}
 \noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.} They selected
@@ -109,14 +116,14 @@ are not applicable in Java, and some not in PIT.
 We  used by  \Pitin, \Pitm, \Piti, and \Pitnc.
 
 \subsubsection{N-selection}
-\noindent\textbf{Offut et al. ~\cite{offutt1993experimental}.} They suggested removal of
-$n$ most numerous operators. In our experiment, the order of operators was
-\Pitnvmc, \Pitrv, \Pitic, \Pitdc, \Pitnc, \Pitrc, \Pitvmc, \Pitcc, \Pitemv,
-\Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, and \Pitin.
-We discarded one at each
-step and evaluated the effectiveness at each $n$.
-%----------------------------------------
+\noindent\textbf{Offut et al. ~\cite{offutt1993experimental}.} They suggested
+removal of $n$ most numerous operators. In our experiment, the order of
+operators was \Pitnvmc, \Pitrv, \Pitic, \Pitdc, \Pitnc, \Pitrc, \Pitvmc,
+\Pitcc, \Pitemv, \Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, and \Pitin.
+We discarded one at each step and evaluated the effectiveness at each $n$.
+
 \subsubsection{Statement deletion emulation} \label{subsec:stmtdel}
+The original statement deletion was proposed by Acree~\cite{acree1980onmutation}.
 
 The statement deletion based operator selection was based on the work by
 Deng et al.~\cite{deng2013empirical}. The operations on single
