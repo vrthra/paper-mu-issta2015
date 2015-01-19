@@ -84,12 +84,14 @@ $\frac{|k(T_{strategy})| - |k(T_{random})|}{|k(M)|}\times100.0$.
 <<mutantdet, child='fig.mutantdist.Rnw'>>=
 @
 \caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected.}
+\label{fig:mutationshare}
 \end{figure*}
 
 \begin{figure*}
 <<testdet, child='fig.testdist.Rnw'>>=
 @
 \caption{The relative contribution of mutation operators in terms of fraction of tests killed and covered.}
+\label{fig:mutationkills}
 \end{figure*}
 
 \subsection{Statistical tests}
