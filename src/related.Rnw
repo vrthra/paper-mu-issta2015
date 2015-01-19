@@ -1,57 +1,59 @@
 \section{Related Work}
 \label{sec:related}
 
-The idea of mutation analysis was first proposed by Richard Lipton~\cite{mathur2012foundations},
-and formalized by DeMillo et al.~\cite{demillo1978hints} A practical implementation of
-mutation analysis was accomplished by Budd et al.~\cite{budd1980theoretical} in 1980.
+The idea of mutation analysis was first proposed by Richard
+Lipton~\cite{mathur2012foundations}, and formalized by DeMillo et
+al.~\cite{demillo1978hints} A practical implementation of mutation analysis
+was accomplished by Budd et al.~\cite{budd1980theoretical} in 1980.
 
-Mutation analysis was found to subsume different coverage measures~\cite{budd1980mutation,mathur1994empirical,offutt1996subsumption},
-and it was found that the faults produced by mutation analysis were similar to real
-faults in the errors it produced~\cite{daran1996software} and the ease of detection~\cite{andrews2005mutation,andrews2006using}.
-Just et al.~\cite{just2014mutants} investigated the relation between mutation score and test
-case effectiveness using 357 real bugs, and found that the mutation score increased
-with effectiveness for 75\% of the cases, which was better than the 46\% reported
-for structural coverage.
+Mutation analysis was found to subsume different coverage
+measures~\cite{budd1980mutation,mathur1994empirical,offutt1996subsumption},
+and it was found that the faults produced by mutation analysis were similar
+to real faults in the errors it produced~\cite{daran1996software} and the
+ease of detection~\cite{andrews2005mutation,andrews2006using}.  Just et
+al.~\cite{just2014mutants} investigated the relation between mutation score
+and test case effectiveness using 357 real bugs, and found that the mutation
+score increased with effectiveness for 75\% of the cases, which was better
+than the 46\% reported for structural coverage.
 
 The foundational assumptions of mutation analysis are the competent programmer
-hypothesis which states that programmers tend to make very simple mistakes, and
-coupling effect which states that a test case able to detect a fault in
-isolation will continue to detect it even in the presence of other
-faults~\cite{demillo1978hints}. This was confirmed using theoretical analysis by Wah~\cite{wah2000atheoretical,wah2003ananalysis}
-and using empirical studies by Offutt~\cite{offutt1989thecoupling,offutt1992investigations}
+hypothesis which states that programmers tend to make very simple mistakes,
+and coupling effect which states that a test case able to detect a fault
+in isolation will continue to detect it even in the presence of other
+faults~\cite{demillo1978hints}. This was confirmed using theoretical analysis
+by Wah~\cite{wah2000atheoretical,wah2003ananalysis} and using empirical
+studies by Offutt~\cite{offutt1989thecoupling,offutt1992investigations}
 
 There are several approaches to reducing the cost of mutation analysis.
-These were categorized by Offutt and Untch~\cite{offutt2001mutation}
-into three approaches: do \textit{fewer}, \textit{smarter}, and \textit{faster}.
-The \textit{do fewer} approaches include selective mutation and mutant sampling,
-while weak mutation, parallelization of mutation analysis, and space/time trade-offs
-are grouped under the umbrella of \textit{do smarter}. Finally
-\textit{do faster} approaches include mutant schema generation methods,
-code patching etc.
+These were categorized by Offutt and Untch~\cite{offutt2001mutation} into
+three approaches: do \textit{fewer}, \textit{smarter}, and \textit{faster}.
+The \textit{do fewer} approaches include selective mutation and mutant
+sampling, while weak mutation, parallelization of mutation analysis,
+and space/time trade-offs are grouped under the umbrella of \textit{do
+smarter}. Finally \textit{do faster} approaches include mutant schema
+generation methods, code patching etc.
 
 The idea of using a subset of mutants was conceived along with
 mutation analysis itself. Budd~\cite{budd1980mutation} and
-Acree~\cite{acree1980mutation} showed that even 10\% sampling can achieve 99\%
-accuracy for the final score.  The idea was further investigated by
-Mathur~\cite{mathur1991performance}, Wong et
-al.~\cite{wong1993mutation,wong1995reducing}, and Offutt et
-al.~\cite{offutt1993experimental} using the Mothra~\cite{Mothra}
-mutation operators for Fortran. Mathur~\cite{mathur1991performance,wong1995reducing}
-suggested constrained mutation where only two operators
-were used.%, which were felt to be better than using the entire set.
+Acree~\cite{acree1980mutation} showed that even 10\% sampling
+can achieve 99\% accuracy for the final score.  The idea was
+further investigated by Mathur~\cite{mathur1991performance},
+Wong et al.~\cite{wong1993mutation,wong1995reducing}, and Offutt et
+al.~\cite{offutt1993experimental} using the Mothra~\cite{Mothra} mutation
+operators for Fortran. Mathur~\cite{mathur1991performance,wong1995reducing}
+suggested constrained mutation where only two operators were used.
 
 A number of studies in the past have looked at the relative merits of operator
 selection and random sampling criteria. Wong et al.~\cite{wong1995reducing}
-compared x\% selection of each mutant type
-with operator selection using just two mutation operators, and found that both
-achieved similar accuracy and reduction (80\%).
+compared x\% selection of each mutant type with operator selection using
+just two mutation operators, and found that both achieved similar accuracy
+and reduction (80\%).
 
-Mresa et al.\cite{mresa1999efficiency} used the cost of detection of
-mutants as a means of selection to define a set of operators. They
-found that if very high mutation score (close to 100\%) is required,
-x\% selective mutation is better than operator selection, and,
-conversely, for lower scores, operator selection would be better if
-the cost of mutants is considered.
+Mresa et al.\cite{mresa1999efficiency} used the cost of detection of mutants
+as a means of selection to define a set of operators. They found that if very
+high mutation score (close to 100\%) is required, x\% selective mutation is
+better than operator selection, and, conversely, for lower scores, operator
+selection would be better if the cost of mutants is considered.
 
 Zhang et al.~\cite{zhang2010operator} compared operator based mutant
 selection techniques to random mutant sampling. They found that none of
@@ -60,31 +62,30 @@ number of mutants. They also found that uniform sampling of mutations is
 more effective for larger subjects compared to equal sampling of mutation
 operators and the reverse is true for smaller subjects.
 
-Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as
-few as 5\% of mutants was sufficient for a very high correlation
-(99\%) with full mutation score, while sampling even fewer mutants has
-good potential for retaining a high accuracy of prediction.
-They investigated eight sampling strategies on top of operator-based mutant
-selection and found that sampling strategies based on program components
-(methods in particular) performed best.
+Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as few as
+5\% of mutants was sufficient for a very high correlation (99\%) with full
+mutation score, while sampling even fewer mutants has good potential for
+retaining a high accuracy of prediction.  They investigated eight sampling
+strategies on top of operator-based mutant selection and found that sampling
+strategies based on program components (methods in particular) performed best.
 
-Some studies have tried to find the set of \emph{sufficient mutation
-operators} that reduce the cost of mutation but maintain correlation
-with the full mutation score. Offutt et al.~\cite{offutt1993experimental}
-suggested an $n$-selective approach with step-by-step removal of operators
-with most numerous mutations. Barbosa et al.\cite{barbosa2001toward}
-provided a set of guidelines for selecting such mutation operators.
-Namin et al.\cite{namin2006finding,siami2008sufficient} formulated
-the problem as a variable reduction problem, and
-found that just 28 out of 108 operators in Proteum were sufficient.
+Some studies have tried to find the set of \emph{sufficient mutation operators}
+that reduce the cost of mutation but maintain correlation with the full
+mutation score. Offutt et al.~\cite{offutt1993experimental} suggested
+an $n$-selective approach with step-by-step removal of operators with
+most numerous mutations. Barbosa et al.\cite{barbosa2001toward} provided
+a set of guidelines for selecting such mutation operators.  Namin et
+al.\cite{namin2006finding,siami2008sufficient} formulated the problem as a
+variable reduction problem, and found that just 28 out of 108 operators in
+Proteum were sufficient.
 
 Using only the statement deletion operator was first suggested by
 Untch~\cite{untch2009onreduced}, who found that it had the highest
-correlation ($R^2 = 0.97$) with the full mutation score compared to
-other operator selection methods, while generating the smallest number of
-mutants.  This was further reinforced by Deng et al.~\cite{deng2013empirical}
-who defined deletion for different language elements, and found that an
-accuracy of 92\% is achieved while reducing the number of mutants by 80\%.
+correlation ($R^2 = 0.97$) with the full mutation score compared to other
+operator selection methods, while generating the smallest number of mutants.
+This was further reinforced by Deng et al.~\cite{deng2013empirical} who defined
+deletion for different language elements, and found that an accuracy of 92\%
+is achieved while reducing the number of mutants by 80\%.
 
 Operator and mutant subsumption is another active area of research
 for reduction of number of mutants where by operators or mutants
@@ -93,10 +94,10 @@ al.~\cite{kurtz2014mutant} finds that savings up to 2400\% can be achieved
 using subsumption alone, even though the result is based on investigation
 of a single program \textit{cal}. Research into subsumption of mutants also
 includes Higher Order Mutants, where by multiple mutations are introduced
-into the same set of mutants, reducing the total number of individual mutants
-by subsuming the component mutants. These have investigated by
-Jia et al.~\cite{jia2009higher,jia2008constructing}, and finds that it can
-reduce the number of mutants by 50\%.
+into the same set of mutants, reducing the total number of individual
+mutants by subsuming the component mutants. These have investigated by Jia
+et al.~\cite{jia2009higher,jia2008constructing}, and finds that it can reduce
+the number of mutants by 50\%.
 
 % Our work is most closely related to that of Zhang et
 % al.~\cite{zhang2013ase}. We extend the scope of their study with a
