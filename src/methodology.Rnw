@@ -86,7 +86,7 @@ not in Java.  Moreover, there were a few operators that were not supported
 by the PIT, and could not be implemented easily (as mentioned below).
 
 \subsubsection{Constrained Mutation}
-\noindent\textbf{Wong et al. ~\cite{wong1995reducing}.} They selected ROR
+\noindent\textbf{Wong et al.~\cite{wong1995reducing}.} They selected ROR
 and ABS from Mothra for mutation analysis. The ABS operator was chosen with
 the reasoning that it forces users to consider all parts of the input domain,
 and ROR was chosen because it forces users to consider values of predicates.
@@ -99,7 +99,7 @@ functionality.
 % ABS Absolute value insertion a = b to a = abs(b), -abs(b), 0
 
 \subsubsection{E-Selective}
-\noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.} Mothra supports
+\noindent\textbf{Offutt et al.~\cite{offutt1996experimental}.} Mothra supports
 three main classes of operators; Replacement (operand) mutators, Expression (operator)
 mutators and Statement mutators. The operator selections used in this paper
 are groupings of these operators, such as ES, ER, RE, RS, and E.
@@ -121,10 +121,30 @@ We report the results of all combinations: ES, ER, RS, E, R, and S
 % AOR : Arithmetic a + b ->  a - b, *,%,a,b
 
 \subsubsection{Javalanche}
-\noindent\textbf{Javalanche \cite{javalanche}.}
-Javalanche uses Negate Jump Condition, Omit Method Call, Replace Arithmetic
-Operator, and Replace Numerical Constant operators. We have used \Pitnc,
-\Pitvmc, \Pitnvmc, \Pitm, \Pitic and \Pitemv to model them.
+\noindent\textbf{Javalanche~\cite{schuler2009efficient,schuler2009javalanche}.}
+Javalanche adapts for Java bytecodes the e-selective operator set suggested by
+Offutt et al.~\cite{offutt1996experimental} and translated for C by Andrews
+et al.~\cite{andrews2005mutation}. The original operators adapted by Andrews
+were 1) replacing an integer constant by its predecessor, successor or by a
+small constant 2) replacing arithmetic or boolean operators by an operator
+of the same class 3) negate boolean conditions in control flow and 4)
+statement deletion.
+
+This was adapted to work with bytecodes in Javalanche, and was translated
+to~\cite{schuler2009efficient} 1) replace numerical constant
+operators 2) replace arithmetic operator, 3) negate jump condition. The last
+operator 4) omit method call was added later~\cite{schuler2009javalanche}.
+\footnote{
+We note that we have already given a translation of the original operators
+suggested by Offutt as the idea applies to PIT. Here, we are trying to
+evaluate how the translation implemented by Javalanche works.
+
+We also note that while not published, Javalanche has since added
+more operators in the default set. However it is not clear if they belong
+to a selected set under some criteria or if Javalanche is attempting to
+just increase the repertoire of mutations available.}
+
+These map directly to PIT operators \Pitic, \Pitm, \Pitnc, and \Pitvmc.
 
 \subsubsection{Variable Reduction}
 \noindent\textbf{Namin et al.~\cite{siami2008sufficient}.}
@@ -183,7 +203,7 @@ F-statistic:  1104 on 8 and 302 DF,  p-value: < 2.2e-16
 %We used \Pitin, \Pitm, \Piti, and \Pitnc.
 
 \subsubsection{N-selection}
-\noindent\textbf{Offut et al. ~\cite{offutt1993experimental}.} They suggested
+\noindent\textbf{Offutt et al.~\cite{offutt1993experimental}.} They suggested
 removal of $n$ most numerous operators. In our experiment, the order of
 operators was \Pitnvmc, \Pitrv, \Pitic, \Pitdc, \Pitnc, \Pitrc, \Pitvmc,
 \Pitcc, \Pitemv, \Pitm, \Pitcb, \Piti, \Pitri, \Pitrs, \Pites, and \Pitin.
