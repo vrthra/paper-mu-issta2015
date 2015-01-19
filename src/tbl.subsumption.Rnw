@@ -2,7 +2,7 @@
 <<tblsubsumption,results='asis'>>=
 print(xtable(1 - subsumption.db, caption='Subsumption of operators by others', label='tbl:subsumption'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
 @
-\caption{The subsumption relationship.}
+\caption{The subsumption relationship between mutation operators showing the fraction of common test cases between row and column mutants with respect to the total number of test cases killing the mutation operator in the row.}
 \label{tbl:subsumption}
 \end{table*}
 

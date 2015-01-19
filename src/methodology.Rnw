@@ -25,7 +25,10 @@ provided in Table~\ref{tbl:pitop}.
 
 In order to ensure that the operators that we added were not redundant,
 we computed their operator subsumption matrix. This is given in
-Table~\ref{tbl:subsumption}, and a visualization of the subsumption is
+Table~\ref{tbl:subsumption}. In the table, the mean number of mutants
+of an operator in the row subsumed by another operator in the column
+is given as the decimal fraction (i.e $1.0$ suggests complete subsumption
+of one mutation operator by the other). A visualization of the subsumption is
 presented in Figure~\ref{fig:subsumption}. In the figure, the amount of
 subsumption is indicated by removal of area from the circle, with same
 operators subsuming themselves entirely. This suggests that the operators

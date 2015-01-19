@@ -1,27 +1,14 @@
-\begin{table}
-\small{
-\begin{tabular}{ll}
-\hline \hline \\
-\Pitin & Remove negative sign from numbers\\
-\Pitrv & Mutate return values\\
-\Pitm & Mutate arithmetic operators\\
-\Pitvmc & Remove void method calls\\
-\Pitnc & Negate conditional statements\\
-\Pitcb & Modify boundaries in logical conditions\\
-\Piti & Modify increment and decrement statements\\
-\Pitnvmc & Remove non-void method calls, returning default value \\
-\Pitcc & Replace constructor calls, returning null \\
-\Pitic & Replace inline constants with default value \\
-\Pitri & Remove increment and decrement statements \\
-\Pitemv & Replace member variable assignments with default value \\
-\Pites & Modify switch statements \\
-\Pitrs & Replace switch labels with default (thus removing them) \\
-\Pitrc & Replace boolean conditions with true\\
-\Pitnc & Replace boolean conditions with false\\
-\hline
-\end{tabular}
-}
-\caption{PIT Mutation Operators (We have used abbreviations instead of operator names.)}
-\label{tbl:pitop}
-\end{table}
 
+In order to ensure that the operators that we added were not redundant,
+we computed their operator subsumption matrix. This is given in
+Table~\ref{tbl:subsumption}. In the table, the mean number of mutants
+of an operator in the row subsumed by another operator in the column
+is given as the decimal fraction (i.e $1.0$ suggests complete subsumption
+of one mutation operator by the other). A visualization of the subsumption is
+presented in Figure~\ref{fig:subsumption}. In the figure, the amount of
+subsumption is indicated by removal of area from the circle, with same
+operators subsuming themselves entirely. This suggests that the operators
+we used were non-redundant, with a maximum subsumption of only $40\%$.
+The Figure~\ref{fig:mutationshare} shows the share of each mutation operators
+in the total number of mutants produced, and the Figure~\ref{fig:mutationkills}
+shows the detection and covering rate of mutants by test cases.
