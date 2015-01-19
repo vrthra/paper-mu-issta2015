@@ -2,13 +2,6 @@
 @
 <<tblsingles, child='tables.Rnw'>>=
 @
-<<tblsubsumption, child='tbl.subsumption.Rnw'>>=
-@
-
-<<figsubsumption, child='fig.subsumption.Rnw'>>=
-@
-
-
 \section{Analysis}
 \label{sec:analysis}
 For the purpose of comparing different mutation reduction strategies, we

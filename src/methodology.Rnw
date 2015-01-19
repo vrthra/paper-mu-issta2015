@@ -1,3 +1,9 @@
+<<tblsubsumption, child='tbl.subsumption.Rnw'>>=
+@
+
+<<figsubsumption, child='fig.subsumption.Rnw'>>=
+@
+
 \section{Methodology}
 \label{sec:methodology}
 Our selection of programs was driven by a few overriding concerns. Our
