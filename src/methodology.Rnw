@@ -30,8 +30,8 @@ we used were non-redundant, with a maximum subsumption of only $40\%$.
 % the operator \pitnvmc contributed about 34\% of the total number of mutants
 % produced while \pitrv contributed about 7\%. Similarly, the blue shaded
 % box-plot represents the relative frequency of particular mutation operator
-% in the total mutants \textit{detected}. For example, \pitnvmc contribution
-% in the detected mutants was 23\% while that of \pitrv was 15\%.
+% in the total mutants \textit{detected}. For example, \Pitnvmc contribution
+% in the detected mutants was 23\% while that of \Pitrv was 15\%.
 
 For a detailed description of each mutation operator, please refer to PIT documentation~\cite{pitmut}.
 We modified PIT to report the entire test matrix of $tests \times failures$
@@ -43,22 +43,22 @@ runs.
 \small{
 \begin{tabular}{ll}
 \hline \hline \\
-\pitin & Remove negative sign from numbers\\
-\pitrv & Mutate return values\\
-\pitm & Mutate arithmetic operators\\
-\pitvmc & Remove void method calls\\
-\pitnc & Negate conditional statements\\
-\pitcb & Modify boundaries in logical conditions\\
-\piti & Modify increment and decrement statements\\
-\pitnvmc & Remove non-void method calls, returning default value \\
-\pitcc & Replace constructor calls, returning null \\
-\pitic & Replace inline constants with default value \\
-\pitri & Remove increment and decrement statements \\
-\pitemv & Replace member variable assignments with default value \\
-\pites & Modify switch statements \\
-\pitrs & Replace switch labels with default (thus removing them) \\
-\pitrc & Replace boolean conditions with true\\
-\pitnc & Replace boolean conditions with false\\
+\Pitin & Remove negative sign from numbers\\
+\Pitrv & Mutate return values\\
+\Pitm & Mutate arithmetic operators\\
+\Pitvmc & Remove void method calls\\
+\Pitnc & Negate conditional statements\\
+\Pitcb & Modify boundaries in logical conditions\\
+\Piti & Modify increment and decrement statements\\
+\Pitnvmc & Remove non-void method calls, returning default value \\
+\Pitcc & Replace constructor calls, returning null \\
+\Pitic & Replace inline constants with default value \\
+\Pitri & Remove increment and decrement statements \\
+\Pitemv & Replace member variable assignments with default value \\
+\Pites & Modify switch statements \\
+\Pitrs & Replace switch labels with default (thus removing them) \\
+\Pitrc & Replace boolean conditions with true\\
+\Pitnc & Replace boolean conditions with false\\
 \hline
 \end{tabular}
 }
@@ -110,7 +110,7 @@ by the PIT, and could not be implemented easily (as mentioned below).
 \noindent\textbf{Wong et al. ~\cite{wong1995reducing}.}
 They selected ROR  and ABS  from Mothra for
 mutation analysis. We used operators
-\pitcb and \pitnc to model ROR operator. There are no comparable operators to ABS in PIT.
+\Pitcb and \Pitnc to model ROR operator. There are no comparable operators to ABS in PIT.
 
 \subsubsection{E-Selective}
 \noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.}
@@ -145,14 +145,14 @@ step and evaluated the effectiveness at each $n$.
 The statement deletion based operator selection was based on the work by
 Deng et al.~\cite{deng2013empirical}. The operations on single
 statements were modeled using \Pitvmc, \Pitnvmc, \Pitcc, \Pitemv, and
-\Pitri~for simple statements, and using \pitrc for control structures. \pitrc
+\Pitri~for simple statements, and using \Pitrc for control structures. \Pitrc
 replaces boolean conditions with \textit{false}, resulting in removal of the
 conditional block. The operator for return values was modeled using
 \Pitrv, which is similar.  The operators for \textit{while},
 \textit{for}, and \textit{if} statements were modeled using \Pitdc,
 which replaced the boolean condition with \textit{true}, which removed the
 effect of conditional. The \textit{switch} statement deletion was
-modeled using \pitrs which replaced the first 100 labels with a
+modeled using \Pitrs which replaced the first 100 labels with a
 \textit{default} label, resulting in the switch element being
 deleted. Due to the constraints of the architecture of PIT only the
 first 100 labels were replaced. Deleting \textit{try/catch} was not
@@ -186,7 +186,7 @@ as the mutation share of true statement deletion.
 % virtual statement deletion operator.  We note that the approximation
 % of simple statement deletion, especially when arithmetic operators are
 % involved, is not complete. However,
-% the number of mutants produced by \pitm operator is very small. We
+% the number of mutants produced by \Pitm operator is very small. We
 % also note that our approximation does not account for the increase in
 % ease of detection when multiple mutations are combined together due to
 % the coupling effect. This also means that not all the lines may be

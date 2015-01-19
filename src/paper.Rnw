@@ -1,113 +1,25 @@
 % MAX LIMIT: 10 pages for all figurs and text + any number of references.
 \newcommand*\per{\scalebox{.5}{\%}}
-\newcommand\Mua{Mutation analysis~}
-\newcommand\mua{mutation analysis~}
-%\newcommand{\pitnvmc}{~NON\_\allowbreak{}VOID\_\allowbreak{}METHOD\_\allowbreak{}CALLS~}
-%\newcommand{\pitnc}{~NEGATE\_\allowbreak{}CONDITIONALS~}
-%\newcommand{\pitrc}{~REMOVE\_\allowbreak{}CONDITIONALS~}
-%\newcommand{\pitdc}{~DELETE\_\allowbreak{}CONDITIONALS~}
-%\newcommand{\pitrv}{~RETURN\_\allowbreak{}VALUES~}
-%\newcommand{\pitic}{~INLINE\_\allowbreak{}CONSTANTS~}
-%\newcommand{\pitcc}{~CONSTRUCTOR\_\allowbreak{}CALLS~}
-%\newcommand{\pitemv}{~E\_\allowbreak{}MEMBER\_\allowbreak{}VARIABLE~}
-%\newcommand{\pitvmc}{~VOID\_\allowbreak{}METHOD\_\allowbreak{}CALLS~}
-%\newcommand{\pitm}{~MATH~}
-%\newcommand{\pitcb}{~CONDITIONALS\_\allowbreak{}BOUNDARY~}
-%\newcommand{\piti}{~INCREMENTS~}
-%\newcommand{\pitri}{~REMOVE\_\allowbreak{}INCREMENTS~}
-%\newcommand{\pitrs}{~RM\_\allowbreak{}SWITCH~}
-%\newcommand{\pites}{~E\_\allowbreak{}SWITCH~}
-%\newcommand{\pitin}{~INVERT\_\allowbreak{}NEGATIVES~}
-%
-\newcommand{\pitnvmc}{NMC~}
-\newcommand{\pitnc}{NC~}
-\newcommand{\pitrc}{RC~}
-\newcommand{\pitdc}{DC~}
-\newcommand{\pitrv}{RV~}
-\newcommand{\pitic}{IC~}
-\newcommand{\pitcc}{CC~}
-\newcommand{\pitemv}{EMV~}
-\newcommand{\pitvmc}{VMC~}
-\newcommand{\pitm}{M~}
-\newcommand{\pitcb}{CB~}
-\newcommand{\piti}{I~}
-\newcommand{\pitri}{RI~}
-\newcommand{\pitrs}{RS~}
-\newcommand{\pites}{ES~}
-\newcommand{\pitin}{IN~}
-% No space variants.
-\newcommand{\Pitnvmc}{NMC}
-\newcommand{\Pitnc}{NC}
-\newcommand{\Pitrc}{RC}
-\newcommand{\Pitdc}{DC}
-\newcommand{\Pitrv}{RV}
-\newcommand{\Pitic}{IC}
-\newcommand{\Pitcc}{CC}
-\newcommand{\Pitemv}{EMV}
-\newcommand{\Pitvmc}{VMC}
-\newcommand{\Pitm}{M}
-\newcommand{\Pitcb}{CB}
-\newcommand{\Piti}{I}
-\newcommand{\Pitri}{RI}
-\newcommand{\Pitrs}{RS}
-\newcommand{\Pites}{ES}
-\newcommand{\Pitin}{IN}
+\newcommand\Mua{Mutation analysis\xspace}
+\newcommand\mua{mutation analysis\xspace}
+\newcommand{\Pitnvmc}{NMC\xspace}
+\newcommand{\Pitnc}{NC\xspace}
+\newcommand{\Pitrc}{RC\xspace}
+\newcommand{\Pitdc}{DC\xspace}
+\newcommand{\Pitrv}{RV\xspace}
+\newcommand{\Pitic}{IC\xspace}
+\newcommand{\Pitcc}{CC\xspace}
+\newcommand{\Pitemv}{EMV\xspace}
+\newcommand{\Pitvmc}{VMC\xspace}
+\newcommand{\Pitm}{M\xspace}
+\newcommand{\Pitcb}{CB\xspace}
+\newcommand{\Piti}{I\xspace}
+\newcommand{\Pitri}{RI\xspace}
+\newcommand{\Pitrs}{RS\xspace}
+\newcommand{\Pites}{ES\xspace}
+\newcommand{\Pitin}{IN\xspace}
 
-\begin{comment}
-<<setup, include=FALSE, message=FALSE, echo=FALSE>>=
-is.installed <- function(mypkg) is.element(mypkg, installed.packages()[,1])
-#options(CRAN = "http://cran.stat.ucla.edu")
-#if (!is.installed("xtable")) install.packages("xtable")
-#if (!is.installed("ggplot2")) install.packages("ggplot2")
-#if (!is.installed("reshape2")) install.packages("reshape2")
-
-#options(warn=-1)
-options(digits=3)
-opts_chunk$set(fig.path='figure/twocolumn-', fig.align='center', fig.show='hold', echo=FALSE)
-opts_chunk$set(cache=TRUE)
-render_listings()
-logit<-function(x) log(x/(1-x))
-require(reshape2)
-require(scales)
-require(xtable)
-require(ggplot2)
-require(grid)
-require(MutSel)
-vplayout <- function(x, y) viewport(layout.pos.row = x, layout.pos.col = y)
-theme = theme_set(theme_minimal())
-@
-<<chunk-hook, echo=2>>=
-<<setup>>
-v=data(package='MutSel')
-data(list = v$results[,3])
-@
-\end{comment}
-<<>>=
-
-f <- function(x) {
-  x <- x[,c(7,8,2,3,4,5,6)]
-  names(x)[names(x) == 'sampling'] <- '$\\div$'
-  return(x)
-}
-
-colorize.rsqr <- function(x) {
-  ifelse(x >= 0.90,
-      paste("\\textcolor{blue}{", formatC(x, dig=2, format="f"), "}"),
-      paste("\\textcolor{black}{", formatC(x, dig=2, format="f"), "}"))
-}
-
-colorize.it <- function(x) {
-  x$sd.reduction <- ifelse(x$sd.reduction * 2 < x$mutant.reduction,
-      paste("\\textcolor{black}{", formatC(x$sd.reduction, dig=2, format="f"), "}"),
-      paste("\\textcolor{red}{", formatC(x$sd.reduction, dig=2, format="f"), "}"))
-  x$r.square <- colorize.rsqr(x$r.square)
-  return(x)
-}
-
-
-theme_set(theme_bw(12))
-myopts <- theme(panel.background = element_blank())
-
+<<rsetup, child='r.setup.Rnw'>>=
 @
 % 10 pages for the main text + 1 for references.
 <<introduction, child='introduction.Rnw'>>=

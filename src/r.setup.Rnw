@@ -1,0 +1,56 @@
+\begin{comment}
+<<setup, include=FALSE, message=FALSE, echo=FALSE>>=
+is.installed <- function(mypkg) is.element(mypkg, installed.packages()[,1])
+#options(CRAN = "http://cran.stat.ucla.edu")
+#if (!is.installed("xtable")) install.packages("xtable")
+#if (!is.installed("ggplot2")) install.packages("ggplot2")
+#if (!is.installed("reshape2")) install.packages("reshape2")
+
+#options(warn=-1)
+options(digits=3)
+opts_chunk$set(fig.path='figure/twocolumn-', fig.align='center', fig.show='hold', echo=FALSE)
+opts_chunk$set(cache=TRUE)
+render_listings()
+logit<-function(x) log(x/(1-x))
+require(reshape2)
+require(scales)
+require(xtable)
+require(ggplot2)
+require(grid)
+require(MutSel)
+vplayout <- function(x, y) viewport(layout.pos.row = x, layout.pos.col = y)
+theme = theme_set(theme_minimal())
+@
+<<chunk-hook, echo=2>>=
+<<setup>>
+v=data(package='MutSel')
+data(list = v$results[,3])
+@
+\end{comment}
+<<>>=
+
+f <- function(x) {
+  x <- x[,c(7,8,2,3,4,5,6)]
+  names(x)[names(x) == 'sampling'] <- '$\\div$'
+  return(x)
+}
+
+colorize.rsqr <- function(x) {
+  ifelse(x >= 0.90,
+      paste("\\textcolor{blue}{", formatC(x, dig=2, format="f"), "}"),
+      paste("\\textcolor{black}{", formatC(x, dig=2, format="f"), "}"))
+}
+
+colorize.it <- function(x) {
+  x$sd.reduction <- ifelse(x$sd.reduction * 2 < x$mutant.reduction,
+      paste("\\textcolor{black}{", formatC(x$sd.reduction, dig=2, format="f"), "}"),
+      paste("\\textcolor{red}{", formatC(x$sd.reduction, dig=2, format="f"), "}"))
+  x$r.square <- colorize.rsqr(x$r.square)
+  return(x)
+}
+
+
+theme_set(theme_bw(12))
+myopts <- theme(panel.background = element_blank())
+
+@
