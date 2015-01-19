@@ -45,7 +45,7 @@ of non-redundant test cases the mutant selection achieved and the number of
 non-redundant test cases of a random sample of same number of mutants.
 The result is reported as a percentage of the non-redundant tests of the random
 sample which is taken as the baseline. That is, test utility is given by
-$\left(\frac{|min(T_{strategy})|}{|min(T_{random})|}-1\right)\times 100.0$
+\[\left(\frac{|min(T_{strategy})|}{|min(T_{random})|}-1\right)\times 100.0\]
 
 Similarly \textit{assert utility} of a strategy is computed as the difference
 between the number of assertions of non-redundant test cases the mutant
@@ -53,14 +53,14 @@ selection achieved and the number of assertions the test cases for random
 sample of same number of mutants. As before, it is reported as a percentage of
 the asserts of the non-redundant tests of the random sample which is taken
 as the baseline. It is given by
-$\left(\frac{|asserts(min(T_{strategy}))|}{|asserts(min(T_{random}))|}-1\right)\times 100.0$
+\[\left(\frac{|asserts(min(T_{strategy}))|}{|asserts(min(T_{random}))|}-1\right)\times 100.0\]
 
 \textit{Baseline effectiveness} is computed by getting the number
 of mutants selected by the strategy, and selecting the same number of mutants
 randomly, collecting the test cases that kill any of these mutants, and
 applying the same test cases against the original set of mutants. The result
 is then divided by the original number of detected mutants. It is given by
-$\frac{|k(T_{random})|}{|k(M)|}\times 100.0$.
+\[\frac{|k(T_{random})|}{|k(M)|}\times 100.0\]
 
 \textit{Strategy effectiveness} is computed by collecting all the test cases
 that detected any of the mutants in the selected subset, and applying these
@@ -68,7 +68,7 @@ test cases to the complete set of mutants. The mutation score thus obtained
 is then divided by the original number of detected mutants.
 This is reported as difference from the corresponding baseline effectiveness,
 given by 
-$\frac{|k(T_{strategy})| - |k(T_{random})|}{|k(M)|}\times100.0$.
+\[\frac{|k(T_{strategy})| - |k(T_{random})|}{|k(M)|}\times100.0\]
 
 
 \begin{figure*}
