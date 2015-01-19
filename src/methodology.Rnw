@@ -100,19 +100,23 @@ functionality.
 
 \subsubsection{E-Selective}
 \noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.} Mothra supports
-three main classes of operators; operand mutators, operator (expression)
-mutators and statement mutators. The E-Selective strategy chooses only those
+three main classes of operators; Replacement (operand) mutators, Expression (operator)
+mutators and Statement mutators. The operator selections used in this paper
+are groupings of these operators, such as ES, ER, RS, RS, and E.
+
+The best strategy identified was E-Selective strategy chooses only those
 mutators that modify operators. These for Mothra were ABS, UOI, LCR, AOR, and
 ROR. UOI operates by incrementing or decrementing arithmetic expressions by 1,
 LCR changes the relational operators, and AOR mutates arithmetic operators.
 
+To accomplish the same with Pit, we divided the Pit operators similarly.
+Operand mutators are \Pitic, \Pitemv, and \Pitin. Operator mutators are \Pitm,
+\Pitcb, \Pitnc, \Pitrc, and \Pitdc. Statement mutators are given by \Pitrv,
+\Piti, \Pitvmc, \Pitnvmc, \Pitcc, \Pitri, \Pites, \Pitrs.
+
 % UOI : Unary insertion : toggle +1, -1
 % LCR : Logical connectives : a && b -> a || b, a, b, T, F
 % AOR : Arithmetic a + b ->  a - b, *,%,a,b
-
-For mapping to PIT, we have tried to follow the spirit of choosing only
-operator mutators form the mutators available in PIT. The operators we have
-used are \Pitin, \Pitm, \Pitcb, \Pitnc, \Pitrc, and \Pitnc.
 
 \subsubsection{Javalanche}
 \noindent\textbf{Javalanche \cite{javalanche}.}

@@ -17,7 +17,7 @@
 \Pites & Modify switch statements \\
 \Pitrs & Replace switch labels with default (thus removing them) \\
 \Pitrc & Replace boolean conditions with true\\
-\Pitnc & Replace boolean conditions with false\\
+\Pitdc & Replace boolean conditions with false\\
 \hline
 \end{tabular}
 }
