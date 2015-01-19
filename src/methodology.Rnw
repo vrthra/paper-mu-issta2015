@@ -1,6 +1,5 @@
 <<tblsubsumption, child='tbl.subsumption.Rnw'>>=
 @
-
 <<tblpitmut, child='tbl.pitmut.Rnw'>>=
 @
 <<figsubsumption, child='fig.subsumption.Rnw'>>=
@@ -35,7 +34,8 @@ operators subsuming themselves entirely. This suggests that the operators
 we used were non-redundant, with a maximum subsumption of only $40\%$.
 The Figure~\ref{fig:mutationshare} shows the share of each mutation operators
 in the total number of mutants produced, and the Figure~\ref{fig:mutationkills}
-shows the detection and covering rate of mutants by test cases.
+shows the relative frequency with which tests are able to cover and kill
+different mutation operators.
 
 For a detailed description of each mutation operator, please refer to PIT
 documentation~\cite{pitmut}.  We modified PIT to report the entire test
