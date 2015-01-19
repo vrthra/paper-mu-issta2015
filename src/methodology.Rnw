@@ -1,6 +1,8 @@
 <<tblsubsumption, child='tbl.subsumption.Rnw'>>=
 @
 
+<<tblpitmut, child='tbl.pitmut.Rnw'>>=
+@
 <<figsubsumption, child='fig.subsumption.Rnw'>>=
 @
 
@@ -37,33 +39,6 @@ documentation~\cite{pitmut}.  We modified PIT to report the entire test
 matrix of $tests \times failures$ rather than just the first failure, and
 used this for our analysis. To remove the effects of random noise, results
 of each criteria was averaged out of ten runs.
-
-\begin{table}
-\small{
-\begin{tabular}{ll}
-\hline \hline \\
-\Pitin & Remove negative sign from numbers\\
-\Pitrv & Mutate return values\\
-\Pitm & Mutate arithmetic operators\\
-\Pitvmc & Remove void method calls\\
-\Pitnc & Negate conditional statements\\
-\Pitcb & Modify boundaries in logical conditions\\
-\Piti & Modify increment and decrement statements\\
-\Pitnvmc & Remove non-void method calls, returning default value \\
-\Pitcc & Replace constructor calls, returning null \\
-\Pitic & Replace inline constants with default value \\
-\Pitri & Remove increment and decrement statements \\
-\Pitemv & Replace member variable assignments with default value \\
-\Pites & Modify switch statements \\
-\Pitrs & Replace switch labels with default (thus removing them) \\
-\Pitrc & Replace boolean conditions with true\\
-\Pitnc & Replace boolean conditions with false\\
-\hline
-\end{tabular}
-}
-\caption{PIT Mutation Operators (We have used abbreviations instead of operator names.)}
-\label{tbl:pitop}
-\end{table}
 
 \subsection{Sampling Criteria}
 
