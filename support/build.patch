@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 3b4018d..03cbfc8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,7 @@ all: build
+ 	#[ $(cat build/MutSel_1.0.tar.gz.md5.new) $(cat build/MutSel_1.0.tar.gz.md5) ] && mv build/MutSel_1.0.tar.gz.md5.new build/MutSel_1.0.tar.gz.md5 || true
+ 	make build/acm_sigproc.pdf
+ 
+-build/acm_sigproc.pdf: $(things) build/data/MutSel_1.0.tar.gz
++build/acm_sigproc.pdf: $(things) #build/data/MutSel_1.0.tar.gz
+ 	rm -rf build/fig
+ 	cp -r fig build
+ 	cp etc/* build
