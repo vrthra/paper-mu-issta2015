@@ -44,28 +44,30 @@ used this for our analysis. To remove the effects of random noise, results
 of each criteria was averaged out of ten runs.
 
 \subsection{Sampling Criteria}
-
 We used several different sampling criteria that has been mentioned in the
 literature, For each sampling criteria, we sampled mutants on a decreasing
-power scale, sampling \textit{1/2, 1/4, 1/8, 1/16, 1/32, 1/64} of the total
-mutants.
+power scale, sampling $\frac{1}{2}$, $\frac{1}{4}$, $\frac{1}{8}$,
+$\frac{1}{16}$, $\frac{1}{32}$, $\frac{1}{64}$ of the total mutants.
 
-\subsubsection{x\% selection}
-The simplest sampling approach consisted of using x\% selection as suggested by
-Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
+\subsubsection{Uniform random sampling}
+The simplest sampling approach consisted of using x\% selection as suggested
+by Budd~\cite{budd1980mutation}. In this criteria, we choose a specific
 fraction of the complete set of mutants. This criteria also serves as a
 baseline for verifying the effectiveness of other criteria.
 
-\subsubsection{x\% selection per operator}
-This strategy, first suggested by Wong et al.~\cite{wong1995reducing} samples an equal percentage
-of mutants from each operator.
+\subsubsection{Stratified random sampling over mutation operators}
+This strategy, first suggested by Wong et al.~\cite{wong1995reducing}
+samples an equal percentage of mutants from each operator. While Wong seems
+to treat this as same as x\% selection, without giving any further
+justification as to why it was used instead, we note that this sampling is
+subtly different from pure random sampling in that it provides a stratified
+sampling based on mutation operators.
 
-\subsubsection{Sampling over program elements}
-Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we
-extended x\% selection criteria to sample from within different program
-elements.  We sampled in increasing order of scope,
---- \textit{line}, \textit{method} and \textit{class} (\textit{project}
-scope is just x\% selection).
+\subsubsection{Stratified random sampling over program elements}
+Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we extended
+x\% selection criteria to sample from within different program elements.
+We sampled in increasing order of scope, --- \textit{line}, \textit{method}
+and \textit{class} (\textit{project} scope is just x\% selection).
 
 We used the formula by Zhang et al.~\cite{zhang2013ase},
 \[sample(x) = \lfloor x + random(0..1) \rfloor \]
@@ -78,29 +80,26 @@ al.~\cite{offutt1996anexperimental,deng2013empirical}, and, Namin et
 al.~\cite{siami2008sufficient}. Since Javalanche~\cite{javalanche} utilized
 operator selection mechanisms, we also compared the Javalanche operators for
 operator selection. Note that all of these techniques except Javalanche have
-targeted C programs. Thus, some of these operators may be sensible in C but not
-in Java. For example, deletion of return statement is tolerated in C,
+targeted C programs. Thus, some of these operators may be sensible in C but
+not in Java. For example, deletion of return statement is tolerated in C,
 not in Java.  Moreover, there were a few operators that were not supported
 by the PIT, and could not be implemented easily (as mentioned below).
 
 \subsubsection{Constrained Mutation}
-\noindent\textbf{Wong et al. ~\cite{wong1995reducing}.}
-They selected ROR  and ABS  from Mothra for
-mutation analysis. We used operators
-\Pitcb and \Pitnc to model ROR operator. There are no comparable operators to ABS in PIT.
+\noindent\textbf{Wong et al. ~\cite{wong1995reducing}.} They selected ROR
+and ABS from Mothra for mutation analysis. We used operators \Pitcb and
+\Pitnc to model ROR operator. There are no comparable operators to ABS in PIT.
 
 \subsubsection{E-Selective}
-\noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.}
-They selected ABS, UOI, LCR, AOR, ROR from Mothra operators.
-We have used  \Pitin, \Pitm, \Pitcb, and \Pitnc. PIT does not have any operator
-comparable to LCR.
+\noindent\textbf{Offut et al. \cite{offutt1996anexperimental}.} They selected
+ABS, UOI, LCR, AOR, ROR from Mothra operators.  We have used  \Pitin, \Pitm,
+\Pitcb, and \Pitnc. PIT does not have any operator comparable to LCR.
 
 \subsubsection{Javalanche}
 \noindent\textbf{Javalanche \cite{javalanche}.}
-Javalanche uses Negate Jump Condition, Omit Method
- Call, Replace Arithmetic Operator, and Replace Numerical
- Constant operators. We have used \Pitnc, \Pitvmc,
-\Pitnvmc, \Pitm, \Pitic and \Pitemv to model them.
+Javalanche uses Negate Jump Condition, Omit Method Call, Replace Arithmetic
+Operator, and Replace Numerical Constant operators. We have used \Pitnc,
+\Pitvmc, \Pitnvmc, \Pitm, \Pitic and \Pitemv to model them.
 
 \subsubsection{Variable Reduction}
 \noindent\textbf{Namin et al.~\cite{siami2008sufficient}.}
