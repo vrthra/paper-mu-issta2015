@@ -1,4 +1,4 @@
-<<mutantdet,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.heigth='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
+<<mutantdet,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.height='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
 bcol <- '#2171B5'
 icol <- '#9ECAE0'
 m.db <- subset(allmutants.db, total > 0)
