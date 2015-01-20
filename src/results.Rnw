@@ -3,7 +3,7 @@
 
 This section presents the result of our experimenting different mutation
 selection techniques described in Section \ref{sec:methodology}.  Each
-experiment has been done multiple times (at least ten times).  We will
+experiment was repeated ten times to avoid random noise in results. We will
 analyze each of the different types of mutation reduction strategies in
 detail, and summarize the broad patterns we see at the end.
 
