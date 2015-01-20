@@ -16,7 +16,7 @@ slight advantage in test utility which while consistent, is not of much
 practical utility.
 
 This suggests that that none of the well known reduction strategies are
-actually able to consistenly select useful mutants, and the best path forward
+actually able to consistently select useful mutants, and the best path forward
 for a working tester is to rely on the simplest scheme of all -- the random
 selection of mutants.
 
@@ -28,4 +28,12 @@ than limited experiments on more academic subjects.  We speculate that
 the inadequacies in real world test suites may frequently be more simply
 predicted and evaluated than for typical research subjects, which may
 be smaller or involve less easily distinguished test suites.
+% TODO: Should we add this.
+%\begin{comment}
 
+There is also an inherent danger to using only a small sample of same academic
+subjects over and over again. We may tend to see patterns that are specific
+to the subjects, which are not present in the wider population. The
+non-performance of the popular strategies against a wider dataset such as
+ours may also be seen as a possible symptom of this over-fitting.
+%\end{comment}
