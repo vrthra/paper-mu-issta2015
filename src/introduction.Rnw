@@ -162,7 +162,6 @@ for further research in this area.
 research in mutation reduction strategies. Section~\ref{sec:methodology}
  discusses the sampling and operator
 selection strategies we study in detail. The analysis is given in
-Section~\ref{sec:analysis}, and the results of our experiment are given in
-Section~\ref{sec:results}, followed by detailed discussion of what these
-results imply in Section ~\ref{sec:discussion}.
+Section~\ref{sec:analysis}, and the results of our experiment are detailed in
+Section~\ref{sec:results}. Section ~\ref{sec:conclusion} concludes the paper.
 

@@ -32,7 +32,7 @@
 
 <<analysis, child='analysis.Rnw'>>=
 @
-<<results, child='results.Rnw'>>=
+%<<results, child='results.Rnw'>>=
 @
 <<results, child='discussion.Rnw'>>=
 @
