@@ -4,7 +4,7 @@
 We will analyze each of the different types of mutation reduction strategies in
 detail, and summarize the broad patterns we see at the end.
 
-\subsubsection{Operator Selection}
+\subsection{Operator Selection}
 From Table~\ref{tbl:selective}, looking at the test and assert utility, we
 see that there are a few selective strategies that seem to score a positive
 test utility. Notably, the statement modification strategy sselective does
@@ -27,7 +27,7 @@ for computing percentage}.
 Using single operators, we get a better result of 7.77\% for \Pitrv, which
 is also significant at $p-value < 0.01$.
 
-\subsubsection{Stratified sampling over operators}
+\subsection{Stratified sampling over operators}
 For stratified sampling over operators in Table~\ref{tbl:opsample}, the best
 result appears to be at $\frac{1}{8}$, which gives an advantage of 1.64\% over
 baseline. However, we note that the strategy effectiveness is negative. For
@@ -35,7 +35,7 @@ t-test, since this is a continuum, we only inspected if the strategy as a
 whole (not particular fractions) hold any advantage. The t-test suggests that
 there is no significant difference from the baseline for this kind of sampling.
 
-\subsubsection{Stratified sampling over program elements}
+\subsection{Stratified sampling over program elements}
 For stratified sampling over program elements in Table~\ref{tbl:element},
 there appears a small consistent advantage for most sample fractions. The best
 utility achieved was 3.85\% for class based $\frac{1}{16}$ sample. As before,
