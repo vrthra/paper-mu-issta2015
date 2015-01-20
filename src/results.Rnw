@@ -1,7 +1,59 @@
 \section{Results}
 \label{sec:results}
 
-The results for operator selection criteria are given in Table~\ref{tbl:selective}. Those of N-Selection are given in Table~\ref{tbl:nselection}. The fractional sampling per operator is provided in Table~\ref{tbl:opsample}, and that of element scoped sampling is provided in Table~\ref{tbl:element}. Finally, operation selection using just single operators are given in Table~\ref{tbl:singles}. The results from t-tests are available at Table~\ref{tbl:ttests}.
+This section presents the result of our experimenting different mutation
+selection techniques described in Section \ref{sec:methodology}.  Each
+experiment has been done multiple times (at least ten times).  We will
+analyze each of the different types of mutation reduction strategies in
+detail, and summarize the broad patterns we see at the end.
 
-Our data is available for replication~\cite{ourdata}.
+\subsection{Operator Selection}
+From Table~\ref{tbl:selective}, looking at the test and assert utility, we
+see that there are a few selective strategies that seem to score a positive
+test utility. Notably, the statement modification strategy sselective does
+about 1.86\% better than the random selection for test utility, and has
+similar advantage in assert utility. It also seem to have a slight advantage
+of 0.27\% in the strategy effectivenss.
+
+The statistical analysis in Table~\ref{tbl:ttests} also suggests a positive
+mean and a $p-value < 0.01$ for this result.
+
+For N-selection, which is given in Table~\ref{tbl:nselection}, The best
+utility was on removal of \Pitnvmc, \Pitrv, \Pitic, \Pitdc, and \Pitnc which
+resulted in a test utility advantage of 2.67\%. It also have the best positive
+strategy effectiveness of 0.29\%. However, the difference was not significant
+using t-tests in Table~\ref{tbl:ttests} $p-value > 0.01$.~\footnote{The
+difference between Table ~\ref{tbl:nselection} and Table~\ref{tbl:ttests}
+is due to test or mutant number being zero for baseline, and hence remvoed
+for computing percentage}.
+
+Using single operators, we get a better result of 7.77\% for \Pitrv, which
+is also significant at $p-value < 0.01$.
+
+\subsection{Stratified sampling over operators}
+For stratified sampling over operators in Table~\ref{tbl:opsample}, the best
+result appears to be at $\frac{1}{8}$, which gives an advantage of 1.64\% over
+baseline. However, we note that the strategy effectiveness is negative. For
+t-test, since this is a continuum, we only inspected if the strategy as a
+whole (not particular fractions) hold any advantage. The t-test suggests that
+there is no significant difference from the baseline for this kind of sampling.
+
+\subsection{Stratified sampling over program elements}
+For stratified sampling over program elements in Table~\ref{tbl:element},
+there appears a small consistent advantage for most sample fractions. The best
+utility achieved was 3.85\% for class based $\frac{1}{16}$ sample. As before,
+as this is a continuum, we only checked whether this kind of sampling has any
+significant advantage as a whole with t-test. The t-test suggests that all
+sampling over elements have a small but consistent advantage $p-value < 0.01$
+
+A general pattern that we can glean from this analysis is that none of
+the mutation reduction strategies appear to be practically better than
+our baseline -- the simplest strategy of all -- the random selection
+strategy. This suggests that at least from the perspective of a software
+tester wishing to use mutation analysis as an evaluation criteria to judge
+when or which tests to add, random sampling is the easiest way to reduce
+the computational requirements of mutation analysis. This assumes even more
+importance when we consider that the adequate random sample of mutants
+increases at a rate less than $O(n^\frac{1}{4})$ when the program size
+increases linearly~\cite{zhang2014empirical}.
 

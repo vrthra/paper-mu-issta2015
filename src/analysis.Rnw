@@ -103,4 +103,3 @@ the selected mutants by mutation reduction strategy. That is
 
 <<tblttest, child='tbl.ttests.Rnw'>>=
 @
-
