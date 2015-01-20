@@ -23,29 +23,36 @@ compute both the assertions from non-redundant test cases for the mutant
 selection, and also the assertions for the full set of killing test cases
 for the mutant selection.
 
-Say the original set of mutants is given my $M$, then the reduced set of
-mutants is given by $M_{strategy}$. The strategy choses $|M_{strategy}|$
-mutants on its application. Test suite composed of test cases that
-are able to kill any of the mutants of $M_{strategy}$ is given by
-$T_{strategy}$. The total number of asserts on tests under $T_{strategy}$
+Suppose $M$ and $M_{strategy}$ denote the original set of mutants and  the reduced set of
+mutants, respectively. 
+% The strategy chooses $|M_{strategy}|$ mutants on its application. 
+Test suite composed of test cases that 
+are able to kill an $m$ where  $ m \in M_{strategy}$ is given by
+$T_{strategy}$. The total number of \texttt{assert}s in $T_{strategy}$
 is given by $asserts(T_{strategy})$. We find a minimal test suite that
-is capable of killing all mutants under $M_{strategy}$ by a greedy strategy
+is capable of killing all mutants under $M_{strategy}$ by a greedy algorithm
 of iteratively choosing the test cases with the largest amount of kills
 for remaining mutants, and is given by $min(T_{strategy})$. Similarly,
-for baseline, we use a strategy of randomly choosing the mutants from the
-original set with number of mutants chosen same as the corresponding
-number of mutants that the strategy under consideration chose.
-That is, $|M_{strategy}| = |M_{random}|$. Given any set of tests $T$,
+for baseline, we build set of randomly selected mutants $M_{random}$,
+such that  $|M_{random}| = |M_{strategy}|$. Given any set of tests $T$,
 the total number of mutants that can be killed by the test cases in $T$
 is given by $k(T)$, and those mutants that are covered by the test cases
 are given by $c(T)$.
 
-The \textit{test utility} is computed as the difference between the number
+The \textit{test utility} approximates the extra tests a selection strategy 
+requires comparing a random sampling that suggest the same number of mutants.
+We  compute it as the difference between the number
 of non-redundant test cases the mutant selection achieved and the number of
-non-redundant test cases of a random sample of same number of mutants.
+non-redundant test cases of a random sample of same number of mutants. 
 The result is reported as a percentage of the non-redundant tests of the random
 sample which is taken as the baseline. That is, test utility is given by
 \[\left(\frac{|min(T_{strategy})|}{|min(T_{random})|}-1\right)\times 100.0\]
+
+Positive value test utility denotes that the strategy requires more tests
+and negative test utility denotes that the strategy needs less test cases.
+Values close to zero basically denote that the strategy rouphly suggest the 
+same number of tests. Note that the comparison here is betweeen the size of
+tests and it does not imply any subset relationship between test suites. 
 
 Similarly \textit{assert utility} of a strategy is computed as the difference
 between the number of assertions of non-redundant test cases the mutant
@@ -90,7 +97,7 @@ To compute the actual advantage gained by each of the different strategies, we
 calculated the paired t-test between the number of test cases reported by the
 strategy, and that of random selection of the same number of operators as
 baseline, that is 
-\[T.test\left(T_{strategy}\sim{}T_{random}\right)\]
+\[T.test\left(|T_{strategy}|\sim{}|T_{random}|\right)\]
 
 We also calculated the paired t-test between the number of mutants from the
 full set which were killed by the test cases killing any of the mutants from
