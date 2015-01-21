@@ -137,6 +137,13 @@ this evaluation criteria does not depend on the mutation-adequacy of the
 test suite under consideration, we can run the evaluation using real world
 projects which almost always have non-adequate test suites.
 
+Our results indicate that none of the reduction strategies evaluated
+provide any practical advantage over pure random sampling of mutants.\footnote{
+We reach a similar conclusion even when we use another traditional measure of
+comparison -- using correlation between full and selected mutatin scores --
+as we show in our ongoing work~\cite{gopinath2015anempirical}.
+}
+
 \noindent\textbf{Contributions.} The specific contributions of this paper are:
 \begin{itemize}
 \item Our study is the largest so far in terms of both the size of programs

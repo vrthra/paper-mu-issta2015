@@ -99,7 +99,7 @@ functionality.
 % ABS Absolute value insertion a = b to a = abs(b), -abs(b), 0
 
 \subsubsection{E-Selective}
-\noindent\textbf{Offutt et al.~\cite{offutt1996experimental}.} Mothra supports
+\noindent\textbf{Offutt et al.~\cite{offutt1996anexperimental}.} Mothra supports
 three main classes of operators; Replacement (operand) mutators, Expression (operator)
 mutators and Statement mutators. The operator selections used in this paper
 are groupings of these operators, such as ES, ER, RE, RS, and E.
@@ -123,7 +123,7 @@ We report the results of all combinations: ES, ER, RS, E, R, and S
 \subsubsection{Javalanche}
 \noindent\textbf{Javalanche~\cite{schuler2009efficient,schuler2009javalanche}.}
 Javalanche adapts for Java bytecodes the e-selective operator set suggested by
-Offutt et al.~\cite{offutt1996experimental} and translated for C by Andrews
+Offutt et al.~\cite{offutt1996anexperimental} and translated for C by Andrews
 et al.~\cite{andrews2005mutation}. The original operators adapted by Andrews
 were 1) replacing an integer constant by its predecessor, successor or by a
 small constant 2) replacing arithmetic or boolean operators by an operator
