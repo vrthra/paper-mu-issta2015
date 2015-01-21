@@ -132,5 +132,5 @@ myopts <- theme(panel.background = element_blank())
 % initial runs of your .tex file to
 % produce the bibliography for the citations in your paper.
 \bibliographystyle{abbrv}
-\bibliography{src/paper}  % sigproc.bib is the name of the Bibliography in this case
+\bibliography{etc/paper}  % sigproc.bib is the name of the Bibliography in this case
 \end{document}
