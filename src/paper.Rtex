@@ -19,24 +19,22 @@
 \newcommand{\Pites}{ES\xspace}
 \newcommand{\Pitin}{IN\xspace}
 
-<<rsetup, child='r.setup.Rtex'>>=
-@
 % 10 pages for the main text + 1 for references.
-<<introduction, child='introduction.Rtex'>>=
+<<introduction, child='src/introduction.Rtex'>>=
 @
-<<related, child='related.Rtex'>>=
-@
-
-<<methodology, child='methodology.Rtex'>>=
+<<related, child='src/related.Rtex'>>=
 @
 
-<<analysis, child='analysis.Rtex'>>=
+<<methodology, child='src/methodology.Rtex'>>=
 @
-<<results, child='results.Rtex'>>=
+
+<<analysis, child='src/analysis.Rtex'>>=
 @
-<<threats, child='threats.Rtex'>>=
+<<results, child='src/results.Rtex'>>=
 @
-<<conclusion, child='conclusion.Rtex'>>=
+<<threats, child='src/threats.Rtex'>>=
+@
+<<conclusion, child='src/conclusion.Rtex'>>=
 @
 %\FloatBarrier
 %\clearpage

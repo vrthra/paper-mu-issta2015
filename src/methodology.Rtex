@@ -1,8 +1,8 @@
-<<tblsubsumption, child='tbl.subsumption.Rtex'>>=
+<<tblsubsumption, child='src/tbl.subsumption.Rtex'>>=
 @
-<<tblpitmut, child='tbl.pitmut.Rtex'>>=
+<<tblpitmut, child='src/tbl.pitmut.Rtex'>>=
 @
-<<figsubsumption, child='fig.subsumption.Rtex'>>=
+<<figsubsumption, child='src/fig.subsumption.Rtex'>>=
 @
 
 \section{Methodology}
