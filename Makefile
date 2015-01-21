@@ -1,4 +1,4 @@
-things=$(wildcard src/*.Rnw src/*.bib etc/*.tex)
+things=$(wildcard src/*.Rtex src/*.bib etc/*.tex)
 
 all: build
 	#@curl http://web.engr.oregonstate.edu/~gopinath/issta15/MutSel_1.0.tar.gz.md5 -o build/MutSel_1.0.tar.gz.md5.new
@@ -10,10 +10,10 @@ build/acm_sigproc.pdf: $(things) build/data/MutSel_1.0.tar.gz
 	rm -rf build/fig
 	cp -r fig build
 	cp etc/* build
-	cp src/*.Rnw build
+	cp src/*.Rtex build
 	cp src/*.bib build
 	cp src/*.tex build
-	cd build; Rscript -e "require(knitr); knit('paper.Rnw', encoding='UTF-8');"
+	cd build; Rscript -e "require(knitr); knit('paper.Rtex', encoding='UTF-8');"
 	cd build; ../bin/latexmk -pdf acm_sigproc.tex
 
 build/MutSel_1.0.tar.gz.md5:
