@@ -53,8 +53,18 @@ t.test.table['Op-Selection rs',]            <- c(rs.t$estimate,rs.t$conf.int[1],
 t.test.table['Op-Selection es',]            <- c(es.t$estimate,es.t$conf.int[1],es.t$conf.int[2],es.t$p.value, es.m$estimate,es.m$conf.int[1],es.m$conf.int[2],es.m$p.value)
 t.test.table['Op-Selection in',]            <- c(in.t$estimate,in.t$conf.int[1],in.t$conf.int[2],in.t$p.value, in.m$estimate,in.m$conf.int[1],in.m$conf.int[2],in.m$p.value)
 
+#colnames(t.test.table) <- c('u.mean', 'u.CI.high', 'u.CI.low', 'u.p.value', 'm.mean', 'm.CI.high', 'm.CI.low', 'm.p.value')
+#print(xtable(t.test.table, caption='T-Tests', label='table:ttest'), include.rownames=T, floating=F, #size='\\small',sanitize.text.function=function(x){x})
+
+f <- function(fx) {format(fx, digits=2)}
+t.test.table$u.range <- paste(f(t.test.table$u.CI.low), "..", f(t.test.table$u.CI.high))
+t.test.table$m.range <- paste(f(t.test.table$m.CI.low), "..", f(t.test.table$m.CI.high))
+
+t.test.table <- subset(t.test.table, select=c(u.mean, u.range, u.p.value, m.mean, m.range, m.p.value))
+colnames(t.test.table) <- c('Mean(Test utility)', 'CI Range', 'P Value', 'Mean(Eff)', 'CI Range', 'P Value')
 
 print(xtable(t.test.table, caption='T-Tests', label='table:ttest'), include.rownames=T, floating=F, size='\\small',sanitize.text.function=function(x){x})
+
 @
 \caption {The t-test for difference between mutants selected by reduction strategies and the baseline. It shows that there is no practical difference between the two.}
 \label{tbl:ttests}
