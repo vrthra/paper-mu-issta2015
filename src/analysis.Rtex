@@ -6,24 +6,18 @@
 \label{sec:analysis}
 For the purpose of comparing different mutation reduction strategies, we
 computed the average \textit{test utility}, and \textit{assert utility}
-of different strategies.
+of different strategies, which are defined below.
 
-We use the mutant reduction strategy to select a subset of mutants from the
+To evaluate a mutation reduction strategy, 
+we use the mutant reduction strategy to select a subset of mutants from the
 original set. We then collect all test cases that were able to kill any of
-the selected set of mutants. Next we compute the non-redundant test cases
-by discarding any test case that can be removed without letting any of the
-mutants escape. This is repeated and averaged over multiple runs, and the
+the selected set of mutants. 
+Next, we compute the minimal, non-redundant test suite that detects all mutants. 
+This is repeated and averaged over multiple runs, and the
 average number of non-redundant test cases are found.
 
-While computing the test cases, we also collect assertion information each
-test case has. We compute this as the number of asserts in the test case
-incremented by one to account for test cases without any asserts. Thus we
-compute both the assertions from non-redundant test cases for the mutant
-selection, and also the assertions for the full set of killing test cases
-for the mutant selection.
-
-Let $M$ and $M_{strategy}$ denote the original set of mutants and the
-reduced set of mutants respectively. Test suite composed of test cases
+$M$ and $M_{strategy}$ denote the original set of mutants and the
+reduced set of mutants, respectively. Test suite composed of test cases
 that are able to kill an $m$ where  $ m \in M_{strategy}$ is given by
 $T_{strategy}$, and the total number of \texttt{assert}s in $T_{strategy}$
 is given by $asserts(T_{strategy})$. We find a minimal test suite that is
@@ -51,7 +45,14 @@ that the strategy roughly suggest the same number of tests. Note that the
 comparison here is between the size of tests and it does not imply any subset
 relationship between test suites.
 
-Similarly \textit{assert utility} of a strategy is computed as the difference
+Since the assertions in a test was found to have a significant 
+(albeit medium -- $0.35$) correlation with fault detection and mutation
+rate~\cite{fraser2013does}, we also compute the number
+of assertions in test cases selected in our analysis. If a test case
+did not have any assertions, we assume its number of assertions to be 
+one.
+
+\textit{Assert utility} of a strategy is computed as the difference
 between the number of assertions of non-redundant test cases the mutant
 selection achieved and the number of assertions the test cases for random
 sample of same number of mutants. As before, it is reported as a percentage
