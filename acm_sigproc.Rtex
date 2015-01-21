@@ -29,7 +29,7 @@
 \documentclass{sig-alternate}
 \usepackage{float}
 \usepackage{xspace}
-\usepackage{etc/Sweavel}
+%\usepackage{etc/Sweavel}
 \usepackage{placeins}
 \usepackage{comment}
 \usepackage[bookmarks=true, urlcolor=blue, linkcolor=blue, citecolor=blue, colorlinks=true, pdftitle={A comparison of mutant reduction approaches}, pdfauthor={Rahul Gopinath}]{hyperref}
@@ -106,8 +106,6 @@
 
 \input{etc/keys}
 
-\begin{comment}
-
 <<setup, include=FALSE, message=FALSE, echo=FALSE>>=
 options(digits=3)
 opts_chunk$set(fig.path='figure/twocolumn-', fig.align='center', fig.show='hold', echo=FALSE)
@@ -119,16 +117,15 @@ require(xtable)
 require(ggplot2)
 require(grid)
 require(MutSel)
-v=data(package='MutSel')
-data(list = v['results',3])
 theme_set(theme_bw(12))
 myopts <- theme(panel.background = element_blank())
 @
-
-\end{comment}
+<<MutSel, child='src/MutSel.Rtex'>>=
+@
 
 <<paper, child='src/paper.Rtex'>>=
 @
+
 
 %
 % The following two commands are all you need in the

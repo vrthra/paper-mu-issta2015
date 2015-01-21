@@ -1,6 +1,6 @@
-<<t.tests,child='src/ttests.Rtex'>>=
+<<t.tests,child='ttests.Rtex'>>=
 @
-<<tblsingles, child='src/tables.Rtex'>>=
+<<tblsingles, child='tables.Rtex'>>=
 @
 \section{Analysis}
 \label{sec:analysis}
@@ -76,14 +76,14 @@ reported as difference from the corresponding baseline effectiveness, given by
 
 
 \begin{figure*}
-<<mutantdet, child='src/fig.mutantdist.Rtex'>>=
+<<mutantdet, child='fig.mutantdist.Rtex'>>=
 @
 \caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected.}
 \label{fig:mutationshare}
 \end{figure*}
 
 \begin{figure*}
-<<testdet, child='src/fig.testdist.Rtex'>>=
+<<testdet, child='fig.testdist.Rtex'>>=
 @
 \caption{The relative contribution of mutation operators in terms of fraction of tests killed and covered.}
 \label{fig:mutationkills}
@@ -101,5 +101,5 @@ full set which were killed by the test cases killing any of the mutants from
 the selected mutants by mutation reduction strategy. That is
 \[T.test\left(k(T_{strategy})\sim{}k(T_{random})\right)\]
 
-<<tblttest, child='src/tbl.ttests.Rtex'>>=
+<<tblttest, child='tbl.ttests.Rtex'>>=
 @

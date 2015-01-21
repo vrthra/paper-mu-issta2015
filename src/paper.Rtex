@@ -20,21 +20,21 @@
 \newcommand{\Pitin}{IN\xspace}
 
 % 10 pages for the main text + 1 for references.
-<<introduction, child='src/introduction.Rtex'>>=
+<<introduction, child='introduction.Rtex'>>=
 @
-<<related, child='src/related.Rtex'>>=
-@
-
-<<methodology, child='src/methodology.Rtex'>>=
+<<related, child='related.Rtex'>>=
 @
 
-<<analysis, child='src/analysis.Rtex'>>=
+<<methodology, child='methodology.Rtex'>>=
 @
-<<results, child='src/results.Rtex'>>=
+
+<<analysis, child='analysis.Rtex'>>=
 @
-<<threats, child='src/threats.Rtex'>>=
+<<results, child='results.Rtex'>>=
 @
-<<conclusion, child='src/conclusion.Rtex'>>=
+<<threats, child='threats.Rtex'>>=
+@
+<<conclusion, child='conclusion.Rtex'>>=
 @
 %\FloatBarrier
 %\clearpage
