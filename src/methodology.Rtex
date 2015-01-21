@@ -8,13 +8,13 @@
 \section{Methodology}
 \label{sec:methodology}
 Our selection of programs was driven by a few overriding concerns. Our
-primary requirement was that our results had to be as widely applicable as
-possible for real-world programs. Secondly, we strove for a statistically
+primary requirement was that our results had to be as widely as possible 
+applicable for real-world programs. Secondly, we strove for a statistically
 significant result, reducing the number of variables present in the
-experiments. For this reason we chose a random sample of Java projects from
+experiments. For this reason, we chose a random sample of Java projects from
 Github~\cite{github} and Apache Software Foundation~\cite{apache} that use
-the popular maven~\cite{maven} build system, following the methodology we
-used previously in an ICSE 2014 paper~\cite{gopinath2014code}.
+the popular maven~\cite{maven} build system, following the methodology in our
+previous work ~\cite{gopinath2014code}.
 
 We ran mutation analysis on this set of projects using
 PIT\cite{pitest}. However, since the operators provided by PIT are limited,

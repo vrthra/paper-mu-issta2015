@@ -4,9 +4,11 @@
 Mutation analysis is a method for evaluating the quality of test suites. It
 involves producing a family of \emph{mutants}, programs with small differences
 from the original program, and evaluating the effectiveness of test suites
-against these mutants~\cite{lipton1971fault, ammann2008introduction}. Research
-by Andrews et al.~\cite{andrews2005mutation,andrews2006using} suggest
-that mutations can simulate behavior of real faults. However, mutation
+against these mutants~\cite{lipton1971fault, ammann2008introduction}. Studies
+by Andrews et al.~\cite{andrews2005mutation,andrews2006using} and more recently
+by Just et al.~\cite{just2014mutants} suggest
+that mutations can simulate behavior of real faults and can resemble mutants.
+However, mutation
 analysis of test suites has not sufficiently permeated software engineering
 practice~\cite{daka2014asurvey} even though the need for a tool that is
 able to evaluate tests based on their fault finding quality is keenly
@@ -38,7 +40,7 @@ recently found that the fraction required to achieve adequacy on mutation
 sampling increases at a rate of $O(x^{\frac{1}{4}})$ when program size
 increases linearly~\cite{zhang2014empirical}.
 
-Recent work~\cite{zhang2010icse,zhang2013ase} investigating the relative
+Recent studies~\cite{zhang2010icse,zhang2013ase} investigating the relative
 merits of random sampling strategies and operator selection suggests that
 random sampling can perform as well as or better than operator selection, and
 a strategy of either sampling based on program elements or one combining both
@@ -47,9 +49,10 @@ program element-based sampling and operator selection was the best approach.
 However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field has
 a serious lacuna in large scale research, both in the size of the programs
 studied, and in the number and diversity of programs, which reduces our
-confidence. This is true for selective mutation studies, sampling studies,
-and also for comparatively newer studies that attempt to combine methods. This
-is particularly worrisome if mutation analysis is to gain wider acceptance
+confidence in the result of studies have been done so far. The lack of 
+extensive validation is the case for all studies including:  selective mutation 
+studies, sampling studies, and also hybrid approaches that combine methods. 
+This is particularly worrisome if mutation analysis is to gain wider acceptance
 among testing professionals.
 
 We also note that quite a few of the influential
@@ -58,8 +61,8 @@ were conducted on older programming languages such as Fortran, with operators
 specific to the language, and may not directly applicable to newer languages
 such as Java.
 
-Finally, with bytecode~\footnote{A \textit{do faster} approach for eliminating
-the compilation step to gain execution speed} based mutation engines such as
+Finally, with bytecode-based ~\footnote{A \textit{do faster} approach for eliminating
+the compilation step to gain execution speed} mutation engines such as
 PIT~\cite{pitest} and Javalanche~\cite{schuler2009efficient} becoming common in both
 development and research (e.g. \cite{zhang2013ase}, \cite{gopinath2014code},
 and \cite{inozemtseva2014coverage}), operators based on source code
@@ -75,7 +78,9 @@ in literature (such as Apache Common Lang, Common Math and Joda Time). For
 the mutation analysis of this study, we choose PIT, a fast and easy to use
 mutation analysis tool for Java, which has been used by researchers in the
 past~\cite{gopinath2014code,inozemtseva2014coverage} for its wide range
-of operators.
+of operators. In total, this study involves ...{insert number of mutants} and
+...{number of test cases} JUnit test case with ... {number of asserts} 
+\texttt{assert}s.
 
 For this study, we experimented five classic mutation selection
 techniques: Constrained \cite{wong1995reducing}, E-Selective
@@ -89,6 +94,7 @@ statistically significant benefit for mutation selection techniques. Moreover,
 in cases with statistically significant benefit, the gain is so low that is
 essentially negligible.
 
+% Amin: time to think where to put the following 4 paraghraphs
 Given a set of mutants and a universe of test cases, we can approximate the
 minimal set of test cases required to kill those mutants.\footnote{We only
 approximate this, with greedy methods, due to the high cost of computing a
@@ -132,8 +138,9 @@ this evaluation criteria does not depend on the mutation-adequacy of the
 test suite under consideration, we can run the evaluation using real world
 projects which almost always have non-adequate test suites.
 
-The specific contributions of this paper are:
 
+% Amin: needs a major rewrite and reordering
+\noindent\textbf{Contributions.}The specific contributions of this paper are:
 \begin{itemize}
 
 \item Our study is the largest so far in terms of both the size of programs
@@ -162,6 +169,6 @@ for further research in this area.
 research in mutation reduction strategies. Section~\ref{sec:methodology}
  discusses the sampling and operator
 selection strategies we study in detail. The analysis is given in
-Section~\ref{sec:analysis}, and the results of our experiment are detailed in
+Section~\ref{sec:analysis}, and the results of experiments are detailed in
 Section~\ref{sec:results}. Section ~\ref{sec:conclusion} concludes the paper.
 
