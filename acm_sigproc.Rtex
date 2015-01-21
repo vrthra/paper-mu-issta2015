@@ -1,4 +1,3 @@
-\batchmode
 % THIS IS SIGPROC-SP.TEX - VERSION 3.1
 % WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
 % APRIL 2009
@@ -30,7 +29,7 @@
 \documentclass{sig-alternate}
 \usepackage{float}
 \usepackage{xspace}
-%\usepackage{etc/Sweavel}
+\usepackage{etc/Sweavel}
 \usepackage{placeins}
 \usepackage{comment}
 \usepackage[bookmarks=true, urlcolor=blue, linkcolor=blue, citecolor=blue, colorlinks=true, pdftitle={A comparison of mutant reduction approaches}, pdfauthor={Rahul Gopinath}]{hyperref}
@@ -100,37 +99,35 @@
 \input{etc/authors}
 
 \maketitle
+
 \begin{abstract}
 \input{etc/abstract}
 \end{abstract}
 
 \input{etc/keys}
+
 \begin{comment}
+
 <<setup, include=FALSE, message=FALSE, echo=FALSE>>=
 options(digits=3)
 opts_chunk$set(fig.path='figure/twocolumn-', fig.align='center', fig.show='hold', echo=FALSE)
 opts_chunk$set(cache=TRUE)
 render_listings()
-logit<-function(x) log(x/(1-x))
 require(reshape2)
 require(scales)
 require(xtable)
 require(ggplot2)
 require(grid)
 require(MutSel)
-@
-<<chunk-hook, echo=2>>=
-<<setup>>
 v=data(package='MutSel')
-data(list = v$results[,3])
-@
-\end{comment}
-<<>>=
+data(list = v['results',3])
 theme_set(theme_bw(12))
 myopts <- theme(panel.background = element_blank())
 @
 
-<<introduction, child='src/paper.Rtex'>>=
+\end{comment}
+
+<<paper, child='src/paper.Rtex'>>=
 @
 
 %
