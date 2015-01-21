@@ -136,6 +136,12 @@ this evaluation criteria does not depend on the mutation-adequacy of the
 test suite under consideration, we can run the evaluation using real world
 projects which almost always have non-adequate test suites.
 
+% TODO:
+% As Alex suggests, we also need to add that we compare using the traditional
+% method of evaluation too, that of using the strategy effectiveness
+% Also, we need to refer to the FSE once we get an hdl handle, and say the
+% second traditional method was also done, and here is the tech report.
+
 \noindent\textbf{Contributions.} The specific contributions of this paper are:
 \begin{itemize}
 \item Our study is the largest so far in terms of both the size of programs
