@@ -61,11 +61,10 @@ were conducted on older programming languages such as Fortran, with operators
 specific to the language, and may not directly applicable to newer languages
 such as Java.
 
-Finally, with bytecode-based ~\footnote{A \textit{do faster} approach for eliminating
+Finally, with bytecode-based\footnote{A \textit{do faster} approach for eliminating
 the compilation step to gain execution speed} mutation engines such as
 PIT~\cite{pitest} and Javalanche~\cite{schuler2009efficient} becoming common in both
-development and research (e.g. \cite{zhang2013ase}, \cite{gopinath2014code},
-and \cite{inozemtseva2014coverage}), operators based on source code
+development and research~\cite{zhang2013ase,gopinath2014code,inozemtseva2014coverage}, operators based on source code
 modification are no longer directly applicable, and their equivalents in
 bytecode need to be identified and compared with other approaches.
 
@@ -126,21 +125,17 @@ of the same number of mutants as the chosen set. We could also ensure that
 a reduction strategy does not miss out on important tests by running the
 set of non-redundant tests against the full set of mutants to see how many
 of the mutants were detected in comparison with the original number of
-detected mutants~\footnote{This is defined as the operator mutation score
+detected mutants\footnote{This is defined as the operator mutation score
 by Mresa et al.~\cite{mresa1999efficiency}. But the term mutation score is
 already a popular synonym for the mutation fraction detected. We call it the
-strategy effectiveness in this paper}. This can again be compared to the test
+strategy effectiveness in this paper. It is also the traditional measurement
+used to ensure that a selective mutation set is equal in strength to the
+original set of mutants}. This can again be compared to the test
 cases selected by a random sample of same number of mutants to see if the
 strategy performed better at-least with respect to random sampling. Since
 this evaluation criteria does not depend on the mutation-adequacy of the
 test suite under consideration, we can run the evaluation using real world
 projects which almost always have non-adequate test suites.
-
-% TODO:
-% As Alex suggests, we also need to add that we compare using the traditional
-% method of evaluation too, that of using the strategy effectiveness
-% Also, we need to refer to the FSE once we get an hdl handle, and say the
-% second traditional method was also done, and here is the tech report.
 
 \noindent\textbf{Contributions.} The specific contributions of this paper are:
 \begin{itemize}
