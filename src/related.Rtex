@@ -62,7 +62,7 @@ number of mutants. They also found that uniform sampling of mutations is
 more effective for larger subjects compared to equal sampling of mutation
 operators and the reverse is true for smaller subjects.
 
-Recently, Zhang et al.~\cite{zhang2013ase} confirmed that sampling as few as
+Recently, Zhang et al.~\cite{zhang2013operator} confirmed that sampling as few as
 5\% of mutants was sufficient for a very high correlation (99\%) with full
 mutation score, while sampling even fewer mutants has good potential for
 retaining a high accuracy of prediction.  They investigated eight sampling

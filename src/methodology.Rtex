@@ -64,12 +64,12 @@ subtly different from pure random sampling in that it provides a stratified
 sampling based on mutation operators.
 
 \subsubsection{Stratified random sampling over program elements}
-Following the suggestion of Zhang et al.~\cite{zhang2013ase}, we extended
+Following the suggestion of Zhang et al.~\cite{zhang2013operator}, we extended
 x\% selection criteria to sample from within different program elements.
 We sampled in increasing order of scope, --- \textit{line}, \textit{method}
 and \textit{class} (\textit{project} scope is just x\% selection).
 
-We used the formula by Zhang et al.~\cite{zhang2013ase},
+We used the formula by Zhang et al.~\cite{zhang2013operator},
 \[sample(x) = \lfloor x + random(0..1) \rfloor \]
 to correctly sample decimal numbers.
 

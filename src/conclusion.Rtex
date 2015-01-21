@@ -28,12 +28,9 @@ than limited experiments on more academic subjects.  We speculate that
 the inadequacies in real world test suites may frequently be more simply
 predicted and evaluated than for typical research subjects, which may
 be smaller or involve less easily distinguished test suites.
-% TODO: Should we add this.
-%\begin{comment}
 
 There is also an inherent danger to using only a small sample of same academic
 subjects over and over again. We may tend to see patterns that are specific
 to the subjects, which are not present in the wider population. The
 non-performance of the popular strategies against a wider dataset such as
 ours may also be seen as a possible symptom of this over-fitting.
-%\end{comment}

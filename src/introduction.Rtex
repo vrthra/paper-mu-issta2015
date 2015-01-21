@@ -40,13 +40,13 @@ recently found that the fraction required to achieve adequacy on mutation
 sampling increases at a rate of $O(x^{\frac{1}{4}})$ when program size
 increases linearly~\cite{zhang2014empirical}.
 
-Recent studies~\cite{zhang2010icse,zhang2013ase} investigating the relative
+Recent studies~\cite{zhang2010operator,zhang2013operator} investigating the relative
 merits of random sampling strategies and operator selection suggests that
 random sampling can perform as well as or better than operator selection, and
 a strategy of either sampling based on program elements or one combining both
 program element-based sampling and operator selection was the best approach.
 
-However, as pointed out by Zhang et al.~\cite{zhang2013ase}, the field has
+However, as pointed out by Zhang et al.~\cite{zhang2013operator}, the field has
 a serious lacuna in large scale research, both in the size of the programs
 studied, and in the number and diversity of programs, which reduces our
 confidence in the result of studies have been done so far. The lack of 
@@ -64,7 +64,7 @@ such as Java.
 Finally, with bytecode-based\footnote{A \textit{do faster} approach for eliminating
 the compilation step to gain execution speed} mutation engines such as
 PIT~\cite{pitest} and Javalanche~\cite{schuler2009efficient} becoming common in both
-development and research~\cite{zhang2013ase,gopinath2014code,inozemtseva2014coverage}, operators based on source code
+development and research~\cite{zhang2013operator,gopinath2014code,inozemtseva2014coverage}, operators based on source code
 modification are no longer directly applicable, and their equivalents in
 bytecode need to be identified and compared with other approaches.
 
@@ -85,7 +85,7 @@ techniques: Constrained \cite{wong1995reducing}, E-Selective
 \cite{offutt1996anexperimental}, Javalanche \cite{schuler2009efficient},
 Variable Reduction~\cite{namin2006finding} and N-Selection
 \cite{offutt1993experimental}, along with two sampling approaches:
-element based \cite{zhang2013ase} and operator based sampling
+element based \cite{zhang2013operator} and operator based sampling
 \cite{wong1995reducing}. We compare test effectiveness of each of techniques
 with pure random sampling. Our results show that in most cases there is no
 statistically significant benefit for mutation selection techniques. Moreover,
