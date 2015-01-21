@@ -78,14 +78,14 @@ reported as difference from the corresponding baseline effectiveness, given by
 \begin{figure*}
 <<mutantdet, child='fig.mutantdist.Rtex'>>=
 @
-\caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected.}
+\caption{The relative contribution of mutation operators in terms of fraction of mutants produced and detected.We see that operators that produce the largest number of mutants are also killed the most (There is no hard to kill mutation operator) }
 \label{fig:mutationshare}
 \end{figure*}
 
 \begin{figure*}
 <<testdet, child='fig.testdist.Rtex'>>=
 @
-\caption{The relative contribution of mutation operators in terms of fraction of tests killed and covered.}
+\caption{The relative contribution of mutation operators in terms of fraction of tests killed and covered. We see that if a mutant is covered, it has a high chance of being killed.}
 \label{fig:mutationkills}
 \end{figure*}
 
@@ -99,7 +99,7 @@ baseline, that is
 We also calculated the paired t-test between the number of mutants from the
 full set which were killed by the test cases killing any of the mutants from
 the selected mutants by mutation reduction strategy. That is
-\[T.test\left(k(T_{strategy})\sim{}k(T_{random})\right)\]
+\[T.test\left(|k(T_{strategy})|\sim{}|k(T_{random})|\right)\]
 
 <<tblttest, child='tbl.ttests.Rtex'>>=
 @

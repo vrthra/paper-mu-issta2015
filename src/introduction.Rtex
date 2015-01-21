@@ -140,8 +140,9 @@ projects which almost always have non-adequate test suites.
 \noindent\textbf{Contributions.} The specific contributions of this paper are:
 \begin{itemize}
 \item Our study is the largest so far in terms of both the size of programs
-involved ($50$ to $100,000$ lines excluding tests), and the number of
-programs analyzed ($312$ unique open source projects) for mutant reduction
+involved ($50$ to 116K lines excluding tests), and the number of
+programs analyzed ($312$ unique open source projects, in total $1,241$K lines
+excluding tests) for mutant reduction
 strategies. This allows for stronger and more widely applicable conclusions
 about effectiveness.
 

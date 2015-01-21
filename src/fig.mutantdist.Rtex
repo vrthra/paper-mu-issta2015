@@ -16,12 +16,13 @@ tmp$type <- factor(tmp$type, levels=c("mutations", "detected"))
 tmp$mutator <- factor(tmp$mutator, levels=c("nmc", "rv", "ic", "dc", "nc", "rc", "vmc", "cc", "emv", "m", "cb", "i", "ri", "rs", "es", "in"))
 options(warn=-1)
 ggplot(aes(y=mutations, x=mutator, fill=type),data=tmp) +
-  geom_boxplot(outlier.color=NA, outlier.shape=NA) +
-  scale_fill_manual(name = "Mutation Details", values = c(bcol, icol)
+  scale_y_log10(name='Mutations\\%') +
+  geom_boxplot(outlier.color=NA, outlier.shape=NA, width=1.1, position = position_dodge(width = 0), alpha = 0.5) +
+  scale_fill_manual(name = "Mutation Details", values = c(white, bcol)
                     , labels = c("mutations" = "Total mutations", "detected" = "Detected mutations")) +
  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
  theme(axis.line = element_line(colour = "black"))
- # coord_flip() +
+
 options(warn=0)
 # + stat_boxplot(geom ='errorbar') 
 #p1 <- ggplot(aes(y=mutations, x=mutator, fill=F),data=m.db) + geom_boxplot() + guides(fill=FALSE) + coord_flip()

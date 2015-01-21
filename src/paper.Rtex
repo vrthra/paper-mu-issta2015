@@ -19,6 +19,12 @@
 \newcommand{\Pites}{ES\xspace}
 \newcommand{\Pitin}{IN\xspace}
 
+<<>>=
+bcol <- '#2171B5'
+icol <- '#9ECAE0'
+black <-'#000000'
+white <- '#ffffff'
+@
 % 10 pages for the main text + 1 for references.
 <<introduction, child='introduction.Rtex'>>=
 @

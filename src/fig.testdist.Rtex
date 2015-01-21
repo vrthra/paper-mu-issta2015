@@ -1,6 +1,5 @@
 <<testdet,fig.width=10, fig.height=5, out.width='.95\\linewidth', out.height='4in', echo=F, message=F, warn=F,fig.lp="fig:">>=
-bcol <- '#2171B5'
-icol <- '#9ECAE0'
+
 m.db <- subset(allmutants.db, ncovering > 0)
 d.db <- subset(allmutants.db, nkilling > 0)
 #m.db$covering <- m.db$tstcovering * 100.0 / m.db$ncovering
@@ -21,9 +20,11 @@ tmp$type <- factor(tmp$type, levels=c("covering", "killing"))
 tmp$mutator <- factor(tmp$mutator, levels=c("nmc", "rv", "ic", "dc", "nc", "rc", "vmc", "cc", "emv", "m", "cb", "i", "ri", "rs", "es", "in"))
 options(warn=-1)
 ggplot(aes(y=tests, x=mutator, fill=type),data=tmp) +
-  geom_boxplot(outlier.color=NA, outlier.shape=NA) +
-  scale_fill_manual(name = "Mutation Details", values = c(bcol, icol)
-                    , labels = c("covering" = "Total covering", "killing" = "Total killing")) +
+  geom_boxplot(outlier.color=NA, outlier.shape=NA, width=1.1, position = position_dodge(width = 0), alpha = 0.5) + 
+  scale_fill_manual(name = "Mutation Details", 
+      values = c(white, bcol), 
+      labels = c("covering" = "Total covering", "killing" = "Total killing")) +
+      ylab('Tests\\%') +
  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
  theme(axis.line = element_line(colour = "black"))
 options(warn=0)
