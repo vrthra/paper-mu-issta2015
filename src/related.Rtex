@@ -10,7 +10,7 @@ Mutation analysis was found to subsume different coverage
 measures~\cite{budd1980mutation,mathur1994empirical,offutt1996subsumption},
 and it was found that the faults produced by mutation analysis were similar
 to real faults in the errors it produced~\cite{daran1996software} and the
-ease of detection~\cite{andrews2005mutation,andrews2006using}.  Just et
+ease of detection~\cite{andrews2005mutation,andrews2006using}. Just et
 al.~\cite{just2014mutants} investigated the relation between mutation score
 and test case effectiveness using 357 real bugs, and found that the mutation
 score increased with effectiveness for 75\% of the cases, which was better

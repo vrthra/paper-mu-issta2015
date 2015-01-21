@@ -10,10 +10,10 @@ detail, and summarize the broad patterns we see at the end.
 \subsection{Operator Selection}
 From Table~\ref{tbl:selective}, looking at the test and assert utility, we
 see that there are a few selective strategies that seem to score a positive
-test utility. Notably, the statement modification strategy sselective does
+test utility. Notably, the statement modification strategy \textit{sselective} does
 about 1.86\% better than the random selection for test utility, and has
 similar advantage in assert utility. It also seem to have a slight advantage
-of 0.27\% in the strategy effectivenss.
+of 0.27\% in the strategy effectiveness.
 
 The statistical analysis in Table~\ref{tbl:ttests} also suggests a positive
 mean and a $p-value < 0.01$ for this result.
@@ -24,7 +24,7 @@ resulted in a test utility advantage of 2.67\%. It also have the best positive
 strategy effectiveness of 0.29\%. However, the difference was not significant
 using t-tests in Table~\ref{tbl:ttests} $p-value > 0.01$.~\footnote{The
 difference between Table ~\ref{tbl:nselection} and Table~\ref{tbl:ttests}
-is due to test or mutant number being zero for baseline, and hence remvoed
+is due to test or mutant number being zero for baseline, and hence removed
 for computing percentage}.
 
 Using single operators, we get a better result of 7.77\% for \Pitrv, which

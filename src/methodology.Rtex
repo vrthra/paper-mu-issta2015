@@ -9,7 +9,7 @@
 \label{sec:methodology}
 Our selection of programs was driven by a few overriding concerns. Our
 primary requirement was that our results had to be as widely applicable as
-possible for real-world programs. Secondly, we strived for a statistically
+possible for real-world programs. Secondly, we strove for a statistically
 significant result, reducing the number of variables present in the
 experiments. For this reason we chose a random sample of Java projects from
 Github~\cite{github} and Apache Software Foundation~\cite{apache} that use

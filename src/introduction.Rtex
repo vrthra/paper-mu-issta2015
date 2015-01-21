@@ -5,7 +5,7 @@ Mutation analysis is a method for evaluating the quality of test suites. It
 involves producing a family of \emph{mutants}, programs with small differences
 from the original program, and evaluating the effectiveness of test suites
 against these mutants~\cite{lipton1971fault, ammann2008introduction}. Research
-by Andrews et. al~\cite{andrews2005mutation,andrews2006using} suggest
+by Andrews et al.~\cite{andrews2005mutation,andrews2006using} suggest
 that mutations can simulate behavior of real faults. However, mutation
 analysis of test suites has not sufficiently permeated software engineering
 practice~\cite{daka2014asurvey} even though the need for a tool that is
@@ -70,7 +70,7 @@ This paper studies different mutant selection strategies on large number
 of Java programs using a popular bytecode-based mutation PIT.  We sampled
 $312$ opensource Java project between $50$ to $100K$ non-comment lines of
 code (excluding test cases) from Github and Apache Foundation. This set
-of projects include many of popular Java projects that are regualry used
+of projects include many of popular Java projects that are regularly used
 in literature (such as Apache Common Lang, Common Math and Joda Time). For
 the mutation analysis of this study, we choose PIT, a fast and easy to use
 mutation analysis tool for Java, which has been used by researchers in the
@@ -128,7 +128,7 @@ already a popular synonym for the mutation fraction detected. We call it the
 strategy effectiveness in this paper}. This can again be compared to the test
 cases selected by a random sample of same number of mutants to see if the
 strategy performed better at-least with respect to random sampling. Since
-this evaluation crtieria does not depend on the mutation-adequacy of the
+this evaluation criteria does not depend on the mutation-adequacy of the
 test suite under consideration, we can run the evaluation using real world
 projects which almost always have non-adequate test suites.
 
@@ -146,9 +146,9 @@ about effectiveness.
 than previous studies. Our reduction strategies include all the common
 and influential strategies for random sampling, element scoped sampling,
 operator based sampling, and operator selection, that have been proposed in
-previous studeies.
+previous studies.
 
-\item Our evaluation crtieria is applicable to non-adequate test suites
+\item Our evaluation criteria is applicable to non-adequate test suites
 which makes the results immediately relevant for real world programs with
 non-adequate test suites.
 

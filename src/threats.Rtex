@@ -16,14 +16,14 @@ its capabilities to some extent for our purposes. Software bugs are a fact
 of life. While every care has been taken to avoid them, there is still some
 possibility of some bugs having escaped us.
 
-Finally, and most importanly, most of the previous research on operator
+Finally, and most importantly, most of the previous research on operator
 selection has been done on source level mutants. However, for a study of
 the size we have conducted, it is infeasible to rely on source level mutants
 (even using the bytecode based fast mutation evaluation provided by PIT, the
 mutation analysis took months to complete). This also means that we had to
 rely on translation of source level mutants to their bytecode equivalents,
 which was in most cases not a one to one process, and this could have
-introduced unintented errors.  However, for all the operator selection
+introduced unintended errors.  However, for all the operator selection
 strategies we examined, we followed the given justifications for choosing
 the particular set of mutants, and have applied the same reasoning to the
 operators available in PIT to derive equivalent mutation selections.
